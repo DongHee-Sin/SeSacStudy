@@ -30,6 +30,11 @@
 		D07BE84E2918DF3C00020487 /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D07BE84C2918DF3C00020487 /* NotoSansCJKkr-Medium.otf */; };
 		D07BE8502918DF7900020487 /* NotoSansCJK.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE84F2918DF7900020487 /* NotoSansCJK.swift */; };
 		D07BE8522918E12D00020487 /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8512918E12D00020487 /* FontStyle.swift */; };
+		D07BE8542918E3F600020487 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8532918E3F600020487 /* OnboardingViewController.swift */; };
+		D07BE8562918E40A00020487 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8552918E40A00020487 /* OnboardingView.swift */; };
+		D07BE8582918F02F00020487 /* UICollectionViewLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */; };
+		D07BE85A2918F90600020487 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8592918F90600020487 /* OnboardingCollectionViewCell.swift */; };
+		D07BE85C2918FA3E00020487 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE85B2918FA3E00020487 /* BaseCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +57,11 @@
 		D07BE84C2918DF3C00020487 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
 		D07BE84F2918DF7900020487 /* NotoSansCJK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotoSansCJK.swift; sourceTree = "<group>"; };
 		D07BE8512918E12D00020487 /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
+		D07BE8532918E3F600020487 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		D07BE8552918E40A00020487 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Extension.swift"; sourceTree = "<group>"; };
+		D07BE8592918F90600020487 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		D07BE85B2918FA3E00020487 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +100,7 @@
 		D0100B442918C5CC00AEC5C2 /* SeSacStudy */ = {
 			isa = PBXGroup;
 			children = (
+				D07BE8672919012B00020487 /* BuildTools */,
 				D0100B592918C8A900AEC5C2 /* App */,
 				D02335572918CDFB003C7225 /* Utility */,
 				D02335582918CE0B003C7225 /* Manager */,
@@ -146,6 +157,7 @@
 			children = (
 				D023355D2918CE6C003C7225 /* UIColor+Extension.swift */,
 				D07BE8422918DAFB00020487 /* UIFont+Extension.swift */,
+				D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -155,6 +167,7 @@
 			children = (
 				D02335672918D631003C7225 /* BaseViewController.swift */,
 				D02335692918D652003C7225 /* BaseView.swift */,
+				D07BE85B2918FA3E00020487 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -169,6 +182,9 @@
 		D02335662918D5D6003C7225 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				D07BE8532918E3F600020487 /* OnboardingViewController.swift */,
+				D07BE8552918E40A00020487 /* OnboardingView.swift */,
+				D07BE8592918F90600020487 /* OnboardingCollectionViewCell.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -190,6 +206,13 @@
 				D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		D07BE8672919012B00020487 /* BuildTools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BuildTools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,10 +303,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D07BE8542918E3F600020487 /* OnboardingViewController.swift in Sources */,
 				D07BE8502918DF7900020487 /* NotoSansCJK.swift in Sources */,
+				D07BE8582918F02F00020487 /* UICollectionViewLayout+Extension.swift in Sources */,
+				D07BE85A2918F90600020487 /* OnboardingCollectionViewCell.swift in Sources */,
 				D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */,
 				D07BE8522918E12D00020487 /* FontStyle.swift in Sources */,
 				D0100B4A2918C5CC00AEC5C2 /* ViewController.swift in Sources */,
+				D07BE85C2918FA3E00020487 /* BaseCollectionViewCell.swift in Sources */,
 				D02335632918D155003C7225 /* ColorManager.swift in Sources */,
 				D023356D2918D752003C7225 /* BasicButton.swift in Sources */,
 				D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */,
@@ -292,6 +319,7 @@
 				D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */,
 				D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */,
 				D023356A2918D652003C7225 /* BaseView.swift in Sources */,
+				D07BE8562918E40A00020487 /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
