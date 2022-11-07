@@ -6,13 +6,23 @@
 //
 
 import UIKit
+import SnapKit
 
 class ViewController: UIViewController {
     
     override func loadView() {
-        let view = UIView()
-        view.backgroundColor = ColorManager.white
-        self.view = view
+        let cusView = UIView()
+        cusView.backgroundColor = ColorManager.white
+        let label = UILabel()
+        cusView.addSubview(label)
+        label.backgroundColor = .red
+        label.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(cusView)
+            make.width.equalTo(200)
+        }
+        label.text = "안녕하세요"
+        label.font = .customFont(.body1_M16)
+        self.view = cusView
     }
 
     override func viewDidLoad() {

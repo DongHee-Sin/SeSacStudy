@@ -20,6 +20,16 @@
 		D0100B6F2918CB3500AEC5C2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B6E2918CB3500AEC5C2 /* Alamofire */; };
 		D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023355D2918CE6C003C7225 /* UIColor+Extension.swift */; };
 		D02335632918D155003C7225 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335622918D155003C7225 /* ColorManager.swift */; };
+		D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335642918D597003C7225 /* UserDefaultManager.swift */; };
+		D02335682918D631003C7225 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335672918D631003C7225 /* BaseViewController.swift */; };
+		D023356A2918D652003C7225 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335692918D652003C7225 /* BaseView.swift */; };
+		D023356D2918D752003C7225 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023356C2918D752003C7225 /* BasicButton.swift */; };
+		D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8422918DAFB00020487 /* UIFont+Extension.swift */; };
+		D07BE8452918DCFC00020487 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D07BE8442918DCFC00020487 /* .gitignore */; };
+		D07BE84D2918DF3C00020487 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */; };
+		D07BE84E2918DF3C00020487 /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D07BE84C2918DF3C00020487 /* NotoSansCJKkr-Medium.otf */; };
+		D07BE8502918DF7900020487 /* NotoSansCJK.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE84F2918DF7900020487 /* NotoSansCJK.swift */; };
+		D07BE8522918E12D00020487 /* FontStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8512918E12D00020487 /* FontStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +42,16 @@
 		D0100B532918C5CC00AEC5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D023355D2918CE6C003C7225 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D02335622918D155003C7225 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		D02335642918D597003C7225 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		D02335672918D631003C7225 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		D02335692918D652003C7225 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		D023356C2918D752003C7225 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
+		D07BE8422918DAFB00020487 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		D07BE8442918DCFC00020487 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
+		D07BE84C2918DF3C00020487 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
+		D07BE84F2918DF7900020487 /* NotoSansCJK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotoSansCJK.swift; sourceTree = "<group>"; };
+		D07BE8512918E12D00020487 /* FontStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +96,7 @@
 				D0100B5A2918C97F00AEC5C2 /* View */,
 				D0100B4E2918C5CC00AEC5C2 /* Assets.xcassets */,
 				D0100B502918C5CC00AEC5C2 /* LaunchScreen.storyboard */,
+				D07BE8442918DCFC00020487 /* .gitignore */,
 				D0100B532918C5CC00AEC5C2 /* Info.plist */,
 			);
 			path = SeSacStudy;
@@ -93,6 +114,7 @@
 		D0100B5A2918C97F00AEC5C2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D02335662918D5D6003C7225 /* Onboarding */,
 				D0100B492918C5CC00AEC5C2 /* ViewController.swift */,
 			);
 			path = View;
@@ -104,6 +126,8 @@
 				D023355A2918CE29003C7225 /* Base */,
 				D023355B2918CE35003C7225 /* Protocol */,
 				D02335592918CE23003C7225 /* Extension */,
+				D07BE8462918DD9D00020487 /* Font */,
+				D023356B2918D679003C7225 /* Reusable */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -112,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				D02335622918D155003C7225 /* ColorManager.swift */,
+				D02335642918D597003C7225 /* UserDefaultManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -120,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				D023355D2918CE6C003C7225 /* UIColor+Extension.swift */,
+				D07BE8422918DAFB00020487 /* UIFont+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -127,6 +153,8 @@
 		D023355A2918CE29003C7225 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				D02335672918D631003C7225 /* BaseViewController.swift */,
+				D02335692918D652003C7225 /* BaseView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -136,6 +164,32 @@
 			children = (
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		D02335662918D5D6003C7225 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		D023356B2918D679003C7225 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				D023356C2918D752003C7225 /* BasicButton.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
+		D07BE8462918DD9D00020487 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				D07BE8512918E12D00020487 /* FontStyle.swift */,
+				D07BE84F2918DF7900020487 /* NotoSansCJK.swift */,
+				D07BE84C2918DF3C00020487 /* NotoSansCJKkr-Medium.otf */,
+				D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,7 +266,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0100B522918C5CC00AEC5C2 /* LaunchScreen.storyboard in Resources */,
+				D07BE84D2918DF3C00020487 /* NotoSansCJKkr-Regular.otf in Resources */,
+				D07BE8452918DCFC00020487 /* .gitignore in Resources */,
 				D0100B4F2918C5CC00AEC5C2 /* Assets.xcassets in Resources */,
+				D07BE84E2918DF3C00020487 /* NotoSansCJKkr-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,11 +280,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D07BE8502918DF7900020487 /* NotoSansCJK.swift in Sources */,
+				D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */,
+				D07BE8522918E12D00020487 /* FontStyle.swift in Sources */,
 				D0100B4A2918C5CC00AEC5C2 /* ViewController.swift in Sources */,
 				D02335632918D155003C7225 /* ColorManager.swift in Sources */,
+				D023356D2918D752003C7225 /* BasicButton.swift in Sources */,
 				D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */,
 				D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */,
+				D02335682918D631003C7225 /* BaseViewController.swift in Sources */,
 				D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */,
+				D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */,
+				D023356A2918D652003C7225 /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
