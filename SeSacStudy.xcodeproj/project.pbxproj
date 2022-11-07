@@ -18,6 +18,8 @@
 		D0100B692918CB0800AEC5C2 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B682918CB0800AEC5C2 /* IQKeyboardManagerSwift */; };
 		D0100B6C2918CB1300AEC5C2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B6B2918CB1300AEC5C2 /* SnapKit */; };
 		D0100B6F2918CB3500AEC5C2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B6E2918CB3500AEC5C2 /* Alamofire */; };
+		D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023355D2918CE6C003C7225 /* UIColor+Extension.swift */; };
+		D02335632918D155003C7225 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335622918D155003C7225 /* ColorManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		D0100B4E2918C5CC00AEC5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0100B512918C5CC00AEC5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0100B532918C5CC00AEC5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D023355D2918CE6C003C7225 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		D02335622918D155003C7225 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				D0100B592918C8A900AEC5C2 /* App */,
+				D02335572918CDFB003C7225 /* Utility */,
+				D02335582918CE0B003C7225 /* Manager */,
 				D0100B5A2918C97F00AEC5C2 /* View */,
 				D0100B4E2918C5CC00AEC5C2 /* Assets.xcassets */,
 				D0100B502918C5CC00AEC5C2 /* LaunchScreen.storyboard */,
@@ -90,6 +96,46 @@
 				D0100B492918C5CC00AEC5C2 /* ViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D02335572918CDFB003C7225 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				D023355A2918CE29003C7225 /* Base */,
+				D023355B2918CE35003C7225 /* Protocol */,
+				D02335592918CE23003C7225 /* Extension */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		D02335582918CE0B003C7225 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D02335622918D155003C7225 /* ColorManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		D02335592918CE23003C7225 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D023355D2918CE6C003C7225 /* UIColor+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		D023355A2918CE29003C7225 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		D023355B2918CE35003C7225 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,8 +224,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0100B4A2918C5CC00AEC5C2 /* ViewController.swift in Sources */,
+				D02335632918D155003C7225 /* ColorManager.swift in Sources */,
 				D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */,
 				D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */,
+				D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
