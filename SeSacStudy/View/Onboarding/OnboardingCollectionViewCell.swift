@@ -14,11 +14,11 @@ import Then
 final class OnboardingCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Propertys
-    let textImage = UIImageView().then {
+    let textImageView = UIImageView().then {
         $0.image = UIImage(named: "onboarding_txt1")
     }
     
-    let mainImage = UIImageView().then {
+    let mainImageView = UIImageView().then {
         $0.image = UIImage(named: "onboarding_img1")
     }
     
@@ -27,13 +27,24 @@ final class OnboardingCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Methods
     override func configureUI() {
-        [textImage, mainImage].forEach {
+        [textImageView, mainImageView].forEach {
             self.addSubview($0)
         }
     }
     
     
-//    override func setConstraint() {
-//        <#code#>
-//    }
+    override func setConstraint() {
+        mainImageView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(self).inset(8)
+            make.height.equalTo(mainImageView.snp.width)
+            make.centerX.equalTo(self)
+            make.bottom.equalTo(self).offset(-30)
+        }
+        
+        textImageView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(self)
+            make.bottom.equalTo(mainImageView.snp.top)
+            make.top.equalTo(self)
+        }
+    }
 }

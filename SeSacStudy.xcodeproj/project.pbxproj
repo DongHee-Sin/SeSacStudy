@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4CECB3BE79BA4BC04B0BADCD /* Pods_SeSacStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFC5E6B44EC8A69EEBAFB1D /* Pods_SeSacStudy.framework */; };
-		D009B9AF2919416900A2F836 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D009B9AE2919416900A2F836 /* R.generated.swift */; };
 		D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0100B452918C5CC00AEC5C2 /* AppDelegate.swift */; };
 		D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0100B472918C5CC00AEC5C2 /* SceneDelegate.swift */; };
 		D0100B4A2918C5CC00AEC5C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0100B492918C5CC00AEC5C2 /* ViewController.swift */; };
@@ -27,6 +26,7 @@
 		D023356A2918D652003C7225 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335692918D652003C7225 /* BaseView.swift */; };
 		D023356D2918D752003C7225 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023356C2918D752003C7225 /* BasicButton.swift */; };
 		D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */; };
+		D03BD00F291962D500F79915 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BD00E291962D500F79915 /* R.generated.swift */; };
 		D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8422918DAFB00020487 /* UIFont+Extension.swift */; };
 		D07BE8452918DCFC00020487 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D07BE8442918DCFC00020487 /* .gitignore */; };
 		D07BE84D2918DF3C00020487 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */; };
@@ -44,7 +44,6 @@
 		A461A4FC7A81E0321E5DADF2 /* Pods-SeSacStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacStudy.release.xcconfig"; path = "Target Support Files/Pods-SeSacStudy/Pods-SeSacStudy.release.xcconfig"; sourceTree = "<group>"; };
 		C9F727FA6385471DB50F92AB /* Pods-SeSacStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacStudy.debug.xcconfig"; path = "Target Support Files/Pods-SeSacStudy/Pods-SeSacStudy.debug.xcconfig"; sourceTree = "<group>"; };
 		CBFC5E6B44EC8A69EEBAFB1D /* Pods_SeSacStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeSacStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D009B9AE2919416900A2F836 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = SeSacStudy/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D0100B422918C5CC00AEC5C2 /* SeSacStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSacStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0100B452918C5CC00AEC5C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0100B472918C5CC00AEC5C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +58,7 @@
 		D02335692918D652003C7225 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		D023356C2918D752003C7225 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
+		D03BD00E291962D500F79915 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D07BE8422918DAFB00020487 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		D07BE8442918DCFC00020487 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 				D0100B5A2918C97F00AEC5C2 /* View */,
 				D0100B4E2918C5CC00AEC5C2 /* Assets.xcassets */,
 				D0100B502918C5CC00AEC5C2 /* LaunchScreen.storyboard */,
-				D009B9AE2919416900A2F836 /* R.generated.swift */,
+				D03BD00E291962D500F79915 /* R.generated.swift */,
 				D07BE8442918DCFC00020487 /* .gitignore */,
 				D0100B532918C5CC00AEC5C2 /* Info.plist */,
 			);
@@ -365,13 +365,13 @@
 		};
 		D0107394291940A5004450FF /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$TEMP_DIR/rswift-lastrun",
 			);
 			name = "Run Script";
 			outputFileListPaths = (
@@ -396,12 +396,12 @@
 				D07BE85A2918F90600020487 /* OnboardingCollectionViewCell.swift in Sources */,
 				D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */,
 				D07BE8522918E12D00020487 /* FontStyle.swift in Sources */,
+				D03BD00F291962D500F79915 /* R.generated.swift in Sources */,
 				D0100B4A2918C5CC00AEC5C2 /* ViewController.swift in Sources */,
 				D07BE85C2918FA3E00020487 /* BaseCollectionViewCell.swift in Sources */,
 				D02335632918D155003C7225 /* ColorManager.swift in Sources */,
 				D023356D2918D752003C7225 /* BasicButton.swift in Sources */,
 				D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */,
-				D009B9AF2919416900A2F836 /* R.generated.swift in Sources */,
 				D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */,
 				D02335682918D631003C7225 /* BaseViewController.swift in Sources */,
 				D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */,

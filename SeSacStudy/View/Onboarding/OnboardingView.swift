@@ -14,9 +14,7 @@ import Then
 final class OnboardingView: BaseView {
     
     // MARK: - Propertys
-    let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: .onboardingViewLayout).then {
-        $0.backgroundColor = .black
-    }
+    let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: .onboardingViewLayout)
     
     let pageControl = UIPageControl().then {
         $0.numberOfPages = 3
@@ -62,7 +60,7 @@ final class OnboardingView: BaseView {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide)
-            make.horizontalEdges.equalTo(self).inset(7)
+            make.horizontalEdges.equalTo(self)
             make.bottom.equalTo(pageControl.snp.top)
         }
     }
