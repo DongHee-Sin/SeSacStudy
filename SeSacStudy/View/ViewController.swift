@@ -17,17 +17,18 @@ class ViewController: UIViewController {
         cusView.addSubview(label)
         label.snp.makeConstraints { make in
             make.centerX.centerY.equalTo(cusView)
-            make.width.equalTo(200)
+            make.height.equalTo(500)
         }
-        label.text = "안녕하세요"
-        label.font = .customFont(.body1_M16)
+        label.attributedText = .attributedString(text: "안녕하세요\n뚱이에요\n반가워요", style: .title6_R12, color: ColorManager.green)
+//        label.text = "안녕하세요\n뚱이에요\n반가워요"
+        label.numberOfLines = 0
         self.view = cusView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
     }
 
 
 }
-

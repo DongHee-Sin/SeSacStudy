@@ -60,3 +60,25 @@ extension FontStyle {
         }
     }
 }
+
+
+
+
+extension FontStyle {
+    
+    var lineHeight: CGFloat {
+        switch self {
+        case .display_R20, .title1_M16, .title2_R16, .title3_M14, .title4_R14, .caption_R10:
+            return self.size * 1.6
+        case .title5_M12, .title6_R12:
+            return self.size * 1.5
+        case .body1_M16, .body2_R16:
+            return self.size * 1.85
+        case .body3_R14:
+            return self.size * 1.7
+        case .body4_R12:
+            return self.size * 1.8
+        }
+    }
+    
+}

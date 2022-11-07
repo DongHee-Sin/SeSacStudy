@@ -26,6 +26,7 @@
 		D02335682918D631003C7225 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335672918D631003C7225 /* BaseViewController.swift */; };
 		D023356A2918D652003C7225 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335692918D652003C7225 /* BaseView.swift */; };
 		D023356D2918D752003C7225 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023356C2918D752003C7225 /* BasicButton.swift */; };
+		D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */; };
 		D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8422918DAFB00020487 /* UIFont+Extension.swift */; };
 		D07BE8452918DCFC00020487 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D07BE8442918DCFC00020487 /* .gitignore */; };
 		D07BE84D2918DF3C00020487 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */; };
@@ -57,6 +58,7 @@
 		D02335672918D631003C7225 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D02335692918D652003C7225 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		D023356C2918D752003C7225 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
+		D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		D07BE8422918DAFB00020487 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		D07BE8442918DCFC00020487 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				D023355D2918CE6C003C7225 /* UIColor+Extension.swift */,
 				D07BE8422918DAFB00020487 /* UIFont+Extension.swift */,
+				D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */,
 				D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */,
 			);
 			path = Extension;
@@ -404,6 +407,7 @@
 				D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */,
 				D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */,
 				D023356A2918D652003C7225 /* BaseView.swift in Sources */,
+				D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */,
 				D07BE8562918E40A00020487 /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
