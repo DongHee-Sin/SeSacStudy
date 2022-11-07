@@ -12,10 +12,9 @@ class ViewController: UIViewController {
     
     override func loadView() {
         let cusView = UIView()
-        cusView.backgroundColor = ColorManager.white
+        
         let label = UILabel()
         cusView.addSubview(label)
-        label.backgroundColor = .red
         label.snp.makeConstraints { make in
             make.centerX.centerY.equalTo(cusView)
             make.width.equalTo(200)
