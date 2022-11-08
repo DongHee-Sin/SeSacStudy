@@ -20,16 +20,10 @@ final class TextStackView: BaseView {
     }
     
     private let titleLabel = UILabel().then {
-        $0.textAlignment = .center
-        $0.textColor = R.color.black()
-        $0.font = .customFont(.display_R20)
+        $0.numberOfLines = 0
     }
     
-    private lazy var subTitleLabel = UILabel().then {
-        $0.textAlignment = .center
-        $0.textColor = R.color.gray7()
-        $0.font = .customFont(.title2_R16)
-    }
+    private lazy var subTitleLabel = UILabel()
     
     
     
@@ -49,10 +43,10 @@ final class TextStackView: BaseView {
     
     
     func addText(title: String, subTitle: String? = nil) {
-        titleLabel.text = title
+        titleLabel.attributedText = .attributedString(text: title, style: .display_R20, color: R.color.black())
         
         if let subTitle {
-            subTitleLabel.text = subTitle
+            subTitleLabel.attributedText = .attributedString(text: subTitle, style: .title2_R16, color: R.color.gray7())
             stackView.addArrangedSubview(subTitleLabel)
         }
     }

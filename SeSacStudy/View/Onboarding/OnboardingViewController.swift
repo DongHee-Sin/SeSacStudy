@@ -50,7 +50,9 @@ final class OnboardingViewController: BaseViewController {
         onboardingView.startButton.rx.tap
             .withUnretained(self)
             .bind { (vc, _) in
-                //vc.transition(<#T##viewController: T##T#>)
+                let navi = UINavigationController(rootViewController: EnterPhoneNumberViewController())
+                UserDefaultManager.shared.isInitialLaunch = false
+                vc.changeRootViewController(to: navi)
             }
             .disposed(by: disposeBag)
     }
