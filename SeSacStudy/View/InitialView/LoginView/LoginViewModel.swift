@@ -16,3 +16,26 @@ final class LoginViewModel {
     let phoneNumber = PublishRelay<String>()
     
 }
+
+
+
+
+extension LoginViewModel: CommonViewModel {
+
+    struct Input {
+        let phoneNumberText: ControlProperty<String?>
+        let buttonTap: ControlEvent<Void>
+    }
+
+    struct Output {
+        let phoneNumberText: ControlProperty<String>
+        let buttonTap: ControlEvent<Void>
+    }
+
+
+    func transfrom(input: Input) -> Output {
+        let text = input.phoneNumberText.orEmpty
+        
+        return Output(phoneNumberText: text, buttonTap: input.buttonTap)
+    }
+}

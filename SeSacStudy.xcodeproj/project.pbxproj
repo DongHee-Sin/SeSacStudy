@@ -42,6 +42,7 @@
 		D0DEEFF7291A5B5600BE125E /* EnterPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFF6291A5B5600BE125E /* EnterPhoneNumberViewController.swift */; };
 		D0DEEFF9291A5DAC00BE125E /* EnterPhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFF8291A5DAC00BE125E /* EnterPhoneNumberView.swift */; };
 		D0DEEFFB291A65B700BE125E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFFA291A65B700BE125E /* LoginViewModel.swift */; };
+		D0DEEFFD291A733300BE125E /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFFC291A733300BE125E /* CommonViewModel.swift */; };
 		D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */; };
 		D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FC291A070C00D49E0F /* Onboarding.swift */; };
 		D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */; };
@@ -81,6 +82,7 @@
 		D0DEEFF6291A5B5600BE125E /* EnterPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		D0DEEFF8291A5DAC00BE125E /* EnterPhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhoneNumberView.swift; sourceTree = "<group>"; };
 		D0DEEFFA291A65B700BE125E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D0DEEFFC291A733300BE125E /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableInitialView.swift; sourceTree = "<group>"; };
 		D0E2E1FC291A070C00D49E0F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		D023355B2918CE35003C7225 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				D0DEEFFC291A733300BE125E /* CommonViewModel.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				D03BD00F291962D500F79915 /* R.generated.swift in Sources */,
 				D0100B4A2918C5CC00AEC5C2 /* ViewController.swift in Sources */,
 				D07BE85C2918FA3E00020487 /* BaseCollectionViewCell.swift in Sources */,
+				D0DEEFFD291A733300BE125E /* CommonViewModel.swift in Sources */,
 				D02335632918D155003C7225 /* ColorManager.swift in Sources */,
 				D023356D2918D752003C7225 /* BasicButton.swift in Sources */,
 				D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */,
