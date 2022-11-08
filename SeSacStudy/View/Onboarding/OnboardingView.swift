@@ -14,11 +14,13 @@ import Then
 final class OnboardingView: BaseView {
     
     // MARK: - Propertys
-    let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: .onboardingViewLayout)
+    let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: .onboardingViewLayout).then {
+        $0.showsHorizontalScrollIndicator = false
+        $0.isPagingEnabled = true
+    }
     
     let pageControl = UIPageControl().then {
         $0.numberOfPages = 3
-        $0.currentPage = 1
         $0.currentPageIndicatorTintColor = ColorManager.black
         $0.pageIndicatorTintColor = ColorManager.gray5
     }

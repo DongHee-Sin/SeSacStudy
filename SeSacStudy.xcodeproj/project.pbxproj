@@ -38,6 +38,7 @@
 		D07BE8582918F02F00020487 /* UICollectionViewLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */; };
 		D07BE85A2918F90600020487 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8592918F90600020487 /* OnboardingCollectionViewCell.swift */; };
 		D07BE85C2918FA3E00020487 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE85B2918FA3E00020487 /* BaseCollectionViewCell.swift */; };
+		D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FC291A070C00D49E0F /* Onboarding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Extension.swift"; sourceTree = "<group>"; };
 		D07BE8592918F90600020487 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		D07BE85B2918FA3E00020487 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		D0E2E1FC291A070C00D49E0F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 				D07BE8532918E3F600020487 /* OnboardingViewController.swift */,
 				D07BE8552918E40A00020487 /* OnboardingView.swift */,
 				D07BE8592918F90600020487 /* OnboardingCollectionViewCell.swift */,
+				D0E2E1FC291A070C00D49E0F /* Onboarding.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			files = (
 				D07BE8542918E3F600020487 /* OnboardingViewController.swift in Sources */,
 				D07BE8502918DF7900020487 /* NotoSansCJK.swift in Sources */,
+				D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */,
 				D07BE8582918F02F00020487 /* UICollectionViewLayout+Extension.swift in Sources */,
 				D07BE85A2918F90600020487 /* OnboardingCollectionViewCell.swift in Sources */,
 				D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */,

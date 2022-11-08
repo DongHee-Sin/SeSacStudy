@@ -11,8 +11,10 @@ import UIKit
 final class OnboardingViewController: BaseViewController {
 
     // MARK: - Propertys
-    let onboardingImages: [UIImage?] = [
-        R.image.onboarding_img1(), R.image.onboarding_img2(), R.image.onboarding_img3()
+    private let onboardings: [Onboarding] = [
+        Onboarding(title: "위치 기반으로 빠르게\n주위 친구를 확인", image: R.image.onboarding_img1(), highlightedText: "위치 기반", highlightedColor: R.color.green()),
+        Onboarding(title: "스터디를 원하는 친구를\n찾을 수 있어요", image: R.image.onboarding_img2(), highlightedText: "스터디를 원하는 친구", highlightedColor: R.color.green()),
+        Onboarding(title: "SeSAC Study", image: R.image.onboarding_img3())
     ]
     
     
@@ -46,7 +48,7 @@ final class OnboardingViewController: BaseViewController {
 extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return onboardingImages.count
+        return onboardings.count
     }
     
     
@@ -55,8 +57,14 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
             return UICollectionViewCell()
         }
         
-        cell.mainImageView.image = onboardingImages[indexPath.item]
+        cell.updateCell(data: onboardings[indexPath.item])
         
         return cell
+    }
+    
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let page = Int(targetContentOffset.pointee.x / view.frame.width)
+        onboardingView.pageControl.currentPage = page
     }
 }

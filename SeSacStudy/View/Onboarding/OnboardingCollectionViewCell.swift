@@ -14,20 +14,18 @@ import Then
 final class OnboardingCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Propertys
-    let textImageView = UIImageView().then {
-        $0.image = UIImage(named: "onboarding_txt1")
+    private let textLabel = UILabel().then {
+        $0.numberOfLines = 0
     }
     
-    let mainImageView = UIImageView().then {
-        $0.image = UIImage(named: "onboarding_img1")
-    }
+    private let mainImageView = UIImageView()
     
     
     
     
     // MARK: - Methods
     override func configureUI() {
-        [textImageView, mainImageView].forEach {
+        [textLabel, mainImageView].forEach {
             self.addSubview($0)
         }
     }
@@ -38,13 +36,19 @@ final class OnboardingCollectionViewCell: BaseCollectionViewCell {
             make.horizontalEdges.equalTo(self).inset(8)
             make.height.equalTo(mainImageView.snp.width)
             make.centerX.equalTo(self)
-            make.bottom.equalTo(self).offset(-30)
+            make.bottom.equalTo(self).offset(-20)
         }
         
-        textImageView.snp.makeConstraints { make in
+        textLabel.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(self)
             make.bottom.equalTo(mainImageView.snp.top)
             make.top.equalTo(self)
         }
+    }
+    
+    
+    func updateCell(data: Onboarding) {
+        textLabel.attributedText = .attributedString(text: data.title, style: .display_R20, color: R.color.black(), highlightedText: data.highlightedText, highlightedColor: data.highlightedColor)
+        mainImageView.image = data.image
     }
 }

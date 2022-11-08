@@ -11,23 +11,13 @@ import UIKit
 extension UICollectionViewLayout {
     
     static var onboardingViewLayout: UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout {
-            (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-            let groubSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-
-            let groub = NSCollectionLayoutGroup.horizontal(layoutSize: groubSize, subitem: item, count: 1)
-
-            let section = NSCollectionLayoutSection(group: groub)
-            section.orthogonalScrollingBehavior = .paging
-
-            return section
-        }
-
+        let layout = UICollectionViewFlowLayout()
+        
+        let itemWidth: CGFloat = UIScreen.main.bounds.width
+        
+        layout.itemSize = CGSize(width: itemWidth, height: itemWidth * 1.3)
+        layout.scrollDirection = .horizontal
+        
         return layout
     }
     
