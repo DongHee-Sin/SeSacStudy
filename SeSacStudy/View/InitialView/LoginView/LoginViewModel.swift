@@ -15,6 +15,7 @@ final class LoginViewModel {
     
     let phoneNumber = PublishRelay<String>()
     
+    private let telephoneNumRegex = "^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$"
 }
 
 
@@ -28,7 +29,8 @@ extension LoginViewModel: CommonViewModel {
     }
 
     struct Output {
-        let phoneNumberText: ControlProperty<String>
+        let phoneNumberValidatoin: Observable<Bool>
+        let isTextEntered: Observable<Bool>
         let buttonTap: ControlEvent<Void>
     }
 
@@ -36,6 +38,53 @@ extension LoginViewModel: CommonViewModel {
     func transfrom(input: Input) -> Output {
         let text = input.phoneNumberText.orEmpty
         
-        return Output(phoneNumberText: text, buttonTap: input.buttonTap)
+        let validation = text.withUnretained(self)
+            .map { (vc, text) in
+                text.range(of: vc.telephoneNumRegex, options: [.regularExpression]) != nil
+            }
+        
+        let isTextEntered = text.map { $0.count >= 1 }
+        
+        return Output(phoneNumberValidatoin: validation, isTextEntered: isTextEntered, buttonTap: input.buttonTap)
     }
+}
+
+
+
+
+extension LoginViewModel {
+    
+    func formatPhoneStyle(_ text: String) -> String {
+        let text = text.components(separatedBy: "-").joined()
+        
+        let count = text.count
+        var result: [String] = []
+        
+        switch count {
+        case 0...3: return text
+        case 4...6:
+            for (index, char) in text.enumerated() {
+                if index == 3 {
+                    result.append("-")
+                }
+                result.append(String(char))
+            }
+        case 7...10:
+            for (index, char) in text.enumerated() {
+                if index == 3 || index == 6 {
+                    result.append("-")
+                }
+                result.append(String(char))
+            }
+        case 11:
+            for (index, char) in text.enumerated() {
+                if index == 3 || index == 7 { result.append("-") }
+                result.append(String(char))
+            }
+        default: break
+        }
+        
+        return result.joined()
+    }
+    
 }

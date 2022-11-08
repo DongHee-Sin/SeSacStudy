@@ -76,7 +76,7 @@ extension UIViewController {
         alertSuperview.translatesAutoresizingMaskIntoConstraints = false
         
         let alertLabel = UILabel()
-        alertLabel.font = .customFont(.caption_R10)
+        alertLabel.font = .customFont(.body3_R14)
         alertLabel.textColor = .white
         alertLabel.translatesAutoresizingMaskIntoConstraints = false
         

@@ -16,6 +16,13 @@ final class EnterPhoneNumberViewController: BaseViewController {
     // MARK: - Propertys
     private let viewModel = LoginViewModel()
     
+    private var phoneNumberValidation: Bool = false {
+        didSet {
+            if phoneNumberValidation == oldValue { return }
+            customView.reusableView.button.setButtonStyle(status: phoneNumberValidation ? .fill : .cancel)
+        }
+    }
+    
     
     
     
@@ -44,23 +51,29 @@ final class EnterPhoneNumberViewController: BaseViewController {
     
     
     private func bind() {
-//        /// 할일
-//        /// 1. bind 시킬 작업들 리스트업
-//        /// 2. 뷰모델에 input/output 적용
-//        /// 3. 작업
         let input = LoginViewModel.Input(phoneNumberText: customView.textField.rx.text, buttonTap: customView.reusableView.button.rx.tap)
         let output = viewModel.transfrom(input: input)
+        
 
-        output.phoneNumberText
-            .bind(to: customView.textField.rx.text)
+        output.phoneNumberValidatoin.withUnretained(self)
+            .bind { (vc, value) in
+                vc.phoneNumberValidation = value
+            }
             .disposed(by: disposeBag)
 
-
-        viewModel.phoneNumber
-            .map { $0.count >= 1 }
-            .withUnretained(self)
+        output.isTextEntered.withUnretained(self)
             .bind { (vc, value) in
                 vc.customView.lineView.backgroundColor = value ? R.color.black() : R.color.gray3()
+            }
+            .disposed(by: disposeBag)
+        
+        customView.reusableView.button.rx.tap.withUnretained(self)
+            .bind { (vc, _) in
+                if vc.phoneNumberValidation {
+                    print("유효한 폰번호")
+                }else {
+                    vc.showToast(message: "잘못된 전화번호 형식입니다.")
+                }
             }
             .disposed(by: disposeBag)
     }
@@ -68,7 +81,7 @@ final class EnterPhoneNumberViewController: BaseViewController {
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        textField.text = formatPhoneStyle(text)
+        textField.text = viewModel.formatPhoneStyle(text)
     }
 }
 
@@ -79,7 +92,11 @@ final class EnterPhoneNumberViewController: BaseViewController {
 extension EnterPhoneNumberViewController: UITextFieldDelegate {    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard Int(string) != nil || string.isEmpty else {
+        if string.isEmpty {
+            return true
+        }
+        
+        guard Int(string) != nil else {
             showToast(message: "숫자만 입력해주세요")
             return false
         }
@@ -91,44 +108,4 @@ extension EnterPhoneNumberViewController: UITextFieldDelegate {
         
         return true
     }
-}
-
-
-
-
-extension EnterPhoneNumberViewController {
-    
-    func formatPhoneStyle(_ text: String) -> String {
-        let text = text.components(separatedBy: "-").joined()
-        
-        let count = text.count
-        var result: [String] = []
-        
-        switch count {
-        case 0...3: return text
-        case 4...6:
-            for (index, char) in text.enumerated() {
-                if index == 3 {
-                    result.append("-")
-                }
-                result.append(String(char))
-            }
-        case 7...10:
-            for (index, char) in text.enumerated() {
-                if index == 3 || index == 6 {
-                    result.append("-")
-                }
-                result.append(String(char))
-            }
-        case 11:
-            for (index, char) in text.enumerated() {
-                if index == 3 || index == 7 { result.append("-") }
-                result.append(String(char))
-            }
-        default: break
-        }
-        
-        return result.joined()
-    }
-    
 }
