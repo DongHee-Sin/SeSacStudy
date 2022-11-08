@@ -43,6 +43,8 @@
 		D0DEEFF9291A5DAC00BE125E /* EnterPhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFF8291A5DAC00BE125E /* EnterPhoneNumberView.swift */; };
 		D0DEEFFB291A65B700BE125E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFFA291A65B700BE125E /* LoginViewModel.swift */; };
 		D0DEEFFD291A733300BE125E /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFFC291A733300BE125E /* CommonViewModel.swift */; };
+		D0DEEFFF291AA09500BE125E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0DEEFFE291AA09500BE125E /* GoogleService-Info.plist */; };
+		D0DEF002291AA1A800BE125E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D0DEF001291AA1A800BE125E /* FirebaseAuth */; };
 		D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */; };
 		D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FC291A070C00D49E0F /* Onboarding.swift */; };
 		D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */; };
@@ -83,6 +85,8 @@
 		D0DEEFF8291A5DAC00BE125E /* EnterPhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhoneNumberView.swift; sourceTree = "<group>"; };
 		D0DEEFFA291A65B700BE125E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D0DEEFFC291A733300BE125E /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
+		D0DEEFFE291AA09500BE125E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D0DEF003291AA50400BE125E /* SeSacStudy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSacStudy.entitlements; sourceTree = "<group>"; };
 		D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableInitialView.swift; sourceTree = "<group>"; };
 		D0E2E1FC291A070C00D49E0F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 				D0100B5D2918CA7D00AEC5C2 /* RxCocoa in Frameworks */,
 				D0100B6C2918CB1300AEC5C2 /* SnapKit in Frameworks */,
 				4CECB3BE79BA4BC04B0BADCD /* Pods_SeSacStudy.framework in Frameworks */,
+				D0DEF002291AA1A800BE125E /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +149,7 @@
 		D0100B442918C5CC00AEC5C2 /* SeSacStudy */ = {
 			isa = PBXGroup;
 			children = (
+				D0DEF003291AA50400BE125E /* SeSacStudy.entitlements */,
 				D0100B592918C8A900AEC5C2 /* App */,
 				D02335572918CDFB003C7225 /* Utility */,
 				D02335582918CE0B003C7225 /* Manager */,
@@ -153,6 +159,7 @@
 				D03BD00E291962D500F79915 /* R.generated.swift */,
 				D07BE8442918DCFC00020487 /* .gitignore */,
 				D0100B532918C5CC00AEC5C2 /* Info.plist */,
+				D0DEEFFE291AA09500BE125E /* GoogleService-Info.plist */,
 			);
 			path = SeSacStudy;
 			sourceTree = "<group>";
@@ -335,6 +342,7 @@
 				D0100B682918CB0800AEC5C2 /* IQKeyboardManagerSwift */,
 				D0100B6B2918CB1300AEC5C2 /* SnapKit */,
 				D0100B6E2918CB3500AEC5C2 /* Alamofire */,
+				D0DEF001291AA1A800BE125E /* FirebaseAuth */,
 			);
 			productName = SeSacStudy;
 			productReference = D0100B422918C5CC00AEC5C2 /* SeSacStudy.app */;
@@ -370,6 +378,7 @@
 				D0100B672918CB0800AEC5C2 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				D0100B6A2918CB1300AEC5C2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				D0100B6D2918CB3500AEC5C2 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D0DEF000291AA1A800BE125E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = D0100B432918C5CC00AEC5C2 /* Products */;
 			projectDirPath = "";
@@ -390,6 +399,7 @@
 				D07BE8452918DCFC00020487 /* .gitignore in Resources */,
 				D0100B4F2918C5CC00AEC5C2 /* Assets.xcassets in Resources */,
 				D07BE84E2918DF3C00020487 /* NotoSansCJKkr-Medium.otf in Resources */,
+				D0DEEFFF291AA09500BE125E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +636,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SeSacStudy/SeSacStudy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PW2RLJT734;
@@ -635,6 +646,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -658,6 +670,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SeSacStudy/SeSacStudy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PW2RLJT734;
@@ -667,6 +680,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -748,6 +762,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		D0DEF000291AA1A800BE125E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -780,6 +802,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D0100B6D2918CB3500AEC5C2 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D0DEF001291AA1A800BE125E /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0DEF000291AA1A800BE125E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

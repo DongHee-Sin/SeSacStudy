@@ -9,6 +9,7 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import FirebaseAuth
 
 
 final class EnterPhoneNumberViewController: BaseViewController {
@@ -70,7 +71,7 @@ final class EnterPhoneNumberViewController: BaseViewController {
         customView.reusableView.button.rx.tap.withUnretained(self)
             .bind { (vc, _) in
                 if vc.phoneNumberValidation {
-                    print("유효한 폰번호")
+                    vc.requestAuthNumber()
                 }else {
                     vc.showToast(message: "잘못된 전화번호 형식입니다.")
                 }
@@ -109,3 +110,54 @@ extension EnterPhoneNumberViewController: UITextFieldDelegate {
         return true
     }
 }
+
+
+
+
+// MARK: - Firebase Auth
+extension EnterPhoneNumberViewController {
+
+    func requestAuthNumber() {
+        PhoneAuthProvider.provider()
+            .verifyPhoneNumber("+82 10-1234-5678", uiDelegate: nil) { (verificationID, error) in
+                if let id = verificationID {
+                    print("id : \(id)")
+                }
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+            }
+    }
+
+
+
+//    func verificationButtonClicked(_ sender: UIButton) {
+//        guard let verificationID = UserDefaults.standard.string(forKey: "verificationID"), let verificationCode = verificationNumberTextField.text else {
+//            return
+//        }
+//
+//        let credential = PhoneAuthProvider.provider().credential(
+//            withVerificationID: verificationID,
+//            verificationCode: verificationCode
+//        )
+//
+//        logIn(credential: credential)
+//    }
+//
+//
+//    func logIn(credential: PhoneAuthCredential) {
+//        Auth.auth().signIn(with: credential) { authResult, error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//                print("LogIn Failed...")
+//            }
+//
+//
+//
+//            print("LogIn Success!!")
+//            print("\\(authResult!)")
+//        }
+//    }
+}
+
