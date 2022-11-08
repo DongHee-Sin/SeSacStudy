@@ -17,6 +17,7 @@ extension UICollectionViewLayout {
         
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth * 1.3)
         layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = .zero
         
         return layout
     }

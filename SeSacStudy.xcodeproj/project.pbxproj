@@ -38,7 +38,9 @@
 		D07BE8582918F02F00020487 /* UICollectionViewLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */; };
 		D07BE85A2918F90600020487 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8592918F90600020487 /* OnboardingCollectionViewCell.swift */; };
 		D07BE85C2918FA3E00020487 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE85B2918FA3E00020487 /* BaseCollectionViewCell.swift */; };
+		D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */; };
 		D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FC291A070C00D49E0F /* Onboarding.swift */; };
+		D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +73,9 @@
 		D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Extension.swift"; sourceTree = "<group>"; };
 		D07BE8592918F90600020487 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		D07BE85B2918FA3E00020487 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableInitialView.swift; sourceTree = "<group>"; };
 		D0E2E1FC291A070C00D49E0F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				D02335662918D5D6003C7225 /* Onboarding */,
+				D0DFFDD4291A40B500967C1A /* InitialView */,
 				D0100B492918C5CC00AEC5C2 /* ViewController.swift */,
 			);
 			path = View;
@@ -189,6 +194,7 @@
 				D07BE8422918DAFB00020487 /* UIFont+Extension.swift */,
 				D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */,
 				D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */,
+				D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -238,6 +244,38 @@
 				D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		D0DFFDD4291A40B500967C1A /* InitialView */ = {
+			isa = PBXGroup;
+			children = (
+				D0DFFDD6291A40C600967C1A /* ReusableView */,
+				D0E2E1FE291A1E7C00D49E0F /* LoginView */,
+				D0DFFDD5291A40BF00967C1A /* SignUpView */,
+			);
+			path = InitialView;
+			sourceTree = "<group>";
+		};
+		D0DFFDD5291A40BF00967C1A /* SignUpView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SignUpView;
+			sourceTree = "<group>";
+		};
+		D0DFFDD6291A40C600967C1A /* ReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */,
+			);
+			name = ReusableView;
+			sourceTree = "<group>";
+		};
+		D0E2E1FE291A1E7C00D49E0F /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */,
 				D07BE8542918E3F600020487 /* OnboardingViewController.swift in Sources */,
 				D07BE8502918DF7900020487 /* NotoSansCJK.swift in Sources */,
 				D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */,
@@ -411,6 +450,7 @@
 				D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */,
 				D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */,
 				D023356A2918D652003C7225 /* BaseView.swift in Sources */,
+				D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */,
 				D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */,
 				D07BE8562918E40A00020487 /* OnboardingView.swift in Sources */,
 			);

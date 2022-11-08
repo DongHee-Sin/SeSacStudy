@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 
 final class OnboardingViewController: BaseViewController {
 
@@ -36,9 +39,20 @@ final class OnboardingViewController: BaseViewController {
     // MARK: - Methods
     override func configure() {
         onboardingView.collectionView.register(OnboardingCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        
         onboardingView.collectionView.delegate = self
         onboardingView.collectionView.dataSource = self
+        
+        bind()
+    }
+    
+    
+    private func bind() {
+        onboardingView.startButton.rx.tap
+            .withUnretained(self)
+            .bind { (vc, _) in
+                //vc.transition(<#T##viewController: T##T#>)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

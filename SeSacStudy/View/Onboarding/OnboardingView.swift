@@ -25,17 +25,9 @@ final class OnboardingView: BaseView {
         $0.pageIndicatorTintColor = ColorManager.gray5
     }
     
-    let startButton = UIButton().then {
-        var config = UIButton.Configuration.filled()
-        config.title = "시작하기"
-        config.baseBackgroundColor = ColorManager.green
-        config.baseForegroundColor = ColorManager.white
-        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
-            var outgoing = incoming
-            outgoing.font = .customFont(.body3_R14)
-            return outgoing
-        })
-        $0.configuration = config
+    
+    let startButton = BasicButton(status: .fill).then {
+        $0.setTitle("시작하기", for: .normal)
     }
     
     
