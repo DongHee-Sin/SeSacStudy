@@ -27,6 +27,7 @@ final class OnboardingView: BaseView {
     
     
     let startButton = BasicButton(status: .fill).then {
+        $0.titleLabel?.font = .customFont(.body3_R14)
         $0.setTitle("시작하기", for: .normal)
     }
     

@@ -43,6 +43,7 @@ final class EnterPhoneNumberViewController: BaseViewController {
     // MARK: - Methods
     override func configure() {
         customView.reusableView.textStackView.addText(title: "새싹 서비스 이용을 위해\n휴대폰 번호를 입력해 주세요")
+        customView.reusableView.button.setTitle("인증 문자 받기", for: .normal)
         
         customView.textField.delegate = self
         customView.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -72,6 +73,8 @@ final class EnterPhoneNumberViewController: BaseViewController {
             .bind { (vc, _) in
                 if vc.phoneNumberValidation {
                     vc.requestAuthNumber()
+                    let verifyVC = VerifyAuthNumberViewController()
+                    vc.transition(verifyVC, transitionStyle: .push)
                 }else {
                     vc.showToast(message: "잘못된 전화번호 형식입니다.")
                 }

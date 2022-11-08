@@ -22,7 +22,7 @@ final class ReusableInitialView: BaseView {
     let textStackView = TextStackView()
     
     let button = BasicButton(status: .cancel).then {
-        $0.setTitle("인증 문자 받기", for: .normal)
+        $0.titleLabel?.font = .customFont(.body3_R14)
     }
     
     
