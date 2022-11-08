@@ -14,53 +14,40 @@ import Then
 final class ReusableInitialView: BaseView {
     
     // MARK: - Propertys
-//    private let stackView = UIStackView().then {
-//    }
-//    
-//    let label = UILabel()
-//    
-//    let view = UIView()
-//    
-//    let button = UIButton().then {
-//        $0.
-//    }
+    let stackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 200
+    }
+    
+    let textStackView = TextStackView()
+    
+    let button = BasicButton(status: .cancel).then {
+        $0.setTitle("인증 문자 받기", for: .normal)
+    }
     
     
     
     
     // MARK: - Methods
     override func configureUI() {
-        //
+        [textStackView, button].forEach {
+            stackView.addArrangedSubview($0)
+        }
+        
+        self.addSubview(stackView)
     }
     
     
     override func setConstraint() {
-        //
-    }
-    
-}
-
-
-
-
-extension ReusableInitialView {
-    
-    private var calcKeyboardHeight: CGFloat {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return getWidth() < getHeight() ? 216 : 162
-            
-        } else{
-            return getWidth() < getHeight() ? 265 : 353
-            
+        button.snp.makeConstraints { make in
+            make.height.equalTo(48)
         }
-    }
-    
-    
-    func getWidth() -> CGFloat{
-        return UIScreen.main.bounds.width
-    }
-    func getHeight() -> CGFloat{
-        return UIScreen.main.bounds.height
+        
+        stackView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(self).inset(16)
+            let height = UIScreen.main.bounds.height / 2
+            make.bottom.equalTo(self.snp.bottom).offset(-height + 50)
+        }
     }
     
 }

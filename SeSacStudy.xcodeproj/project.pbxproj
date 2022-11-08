@@ -38,6 +38,9 @@
 		D07BE8582918F02F00020487 /* UICollectionViewLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */; };
 		D07BE85A2918F90600020487 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8592918F90600020487 /* OnboardingCollectionViewCell.swift */; };
 		D07BE85C2918FA3E00020487 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE85B2918FA3E00020487 /* BaseCollectionViewCell.swift */; };
+		D0DEEFF3291A533F00BE125E /* TextStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFF2291A533F00BE125E /* TextStackView.swift */; };
+		D0DEEFF7291A5B5600BE125E /* EnterPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFF6291A5B5600BE125E /* EnterPhoneNumberViewController.swift */; };
+		D0DEEFF9291A5DAC00BE125E /* EnterPhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFF8291A5DAC00BE125E /* EnterPhoneNumberView.swift */; };
 		D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */; };
 		D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FC291A070C00D49E0F /* Onboarding.swift */; };
 		D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */; };
@@ -73,6 +76,9 @@
 		D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Extension.swift"; sourceTree = "<group>"; };
 		D07BE8592918F90600020487 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		D07BE85B2918FA3E00020487 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		D0DEEFF2291A533F00BE125E /* TextStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStackView.swift; sourceTree = "<group>"; };
+		D0DEEFF6291A5B5600BE125E /* EnterPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhoneNumberViewController.swift; sourceTree = "<group>"; };
+		D0DEEFF8291A5DAC00BE125E /* EnterPhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhoneNumberView.swift; sourceTree = "<group>"; };
 		D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableInitialView.swift; sourceTree = "<group>"; };
 		D0E2E1FC291A070C00D49E0F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -246,6 +252,22 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		D0DEEFF4291A5AE500BE125E /* EnterPhoneNumberView */ = {
+			isa = PBXGroup;
+			children = (
+				D0DEEFF6291A5B5600BE125E /* EnterPhoneNumberViewController.swift */,
+				D0DEEFF8291A5DAC00BE125E /* EnterPhoneNumberView.swift */,
+			);
+			path = EnterPhoneNumberView;
+			sourceTree = "<group>";
+		};
+		D0DEEFF5291A5AFE00BE125E /* VerifyAuthNumberView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VerifyAuthNumberView;
+			sourceTree = "<group>";
+		};
 		D0DFFDD4291A40B500967C1A /* InitialView */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +288,7 @@
 		D0DFFDD6291A40C600967C1A /* ReusableView */ = {
 			isa = PBXGroup;
 			children = (
+				D0DEEFF2291A533F00BE125E /* TextStackView.swift */,
 				D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */,
 			);
 			name = ReusableView;
@@ -274,6 +297,8 @@
 		D0E2E1FE291A1E7C00D49E0F /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
+				D0DEEFF4291A5AE500BE125E /* EnterPhoneNumberView */,
+				D0DEEFF5291A5AFE00BE125E /* VerifyAuthNumberView */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -435,6 +460,7 @@
 				D07BE8542918E3F600020487 /* OnboardingViewController.swift in Sources */,
 				D07BE8502918DF7900020487 /* NotoSansCJK.swift in Sources */,
 				D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */,
+				D0DEEFF9291A5DAC00BE125E /* EnterPhoneNumberView.swift in Sources */,
 				D07BE8582918F02F00020487 /* UICollectionViewLayout+Extension.swift in Sources */,
 				D07BE85A2918F90600020487 /* OnboardingCollectionViewCell.swift in Sources */,
 				D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */,
@@ -446,10 +472,12 @@
 				D023356D2918D752003C7225 /* BasicButton.swift in Sources */,
 				D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */,
 				D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */,
+				D0DEEFF7291A5B5600BE125E /* EnterPhoneNumberViewController.swift in Sources */,
 				D02335682918D631003C7225 /* BaseViewController.swift in Sources */,
 				D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */,
 				D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */,
 				D023356A2918D652003C7225 /* BaseView.swift in Sources */,
+				D0DEEFF3291A533F00BE125E /* TextStackView.swift in Sources */,
 				D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */,
 				D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */,
 				D07BE8562918E40A00020487 /* OnboardingView.swift in Sources */,
