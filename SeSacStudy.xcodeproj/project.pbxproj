@@ -19,6 +19,7 @@
 		D0100B692918CB0800AEC5C2 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B682918CB0800AEC5C2 /* IQKeyboardManagerSwift */; };
 		D0100B6C2918CB1300AEC5C2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B6B2918CB1300AEC5C2 /* SnapKit */; };
 		D0100B6F2918CB3500AEC5C2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B6E2918CB3500AEC5C2 /* Alamofire */; };
+		D0165F11291B82BE00BBE042 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */; };
 		D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023355D2918CE6C003C7225 /* UIColor+Extension.swift */; };
 		D02335632918D155003C7225 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335622918D155003C7225 /* ColorManager.swift */; };
 		D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335642918D597003C7225 /* UserDefaultManager.swift */; };
@@ -64,6 +65,7 @@
 		D0100B4E2918C5CC00AEC5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0100B512918C5CC00AEC5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0100B532918C5CC00AEC5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		D023355D2918CE6C003C7225 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D02335622918D155003C7225 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		D02335642918D597003C7225 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			children = (
 				D02335622918D155003C7225 /* ColorManager.swift */,
 				D02335642918D597003C7225 /* UserDefaultManager.swift */,
+				D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				D07BE8542918E3F600020487 /* OnboardingViewController.swift in Sources */,
 				D07BE8502918DF7900020487 /* NotoSansCJK.swift in Sources */,
 				D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */,
+				D0165F11291B82BE00BBE042 /* FirebaseAuthManager.swift in Sources */,
 				D0DEEFF9291A5DAC00BE125E /* EnterPhoneNumberView.swift in Sources */,
 				D07BE8582918F02F00020487 /* UICollectionViewLayout+Extension.swift in Sources */,
 				D07BE85A2918F90600020487 /* OnboardingCollectionViewCell.swift in Sources */,

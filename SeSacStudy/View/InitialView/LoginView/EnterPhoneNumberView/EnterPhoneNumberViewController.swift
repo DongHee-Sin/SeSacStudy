@@ -9,7 +9,6 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import FirebaseAuth
 
 
 final class EnterPhoneNumberViewController: BaseViewController {
@@ -79,10 +78,15 @@ final class EnterPhoneNumberViewController: BaseViewController {
             .bind { (vc, _) in
                 if vc.phoneNumberValidation {
                     
-                    vc.requestAuthNumber { id in
-                        let verifyVC = VerifyAuthNumberViewController()
-                        verifyVC.verificationID = id
-                        vc.transition(verifyVC, transitionStyle: .push)
+                    FirebaseAuthManager.share.requestAuthNumber(phoneNumber: vc.phoneNumberForAuth) { result in
+                        switch result {
+                        case .success(let id):
+                            let verifyVC = VerifyAuthNumberViewController()
+                            verifyVC.verificationID = id
+                            vc.transition(verifyVC, transitionStyle: .push)
+                        case .failure(let error):
+                            vc.showAlert(title: "오류가 발생했습니다.", message: error.localizedDescription)
+                        }
                     }
                     
                 }else {
@@ -123,25 +127,3 @@ extension EnterPhoneNumberViewController: UITextFieldDelegate {
         return true
     }
 }
-
-
-
-
-// MARK: - Firebase Auth
-extension EnterPhoneNumberViewController {
-
-    func requestAuthNumber(handler: @escaping (String) -> Void) {
-        PhoneAuthProvider.provider()
-            .verifyPhoneNumber(phoneNumberForAuth, uiDelegate: nil) { [weak self] (verificationID, error) in
-                if let error {
-                    self?.showAlert(title: "오류가 발생했습니다.", message: error.localizedDescription)
-                    return
-                }
-                
-                if let id = verificationID {
-                    handler(id)
-                }
-            }
-    }
-}
-

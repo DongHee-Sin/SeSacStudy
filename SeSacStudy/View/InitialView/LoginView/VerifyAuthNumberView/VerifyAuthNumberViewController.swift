@@ -9,7 +9,6 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import FirebaseAuth
 
 
 final class VerifyAuthNumberViewController: BaseViewController {
@@ -87,18 +86,13 @@ final class VerifyAuthNumberViewController: BaseViewController {
                 /// 2. 파베인증
                 ///     성공 : API 요청 (회원인지 아닌지)
                 ///     실패 : Alert 띄우기
-                let credential = PhoneAuthProvider.provider().credential(
-                    withVerificationID: vc.verificationID ?? "",
-                    verificationCode: vc.customView.textField.text ?? ""
-                )
-                
-                Auth.auth().signIn(with: credential) { [weak self] authResult, error in
-                    if let error {
-                        self?.showAlert(title: "오류가 발생했습니다.", message: error.localizedDescription)
-                        return
+                FirebaseAuthManager.share.signIn(id: vc.verificationID ?? "", code: vc.customView.textField.text ?? "") { result in
+                    switch result {
+                    case .success(let result):
+                        print("인증 성공 => ")
+                    case .failure(let error):
+                        vc.showAlert(title: "인증에 실패했습니다", message: error.localizedDescription)
                     }
-                    
-                    print("인증 완료 -> 로그인 진행")
                 }
             }
             .disposed(by: disposeBag)
@@ -128,14 +122,4 @@ extension VerifyAuthNumberViewController: UITextFieldDelegate {
         
         return true
     }
-}
-
-
-
-
-// MARK: - Firebase Auth
-extension VerifyAuthNumberViewController {
-    
-    
-    
 }
