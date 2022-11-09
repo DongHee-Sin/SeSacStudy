@@ -74,10 +74,13 @@ final class EnterPhoneNumberViewController: BaseViewController {
         output.buttonTap.withUnretained(self)
             .bind { (vc, _) in
                 if vc.phoneNumberValidation {
-                    vc.requestAuthNumber()
-
-                    let verifyVC = VerifyAuthNumberViewController()
-                    vc.transition(verifyVC, transitionStyle: .push)
+                    
+                    vc.requestAuthNumber { id in
+                        let verifyVC = VerifyAuthNumberViewController()
+                        verifyVC.verificationID = id
+                        vc.transition(verifyVC, transitionStyle: .push)
+                    }
+                    
                 }else {
                     vc.showToast(message: "잘못된 전화번호 형식입니다.")
                 }
@@ -123,15 +126,16 @@ extension EnterPhoneNumberViewController: UITextFieldDelegate {
 // MARK: - Firebase Auth
 extension EnterPhoneNumberViewController {
 
-    func requestAuthNumber() {
+    func requestAuthNumber(handler: @escaping (String) -> Void) {
         PhoneAuthProvider.provider()
-            .verifyPhoneNumber("+82 10-1234-5678", uiDelegate: nil) { (verificationID, error) in
-                if let id = verificationID {
-                    print("id : \(id)")
-                }
-                if let error = error {
-                    print(error.localizedDescription)
+            .verifyPhoneNumber("+82 10-1234-5678", uiDelegate: nil) { [weak self] (verificationID, error) in
+                if let error {
+                    self?.showAlert(title: "오류가 발생했습니다.", message: error.localizedDescription)
                     return
+                }
+                
+                if let id = verificationID {
+                    handler(id)
                 }
             }
     }

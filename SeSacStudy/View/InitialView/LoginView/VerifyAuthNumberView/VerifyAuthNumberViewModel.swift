@@ -12,7 +12,7 @@ import RxCocoa
 
 
 final class VerifyAuthNumberViewModel {
-    
+    let authNumberText = PublishRelay<String>()
 }
 
 
@@ -37,10 +37,10 @@ extension VerifyAuthNumberViewModel: CommonViewModel {
 
     func transform(input: Input) -> Output {
         let text = input.authNumberText.orEmpty
+        let count = text.map { $0.count }
         
-        let validation = text.map { $0.count == 6 }
-        
-        let isTextEntered = text.map { $0.count >= 1 }
+        let validation = count.map { $0 == 6 }
+        let isTextEntered = count.map { $0 >= 1 }
         
         return Output(authNumberValidatoin: validation, isTextEntered: isTextEntered, resendTap: input.resendTap, verifyTap: input.verifyTap)
     }

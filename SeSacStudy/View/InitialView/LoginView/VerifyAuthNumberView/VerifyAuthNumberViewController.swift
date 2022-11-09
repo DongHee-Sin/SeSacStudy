@@ -9,12 +9,22 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import FirebaseAuth
 
 
 final class VerifyAuthNumberViewController: BaseViewController {
     
     // MARK: - Propertys
     private let viewModel = VerifyAuthNumberViewModel()
+    
+    private var authNumberValidation: Bool = false {
+        didSet {
+            if authNumberValidation == oldValue { return }
+            customView.reusableView.button.setButtonStyle(status: authNumberValidation ? .fill : .cancel)
+        }
+    }
+    
+    var verificationID: String?
     
     
     
@@ -38,6 +48,8 @@ final class VerifyAuthNumberViewController: BaseViewController {
         customView.reusableView.button.setTitle("인증하고 시작하기", for: .normal)
         
         customView.textField.delegate = self
+        
+        bind()
     }
     
     
@@ -45,8 +57,51 @@ final class VerifyAuthNumberViewController: BaseViewController {
         let input = VerifyAuthNumberViewModel.Input(authNumberText: customView.textField.rx.text, resendTap: customView.resendButton.rx.tap, verifyTap: customView.reusableView.button.rx.tap)
         let output = viewModel.transform(input: input)
         
-//        output.isTextEntered.withUnretained(self)
-//            .bind(onNext: <#T##((VerifyAuthNumberViewController, Bool)) -> Void#>)
+        output.isTextEntered.withUnretained(self)
+            .bind { (vc, value) in
+                vc.customView.lineView.backgroundColor = value ? R.color.black() : R.color.gray3()
+            }
+            .disposed(by: disposeBag)
+        
+        
+        output.authNumberValidatoin
+            .withUnretained(self)
+            .bind { (vc, value) in
+                vc.authNumberValidation = value
+            }
+            .disposed(by: disposeBag)
+        
+        
+        output.resendTap.withUnretained(self)
+            .bind { (vc, _) in
+                /// 1. 타이머 체크 (10초 이상 지났는지?)
+                ///     지났다? : 타이머 초기화, 재전송
+                ///     안지남? : toast 메시지 띄우기
+            }
+            .disposed(by: disposeBag)
+        
+        
+        output.verifyTap.withUnretained(self)
+            .bind { (vc, _) in
+                /// 1. 타이머 체크 (60초 지나지 않았는지?)
+                /// 2. 파베인증
+                ///     성공 : API 요청 (회원인지 아닌지)
+                ///     실패 : Alert 띄우기
+                let credential = PhoneAuthProvider.provider().credential(
+                    withVerificationID: vc.verificationID ?? "",
+                    verificationCode: vc.customView.textField.text ?? ""
+                )
+                
+                Auth.auth().signIn(with: credential) { [weak self] authResult, error in
+                    if let error {
+                        self?.showAlert(title: "오류가 발생했습니다.", message: error.localizedDescription)
+                        return
+                    }
+                    
+                    print("인증 완료 -> 로그인 진행")
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -73,4 +128,14 @@ extension VerifyAuthNumberViewController: UITextFieldDelegate {
         
         return true
     }
+}
+
+
+
+
+// MARK: - Firebase Auth
+extension VerifyAuthNumberViewController {
+    
+    
+    
 }
