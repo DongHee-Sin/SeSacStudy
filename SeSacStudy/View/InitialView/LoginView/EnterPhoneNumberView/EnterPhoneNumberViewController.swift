@@ -31,7 +31,7 @@ final class EnterPhoneNumberViewController: BaseViewController {
     
     
     // MARK: - Life Cycle
-    private let customView = EnterPhoneNumberView()
+    private let customView = ReusableViewWithTextField()
     override func loadView() {
         view = customView
     }
@@ -50,6 +50,9 @@ final class EnterPhoneNumberViewController: BaseViewController {
         
         customView.textField.delegate = self
         customView.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
+        customView.textField.keyboardType = .numberPad
+        customView.textField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
         
         bind()
     }

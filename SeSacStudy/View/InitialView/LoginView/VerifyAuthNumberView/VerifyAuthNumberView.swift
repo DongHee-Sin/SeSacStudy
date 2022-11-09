@@ -25,7 +25,6 @@ final class VerifyAuthNumberView: BaseView {
     
     let timerLabel = UILabel().then {
         $0.setContentHuggingPriority(.defaultHigh, for:.horizontal)
-        $0.text = "00:00"
         $0.textColor = R.color.green()
         $0.font = .customFont(.title3_M14)
     }

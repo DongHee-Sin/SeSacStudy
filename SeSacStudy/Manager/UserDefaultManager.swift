@@ -34,6 +34,14 @@ final class UserDefaultManager {
     var isInitialLaunch: Bool
     
     
+    @UserDefault(key: "idToken", defaultValue: "")
+    var idToken: String
+    
+    
+    @UserDefault(key: "fcmToken", defaultValue: "")
+    var fcmToken: String
+    
+    
     
     
     // MARK: - Method

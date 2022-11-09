@@ -8,15 +8,13 @@
 import UIKit
 
 
-final class EnterPhoneNumberView: BaseView {
+final class ReusableViewWithTextField: BaseView {
     
     // MARK: - Propertys
     let reusableView = ReusableInitialView()
     
     let textField = UITextField().then {
-        $0.keyboardType = .numberPad
         $0.font = .customFont(.title4_R14)
-        $0.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
     }
     
     let lineView = UIView().then {

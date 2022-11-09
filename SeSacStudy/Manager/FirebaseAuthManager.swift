@@ -59,4 +59,20 @@ final class FirebaseAuthManager {
         }
     }
     
+    
+    func fetchIDToken(handler: @escaping (Result<String, Error>) -> Void) {
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            if let error = error {
+                handler(.failure(error))
+                return
+            }
+            
+            if let idToken {
+                handler(.success(idToken))
+            }
+            print(idToken)
+        }
+    }
+    
 }
