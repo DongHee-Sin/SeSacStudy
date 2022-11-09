@@ -12,7 +12,13 @@ import RxCocoa
 
 
 final class VerifyAuthNumberViewModel {
-    let authNumberText = PublishRelay<String>()
+    let timerSecond = PublishRelay<Int>()
+    
+    var time: Int = 60 {
+        didSet {
+            timerSecond.accept(time)
+        }
+    }
 }
 
 

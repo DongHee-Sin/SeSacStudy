@@ -16,13 +16,19 @@ final class FirebaseAuthManager {
     
     static let share = FirebaseAuthManager()
     
+    private var recentlyUsedNumber = ""
+    
     
     
     
     // MARK: - Methods
-    func requestAuthNumber(phoneNumber: String, handler: @escaping (Result<String, Error>) -> Void) {
+    func requestAuthNumber(phoneNumber: String? = nil, handler: @escaping (Result<String, Error>) -> Void) {
+        if let phoneNumber {
+            recentlyUsedNumber = phoneNumber
+        }
+        
         PhoneAuthProvider.provider()
-            .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
+            .verifyPhoneNumber(phoneNumber ?? recentlyUsedNumber, uiDelegate: nil) { (verificationID, error) in
                 if let error {
                     handler(Result.failure(error))
                     return

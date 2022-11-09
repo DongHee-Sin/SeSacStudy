@@ -25,6 +25,8 @@ final class VerifyAuthNumberViewController: BaseViewController {
     
     var verificationID: String?
     
+    private var timer: Timer?
+    
     
     
     
@@ -49,12 +51,30 @@ final class VerifyAuthNumberViewController: BaseViewController {
         customView.textField.delegate = self
         
         bind()
+        timerStart()
     }
     
     
     private func bind() {
         let input = VerifyAuthNumberViewModel.Input(authNumberText: customView.textField.rx.text, resendTap: customView.resendButton.rx.tap, verifyTap: customView.reusableView.button.rx.tap)
         let output = viewModel.transform(input: input)
+        
+        
+        viewModel.timerSecond
+            .withUnretained(self)
+            .bind { (vc, second) in
+                if second == 50 {
+                    print("재전송 버튼 활성화")
+                }
+                
+                if second == 0 {
+                    vc.stopTimer()
+                }
+                
+                vc.customView.timerLabel.text = "\(second)"
+            }
+            .disposed(by: disposeBag)
+        
         
         output.isTextEntered.withUnretained(self)
             .bind { (vc, value) in
@@ -76,6 +96,14 @@ final class VerifyAuthNumberViewController: BaseViewController {
                 /// 1. 타이머 체크 (10초 이상 지났는지?)
                 ///     지났다? : 타이머 초기화, 재전송
                 ///     안지남? : toast 메시지 띄우기
+                FirebaseAuthManager.share.requestAuthNumber { result in
+                    switch result {
+                    case .success(let id):
+                        vc.verificationID = id
+                    case .failure(let error):
+                        vc.showAlert(title: "오류가 발생했습니다.", message: error.localizedDescription)
+                    }
+                }
             }
             .disposed(by: disposeBag)
         
@@ -89,7 +117,7 @@ final class VerifyAuthNumberViewController: BaseViewController {
                 FirebaseAuthManager.share.signIn(id: vc.verificationID ?? "", code: vc.customView.textField.text ?? "") { result in
                     switch result {
                     case .success(let result):
-                        print("인증 성공 => ")
+                        print("인증 성공 => \(result.description)")
                     case .failure(let error):
                         vc.showAlert(title: "인증에 실패했습니다", message: error.localizedDescription)
                     }
@@ -122,4 +150,35 @@ extension VerifyAuthNumberViewController: UITextFieldDelegate {
         
         return true
     }
+}
+
+
+
+
+// MARK: - Timer
+extension VerifyAuthNumberViewController {
+    
+    private func timerStart() {
+        
+        if timer != nil && timer!.isValid {
+            stopTimer()
+        }
+        
+        viewModel.time = 60
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+        
+    }
+    
+    
+    @objc private func timerCallback() {
+        viewModel.time -= 1
+    }
+    
+    
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
 }

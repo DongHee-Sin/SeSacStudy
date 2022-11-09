@@ -23,7 +23,7 @@ final class EnterPhoneNumberViewController: BaseViewController {
         }
     }
     
-    private var phoneNumberForAuth: String {
+    private var phoneNumberForAuth: String? {
         return viewModel.convertPhoneNumberToKoreaFormat(customView.textField.text ?? "")
     }
     
