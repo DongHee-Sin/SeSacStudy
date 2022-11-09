@@ -23,6 +23,13 @@ final class VerifyAuthNumberViewController: BaseViewController {
         }
     }
     
+    private var resendValidation: Bool = false {
+        didSet {
+            if resendValidation == oldValue { return }
+            customView.resendButton.setButtonStyle(status: resendValidation ? .fill : .cancel)
+        }
+    }
+    
     var verificationID: String?
     
     private var timer: Timer?
@@ -64,14 +71,15 @@ final class VerifyAuthNumberViewController: BaseViewController {
             .withUnretained(self)
             .bind { (vc, second) in
                 if second == 50 {
-                    print("재전송 버튼 활성화")
+                    vc.resendValidation = true
                 }
                 
                 if second == 0 {
                     vc.stopTimer()
+                    
                 }
                 
-                vc.customView.timerLabel.text = "\(second)"
+                vc.customView.timerLabel.text = "00:\(second)"
             }
             .disposed(by: disposeBag)
         
@@ -93,35 +101,40 @@ final class VerifyAuthNumberViewController: BaseViewController {
         
         output.resendTap.withUnretained(self)
             .bind { (vc, _) in
-                /// 1. 타이머 체크 (10초 이상 지났는지?)
-                ///     지났다? : 타이머 초기화, 재전송
-                ///     안지남? : toast 메시지 띄우기
-                FirebaseAuthManager.share.requestAuthNumber { result in
-                    switch result {
-                    case .success(let id):
-                        vc.verificationID = id
-                    case .failure(let error):
-                        vc.showAlert(title: "오류가 발생했습니다.", message: error.localizedDescription)
+                if vc.resendValidation {
+                    FirebaseAuthManager.share.requestAuthNumber { result in
+                        switch result {
+                        case .success(let id):
+                            vc.verificationID = id
+                            vc.timerStart()
+                            vc.resendValidation = false
+                        case .failure(let error):
+                            vc.showAlert(title: "오류가 발생했습니다.", message: error.localizedDescription)
+                        }
                     }
+                }else {
+                    vc.showAlert(title: "잠시 후 다시 시도해주세요", message: "인증문자는 10초에 한번 보낼 수 있습니다.")
                 }
+                
             }
             .disposed(by: disposeBag)
         
         
         output.verifyTap.withUnretained(self)
             .bind { (vc, _) in
-                /// 1. 타이머 체크 (60초 지나지 않았는지?)
-                /// 2. 파베인증
-                ///     성공 : API 요청 (회원인지 아닌지)
-                ///     실패 : Alert 띄우기
-                FirebaseAuthManager.share.signIn(id: vc.verificationID ?? "", code: vc.customView.textField.text ?? "") { result in
-                    switch result {
-                    case .success(let result):
-                        print("인증 성공 => \(result.description)")
-                    case .failure(let error):
-                        vc.showAlert(title: "인증에 실패했습니다", message: error.localizedDescription)
+                if vc.authNumberValidation && vc.viewModel.time != 0 {
+                    FirebaseAuthManager.share.signIn(id: vc.verificationID ?? "", code: vc.customView.textField.text ?? "") { result in
+                        switch result {
+                        case .success(let result):
+                            print("인증 성공 => \(result.description)")
+                        case .failure(let error):
+                            vc.showAlert(title: "인증에 실패했습니다", message: error.localizedDescription)
+                        }
                     }
+                }else {
+                    vc.showAlert(title: "인증을 진행할 수 없습니다.", message: "인증번호의 유효시간이 끝났거나, 인증번호 6자리가 입력되지 않았습니다.")
                 }
+                
             }
             .disposed(by: disposeBag)
     }

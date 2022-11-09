@@ -30,7 +30,7 @@ final class VerifyAuthNumberView: BaseView {
         $0.font = .customFont(.title3_M14)
     }
     
-    let resendButton = BasicButton(status: .fill).then {
+    let resendButton = BasicButton(status: .cancel).then {
         $0.titleLabel?.font = .customFont(.body3_R14)
         $0.setTitle("재전송", for: .normal)
     }
