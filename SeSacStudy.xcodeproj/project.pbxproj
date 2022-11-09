@@ -43,13 +43,14 @@
 		D0DEEFF3291A533F00BE125E /* TextStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFF2291A533F00BE125E /* TextStackView.swift */; };
 		D0DEEFF7291A5B5600BE125E /* EnterPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFF6291A5B5600BE125E /* EnterPhoneNumberViewController.swift */; };
 		D0DEEFF9291A5DAC00BE125E /* EnterPhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFF8291A5DAC00BE125E /* EnterPhoneNumberView.swift */; };
-		D0DEEFFB291A65B700BE125E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFFA291A65B700BE125E /* LoginViewModel.swift */; };
+		D0DEEFFB291A65B700BE125E /* EnterPhoneNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFFA291A65B700BE125E /* EnterPhoneNumberViewModel.swift */; };
 		D0DEEFFD291A733300BE125E /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFFC291A733300BE125E /* CommonViewModel.swift */; };
 		D0DEEFFF291AA09500BE125E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0DEEFFE291AA09500BE125E /* GoogleService-Info.plist */; };
 		D0DEF002291AA1A800BE125E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D0DEF001291AA1A800BE125E /* FirebaseAuth */; };
 		D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */; };
 		D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FC291A070C00D49E0F /* Onboarding.swift */; };
 		D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */; };
+		D0FE194E291B6B6500A05179 /* VerifyAuthNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE194D291B6B6500A05179 /* VerifyAuthNumberViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,13 +88,14 @@
 		D0DEEFF2291A533F00BE125E /* TextStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStackView.swift; sourceTree = "<group>"; };
 		D0DEEFF6291A5B5600BE125E /* EnterPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		D0DEEFF8291A5DAC00BE125E /* EnterPhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhoneNumberView.swift; sourceTree = "<group>"; };
-		D0DEEFFA291A65B700BE125E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D0DEEFFA291A65B700BE125E /* EnterPhoneNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhoneNumberViewModel.swift; sourceTree = "<group>"; };
 		D0DEEFFC291A733300BE125E /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		D0DEEFFE291AA09500BE125E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0DEF003291AA50400BE125E /* SeSacStudy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSacStudy.entitlements; sourceTree = "<group>"; };
 		D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableInitialView.swift; sourceTree = "<group>"; };
 		D0E2E1FC291A070C00D49E0F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		D0FE194D291B6B6500A05179 /* VerifyAuthNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAuthNumberViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +273,7 @@
 		D0DEEFF4291A5AE500BE125E /* EnterPhoneNumberView */ = {
 			isa = PBXGroup;
 			children = (
+				D0DEEFFA291A65B700BE125E /* EnterPhoneNumberViewModel.swift */,
 				D0DEEFF6291A5B5600BE125E /* EnterPhoneNumberViewController.swift */,
 				D0DEEFF8291A5DAC00BE125E /* EnterPhoneNumberView.swift */,
 			);
@@ -280,6 +283,7 @@
 		D0DEEFF5291A5AFE00BE125E /* VerifyAuthNumberView */ = {
 			isa = PBXGroup;
 			children = (
+				D0FE194D291B6B6500A05179 /* VerifyAuthNumberViewModel.swift */,
 				D0C74E32291AC51D008B3863 /* VerifyAuthNumberViewController.swift */,
 				D0C74E34291AC539008B3863 /* VerifyAuthNumberView.swift */,
 			);
@@ -315,7 +319,6 @@
 		D0E2E1FE291A1E7C00D49E0F /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
-				D0DEEFFA291A65B700BE125E /* LoginViewModel.swift */,
 				D0DEEFF4291A5AE500BE125E /* EnterPhoneNumberView */,
 				D0DEEFF5291A5AFE00BE125E /* VerifyAuthNumberView */,
 			);
@@ -486,7 +489,8 @@
 				D07BE8582918F02F00020487 /* UICollectionViewLayout+Extension.swift in Sources */,
 				D07BE85A2918F90600020487 /* OnboardingCollectionViewCell.swift in Sources */,
 				D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */,
-				D0DEEFFB291A65B700BE125E /* LoginViewModel.swift in Sources */,
+				D0FE194E291B6B6500A05179 /* VerifyAuthNumberViewModel.swift in Sources */,
+				D0DEEFFB291A65B700BE125E /* EnterPhoneNumberViewModel.swift in Sources */,
 				D07BE8522918E12D00020487 /* FontStyle.swift in Sources */,
 				D0C74E33291AC51D008B3863 /* VerifyAuthNumberViewController.swift in Sources */,
 				D03BD00F291962D500F79915 /* R.generated.swift in Sources */,

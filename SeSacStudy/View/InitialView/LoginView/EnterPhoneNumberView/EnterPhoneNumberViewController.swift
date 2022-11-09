@@ -15,7 +15,7 @@ import FirebaseAuth
 final class EnterPhoneNumberViewController: BaseViewController {
     
     // MARK: - Propertys
-    private let viewModel = LoginViewModel()
+    private let viewModel = EnterPhoneNumberViewModel()
     
     private var phoneNumberValidation: Bool = false {
         didSet {
@@ -53,8 +53,8 @@ final class EnterPhoneNumberViewController: BaseViewController {
     
     
     private func bind() {
-        let input = LoginViewModel.Input(phoneNumberText: customView.textField.rx.text, buttonTap: customView.reusableView.button.rx.tap)
-        let output = viewModel.transfrom(input: input)
+        let input = EnterPhoneNumberViewModel.Input(phoneNumberText: customView.textField.rx.text, buttonTap: customView.reusableView.button.rx.tap)
+        let output = viewModel.transform(input: input)
         
 
         output.phoneNumberValidatoin.withUnretained(self)
@@ -63,16 +63,19 @@ final class EnterPhoneNumberViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
 
+        
         output.isTextEntered.withUnretained(self)
             .bind { (vc, value) in
                 vc.customView.lineView.backgroundColor = value ? R.color.black() : R.color.gray3()
             }
             .disposed(by: disposeBag)
         
-        customView.reusableView.button.rx.tap.withUnretained(self)
+        
+        output.buttonTap.withUnretained(self)
             .bind { (vc, _) in
                 if vc.phoneNumberValidation {
                     vc.requestAuthNumber()
+
                     let verifyVC = VerifyAuthNumberViewController()
                     vc.transition(verifyVC, transitionStyle: .push)
                 }else {

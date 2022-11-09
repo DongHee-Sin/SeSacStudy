@@ -11,9 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-final class LoginViewModel {
-    
-    let phoneNumber = PublishRelay<String>()
+final class EnterPhoneNumberViewModel {
     
     private let telephoneNumRegex = "^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$"
 }
@@ -21,7 +19,7 @@ final class LoginViewModel {
 
 
 
-extension LoginViewModel: CommonViewModel {
+extension EnterPhoneNumberViewModel: CommonViewModel {
 
     struct Input {
         let phoneNumberText: ControlProperty<String?>
@@ -35,7 +33,7 @@ extension LoginViewModel: CommonViewModel {
     }
 
 
-    func transfrom(input: Input) -> Output {
+    func transform(input: Input) -> Output {
         let text = input.phoneNumberText.orEmpty
         
         let validation = text.withUnretained(self)
@@ -52,7 +50,7 @@ extension LoginViewModel: CommonViewModel {
 
 
 
-extension LoginViewModel {
+extension EnterPhoneNumberViewModel {
     
     func formatPhoneStyle(_ text: String) -> String {
         let text = text.components(separatedBy: "-").joined()
