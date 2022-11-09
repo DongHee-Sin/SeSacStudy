@@ -24,6 +24,10 @@ final class EnterPhoneNumberViewController: BaseViewController {
         }
     }
     
+    private var phoneNumberForAuth: String {
+        return viewModel.convertPhoneNumberToKoreaFormat(customView.textField.text ?? "")
+    }
+    
     
     
     
@@ -128,7 +132,7 @@ extension EnterPhoneNumberViewController {
 
     func requestAuthNumber(handler: @escaping (String) -> Void) {
         PhoneAuthProvider.provider()
-            .verifyPhoneNumber("+82 10-1234-5678", uiDelegate: nil) { [weak self] (verificationID, error) in
+            .verifyPhoneNumber(phoneNumberForAuth, uiDelegate: nil) { [weak self] (verificationID, error) in
                 if let error {
                     self?.showAlert(title: "오류가 발생했습니다.", message: error.localizedDescription)
                     return
@@ -139,35 +143,5 @@ extension EnterPhoneNumberViewController {
                 }
             }
     }
-
-
-
-//    func verificationButtonClicked(_ sender: UIButton) {
-//        guard let verificationID = UserDefaults.standard.string(forKey: "verificationID"), let verificationCode = verificationNumberTextField.text else {
-//            return
-//        }
-//
-//        let credential = PhoneAuthProvider.provider().credential(
-//            withVerificationID: verificationID,
-//            verificationCode: verificationCode
-//        )
-//
-//        logIn(credential: credential)
-//    }
-//
-//
-//    func logIn(credential: PhoneAuthCredential) {
-//        Auth.auth().signIn(with: credential) { authResult, error in
-//            if let error = error {
-//                print(error.localizedDescription)
-//                print("LogIn Failed...")
-//            }
-//
-//
-//
-//            print("LogIn Success!!")
-//            print("\\(authResult!)")
-//        }
-//    }
 }
 

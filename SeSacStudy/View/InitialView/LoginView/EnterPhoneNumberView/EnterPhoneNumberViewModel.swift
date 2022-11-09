@@ -14,6 +14,16 @@ import RxCocoa
 final class EnterPhoneNumberViewModel {
     
     private let telephoneNumRegex = "^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$"
+    
+    
+    
+    
+    func convertPhoneNumberToKoreaFormat(_ num: String) -> String {
+        var result = num
+        result.removeFirst()
+        result = "+82 " + result
+        return result
+    }
 }
 
 
