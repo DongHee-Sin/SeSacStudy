@@ -35,11 +35,12 @@ final class ReusableDateTextField: BaseView {
         reusableTextField.snp.makeConstraints { make in
             make.verticalEdges.equalTo(self)
             make.leading.equalTo(self)
+            make.trailing.equalTo(label.snp.leading).offset(-4)
         }
-        
+
         label.snp.makeConstraints { make in
-            make.centerX.equalTo(reusableTextField.textField)
-            make.trailing.equalTo(self)
+            make.centerY.equalTo(reusableTextField.textField)
+            make.trailing.equalTo(self.snp.trailing)
         }
     }
 }

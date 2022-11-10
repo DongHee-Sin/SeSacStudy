@@ -16,6 +16,11 @@ final class EnterBirthDayViewController: BaseViewController {
     
     
     // MARK: - Life Cycle
+    let customView = EnterBirthDayView()
+    override func loadView() {
+        view = customView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,5 +29,8 @@ final class EnterBirthDayViewController: BaseViewController {
     
     
     // MARK: - Methods
-    
+    override func configure() {
+        customView.reusableView.textStackView.addText(title: "생년월일을 알려주세요")
+        customView.reusableView.button.setTitle("다음", for: .normal)
+    }
 }

@@ -32,12 +32,24 @@ final class EnterNicknameViewController: BaseViewController {
     // MARK: - Methods
     override func configure() {
         customView.reusableView.textStackView.addText(title: "닉네임을 입력해 주세요")
-        customView.reusableView.button.setTitle("인증 문자 받기", for: .normal)
+        customView.reusableView.button.setTitle("다음", for: .normal)
         
         customView.reusableTextField.textField.delegate = self
         
         customView.reusableTextField.textField.keyboardType = .numberPad
         customView.reusableTextField.textField.placeholder = "10자 이내로 입력"
+        
+        bind()
+    }
+    
+    
+    private func bind() {
+        customView.reusableView.button.rx.tap
+            .withUnretained(self)
+            .bind { (vc, _) in
+                vc.transition(EnterBirthDayViewController(), transitionStyle: .push)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

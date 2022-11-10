@@ -13,12 +13,22 @@ final class EnterBirthDayView: BaseView {
     // MARK: - Propertys
     let reusableView = ReusableInitialView()
     
-    let textField = UITextField().then {
-        $0.font = .customFont(.title4_R14)
+    private let stackView = UIStackView().then {
+        $0.spacing = 23
+        $0.distribution = .fillEqually
+        $0.axis = .horizontal
     }
     
-    let lineView = UIView().then {
-        $0.backgroundColor = R.color.gray3()
+    let year = ReusableDateTextField().then {
+        $0.label.text = "년"
+    }
+    
+    let month = ReusableDateTextField().then {
+        $0.label.text = "월"
+    }
+    
+    let day = ReusableDateTextField().then {
+        $0.label.text = "일"
     }
     
     
@@ -26,7 +36,11 @@ final class EnterBirthDayView: BaseView {
     
     // MARK: - Methods
     override func configureUI() {
-        [reusableView, textField, lineView].forEach {
+        [year, month, day].forEach {
+            stackView.addArrangedSubview($0)
+        }
+        
+        [reusableView, stackView].forEach {
             self.addSubview($0)
         }
     }
@@ -37,15 +51,20 @@ final class EnterBirthDayView: BaseView {
             make.edges.equalTo(self)
         }
         
-        textField.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(self).inset(28)
-            make.centerY.equalTo(reusableView.stackView)
-        }
+//        textField.snp.makeConstraints { make in
+//            make.horizontalEdges.equalTo(self).inset(28)
+//            make.centerY.equalTo(reusableView.stackView)
+//        }
+//
+//        lineView.snp.makeConstraints { make in
+//            make.height.equalTo(1)
+//            make.horizontalEdges.equalTo(self).inset(16)
+//            make.top.equalTo(textField.snp.bottom).offset(12)
+//        }
         
-        lineView.snp.makeConstraints { make in
-            make.height.equalTo(1)
+        stackView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(self).inset(16)
-            make.top.equalTo(textField.snp.bottom).offset(12)
+            make.centerY.equalTo(reusableView.stackView)
         }
     }
 }
