@@ -13,6 +13,14 @@ final class EnterNicknameViewController: BaseViewController {
     // MARK: - Propertys
     private let viewModel = SignUpViewModel()
     
+    private var nicknameValidation: Bool = false {
+        didSet {
+            if nicknameValidation == oldValue { return }
+            customView.reusableTextField.lineView.backgroundColor = nicknameValidation ? R.color.black() : R.color.gray3()
+            customView.reusableView.button.setButtonStyle(status: nicknameValidation ? .fill : .cancel)
+        }
+    }
+    
     
     
     
@@ -47,7 +55,30 @@ final class EnterNicknameViewController: BaseViewController {
         customView.reusableView.button.rx.tap
             .withUnretained(self)
             .bind { (vc, _) in
-                vc.transition(EnterBirthDayViewController(), transitionStyle: .push)
+                let birthdayVC = EnterBirthDayViewController()
+                birthdayVC.viewModel = vc.viewModel
+                vc.transition(birthdayVC, transitionStyle: .push)
+            }
+            .disposed(by: disposeBag)
+        
+        
+        customView.reusableTextField.textField.rx.text.orEmpty
+            .bind(to: viewModel.nickname)
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.nickname
+            .withUnretained(self)
+            .bind { (vc, text) in
+                vc.viewModel.signUp.nick = text
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.nickname
+            .map { $0.isEmpty }
+            .withUnretained(self)
+            .bind { (vc, value) in
+                vc.nicknameValidation = !value
             }
             .disposed(by: disposeBag)
     }

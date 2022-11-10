@@ -11,6 +11,11 @@ import UIKit
 final class EnterBirthDayViewController: BaseViewController {
     
     // MARK: - Propertys
+    var viewModel: SignUpViewModel?
+    
+    private let dateFormatter = DateFormatter().then {
+        $0.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS"
+    }
     
     
     
@@ -40,7 +45,6 @@ final class EnterBirthDayViewController: BaseViewController {
     
     private func setTextField() {
         customView.textFields.forEach {
-            //$0.reusableTextField.textField.delegate = self
             $0.reusableTextField.textField.inputView = customView.datePickerView
         }
     }
@@ -50,20 +54,27 @@ final class EnterBirthDayViewController: BaseViewController {
         customView.reusableView.button.rx.tap
             .withUnretained(self)
             .bind { (vc, _) in
-                vc.transition(EnterEmailViewController(), transitionStyle: .push)
+                let emailVC = EnterEmailViewController()
+                emailVC.viewModel = vc.viewModel
+                vc.transition(emailVC, transitionStyle: .push)
+            }
+            .disposed(by: disposeBag)
+        
+        
+        customView.datePickerView.rx.date
+            .withUnretained(self)
+            .bind { (vc, date) in
+                vc.viewModel?.signUp.birth = vc.dateFormatter.string(from: date)
+                vc.updateUI(dy: date)
             }
             .disposed(by: disposeBag)
     }
-}
-
-
-
-
-// MARK: - TextField Delegate
-extension EnterBirthDayViewController: UITextFieldDelegate {
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        customView.datePickerView.date
+    
+    private func updateUI(dy date: Date) {
+        let component = Calendar.current.dateComponents([.year, .month, .day], from: customView.datePickerView.date)
+        customView.year.reusableTextField.textField.text = "\(component.year ?? 0)"
+        customView.month.reusableTextField.textField.text = "\(component.month ?? 0)"
+        customView.day.reusableTextField.textField.text = "\(component.day ?? 0)"
     }
-    
 }

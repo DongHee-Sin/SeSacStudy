@@ -19,15 +19,15 @@ final class EnterBirthDayView: BaseView {
         $0.axis = .horizontal
     }
     
-    private let year = ReusableDateTextField().then {
+    let year = ReusableDateTextField().then {
         $0.label.text = "년"
     }
     
-    private let month = ReusableDateTextField().then {
+    let month = ReusableDateTextField().then {
         $0.label.text = "월"
     }
     
-    private let day = ReusableDateTextField().then {
+    let day = ReusableDateTextField().then {
         $0.label.text = "일"
     }
     

@@ -11,7 +11,14 @@ import UIKit
 final class EnterEmailViewController: BaseViewController {
     
     // MARK: - Propertys
-    private let viewModel = SignUpViewModel()
+    var viewModel: SignUpViewModel?
+    
+    private var emailValidation: Bool = false {
+        didSet {
+            if emailValidation == oldValue { return }
+            customView.reusableView.button.setButtonStyle(status: emailValidation ? .fill : .cancel)
+        }
+    }
     
     
     

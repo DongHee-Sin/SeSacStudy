@@ -7,6 +7,9 @@
 
 import Foundation
 
+import RxSwift
+import RxCocoa
+
 
 /// Encodable 객체 미리 생성
 /// VM의 프로퍼티 값이 변경될 때마다, Encodable 인스턴스의 값 변경
@@ -14,13 +17,23 @@ import Foundation
 final class SignUpViewModel {
     
     // MARK: - Propertys
+    var signUp = SignUp(phoneNumber: "", FCMtoken: UserDefaultManager.shared.fcmToken, nick: "", birth: "", email: "", gender: 2) {
+        didSet {
+            print("SignUp Value Changed: \(signUp)")
+        }
+    }
+    
+    let nickname = PublishRelay<String>()
+    let birthDay = PublishRelay<String>()
+    let email = PublishRelay<String>()
+    let gender = PublishRelay<Int>()
     
     
     
     
     // MARK: - Methods
     func calcAge(birth: Date) {
-        let now = Date()
+        //let now = Date()
         
     }
     
