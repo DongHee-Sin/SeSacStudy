@@ -24,7 +24,7 @@ final class EnterPhoneNumberViewController: BaseViewController {
     }
     
     private var phoneNumberForAuth: String? {
-        return viewModel.convertPhoneNumberToKoreaFormat(customView.textField.text ?? "")
+        return viewModel.convertPhoneNumberToKoreaFormat(customView.reusableTextField.textField.text ?? "")
     }
     
     
@@ -48,18 +48,18 @@ final class EnterPhoneNumberViewController: BaseViewController {
         customView.reusableView.textStackView.addText(title: "새싹 서비스 이용을 위해\n휴대폰 번호를 입력해 주세요")
         customView.reusableView.button.setTitle("인증 문자 받기", for: .normal)
         
-        customView.textField.delegate = self
-        customView.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        customView.reusableTextField.textField.delegate = self
+        customView.reusableTextField.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
-        customView.textField.keyboardType = .numberPad
-        customView.textField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
+        customView.reusableTextField.textField.keyboardType = .numberPad
+        customView.reusableTextField.textField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
         
         bind()
     }
     
     
     private func bind() {
-        let input = EnterPhoneNumberViewModel.Input(phoneNumberText: customView.textField.rx.text, buttonTap: customView.reusableView.button.rx.tap)
+        let input = EnterPhoneNumberViewModel.Input(phoneNumberText: customView.reusableTextField.textField.rx.text, buttonTap: customView.reusableView.button.rx.tap)
         let output = viewModel.transform(input: input)
         
 
@@ -72,7 +72,7 @@ final class EnterPhoneNumberViewController: BaseViewController {
         
         output.isTextEntered.withUnretained(self)
             .bind { (vc, value) in
-                vc.customView.lineView.backgroundColor = value ? R.color.black() : R.color.gray3()
+                vc.customView.reusableTextField.lineView.backgroundColor = value ? R.color.black() : R.color.gray3()
             }
             .disposed(by: disposeBag)
         

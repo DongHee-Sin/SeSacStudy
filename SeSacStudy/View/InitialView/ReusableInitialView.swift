@@ -11,6 +11,7 @@ import SnapKit
 import Then
 
 
+/// DescriptionLabel + Button
 final class ReusableInitialView: BaseView {
     
     // MARK: - Propertys

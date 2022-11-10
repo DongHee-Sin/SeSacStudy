@@ -46,6 +46,10 @@
 		D0C99790291BEB6F006C41B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0C9978F291BEB6F006C41B4 /* GoogleService-Info.plist */; };
 		D0C99792291BFAC1006C41B4 /* EnterNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C99791291BFAC1006C41B4 /* EnterNicknameViewController.swift */; };
 		D0C99795291BFB5F006C41B4 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C99794291BFB5F006C41B4 /* SignUpViewModel.swift */; };
+		D0C9979A291C0CBC006C41B4 /* EnterBirthDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C99799291C0CBC006C41B4 /* EnterBirthDayViewController.swift */; };
+		D0C9979C291C0CD1006C41B4 /* EnterBirthDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9979B291C0CD1006C41B4 /* EnterBirthDayView.swift */; };
+		D0D8EF55291CD06E00F9BC22 /* ReusableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D8EF54291CD06E00F9BC22 /* ReusableTextField.swift */; };
+		D0D8EF57291CD4C400F9BC22 /* ReusableDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D8EF56291CD4C400F9BC22 /* ReusableDateTextField.swift */; };
 		D0DEEFF3291A533F00BE125E /* TextStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFF2291A533F00BE125E /* TextStackView.swift */; };
 		D0DEEFF7291A5B5600BE125E /* EnterPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFF6291A5B5600BE125E /* EnterPhoneNumberViewController.swift */; };
 		D0DEEFF9291A5DAC00BE125E /* ReusableViewWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DEEFF8291A5DAC00BE125E /* ReusableViewWithTextField.swift */; };
@@ -96,6 +100,10 @@
 		D0C9978F291BEB6F006C41B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0C99791291BFAC1006C41B4 /* EnterNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNicknameViewController.swift; sourceTree = "<group>"; };
 		D0C99794291BFB5F006C41B4 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		D0C99799291C0CBC006C41B4 /* EnterBirthDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterBirthDayViewController.swift; sourceTree = "<group>"; };
+		D0C9979B291C0CD1006C41B4 /* EnterBirthDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterBirthDayView.swift; sourceTree = "<group>"; };
+		D0D8EF54291CD06E00F9BC22 /* ReusableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableTextField.swift; sourceTree = "<group>"; };
+		D0D8EF56291CD4C400F9BC22 /* ReusableDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableDateTextField.swift; sourceTree = "<group>"; };
 		D0DEEFF2291A533F00BE125E /* TextStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStackView.swift; sourceTree = "<group>"; };
 		D0DEEFF6291A5B5600BE125E /* EnterPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		D0DEEFF8291A5DAC00BE125E /* ReusableViewWithTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewWithTextField.swift; sourceTree = "<group>"; };
@@ -307,6 +315,29 @@
 			path = Nickname;
 			sourceTree = "<group>";
 		};
+		D0C99796291C0C07006C41B4 /* Email */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Email;
+			sourceTree = "<group>";
+		};
+		D0C99797291C0C0A006C41B4 /* BirthDay */ = {
+			isa = PBXGroup;
+			children = (
+				D0C99799291C0CBC006C41B4 /* EnterBirthDayViewController.swift */,
+				D0C9979B291C0CD1006C41B4 /* EnterBirthDayView.swift */,
+			);
+			path = BirthDay;
+			sourceTree = "<group>";
+		};
+		D0C99798291C0C0C006C41B4 /* Gender */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Gender;
+			sourceTree = "<group>";
+		};
 		D0DEEFF4291A5AE500BE125E /* EnterPhoneNumberView */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +372,9 @@
 			children = (
 				D0C99794291BFB5F006C41B4 /* SignUpViewModel.swift */,
 				D0C99793291BFADB006C41B4 /* Nickname */,
+				D0C99797291C0C0A006C41B4 /* BirthDay */,
+				D0C99796291C0C07006C41B4 /* Email */,
+				D0C99798291C0C0C006C41B4 /* Gender */,
 			);
 			path = SignUpView;
 			sourceTree = "<group>";
@@ -350,6 +384,8 @@
 			children = (
 				D0DEEFF2291A533F00BE125E /* TextStackView.swift */,
 				D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */,
+				D0D8EF54291CD06E00F9BC22 /* ReusableTextField.swift */,
+				D0D8EF56291CD4C400F9BC22 /* ReusableDateTextField.swift */,
 				D0DEEFF8291A5DAC00BE125E /* ReusableViewWithTextField.swift */,
 			);
 			name = ReusableView;
@@ -536,11 +572,13 @@
 				D0FE194E291B6B6500A05179 /* VerifyAuthNumberViewModel.swift in Sources */,
 				D0DEEFFB291A65B700BE125E /* EnterPhoneNumberViewModel.swift in Sources */,
 				D07BE8522918E12D00020487 /* FontStyle.swift in Sources */,
+				D0C9979A291C0CBC006C41B4 /* EnterBirthDayViewController.swift in Sources */,
 				D0C74E33291AC51D008B3863 /* VerifyAuthNumberViewController.swift in Sources */,
 				D03BD00F291962D500F79915 /* R.generated.swift in Sources */,
 				D07BE85C2918FA3E00020487 /* BaseCollectionViewCell.swift in Sources */,
 				D0DEEFFD291A733300BE125E /* CommonViewModel.swift in Sources */,
 				D02335632918D155003C7225 /* ColorManager.swift in Sources */,
+				D0C9979C291C0CD1006C41B4 /* EnterBirthDayView.swift in Sources */,
 				D023356D2918D752003C7225 /* BasicButton.swift in Sources */,
 				D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */,
 				D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */,
@@ -552,9 +590,11 @@
 				D023356A2918D652003C7225 /* BaseView.swift in Sources */,
 				D0DEEFF3291A533F00BE125E /* TextStackView.swift in Sources */,
 				D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */,
+				D0D8EF55291CD06E00F9BC22 /* ReusableTextField.swift in Sources */,
 				D0C74E35291AC539008B3863 /* VerifyAuthNumberView.swift in Sources */,
 				D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */,
 				D07BE8562918E40A00020487 /* OnboardingView.swift in Sources */,
+				D0D8EF57291CD4C400F9BC22 /* ReusableDateTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
