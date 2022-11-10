@@ -8,6 +8,7 @@
 import Foundation
 
 import FirebaseAuth
+import FirebaseMessaging
 
 
 final class FirebaseAuthManager {
@@ -71,8 +72,22 @@ final class FirebaseAuthManager {
             if let idToken {
                 handler(.success(idToken))
             }
-            print(idToken)
         }
     }
     
+    
+    /// FCM 토큰을 갱신하는 코드인지 확인 필요
+    /// 갱신되는게 맞다면 따로 저장할 필요 없음 => 토큰 갱신을 모니터링하는 메서드에서 처리되고 있음
+    func fetchFCMToken(handler: @escaping (Result<String, Error>) -> Void) {
+        Messaging.messaging().token { fcmToken, error in
+            if let error = error {
+                handler(.failure(error))
+                return
+            }
+            
+            if let fcmToken {
+                handler(.success(fcmToken))
+            }
+        }
+    }
 }
