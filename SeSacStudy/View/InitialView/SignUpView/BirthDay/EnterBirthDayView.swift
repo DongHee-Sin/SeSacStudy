@@ -19,16 +19,25 @@ final class EnterBirthDayView: BaseView {
         $0.axis = .horizontal
     }
     
-    let year = ReusableDateTextField().then {
+    private let year = ReusableDateTextField().then {
         $0.label.text = "년"
     }
     
-    let month = ReusableDateTextField().then {
+    private let month = ReusableDateTextField().then {
         $0.label.text = "월"
     }
     
-    let day = ReusableDateTextField().then {
+    private let day = ReusableDateTextField().then {
         $0.label.text = "일"
+    }
+    
+    let datePickerView = UIDatePicker().then {
+        $0.preferredDatePickerStyle = .wheels
+        $0.datePickerMode = .date
+    }
+    
+    var textFields: [ReusableDateTextField] {
+        return [year, month, day]
     }
     
     
@@ -50,17 +59,6 @@ final class EnterBirthDayView: BaseView {
         reusableView.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
-        
-//        textField.snp.makeConstraints { make in
-//            make.horizontalEdges.equalTo(self).inset(28)
-//            make.centerY.equalTo(reusableView.stackView)
-//        }
-//
-//        lineView.snp.makeConstraints { make in
-//            make.height.equalTo(1)
-//            make.horizontalEdges.equalTo(self).inset(16)
-//            make.top.equalTo(textField.snp.bottom).offset(12)
-//        }
         
         stackView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(self).inset(16)
