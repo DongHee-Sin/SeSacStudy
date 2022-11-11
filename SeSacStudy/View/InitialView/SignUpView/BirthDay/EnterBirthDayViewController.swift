@@ -38,15 +38,16 @@ final class EnterBirthDayViewController: BaseViewController {
     
     // MARK: - Methods
     override func configure() {
-        customView.reusableView.textStackView.addText(title: "생년월일을 알려주세요")
-        customView.reusableView.button.setTitle("다음", for: .normal)
-        
-        setTextField()
+        setInitialUI()
+
         bind()
     }
     
     
-    private func setTextField() {
+    private func setInitialUI() {
+        customView.reusableView.textStackView.addText(title: "생년월일을 알려주세요")
+        customView.reusableView.button.setTitle("다음", for: .normal)
+        
         customView.textFields.forEach {
             $0.reusableTextField.textField.inputView = customView.datePickerView
             $0.reusableTextField.textField.tintColor = .clear

@@ -38,13 +38,20 @@ final class EnterEmailViewController: BaseViewController {
     
     // MARK: - Methods
     override func configure() {
+        setInitialUI()
+        
+        bind()
+    }
+    
+    
+    private func setInitialUI() {
         customView.reusableView.textStackView.addText(title: "이메일을 입력해 주세요", subTitle: "휴대폰 번호 변경 시 인증을 위해 사용해요")
         customView.reusableView.button.setTitle("다음", for: .normal)
         
         customView.reusableTextField.textField.keyboardType = .emailAddress
         customView.reusableTextField.textField.placeholder = "SeSAC@email.com"
         
-        bind()
+        customView.reusableTextField.textField.becomeFirstResponder()
     }
     
     

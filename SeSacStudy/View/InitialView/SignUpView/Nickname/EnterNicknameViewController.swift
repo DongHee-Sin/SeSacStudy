@@ -51,8 +51,10 @@ final class EnterNicknameViewController: BaseViewController {
         customView.reusableView.textStackView.addText(title: "닉네임을 입력해 주세요")
         customView.reusableView.button.setTitle("다음", for: .normal)
         
-        customView.reusableTextField.textField.keyboardType = .numberPad
+        customView.reusableTextField.textField.keyboardType = .default
         customView.reusableTextField.textField.placeholder = "10자 이내로 입력"
+        
+        customView.reusableTextField.textField.becomeFirstResponder()
     }
     
     
@@ -98,6 +100,11 @@ extension EnterNicknameViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard (textField.text ?? "").count < 10 || string.isEmpty else {
             showToast(message: "최대 10자리까지 입력할 수 있습니다")
+            return false
+        }
+        
+        guard string != " " else {
+            showToast(message: "공백은 입력할 수 없습니다")
             return false
         }
         
