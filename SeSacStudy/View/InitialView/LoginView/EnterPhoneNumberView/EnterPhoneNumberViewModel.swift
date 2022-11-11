@@ -13,16 +13,17 @@ import RxCocoa
 
 final class EnterPhoneNumberViewModel {
     
-    private let telephoneNumRegex = "^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$"
-    
-    
-    
-    
     func convertPhoneNumberToKoreaFormat(_ num: String) -> String {
         var result = num
         result.removeFirst()
         result = "+82 " + result
         return result
+    }
+    
+    
+    private func isValidPhoneNumber(_ value: String) -> Bool {
+        let telephoneNumRegex = "^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$"
+        return value.range(of: telephoneNumRegex, options: [.regularExpression]) != nil
     }
 }
 
@@ -48,7 +49,7 @@ extension EnterPhoneNumberViewModel: CommonViewModel {
         
         let validation = text.withUnretained(self)
             .map { (vc, text) in
-                text.range(of: vc.telephoneNumRegex, options: [.regularExpression]) != nil
+                vc.isValidPhoneNumber(text)
             }
         
         let isTextEntered = text.map { $0.count >= 1 }

@@ -69,7 +69,7 @@ final class EnterNicknameViewController: BaseViewController {
                     let birthdayVC = EnterBirthDayViewController()
                     vc.transition(birthdayVC, transitionStyle: .push)
                 }else {
-                    vc.showToast(message: "닉네임을 입력해주세요")
+                    vc.showToast(message: "닉네임은 1자 이상 10자 이내로 부탁드려요")
                 }
             }
             .disposed(by: disposeBag)
@@ -99,7 +99,7 @@ extension EnterNicknameViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard (textField.text ?? "").count < 10 || string.isEmpty else {
-            showToast(message: "최대 10자리까지 입력할 수 있습니다")
+            showToast(message: "닉네임은 1자 이상 10자 이내로 부탁드려요")
             return false
         }
         

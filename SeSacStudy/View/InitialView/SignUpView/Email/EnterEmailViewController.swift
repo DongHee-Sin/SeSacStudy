@@ -11,7 +11,7 @@ import UIKit
 final class EnterEmailViewController: BaseViewController {
     
     // MARK: - Propertys
-    var viewModel: SignUpViewModel?
+    private let viewModel = EnterEmailViewModel()
     
     private var emailValidation: Bool = false {
         didSet {
@@ -56,10 +56,33 @@ final class EnterEmailViewController: BaseViewController {
     
     
     private func bind() {
-        customView.reusableView.button.rx.tap
+        let input = EnterEmailViewModel.Input(buttonTap: customView.reusableView.button.rx.tap, email: customView.reusableTextField.textField.rx.text)
+        let output = viewModel.transform(input: input)
+        
+        output.buttonTap
             .withUnretained(self)
             .bind { (vc, _) in
-                vc.transition(EnterGenderViewController(), transitionStyle: .push)
+                if vc.emailValidation {
+                    let genderVC = EnterGenderViewController()
+                    vc.transition(genderVC, transitionStyle: .push)
+                }else {
+                    vc.showToast(message: "이메일 형식이 올바르지 않습니다")
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        
+        output.email
+            .bind { value in
+                print("저장하기 -> SignUp 인스턴스 \(value)")
+            }
+            .disposed(by: disposeBag)
+        
+        
+        output.validation
+            .withUnretained(self)
+            .bind { (vc, value) in
+                vc.emailValidation = value
             }
             .disposed(by: disposeBag)
     }

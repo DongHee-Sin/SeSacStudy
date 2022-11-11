@@ -126,7 +126,6 @@ final class VerifyAuthNumberViewController: BaseViewController {
                     FirebaseAuthManager.share.signIn(id: vc.verificationID ?? "", code: vc.customView.textField.text ?? "") { result in
                         switch result {
                         case .success(_):
-                            print("인증 성공 => ")
                             vc.fetchIdToken()
                         case .failure(let error):
                             vc.showAlert(title: "인증에 실패했습니다", message: error.localizedDescription)
