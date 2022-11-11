@@ -14,7 +14,14 @@ final class EnterBirthDayViewController: BaseViewController {
     var viewModel: SignUpViewModel?
     
     private let dateFormatter = DateFormatter().then {
-        $0.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSS"
+        $0.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSSZ"
+    }
+    
+    private var dateValidation: Bool = false {
+        didSet {
+            if dateValidation == oldValue { return }
+            customView.reusableView.button.setButtonStyle(status: dateValidation ? .fill : .cancel)
+        }
     }
     
     
