@@ -81,7 +81,7 @@ extension UIViewController {
         alertLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(alertSuperview)
-        alertSuperview.bottomAnchor.constraint(equalTo: target ?? view.safeAreaLayoutGuide.bottomAnchor, constant: -12).isActive = true
+        alertSuperview.bottomAnchor.constraint(equalTo: target ?? view.safeAreaLayoutGuide.topAnchor, constant: 12).isActive = true
         alertSuperview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         alertSuperview.addSubview(alertLabel)
         alertLabel.topAnchor.constraint(equalTo: alertSuperview.topAnchor, constant: 6).isActive = true
