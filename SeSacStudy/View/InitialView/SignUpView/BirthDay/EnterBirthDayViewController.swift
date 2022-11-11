@@ -46,6 +46,7 @@ final class EnterBirthDayViewController: BaseViewController {
     private func setTextField() {
         customView.textFields.forEach {
             $0.reusableTextField.textField.inputView = customView.datePickerView
+            $0.reusableTextField.textField.tintColor = .clear
         }
     }
     
