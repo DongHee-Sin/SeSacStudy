@@ -17,24 +17,21 @@ import RxCocoa
 final class SignUpViewModel {
     
     // MARK: - Propertys
-    var signUp = SignUp(phoneNumber: "", FCMtoken: UserDefaultManager.shared.fcmToken, nick: "", birth: "", email: "", gender: 2) {
+    var signUp = SignUp(phoneNumber: UserDefaultManager.shared.phoneNumber,
+                        FCMtoken: UserDefaultManager.shared.fcmToken,
+                        nick: "",
+                        birth: "",
+                        email: "",
+                        gender: 2) {
         didSet {
             print("SignUp Value Changed: \(signUp)")
         }
     }
     
-    let nickname = PublishRelay<String>()
-    let birthDay = PublishRelay<String>()
-    let email = PublishRelay<String>()
-    let gender = PublishRelay<Int>()
-    
     
     
     
     // MARK: - Methods
-    func calcAge(birth: Date) {
-        //let now = Date()
-        
-    }
+    
     
 }

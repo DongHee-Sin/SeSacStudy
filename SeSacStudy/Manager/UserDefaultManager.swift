@@ -30,9 +30,6 @@ final class UserDefaultManager {
     
     
     // MARK: - Propertys
-    @UserDefault(key: "isInitialLaunch", defaultValue: true)
-    var isInitialLaunch: Bool
-    
     
     @UserDefault(key: "idToken", defaultValue: "")
     var idToken: String
@@ -40,6 +37,9 @@ final class UserDefaultManager {
     
     @UserDefault(key: "fcmToken", defaultValue: "")
     var fcmToken: String
+    
+    @UserDefault(key: "phoneNumber", defaultValue: "")
+    var phoneNumber: String
     
     
     

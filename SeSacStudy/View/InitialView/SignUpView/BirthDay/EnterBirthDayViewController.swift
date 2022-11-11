@@ -11,11 +11,7 @@ import UIKit
 final class EnterBirthDayViewController: BaseViewController {
     
     // MARK: - Propertys
-    var viewModel: SignUpViewModel?
-    
-    private let dateFormatter = DateFormatter().then {
-        $0.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSSZ"
-    }
+    private let viewModel = EnterBirthDayViewModel()
     
     private var dateValidation: Bool = false {
         didSet {
@@ -54,33 +50,48 @@ final class EnterBirthDayViewController: BaseViewController {
         customView.textFields.forEach {
             $0.reusableTextField.textField.inputView = customView.datePickerView
             $0.reusableTextField.textField.tintColor = .clear
+            $0.reusableTextField.lineView.backgroundColor = R.color.black()
         }
     }
     
     
     private func bind() {
-        customView.reusableView.button.rx.tap
+        let input = EnterBirthDayViewModel.Input(buttonTap: customView.reusableView.button.rx.tap, birthday: customView.datePickerView.rx.date)
+        let output = viewModel.transform(input: input)
+        
+        output.buttonTap
             .withUnretained(self)
             .bind { (vc, _) in
-                let emailVC = EnterEmailViewController()
-                emailVC.viewModel = vc.viewModel
-                vc.transition(emailVC, transitionStyle: .push)
+                if vc.dateValidation {
+                    let emailVC = EnterEmailViewController()
+                    vc.transition(emailVC, transitionStyle: .push)
+                }else {
+                    vc.showToast(message: "새싹스터디는 만 17세 이상만 사용할 수 있습니다.")
+                }
             }
             .disposed(by: disposeBag)
         
         
-        customView.datePickerView.rx.date
+        output.birthday
             .withUnretained(self)
             .bind { (vc, date) in
-                vc.viewModel?.signUp.birth = vc.dateFormatter.string(from: date)
+                print("저장하기 -> SignUp 인스턴스 \(vc.viewModel.convertToServerFormat(date))")
                 vc.updateUI(dy: date)
+            }
+            .disposed(by: disposeBag)
+        
+        
+        output.validation
+            .withUnretained(self)
+            .bind { (vc, value) in
+                vc.dateValidation = value
             }
             .disposed(by: disposeBag)
     }
     
     
     private func updateUI(dy date: Date) {
-        let component = Calendar.current.dateComponents([.year, .month, .day], from: customView.datePickerView.date)
+        let component = viewModel.convertToDateComponents(date)
         customView.year.reusableTextField.textField.text = "\(component.year ?? 0)"
         customView.month.reusableTextField.textField.text = "\(component.month ?? 0)"
         customView.day.reusableTextField.textField.text = "\(component.day ?? 0)"

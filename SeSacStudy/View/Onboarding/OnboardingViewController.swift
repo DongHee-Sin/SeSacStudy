@@ -51,7 +51,6 @@ final class OnboardingViewController: BaseViewController {
             .withUnretained(self)
             .bind { (vc, _) in
                 let navi = UINavigationController(rootViewController: EnterPhoneNumberViewController())
-                UserDefaultManager.shared.isInitialLaunch = false
                 vc.changeRootViewController(to: navi)
             }
             .disposed(by: disposeBag)

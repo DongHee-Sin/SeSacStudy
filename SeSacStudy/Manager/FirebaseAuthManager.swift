@@ -17,7 +17,9 @@ final class FirebaseAuthManager {
     
     static let share = FirebaseAuthManager()
     
-    private var recentlyUsedNumber = ""
+    private var recentlyUsedNumber = "" {
+        didSet { UserDefaultManager.shared.phoneNumber = recentlyUsedNumber }
+    }
     
     
     

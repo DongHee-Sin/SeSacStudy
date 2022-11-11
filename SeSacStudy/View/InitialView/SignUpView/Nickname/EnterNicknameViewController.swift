@@ -11,7 +11,7 @@ import UIKit
 final class EnterNicknameViewController: BaseViewController {
     
     // MARK: - Propertys
-    private let viewModel = SignUpViewModel()
+    private let viewModel = EnterNicknameViewModel()
     
     private var nicknameValidation: Bool = false {
         didSet {
@@ -39,46 +39,51 @@ final class EnterNicknameViewController: BaseViewController {
     
     // MARK: - Methods
     override func configure() {
-        customView.reusableView.textStackView.addText(title: "닉네임을 입력해 주세요")
-        customView.reusableView.button.setTitle("다음", for: .normal)
-        
         customView.reusableTextField.textField.delegate = self
         
-        customView.reusableTextField.textField.keyboardType = .numberPad
-        customView.reusableTextField.textField.placeholder = "10자 이내로 입력"
+        setInitialUI()
         
         bind()
     }
     
     
+    private func setInitialUI() {
+        customView.reusableView.textStackView.addText(title: "닉네임을 입력해 주세요")
+        customView.reusableView.button.setTitle("다음", for: .normal)
+        
+        customView.reusableTextField.textField.keyboardType = .numberPad
+        customView.reusableTextField.textField.placeholder = "10자 이내로 입력"
+    }
+    
+    
     private func bind() {
-        customView.reusableView.button.rx.tap
+        let input = EnterNicknameViewModel.Input(buttonTap: customView.reusableView.button.rx.tap, nickname: customView.reusableTextField.textField.rx.text)
+        let output = viewModel.transform(input: input)
+        
+        output.buttonTap
             .withUnretained(self)
             .bind { (vc, _) in
-                let birthdayVC = EnterBirthDayViewController()
-                birthdayVC.viewModel = vc.viewModel
-                vc.transition(birthdayVC, transitionStyle: .push)
+                if vc.nicknameValidation {
+                    let birthdayVC = EnterBirthDayViewController()
+                    vc.transition(birthdayVC, transitionStyle: .push)
+                }else {
+                    vc.showToast(message: "닉네임을 입력해주세요")
+                }
             }
             .disposed(by: disposeBag)
         
         
-        customView.reusableTextField.textField.rx.text.orEmpty
-            .bind(to: viewModel.nickname)
-            .disposed(by: disposeBag)
-        
-        
-        viewModel.nickname
-            .withUnretained(self)
-            .bind { (vc, text) in
-                vc.viewModel.signUp.nick = text
+        output.nickname
+            .bind { value in
+                print("저장하기 -> SignUp 인스턴스 \(value)")
             }
             .disposed(by: disposeBag)
+
         
-        viewModel.nickname
-            .map { $0.isEmpty }
+        output.validation
             .withUnretained(self)
             .bind { (vc, value) in
-                vc.nicknameValidation = !value
+                vc.nicknameValidation = value
             }
             .disposed(by: disposeBag)
     }
