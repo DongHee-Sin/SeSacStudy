@@ -70,6 +70,7 @@ final class FirebaseAuthManager {
             }
             
             if let idToken {
+                UserDefaultManager.shared.idToken = idToken
                 handler(.success(idToken))
             }
         }
@@ -86,6 +87,7 @@ final class FirebaseAuthManager {
             }
             
             if let fcmToken {
+                UserDefaultManager.shared.fcmToken = fcmToken
                 handler(.success(fcmToken))
             }
         }

@@ -16,18 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        var vc: UIViewController = LaunchScreenViewController()
-        
-//        if UserDefaultManager.shared.isInitialLaunch {
-//            vc = OnboardingViewController()
-//
-//        }else if UserDefaultManager.shared.idToken == "" {
-//            vc = UINavigationController(rootViewController: EnterPhoneNumberViewController())
-//
-//        }else {
-//            vc = UINavigationController(rootViewController: EnterNicknameViewController())
-//        }
-//        // 조건 추가 : idToken을 통해 서버에 회원으로 등록되어 있는지 확인 => 홈화면으로 이동
+        var vc = LaunchScreenViewController()
         
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
