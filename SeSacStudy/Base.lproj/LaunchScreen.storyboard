@@ -18,16 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="RSo-pA-tOV">
-                                <rect key="frame" x="32.666666666666657" y="204.99999999999997" width="328" height="467.33333333333326"/>
+                                <rect key="frame" x="33.333333333333343" y="206" width="326.33333333333326" height="465"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_logo" translatesAutoresizingMaskIntoConstraints="NO" id="TcO-NY-Wp1">
-                                        <rect key="frame" x="0.0" y="0.0" width="328" height="328"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="326.33333333333331"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="TcO-NY-Wp1" secondAttribute="height" multiplier="1:1" id="GtC-HT-ig5"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="txt" translatesAutoresizingMaskIntoConstraints="NO" id="LB4-ku-FWy">
-                                        <rect key="frame" x="0.0" y="358" width="328" height="109.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="356.33333333333337" width="326.33333333333331" height="108.66666666666669"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="LB4-ku-FWy" secondAttribute="height" multiplier="3:1" id="joh-f7-LBK"/>
                                         </constraints>
@@ -38,7 +38,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="RSo-pA-tOV" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.834606" id="cfb-cM-ao1"/>
+                            <constraint firstItem="RSo-pA-tOV" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.83" id="cfb-cM-ao1"/>
                             <constraint firstItem="RSo-pA-tOV" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="oFw-2f-TKl"/>
                             <constraint firstItem="RSo-pA-tOV" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="pMl-Jz-wUW"/>
                         </constraints>

@@ -53,6 +53,8 @@
 		D0C9979C291C0CD1006C41B4 /* EnterBirthDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9979B291C0CD1006C41B4 /* EnterBirthDayView.swift */; };
 		D0D2D3A7291E273D007FA615 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D2D3A6291E273D007FA615 /* HomeViewController.swift */; };
 		D0D2D3A9291E27EA007FA615 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D2D3A8291E27EA007FA615 /* MainTabBarController.swift */; };
+		D0D2D3AC291E35F8007FA615 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D2D3AB291E35F8007FA615 /* LaunchScreenViewController.swift */; };
+		D0D2D3AE291E35FC007FA615 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D2D3AD291E35FC007FA615 /* LaunchScreenView.swift */; };
 		D0D8EF55291CD06E00F9BC22 /* ReusableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D8EF54291CD06E00F9BC22 /* ReusableTextField.swift */; };
 		D0D8EF57291CD4C400F9BC22 /* ReusableDateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D8EF56291CD4C400F9BC22 /* ReusableDateTextField.swift */; };
 		D0D8EF59291CEAD100F9BC22 /* EnterEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D8EF58291CEAD100F9BC22 /* EnterEmailViewController.swift */; };
@@ -112,6 +114,8 @@
 		D0C9979B291C0CD1006C41B4 /* EnterBirthDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterBirthDayView.swift; sourceTree = "<group>"; };
 		D0D2D3A6291E273D007FA615 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D0D2D3A8291E27EA007FA615 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		D0D2D3AB291E35F8007FA615 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		D0D2D3AD291E35FC007FA615 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		D0D8EF54291CD06E00F9BC22 /* ReusableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableTextField.swift; sourceTree = "<group>"; };
 		D0D8EF56291CD4C400F9BC22 /* ReusableDateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableDateTextField.swift; sourceTree = "<group>"; };
 		D0D8EF58291CEAD100F9BC22 /* EnterEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 		D0100B5A2918C97F00AEC5C2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D0D2D3AA291E35E6007FA615 /* LaunchScreen */,
 				D02335662918D5D6003C7225 /* Onboarding */,
 				D0DFFDD4291A40B500967C1A /* InitialView */,
 				D0D2D3A4291E2712007FA615 /* Main */,
@@ -372,6 +377,15 @@
 				D0D2D3A6291E273D007FA615 /* HomeViewController.swift */,
 			);
 			path = HomeView;
+			sourceTree = "<group>";
+		};
+		D0D2D3AA291E35E6007FA615 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D0D2D3AB291E35F8007FA615 /* LaunchScreenViewController.swift */,
+				D0D2D3AD291E35FC007FA615 /* LaunchScreenView.swift */,
+			);
+			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		D0DEEFF4291A5AE500BE125E /* EnterPhoneNumberView */ = {
@@ -594,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */,
+				D0D2D3AE291E35FC007FA615 /* LaunchScreenView.swift in Sources */,
 				D0C9978E291BDD8F006C41B4 /* Login.swift in Sources */,
 				D0D2D3A9291E27EA007FA615 /* MainTabBarController.swift in Sources */,
 				D07BE8542918E3F600020487 /* OnboardingViewController.swift in Sources */,
@@ -617,6 +632,7 @@
 				D03BD00F291962D500F79915 /* R.generated.swift in Sources */,
 				D07BE85C2918FA3E00020487 /* BaseCollectionViewCell.swift in Sources */,
 				D084E23A291D2796005EFF11 /* SignUp.swift in Sources */,
+				D0D2D3AC291E35F8007FA615 /* LaunchScreenViewController.swift in Sources */,
 				D0DEEFFD291A733300BE125E /* CommonViewModel.swift in Sources */,
 				D02335632918D155003C7225 /* ColorManager.swift in Sources */,
 				D0C9979C291C0CD1006C41B4 /* EnterBirthDayView.swift in Sources */,
