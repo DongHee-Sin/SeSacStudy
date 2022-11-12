@@ -18,12 +18,7 @@ enum Router: URLRequestConvertible {
     
     
     var baseURL: URL {
-        return URL(string: "http://api.sesac.co.kr:1207\(version)")!
-    }
-    
-    
-    private var version: String {
-        return "/v1"
+        return URL(string: "http://api.sesac.co.kr:1207")!
     }
     
     
@@ -36,7 +31,7 @@ enum Router: URLRequestConvertible {
     
     var path: String {
         switch self {
-        case .login: return "/user"
+        case .login: return "/v1/user"
         }
     }
     

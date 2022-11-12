@@ -46,7 +46,7 @@ final class LaunchScreenViewController: UIViewController {
             case 200:
                 self?.changeRootViewController(to: MainTabBarController())
             case 406:
-                self?.changeRootViewController(to: UINavigationController(rootViewController: EnterNicknameViewController()))
+                self?.changeRootViewController(to: UINavigationController(rootViewController: EnterGenderViewController()))
             case 401:
                 FirebaseAuthManager.share.fetchIDToken { result in
                     switch result {
