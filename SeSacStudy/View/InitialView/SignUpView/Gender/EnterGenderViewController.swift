@@ -52,7 +52,7 @@ final class EnterGenderViewController: BaseViewController {
             .withUnretained(self)
             .bind { (vc, _) in
                 if vc.customView.reusableView.button.buttonStatus == .fill {
-//                    APIService.share.
+                    vc.requestSignUp()
                 }else {
                     vc.showToast(message: "성별을 선택해주세요")
                 }
@@ -96,5 +96,51 @@ final class EnterGenderViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
 
+    }
+    
+    
+    private func requestSignUp() {
+        
+        APIService.share.request(router: .SignUp(body: SignUpModel.shared.model)) { [weak self] error, statusCode in
+            guard let error else {
+                self?.showAlert(title: "네트워크 통신 과정에 문제가 발생했습니다.")
+                return
+            }
+
+            switch statusCode {
+            case 200:
+                print("회원가입 성공")
+                let mainVC = MainTabBarController()
+                self?.changeRootViewController(to: mainVC)
+            case 201:
+                print("이미 가입된 유저")
+                self?.showToast(message: "이미 가입된 유저입니다")
+            case 202:
+                print("사용할 수 없는 닉네임")
+            case 401:
+                print("Firebase Id Token 만료")
+                self?.fetchIdToken()
+            case 500:
+                self?.showAlert(title: "서버에 문제가 발생했습니다.", message: error.localizedDescription)
+            case 501:
+                print("API 요청에 누락된 데이터가 있는지 확인 필요")
+            default:
+                self?.showAlert(title: "네트워크 통신에 실패했습니다.", message: error.localizedDescription)
+            }
+        }
+        
+    }
+    
+    
+    private func fetchIdToken() {
+        
+        FirebaseAuthManager.share.fetchIDToken { [weak self] result in
+            switch result {
+            case .success(_):
+                self?.requestSignUp()
+            case .failure(let error):
+                self?.showAlert(title: "인증에 실패했습니다", message: error.localizedDescription)
+            }
+        }
     }
 }

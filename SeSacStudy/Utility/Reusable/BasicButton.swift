@@ -66,18 +66,7 @@ final class BasicButton: UIButton {
 extension BasicButton {
     
     func setButtonStyle(status: ButtonStatus) {
-        switch status {
-        case .inactive:
-            configureStyle(titleColor: R.color.black(), backgroundColor: R.color.white(), borderColor: R.color.gray2())
-        case .fill:
-            configureStyle(titleColor: R.color.white(), backgroundColor: R.color.green())
-        case .outline:
-            configureStyle(titleColor: R.color.green(), backgroundColor: R.color.white(), borderColor: R.color.green())
-        case .cancel:
-            configureStyle(titleColor: R.color.black(), backgroundColor: R.color.gray2())
-        case .disable:
-            configureStyle(titleColor: R.color.gray3(), backgroundColor: R.color.gray6())
-        }
+        buttonStatus = status
     }
 }
 

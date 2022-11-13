@@ -28,6 +28,8 @@ final class LaunchScreenViewController: UIViewController {
     // MARK: - Methods
     private func setRootViewController() {
         
+        changeRootViewController(to: UINavigationController(rootViewController: EnterGenderViewController()))
+        
         if UserDefaultManager.shared.idToken == "" {
             let vc = OnboardingViewController()
             changeRootViewController(to: vc)

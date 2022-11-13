@@ -46,6 +46,7 @@
 		D084E23F291D2D78005EFF11 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = D084E23E291D2D78005EFF11 /* FirebaseMessaging */; };
 		D0C74E33291AC51D008B3863 /* VerifyAuthNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C74E32291AC51D008B3863 /* VerifyAuthNumberViewController.swift */; };
 		D0C74E35291AC539008B3863 /* VerifyAuthNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C74E34291AC539008B3863 /* VerifyAuthNumberView.swift */; };
+		D0C7628829211734008F206C /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C7628729211734008F206C /* Encodable+Extension.swift */; };
 		D0C99789291BD13A006C41B4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C99788291BD13A006C41B4 /* Router.swift */; };
 		D0C9978B291BD8A9006C41B4 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9978A291BD8A9006C41B4 /* APIService.swift */; };
 		D0C9978E291BDD8F006C41B4 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9978D291BDD8F006C41B4 /* Login.swift */; };
@@ -111,6 +112,7 @@
 		D084E239291D2796005EFF11 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		D0C74E32291AC51D008B3863 /* VerifyAuthNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAuthNumberViewController.swift; sourceTree = "<group>"; };
 		D0C74E34291AC539008B3863 /* VerifyAuthNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAuthNumberView.swift; sourceTree = "<group>"; };
+		D0C7628729211734008F206C /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
 		D0C99788291BD13A006C41B4 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D0C9978A291BD8A9006C41B4 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		D0C9978D291BDD8F006C41B4 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */,
 				D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */,
 				D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */,
+				D0C7628729211734008F206C /* Encodable+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				D07BE85A2918F90600020487 /* OnboardingCollectionViewCell.swift in Sources */,
 				D082AA01291EB4F4002A6D09 /* EnterGenderViewModel.swift in Sources */,
 				D0C99789291BD13A006C41B4 /* Router.swift in Sources */,
+				D0C7628829211734008F206C /* Encodable+Extension.swift in Sources */,
 				D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */,
 				D0FE194E291B6B6500A05179 /* VerifyAuthNumberViewModel.swift in Sources */,
 				D0D8EF5D291CF17100F9BC22 /* EnterGenderView.swift in Sources */,

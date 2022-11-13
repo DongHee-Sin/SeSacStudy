@@ -12,9 +12,7 @@ import Alamofire
 
 enum Router: URLRequestConvertible {
     case login
-    // case signUP (필요한 데이터는 연관값으로 전달)
-    // body는 아마 encodable을 채택하는 인스턴스로 만들어서
-    // json변환(data?) 후, 전달하면 될거같음 .... 아마..
+    case SignUp(body: SignUp)
     
     
     var baseURL: URL {
@@ -25,6 +23,7 @@ enum Router: URLRequestConvertible {
     var method: HTTPMethod {
         switch self {
         case .login: return .get
+        case .SignUp: return .post
         }
     }
     
@@ -32,12 +31,39 @@ enum Router: URLRequestConvertible {
     var path: String {
         switch self {
         case .login: return "/v1/user"
+        case .SignUp: return "/v1/user"
         }
     }
     
     
     var header: HTTPHeaders {
-        return ["idtoken": UserDefaultManager.shared.idToken]
+        switch self {
+        case .login:
+            return [
+                "idtoken": UserDefaultManager.shared.idToken,
+            ]
+        case .SignUp:
+            return [
+                "idtoken": UserDefaultManager.shared.idToken,
+                "Content-Type": "application/x-www-form-urlencoded"
+            ]
+        }
+    }
+    
+    
+    var param: Parameters? {
+        switch self {
+        case .login: return nil
+        case .SignUp(let body):
+            return [
+                "phoneNumber": body.phoneNumber,
+                "FCMtoken": body.FCMtoken,
+                "nick": body.nick,
+                "birth": body.birth,
+                "email": body.email,
+                "gender": body.gender
+            ]
+        }
     }
     
     
@@ -46,7 +72,11 @@ enum Router: URLRequestConvertible {
         var request = URLRequest(url: url)
         request.method = method
         request.headers = header
-        
+    
+        if let param {
+            return try JSONEncoding.default.encode(request, with: param)
+        }
+
         return request
     }
 }
