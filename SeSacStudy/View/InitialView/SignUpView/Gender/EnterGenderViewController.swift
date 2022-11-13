@@ -44,8 +44,20 @@ final class EnterGenderViewController: BaseViewController {
     
     
     private func bind() {
-        let input = EnterGenderViewModel.Input(manButtonTap: customView.manButton.rx.tap, womanButtonTap: customView.womanButton.rx.tap)
+        let input = EnterGenderViewModel.Input(buttonTap: customView.reusableView.button.rx.tap, manButtonTap: customView.manButton.rx.tap, womanButtonTap: customView.womanButton.rx.tap)
         let output = viewModel.transform(input: input)
+        
+        
+        output.buttonTap
+            .withUnretained(self)
+            .bind { (vc, _) in
+                if vc.customView.reusableView.button.buttonStatus == .fill {
+//                    APIService.share.
+                }else {
+                    vc.showToast(message: "성별을 선택해주세요")
+                }
+            }
+            .disposed(by: disposeBag)
         
         
         output.manButtonTap
@@ -67,6 +79,7 @@ final class EnterGenderViewController: BaseViewController {
         viewModel.selectedGender
             .withUnretained(self)
             .bind { (vc, gender) in
+                SignUpModel.shared.add(gender: gender)
                 vc.customView.manButton.backgroundColor = gender == .man ? R.color.whitegreen() : R.color.white()
                 vc.customView.womanButton.backgroundColor = gender == .woman ? R.color.whitegreen() : R.color.white()
             }

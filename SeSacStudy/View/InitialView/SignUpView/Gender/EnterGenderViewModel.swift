@@ -18,18 +18,20 @@ final class EnterGenderViewModel: CommonViewModel {
     
     
     struct Input {
+        let buttonTap: ControlEvent<Void>
         let manButtonTap: ControlEvent<Void>
         let womanButtonTap: ControlEvent<Void>
     }
     
     struct Output {
+        let buttonTap: ControlEvent<Void>
         let manButtonTap: ControlEvent<Void>
         let womanButtonTap: ControlEvent<Void>
     }
     
     
     func transform(input: Input) -> Output {
-        return Output(manButtonTap: input.manButtonTap, womanButtonTap: input.womanButtonTap)
+        return Output(buttonTap: input.buttonTap, manButtonTap: input.manButtonTap, womanButtonTap: input.womanButtonTap)
     }
     
 }

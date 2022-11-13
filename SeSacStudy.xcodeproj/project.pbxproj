@@ -27,6 +27,7 @@
 		D023356D2918D752003C7225 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023356C2918D752003C7225 /* BasicButton.swift */; };
 		D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */; };
 		D03BD00F291962D500F79915 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BD00E291962D500F79915 /* R.generated.swift */; };
+		D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2E2B2920FF43003F13DC /* SignUpModel.swift */; };
 		D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8422918DAFB00020487 /* UIFont+Extension.swift */; };
 		D07BE8452918DCFC00020487 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D07BE8442918DCFC00020487 /* .gitignore */; };
 		D07BE84D2918DF3C00020487 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */; };
@@ -50,7 +51,6 @@
 		D0C9978E291BDD8F006C41B4 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9978D291BDD8F006C41B4 /* Login.swift */; };
 		D0C99790291BEB6F006C41B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0C9978F291BEB6F006C41B4 /* GoogleService-Info.plist */; };
 		D0C99792291BFAC1006C41B4 /* EnterNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C99791291BFAC1006C41B4 /* EnterNicknameViewController.swift */; };
-		D0C99795291BFB5F006C41B4 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C99794291BFB5F006C41B4 /* SignUpViewModel.swift */; };
 		D0C9979A291C0CBC006C41B4 /* EnterBirthDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C99799291C0CBC006C41B4 /* EnterBirthDayViewController.swift */; };
 		D0C9979C291C0CD1006C41B4 /* EnterBirthDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9979B291C0CD1006C41B4 /* EnterBirthDayView.swift */; };
 		D0D2D3A7291E273D007FA615 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D2D3A6291E273D007FA615 /* HomeViewController.swift */; };
@@ -94,6 +94,7 @@
 		D023356C2918D752003C7225 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		D03BD00E291962D500F79915 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		D05F2E2B2920FF43003F13DC /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		D07BE8422918DAFB00020487 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		D07BE8442918DCFC00020487 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		D0C9978D291BDD8F006C41B4 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		D0C9978F291BEB6F006C41B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0C99791291BFAC1006C41B4 /* EnterNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNicknameViewController.swift; sourceTree = "<group>"; };
-		D0C99794291BFB5F006C41B4 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		D0C99799291C0CBC006C41B4 /* EnterBirthDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterBirthDayViewController.swift; sourceTree = "<group>"; };
 		D0C9979B291C0CD1006C41B4 /* EnterBirthDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterBirthDayView.swift; sourceTree = "<group>"; };
 		D0D2D3A6291E273D007FA615 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -432,7 +432,7 @@
 		D0DFFDD5291A40BF00967C1A /* SignUpView */ = {
 			isa = PBXGroup;
 			children = (
-				D0C99794291BFB5F006C41B4 /* SignUpViewModel.swift */,
+				D05F2E2B2920FF43003F13DC /* SignUpModel.swift */,
 				D0C99793291BFADB006C41B4 /* Nickname */,
 				D0C99797291C0C0A006C41B4 /* BirthDay */,
 				D0C99796291C0C07006C41B4 /* Email */,
@@ -655,9 +655,9 @@
 				D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */,
 				D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */,
 				D0DEEFF7291A5B5600BE125E /* EnterPhoneNumberViewController.swift in Sources */,
+				D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */,
 				D02335682918D631003C7225 /* BaseViewController.swift in Sources */,
 				D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */,
-				D0C99795291BFB5F006C41B4 /* SignUpViewModel.swift in Sources */,
 				D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */,
 				D023356A2918D652003C7225 /* BaseView.swift in Sources */,
 				D0DEEFF3291A533F00BE125E /* TextStackView.swift in Sources */,

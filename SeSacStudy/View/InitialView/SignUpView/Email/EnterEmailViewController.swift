@@ -74,7 +74,7 @@ final class EnterEmailViewController: BaseViewController {
         
         output.email
             .bind { value in
-                print("저장하기 -> SignUp 인스턴스 \(value)")
+                SignUpModel.shared.add(email: value)
             }
             .disposed(by: disposeBag)
         

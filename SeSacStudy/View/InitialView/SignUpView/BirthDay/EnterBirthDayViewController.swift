@@ -76,7 +76,7 @@ final class EnterBirthDayViewController: BaseViewController {
         output.birthday
             .withUnretained(self)
             .bind { (vc, date) in
-                print("저장하기 -> SignUp 인스턴스 \(vc.viewModel.convertToServerFormat(date))")
+                SignUpModel.shared.add(birtyDay: vc.viewModel.convertToServerFormat(date))
                 vc.updateUI(dy: date)
             }
             .disposed(by: disposeBag)

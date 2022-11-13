@@ -77,7 +77,7 @@ final class EnterNicknameViewController: BaseViewController {
         
         output.nickname
             .bind { value in
-                print("저장하기 -> SignUp 인스턴스 \(value)")
+                SignUpModel.shared.add(nickname: value)
             }
             .disposed(by: disposeBag)
 
