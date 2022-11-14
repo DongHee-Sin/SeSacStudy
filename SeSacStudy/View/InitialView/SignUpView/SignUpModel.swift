@@ -20,9 +20,9 @@ final class SignUpModel {
     // MARK: - Propertys
     private var signUp = SignUp(phoneNumber: UserDefaultManager.shared.phoneNumber,
                         FCMtoken: UserDefaultManager.shared.fcmToken,
-                        nick: "신동희",
-                        birth: "1991-11-317T22:22:01.000+0900",
-                        email: "sesac@naver.com",
+                        nick: "",
+                        birth: "",
+                        email: "",
                         gender: 1) {
         didSet {
             print("SignUp Value Changed: \(signUp)")

@@ -74,7 +74,7 @@ enum Router: URLRequestConvertible {
         request.headers = header
     
         if let param {
-            return try JSONEncoding.default.encode(request, with: param)
+            return try URLEncoding.default.encode(request, with: param)
         }
 
         return request
