@@ -102,8 +102,8 @@ final class EnterGenderViewController: BaseViewController {
     private func requestSignUp() {
         
         APIService.share.request(router: .SignUp(body: SignUpModel.shared.model)) { [weak self] error, statusCode in
-            guard let error else {
-                self?.showAlert(title: "네트워크 통신 과정에 문제가 발생했습니다.")
+            if let error {
+                self?.showErrorAlert(error: error)
                 return
             }
 
@@ -117,18 +117,20 @@ final class EnterGenderViewController: BaseViewController {
                 self?.showToast(message: "이미 가입된 유저입니다")
             case 202:
                 print("사용할 수 없는 닉네임")
+                self?.transitionToNicknameVC()
+                let controller = self?.navigationController?.viewControllers[(self?.navigationController?.viewControllers.count)! - 3]
+                self?.navigationController?.popToViewController(controller!, animated: true)
             case 401:
                 print("Firebase Id Token 만료")
                 self?.fetchIdToken()
             case 500:
-                self?.showAlert(title: "서버에 문제가 발생했습니다.", message: error.localizedDescription)
+                self?.showAlert(title: "서버에 문제가 발생했습니다.", message: error?.localizedDescription)
             case 501:
                 print("API 요청에 누락된 데이터가 있는지 확인 필요")
             default:
-                self?.showAlert(title: "네트워크 통신에 실패했습니다.", message: error.localizedDescription)
+                self?.showAlert(title: "네트워크 통신에 실패했습니다.", message: error?.localizedDescription)
             }
         }
-        
     }
     
     
@@ -142,5 +144,11 @@ final class EnterGenderViewController: BaseViewController {
                 self?.showAlert(title: "인증에 실패했습니다", message: error.localizedDescription)
             }
         }
+    }
+    
+    
+    private func transitionToNicknameVC() {
+        let controller = navigationController?.viewControllers[(navigationController?.viewControllers.count)! - 4]
+        navigationController?.popToViewController(controller!, animated: true)
     }
 }

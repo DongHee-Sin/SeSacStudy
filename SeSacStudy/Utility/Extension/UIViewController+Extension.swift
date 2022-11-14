@@ -19,6 +19,11 @@ extension UIViewController {
     
     func transition<T: UIViewController>(_ viewController: T, transitionStyle: TransitionStyle = .present) {
         
+        guard NetworkMonitor.shared.isConnected else {
+            showAlert(title: "네트워크에 연결되어있지 않습니다.")
+            return
+        }
+        
         switch transitionStyle {
         case .present:
             self.present(viewController, animated: true)
@@ -57,6 +62,18 @@ extension UIViewController {
         alertController.addAction(okButton)
         
         present(alertController, animated: true)
+    }
+    
+    
+    
+    
+    // MARK: - Error Alert
+    func showErrorAlert(error: Error) {
+        switch error {
+        case EncodeError.encodeError: showAlert(title: "인코딩에 실패했습니다.")
+        case NetworkError.notConnected: showAlert(title: "네트워크에 연결되어있지 않습니다.")
+        default: showAlert(title: "에러가 발생했습니다.")
+        }
     }
     
     

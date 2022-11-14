@@ -14,7 +14,7 @@ enum Gender: Int {
 }
 
 
-struct SignUp: Encodable {
+struct SignUp: Codable {
     var phoneNumber: String
     var FCMtoken: String
     var nick: String

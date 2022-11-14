@@ -10,6 +10,11 @@ import Foundation
 import Alamofire
 
 
+enum NetworkError: Error {
+    case notConnected
+}
+
+
 final class APIService {
     
     private init() {}
@@ -19,8 +24,12 @@ final class APIService {
     
     func request<T: Decodable>(type: T.Type, router: Router, completion: @escaping (T?, Error?, Int?) -> Void) {
         
+        guard NetworkMonitor.shared.isConnected else {
+            completion(nil, NetworkError.notConnected, nil)
+            return
+        }
+        
         AF.request(router)
-            .validate(statusCode: 200...501)
             .responseDecodable(of: type) { response in
                 switch response.result {
                 case .success(let result): completion(result, nil, response.response?.statusCode)
@@ -32,16 +41,12 @@ final class APIService {
     
     func request(router: Router, completion: @escaping (Error?, Int?) -> Void) {
         
-//        AF.request(router)
-//            .validate(statusCode: 200...200)
-//            .response { response in
-//                switch response.result {
-//                case .success(_): completion(nil, response.response?.statusCode)
-//                case .failure(let error): completion(error, response.response?.statusCode)
-//                }
-//            }
+        guard NetworkMonitor.shared.isConnected else {
+            completion(NetworkError.notConnected, nil)
+            return
+        }
+        
         AF.request(router)
-            .validate(statusCode: 200...501)
             .response { response in
                 switch response.result {
                 case .success(_): completion(nil, response.response?.statusCode)

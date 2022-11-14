@@ -167,8 +167,8 @@ extension VerifyAuthNumberViewController {
                 UserDefaultManager.shared.fcmToken = value.FCMtoken
             }
             
-            guard let error else {
-                self?.showAlert(title: "네트워크 통신 과정에 문제가 발생했습니다.")
+            if let error {
+                self?.showErrorAlert(error: error)
                 return
             }
             
@@ -181,11 +181,11 @@ extension VerifyAuthNumberViewController {
                 let signupVC = EnterNicknameViewController()
                 self?.transition(signupVC, transitionStyle: .push)
             case 500:
-                self?.showAlert(title: "서버에 문제가 발생했습니다.", message: error.localizedDescription)
+                self?.showAlert(title: "서버에 문제가 발생했습니다.", message: error?.localizedDescription)
             case 501:
                 print("API 요청에 누락된 데이터가 있는지 확인 필요")
             default:
-                self?.showAlert(title: "네트워크 통신에 실패했습니다.", message: error.localizedDescription)
+                self?.showAlert(title: "네트워크 통신에 실패했습니다.", message: error?.localizedDescription)
             }
         }
         

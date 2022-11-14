@@ -30,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         
         
+        // Network Monitor
+        NetworkMonitor.shared.startMonitoring()
+        
+        
         // IQKeyboard
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
