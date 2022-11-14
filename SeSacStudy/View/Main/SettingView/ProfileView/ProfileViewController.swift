@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 
 final class ProfileViewController: BaseViewController {
     
@@ -35,13 +38,23 @@ final class ProfileViewController: BaseViewController {
     
     // MARK: - Methods
     override func configure() {
+        setTableView()
         setNavigation()
+        
+        customView.testButton.rx.tap.withUnretained(self)
+            .bind { (vc, _) in
+                vc.isExpandable.toggle()
+            }
+            .disposed(by: disposeBag)
     }
     
     
     private func setTableView() {
         customView.tableView.delegate = self
         customView.tableView.dataSource = self
+        
+        customView.tableView.register(ProfileImageTableViewCell.self, forCellReuseIdentifier: ProfileImageTableViewCell.identifier)
+        customView.tableView.register(ProfileExpandableTableViewCell.self, forCellReuseIdentifier: ProfileExpandableTableViewCell.identifier)
     }
     
     
@@ -64,11 +77,45 @@ final class ProfileViewController: BaseViewController {
 // MARK: - TableView Protocol
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
     }
     
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileImageTableViewCell.identifier, for: indexPath) as? ProfileImageTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            cell.customImageView.setImageView(img: R.image.sesac_background_1())
+            
+            return cell
+        }
+        else if indexPath.section == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileExpandableTableViewCell.identifier, for: indexPath) as? ProfileExpandableTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            cell.updateCell(isExpandable: isExpandable)
+            
+//            cell.expandableButton.rx.tap
+//                .withUnretained(self)
+//                .bind { (vc, _) in
+//                    vc.isExpandable.toggle()
+//                }
+//                .disposed(by: cell.disposeBag)
+            
+            
+            return cell
+        }
+        else {
+            return UITableViewCell()
+        }
     }
 }

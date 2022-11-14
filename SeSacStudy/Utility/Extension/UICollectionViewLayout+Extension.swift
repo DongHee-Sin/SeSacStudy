@@ -26,7 +26,8 @@ extension UICollectionViewLayout {
     
     
     
-    static var profileViewLayout: UICollectionViewLayout {
+    // MARK: -
+    static var studyListLayout: UICollectionViewLayout {
         
         let layout = UICollectionViewCompositionalLayout {
                 (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in

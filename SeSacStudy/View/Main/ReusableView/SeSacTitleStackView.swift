@@ -11,12 +11,22 @@ import UIKit
 final class SeSacTitleStackView: BaseView {
     
     // MARK: - Propertys
+    private let label = UILabel().then {
+        $0.text = "새싹 타이틀"
+        $0.font = .customFont(.title6_R12)
+        $0.textColor = R.color.black()
+    }
+    
     let mannerButton = BasicButton(status: .inactive)
     let timeCommitmentButton = BasicButton(status: .inactive)
     let quickResponseButton = BasicButton(status: .inactive)
     let kindnessButton = BasicButton(status: .inactive)
     let proficiencyButton = BasicButton(status: .inactive)
     let goodTimeButton = BasicButton(status: .inactive)
+    
+    var buttons: [BasicButton] {
+        return [mannerButton, timeCommitmentButton, quickResponseButton, kindnessButton, proficiencyButton, goodTimeButton]
+    }
     
     private let verticalStackView1 = UIStackView().then {
         $0.distribution = .fillEqually
@@ -53,7 +63,9 @@ final class SeSacTitleStackView: BaseView {
             horizontalStackView.addArrangedSubview($0)
         }
         
-        self.addSubview(horizontalStackView)
+        [label, horizontalStackView].forEach {
+            self.addSubview($0)
+        }
     }
     
     
@@ -64,8 +76,22 @@ final class SeSacTitleStackView: BaseView {
             }
         }
         
+        label.snp.makeConstraints { make in
+            make.leading.trailing.top.equalTo(self).inset(16)
+        }
+        
         horizontalStackView.snp.makeConstraints { make in
-            make.edges.equalTo(self.safeAreaLayoutGuide)
+            make.top.equalTo(label.snp.bottom).offset(16)
+            make.horizontalEdges.equalTo(self).inset(16)
+            make.bottom.equalTo(self).offset(-16)
+        }
+    }
+    
+    
+    private func setButtonStyle() {
+        buttons.forEach {
+            $0.isEnabled = false
+            $0.titleLabel?.font = .customFont(.title4_R14)
         }
     }
 }

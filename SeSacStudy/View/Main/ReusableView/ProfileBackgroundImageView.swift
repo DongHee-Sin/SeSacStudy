@@ -16,22 +16,11 @@ enum ProfileImageButtonType {
 
 final class ProfileBackgroundImageView: BaseView {
     
-    convenience init(img: UIImage, buttonType: ProfileImageButtonType? = nil) {
-        self.init(frame: CGRect())
-        
-        self.imageView.image = img
-        
-        if let buttonType {
-            addButton(buttonType: buttonType)
-        }
-    }
-    
-    
-    
     // MARK: - Propertys
     let imageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
         $0.layer.cornerRadius = 10
+        $0.contentMode = .scaleAspectFit
     }
     
     lazy var button = BasicButton(status: .fill)
@@ -72,6 +61,15 @@ final class ProfileBackgroundImageView: BaseView {
         case .accept:
             button.setTitle("수락하기", for: .normal)
             button.backgroundColor = R.color.success()
+        }
+    }
+    
+    
+    func setImageView(img: UIImage?, buttonType: ProfileImageButtonType? = nil) {
+        self.imageView.image = img
+        
+        if let buttonType {
+            addButton(buttonType: buttonType)
         }
     }
 }

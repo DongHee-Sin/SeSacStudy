@@ -12,7 +12,12 @@ final class ProfileView: BaseView {
     
     // MARK: - Propertys
     let tableView = UITableView().then {
-        $0.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        $0.showsVerticalScrollIndicator = false
+        $0.separatorStyle = .none
+    }
+    
+    let testButton = UIButton().then {
+        $0.backgroundColor = .red
     }
     
     
@@ -21,12 +26,18 @@ final class ProfileView: BaseView {
     // MARK: - Methods
     override func configureUI() {
         self.addSubview(tableView)
+        self.addSubview(testButton)
     }
     
     
     override func setConstraint() {
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.safeAreaLayoutGuide)
+            make.edges.equalTo(self.safeAreaLayoutGuide)//.inset(16)
+        }
+        
+        testButton.snp.makeConstraints { make in
+            make.width.height.equalTo(100)
+            make.top.leading.equalTo(self.safeAreaLayoutGuide).inset(16)
         }
     }
 }
