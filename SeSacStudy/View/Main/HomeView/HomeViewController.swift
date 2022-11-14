@@ -16,6 +16,11 @@ final class HomeViewController: BaseViewController {
     
     
     // MARK: - Life Cycle
+    private let customView = HomeView()
+    override func loadView() {
+        view = customView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

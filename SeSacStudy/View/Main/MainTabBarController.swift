@@ -16,7 +16,10 @@ final class MainTabBarController: UITabBarController {
         let homeVC = HomeViewController()
         homeVC.tabBarItem = UITabBarItem(title: "홈", image: nil, selectedImage: nil)
         
-        viewControllers = [homeVC]
+        let settingVC = UINavigationController(rootViewController: SettingViewController())
+        settingVC.tabBarItem = UITabBarItem(title: "내정보", image: nil, selectedImage: nil)
+        
+        viewControllers = [homeVC, settingVC]
     }
     
 }

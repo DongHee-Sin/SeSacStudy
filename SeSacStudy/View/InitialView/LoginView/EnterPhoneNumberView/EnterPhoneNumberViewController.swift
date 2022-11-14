@@ -88,7 +88,7 @@ final class EnterPhoneNumberViewController: BaseViewController {
                             verifyVC.verificationID = id
                             vc.transition(verifyVC, transitionStyle: .push)
                         case .failure(let error):
-                            vc.showAlert(title: "오류가 발생했습니다.", message: error.localizedDescription)
+                            vc.showErrorAlert(error: error)
                         }
                     }
                     
