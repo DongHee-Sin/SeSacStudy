@@ -24,14 +24,16 @@ final class EnterGenderViewModel: CommonViewModel {
     }
     
     struct Output {
-        let buttonTap: ControlEvent<Void>
+        let buttonTap: Driver<Void>
         let manButtonTap: ControlEvent<Void>
         let womanButtonTap: ControlEvent<Void>
     }
     
     
     func transform(input: Input) -> Output {
-        return Output(buttonTap: input.buttonTap, manButtonTap: input.manButtonTap, womanButtonTap: input.womanButtonTap)
+        let buttonTap: Driver<Void> = input.buttonTap.asDriver().throttle(.seconds(3), latest: false)
+        
+        return Output(buttonTap: buttonTap, manButtonTap: input.manButtonTap, womanButtonTap: input.womanButtonTap)
     }
     
 }

@@ -40,12 +40,14 @@ extension EnterPhoneNumberViewModel: CommonViewModel {
     struct Output {
         let phoneNumberValidatoin: Observable<Bool>
         let isTextEntered: Observable<Bool>
-        let buttonTap: ControlEvent<Void>
+        let buttonTap: Driver<Void>
     }
 
 
     func transform(input: Input) -> Output {
         let text = input.phoneNumberText.orEmpty
+        
+        let buttonTap: Driver<Void> = input.buttonTap.asDriver().throttle(.seconds(3), latest: false)
         
         let validation = text.withUnretained(self)
             .map { (vc, text) in
@@ -54,7 +56,7 @@ extension EnterPhoneNumberViewModel: CommonViewModel {
         
         let isTextEntered = text.map { $0.count >= 1 }
         
-        return Output(phoneNumberValidatoin: validation, isTextEntered: isTextEntered, buttonTap: input.buttonTap)
+        return Output(phoneNumberValidatoin: validation, isTextEntered: isTextEntered, buttonTap: buttonTap)
     }
 }
 

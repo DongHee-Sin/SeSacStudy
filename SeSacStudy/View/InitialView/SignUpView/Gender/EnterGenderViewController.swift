@@ -49,14 +49,14 @@ final class EnterGenderViewController: BaseViewController {
         
         
         output.buttonTap
-            .withUnretained(self)
-            .bind { (vc, _) in
-                if vc.customView.reusableView.button.buttonStatus == .fill {
-                    vc.requestSignUp()
+            .drive(onNext: { [weak self] _ in
+                guard let self else { return }
+                if self.customView.reusableView.button.buttonStatus == .fill {
+                    self.requestSignUp()
                 }else {
-                    vc.showToast(message: "성별을 선택해주세요")
+                    self.showToast(message: "성별을 선택해주세요")
                 }
-            }
+            })
             .disposed(by: disposeBag)
         
         

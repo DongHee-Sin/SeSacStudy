@@ -77,25 +77,26 @@ final class EnterPhoneNumberViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         
-        output.buttonTap.withUnretained(self)
-            .bind { (vc, _) in
-                if vc.phoneNumberValidation {
+        output.buttonTap
+            .drive(onNext: { [weak self] _ in
+                guard let self else { return }
+                if self.phoneNumberValidation {
                     
-                    FirebaseAuthManager.share.requestAuthNumber(phoneNumber: vc.phoneNumberForAuth) { result in
+                    FirebaseAuthManager.share.requestAuthNumber(phoneNumber: self.phoneNumberForAuth) { result in
                         switch result {
                         case .success(let id):
                             let verifyVC = VerifyAuthNumberViewController()
                             verifyVC.verificationID = id
-                            vc.transition(verifyVC, transitionStyle: .push)
+                            self.transition(verifyVC, transitionStyle: .push)
                         case .failure(let error):
-                            vc.showErrorAlert(error: error)
+                            self.showErrorAlert(error: error)
                         }
                     }
                     
                 }else {
-                    vc.showToast(message: "잘못된 전화번호 형식입니다.")
+                    self.showToast(message: "잘못된 전화번호 형식입니다.")
                 }
-            }
+            })
             .disposed(by: disposeBag)
     }
     

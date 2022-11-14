@@ -51,6 +51,8 @@ final class SettingViewController: BaseViewController {
         
         customView.tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
         customView.tableView.register(ProfileSettingTableViewCell.self, forCellReuseIdentifier: ProfileSettingTableViewCell.identifier)
+        
+        navigationItem.title = "내정보"
     }
 }
 
@@ -94,6 +96,17 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.updateCell(settingDatas[indexPath.section][indexPath.row])
 
             return cell
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            print("Cell Selected : \(settingDatas[indexPath.section][indexPath.row])")
+            transition(ProfileViewController(), transitionStyle: .push)
+            
+        }else {
+            print("Cell Selected : \(settingDatas[indexPath.section][indexPath.row])")
         }
     }
     

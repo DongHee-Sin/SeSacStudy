@@ -37,7 +37,7 @@ extension VerifyAuthNumberViewModel: CommonViewModel {
         let isTextEntered: Observable<Bool>
         
         let resendTap: ControlEvent<Void>
-        let verifyTap: ControlEvent<Void>
+        let verifyTap: Driver<Void>
     }
 
 
@@ -48,6 +48,8 @@ extension VerifyAuthNumberViewModel: CommonViewModel {
         let validation = count.map { $0 == 6 }
         let isTextEntered = count.map { $0 >= 1 }
         
-        return Output(authNumberValidatoin: validation, isTextEntered: isTextEntered, resendTap: input.resendTap, verifyTap: input.verifyTap)
+        let verifyTap: Driver<Void> = input.verifyTap.asDriver().throttle(.seconds(3), latest: false)
+        
+        return Output(authNumberValidatoin: validation, isTextEntered: isTextEntered, resendTap: input.resendTap, verifyTap: verifyTap)
     }
 }

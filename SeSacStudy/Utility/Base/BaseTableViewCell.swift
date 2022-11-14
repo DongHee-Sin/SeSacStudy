@@ -20,6 +20,8 @@ class BaseTableViewCell: UITableViewCell {
         
         configureUI()
         setConstraint()
+        
+        self.selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {

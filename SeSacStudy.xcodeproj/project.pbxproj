@@ -51,6 +51,9 @@
 		D0ADF4CB2921FF2300C5027D /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF4CA2921FF2300C5027D /* SettingTableViewCell.swift */; };
 		D0ADF4CD2921FF8200C5027D /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF4CC2921FF8200C5027D /* BaseTableViewCell.swift */; };
 		D0ADF4CF2922063C00C5027D /* ProfileSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF4CE2922063C00C5027D /* ProfileSettingTableViewCell.swift */; };
+		D0ADF4D529220AFC00C5027D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF4D429220AFC00C5027D /* ProfileViewController.swift */; };
+		D0ADF4D729220B0200C5027D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF4D629220B0200C5027D /* ProfileView.swift */; };
+		D0ADF4D929220B5A00C5027D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF4D829220B5A00C5027D /* ProfileViewModel.swift */; };
 		D0C74E33291AC51D008B3863 /* VerifyAuthNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C74E32291AC51D008B3863 /* VerifyAuthNumberViewController.swift */; };
 		D0C74E35291AC539008B3863 /* VerifyAuthNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C74E34291AC539008B3863 /* VerifyAuthNumberView.swift */; };
 		D0C7628829211734008F206C /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C7628729211734008F206C /* Encodable+Extension.swift */; };
@@ -124,6 +127,9 @@
 		D0ADF4CA2921FF2300C5027D /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		D0ADF4CC2921FF8200C5027D /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		D0ADF4CE2922063C00C5027D /* ProfileSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingTableViewCell.swift; sourceTree = "<group>"; };
+		D0ADF4D429220AFC00C5027D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D0ADF4D629220B0200C5027D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		D0ADF4D829220B5A00C5027D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		D0C74E32291AC51D008B3863 /* VerifyAuthNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAuthNumberViewController.swift; sourceTree = "<group>"; };
 		D0C74E34291AC539008B3863 /* VerifyAuthNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAuthNumberView.swift; sourceTree = "<group>"; };
 		D0C7628729211734008F206C /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
@@ -341,6 +347,7 @@
 				D0ADF4C22921FB3F00C5027D /* SettingViewController.swift */,
 				D0ADF4C52921FB7800C5027D /* SettingView.swift */,
 				D0ADF4C92921FD0400C5027D /* Cell */,
+				D0ADF4D229220A6B00C5027D /* ProfileView */,
 			);
 			path = SettingView;
 			sourceTree = "<group>";
@@ -352,6 +359,23 @@
 				D0ADF4CA2921FF2300C5027D /* SettingTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		D0ADF4D229220A6B00C5027D /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				D0ADF4D829220B5A00C5027D /* ProfileViewModel.swift */,
+				D0ADF4D429220AFC00C5027D /* ProfileViewController.swift */,
+				D0ADF4D629220B0200C5027D /* ProfileView.swift */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		D0ADF4D329220AAD00C5027D /* ReusableView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ReusableView;
 			sourceTree = "<group>";
 		};
 		D0C99787291BD0B4006C41B4 /* Network */ = {
@@ -416,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				D0D2D3A8291E27EA007FA615 /* MainTabBarController.swift */,
+				D0ADF4D329220AAD00C5027D /* ReusableView */,
 				D0D2D3A5291E271B007FA615 /* HomeView */,
 				D0ADF4C42921FB6700C5027D /* SettingView */,
 			);
@@ -671,6 +696,7 @@
 				D0ADF4C12921EEE300C5027D /* NetworkMonitor.swift in Sources */,
 				D0C9978B291BD8A9006C41B4 /* APIService.swift in Sources */,
 				D0D2D3A7291E273D007FA615 /* HomeViewController.swift in Sources */,
+				D0ADF4D929220B5A00C5027D /* ProfileViewModel.swift in Sources */,
 				D0ADF4CB2921FF2300C5027D /* SettingTableViewCell.swift in Sources */,
 				D0165F11291B82BE00BBE042 /* FirebaseAuthManager.swift in Sources */,
 				D0DEEFF9291A5DAC00BE125E /* ReusableViewWithTextField.swift in Sources */,
@@ -680,6 +706,7 @@
 				D0C99789291BD13A006C41B4 /* Router.swift in Sources */,
 				D0C7628829211734008F206C /* Encodable+Extension.swift in Sources */,
 				D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */,
+				D0ADF4D729220B0200C5027D /* ProfileView.swift in Sources */,
 				D0FE194E291B6B6500A05179 /* VerifyAuthNumberViewModel.swift in Sources */,
 				D0ADF4C62921FB7800C5027D /* SettingView.swift in Sources */,
 				D0D8EF5D291CF17100F9BC22 /* EnterGenderView.swift in Sources */,
@@ -701,6 +728,7 @@
 				D0C9979C291C0CD1006C41B4 /* EnterBirthDayView.swift in Sources */,
 				D023356D2918D752003C7225 /* BasicButton.swift in Sources */,
 				D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */,
+				D0ADF4D529220AFC00C5027D /* ProfileViewController.swift in Sources */,
 				D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */,
 				D0DEEFF7291A5B5600BE125E /* EnterPhoneNumberViewController.swift in Sources */,
 				D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */,

@@ -23,13 +23,12 @@ final class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
     }
     
     
     
     
     // MARK: - Methods
-    
+    override func configure() {
+    }
 }
