@@ -13,6 +13,10 @@ final class ProfileViewController: BaseViewController {
     // MARK: - Propertys
     private let viewModel = ProfileViewModel()
     
+    private var isExpandable: Bool = false {
+        didSet { customView.tableView.reloadSections([1], with: .fade)}
+    }
+    
     
     
     
@@ -35,6 +39,12 @@ final class ProfileViewController: BaseViewController {
     }
     
     
+    private func setTableView() {
+        customView.tableView.delegate = self
+        customView.tableView.dataSource = self
+    }
+    
+    
     private func setNavigation() {
         let saveItem = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonTapped))
         
@@ -45,5 +55,20 @@ final class ProfileViewController: BaseViewController {
     
     @objc private func saveButtonTapped() {
         print("Save Button Tapped")
+    }
+}
+
+
+
+
+// MARK: - TableView Protocol
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 }
