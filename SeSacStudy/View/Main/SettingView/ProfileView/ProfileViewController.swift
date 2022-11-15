@@ -40,12 +40,6 @@ final class ProfileViewController: BaseViewController {
     override func configure() {
         setTableView()
         setNavigation()
-        
-        customView.testButton.rx.tap.withUnretained(self)
-            .bind { (vc, _) in
-                vc.isExpand.toggle()
-            }
-            .disposed(by: disposeBag)
     }
     
     
@@ -104,12 +98,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.updateCell(isExpand: isExpand)
             
-//            cell.expandableButton.rx.tap
-//                .withUnretained(self)
-//                .bind { (vc, _) in
-//                    vc.isExpandable.toggle()
-//                }
-//                .disposed(by: cell.disposeBag)
+            cell.expandButton.rx.tap
+                .withUnretained(self)
+                .bind { (vc, _) in
+                    vc.isExpand.toggle()
+                }
+                .disposed(by: cell.disposeBag)
             
             
             return cell

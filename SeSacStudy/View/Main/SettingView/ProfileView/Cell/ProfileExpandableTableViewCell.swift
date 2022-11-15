@@ -35,7 +35,7 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     
     let reviewView = SeSacReviewView()
     
-    //let expandableButton = UIButton()
+    let expandButton = UIButton()
 
 
 
@@ -44,11 +44,15 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     override func configureUI() {
         setBorder()
         
+        contentView.isUserInteractionEnabled = true
+        
         [nicknameView, titleStackView, reviewView].forEach {
             stackView.addArrangedSubview($0)
         }
         
-        self.addSubview(stackView)
+        [stackView, expandButton].forEach {
+            self.addSubview($0)
+        }
     }
 
 
@@ -56,6 +60,10 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
         stackView.snp.makeConstraints { make in
             make.verticalEdges.equalTo(self)
             make.horizontalEdges.equalTo(self).inset(16)
+        }
+        
+        expandButton.snp.makeConstraints { make in
+            make.edges.equalTo(nicknameView).inset(16)
         }
     }
 
