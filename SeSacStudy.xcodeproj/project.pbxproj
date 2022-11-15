@@ -19,6 +19,9 @@
 		D0100B6C2918CB1300AEC5C2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B6B2918CB1300AEC5C2 /* SnapKit */; };
 		D0100B6F2918CB3500AEC5C2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B6E2918CB3500AEC5C2 /* Alamofire */; };
 		D0165F11291B82BE00BBE042 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */; };
+		D01D387E292370F700D7F577 /* SettingUserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D387D292370F700D7F577 /* SettingUserInfoTableViewCell.swift */; };
+		D01D388029237BE600D7F577 /* WishStudyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D387F29237BE600D7F577 /* WishStudyListView.swift */; };
+		D01D38822923837400D7F577 /* CollectionviewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D38812923837400D7F577 /* CollectionviewProtocol.swift */; };
 		D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023355D2918CE6C003C7225 /* UIColor+Extension.swift */; };
 		D02335632918D155003C7225 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335622918D155003C7225 /* ColorManager.swift */; };
 		D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335642918D597003C7225 /* UserDefaultManager.swift */; };
@@ -103,6 +106,9 @@
 		D0100B512918C5CC00AEC5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0100B532918C5CC00AEC5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
+		D01D387D292370F700D7F577 /* SettingUserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUserInfoTableViewCell.swift; sourceTree = "<group>"; };
+		D01D387F29237BE600D7F577 /* WishStudyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishStudyListView.swift; sourceTree = "<group>"; };
+		D01D38812923837400D7F577 /* CollectionviewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionviewProtocol.swift; sourceTree = "<group>"; };
 		D023355D2918CE6C003C7225 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D02335622918D155003C7225 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		D02335642918D597003C7225 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
@@ -318,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				D0DEEFFC291A733300BE125E /* CommonViewModel.swift */,
+				D01D38812923837400D7F577 /* CollectionviewProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -357,6 +364,7 @@
 			children = (
 				D0800A38292291CB006EF576 /* ProfileImageTableViewHeader.swift */,
 				D0800A3A29229312006EF576 /* ProfileExpandableTableViewCell.swift */,
+				D01D387D292370F700D7F577 /* SettingUserInfoTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -398,6 +406,7 @@
 				D0800A3229226C24006EF576 /* ProfileBackgroundImageView.swift */,
 				D0672BBF29229E8A00234FE8 /* ProfileNicknameView.swift */,
 				D0800A3429226D3C006EF576 /* SeSacTitleStackView.swift */,
+				D01D387F29237BE600D7F577 /* WishStudyListView.swift */,
 				D0800A36292288F8006EF576 /* SeSacReviewView.swift */,
 			);
 			path = ReusableView;
@@ -771,10 +780,13 @@
 				D0DEEFF3291A533F00BE125E /* TextStackView.swift in Sources */,
 				D0D2D3B0291E7738007FA615 /* EnterNicknameViewModel.swift in Sources */,
 				D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */,
+				D01D387E292370F700D7F577 /* SettingUserInfoTableViewCell.swift in Sources */,
 				D0D8EF5B291CEFE000F9BC22 /* EnterGenderViewController.swift in Sources */,
 				D0D8EF55291CD06E00F9BC22 /* ReusableTextField.swift in Sources */,
 				D0C74E35291AC539008B3863 /* VerifyAuthNumberView.swift in Sources */,
+				D01D388029237BE600D7F577 /* WishStudyListView.swift in Sources */,
 				D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */,
+				D01D38822923837400D7F577 /* CollectionviewProtocol.swift in Sources */,
 				D07BE8562918E40A00020487 /* OnboardingView.swift in Sources */,
 				D0D8EF59291CEAD100F9BC22 /* EnterEmailViewController.swift in Sources */,
 				D0D8EF57291CD4C400F9BC22 /* ReusableDateTextField.swift in Sources */,

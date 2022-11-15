@@ -11,7 +11,8 @@ import UIKit
 final class ProfileView: BaseView {
     
     // MARK: - Propertys
-    let tableView = UITableView().then {
+    let tableView = UITableView(frame: CGRect(), style: .grouped).then {
+        $0.backgroundColor = R.color.white()
         $0.showsVerticalScrollIndicator = false
         $0.separatorStyle = .none
     }

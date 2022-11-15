@@ -33,6 +33,10 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     
     let titleStackView = SeSacTitleStackView()
     
+    let wishStudyListView = WishStudyListView().then {
+        $0.isHidden = true
+    }
+    
     let reviewView = SeSacReviewView()
     
     let expandButton = UIButton()
@@ -46,7 +50,7 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
         
         contentView.isUserInteractionEnabled = true
         
-        [nicknameView, titleStackView, reviewView].forEach {
+        [nicknameView, titleStackView, wishStudyListView, reviewView].forEach {
             stackView.addArrangedSubview($0)
         }
         
@@ -75,9 +79,16 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     }
     
     
-    func updateCell(isExpand: Bool) {
+    func updateCell(isExpand: Bool, collectionViewProtocol: CollectionViewProtocol? = nil) {
         titleStackView.isHidden = isExpand
         reviewView.isHidden = isExpand
         nicknameView.updateCell(isExpand: isExpand)
+        
+        if let collectionViewProtocol {
+            wishStudyListView.isHidden = false
+            
+            wishStudyListView.collectionView.delegate = collectionViewProtocol
+            wishStudyListView.collectionView.dataSource = collectionViewProtocol
+        }
     }
 }
