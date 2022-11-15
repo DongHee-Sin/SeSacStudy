@@ -17,7 +17,9 @@ final class SeSacReviewView: BaseView {
         $0.text = "새싹 리뷰"
     }
     
-    let textView = UITextView().then {
+    let reviewLabel = UITextField().then {
+        $0.isEnabled = false
+        $0.placeholder = "첫 리뷰를 기다리는 중이에요"
         $0.textColor = R.color.black()
         $0.font = .customFont(.body3_R14)
     }
@@ -27,7 +29,7 @@ final class SeSacReviewView: BaseView {
     
     // MARK: - Methods
     override func configureUI() {
-        [label, textView].forEach {
+        [label, reviewLabel].forEach {
             self.addSubview($0)
         }
     }
@@ -38,7 +40,7 @@ final class SeSacReviewView: BaseView {
             make.top.leading.trailing.equalTo(self).inset(16)
         }
         
-        textView.snp.makeConstraints { make in
+        reviewLabel.snp.makeConstraints { make in
             make.top.equalTo(label.snp.bottom).offset(16)
             make.bottom.leading.trailing.equalTo(self).inset(16)
         }

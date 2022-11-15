@@ -16,7 +16,7 @@ final class ProfileViewController: BaseViewController {
     // MARK: - Propertys
     private let viewModel = ProfileViewModel()
     
-    private var isExpandable: Bool = false {
+    private var isExpand: Bool = false {
         didSet { customView.tableView.reloadSections([1], with: .fade)}
     }
     
@@ -43,7 +43,7 @@ final class ProfileViewController: BaseViewController {
         
         customView.testButton.rx.tap.withUnretained(self)
             .bind { (vc, _) in
-                vc.isExpandable.toggle()
+                vc.isExpand.toggle()
             }
             .disposed(by: disposeBag)
     }
@@ -102,7 +102,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            cell.updateCell(isExpandable: isExpandable)
+            cell.updateCell(isExpand: isExpand)
             
 //            cell.expandableButton.rx.tap
 //                .withUnretained(self)

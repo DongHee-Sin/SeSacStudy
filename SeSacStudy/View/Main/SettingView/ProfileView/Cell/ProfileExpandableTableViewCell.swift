@@ -67,8 +67,9 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     }
     
     
-    func updateCell(isExpandable: Bool) {
-        titleStackView.isHidden = isExpandable
-        reviewView.isHidden = isExpandable
+    func updateCell(isExpand: Bool) {
+        titleStackView.isHidden = isExpand
+        reviewView.isHidden = isExpand
+        nicknameView.updateCell(isExpand: isExpand)
     }
 }
