@@ -13,6 +13,7 @@ final class ReusableTextField: BaseView {
     
     // MARK: - Propertys
     let textField = UITextField().then {
+        $0.textColor = R.color.black()
         $0.font = .customFont(.title4_R14)
     }
     

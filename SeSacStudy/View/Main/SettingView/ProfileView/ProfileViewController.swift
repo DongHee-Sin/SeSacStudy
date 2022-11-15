@@ -49,6 +49,7 @@ final class ProfileViewController: BaseViewController {
         
         customView.tableView.register(ProfileImageTableViewHeader.self, forHeaderFooterViewReuseIdentifier: ProfileImageTableViewHeader.identifier)
         customView.tableView.register(ProfileExpandableTableViewCell.self, forCellReuseIdentifier: ProfileExpandableTableViewCell.identifier)
+        customView.tableView.register(SettingUserInfoTableViewCell.self, forCellReuseIdentifier: SettingUserInfoTableViewCell.identifier)
     }
     
     
@@ -86,6 +87,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -113,9 +115,16 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             
             
             return cell
+            
         }
         else {
-            return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingUserInfoTableViewCell.identifier, for: indexPath) as? SettingUserInfoTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            
+            
+            return cell
         }
     }
 }
