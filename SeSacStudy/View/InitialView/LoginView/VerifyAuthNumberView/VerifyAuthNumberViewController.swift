@@ -161,15 +161,10 @@ extension VerifyAuthNumberViewController {
     
     private func requestLogin() {
         
-        APIService.share.request(type: Login.self, router: .login) { [weak self] value, error, statusCode in
+        APIService.share.request(type: Login.self, router: .login) { [weak self] value, _, statusCode in
             if let value {
                 print("요청 성공")
                 UserDefaultManager.shared.fcmToken = value.FCMtoken
-            }
-            
-            if let error {
-                self?.showErrorAlert(error: error)
-                return
             }
             
             switch statusCode {
@@ -181,11 +176,11 @@ extension VerifyAuthNumberViewController {
                 let signupVC = EnterNicknameViewController()
                 self?.transition(signupVC, transitionStyle: .push)
             case 500:
-                self?.showAlert(title: "서버에 문제가 발생했습니다.", message: error?.localizedDescription)
+                self?.showAlert(title: "서버에 문제가 발생했습니다.")
             case 501:
-                print("API 요청에 누락된 데이터가 있는지 확인 필요")
+                self?.showAlert(title: "네트워크 통신에 실패했습니다.")
             default:
-                self?.showAlert(title: "네트워크 통신에 실패했습니다.", message: error?.localizedDescription)
+                self?.showAlert(title: "네트워크 통신에 실패했습니다.")
             }
         }
         

@@ -41,12 +41,18 @@ final class LaunchScreenViewController: UIViewController {
     
     private func requestUserInfo() {
         
-        APIService.share.request(type: Login.self, router: .login) { [weak self] _, _, statusCode in
+        APIService.share.request(type: Login.self, router: .login) { [weak self] result, _, statusCode in
+            
             switch statusCode {
             case 200:
+                if let result {
+                    UserInfoManager.shared.login = result
+                }
                 self?.changeRootViewController(to: MainTabBarController())
+                
             case 406:
                 self?.changeRootViewController(to: UINavigationController(rootViewController: EnterNicknameViewController()))
+                
             case 401:
                 FirebaseAuthManager.share.fetchIDToken { result in
                     switch result {
@@ -57,6 +63,7 @@ final class LaunchScreenViewController: UIViewController {
                         self?.changeRootViewController(to: OnboardingViewController())
                     }
                 }
+                
             default:
                 self?.changeRootViewController(to: OnboardingViewController())
             }

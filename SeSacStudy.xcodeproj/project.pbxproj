@@ -28,7 +28,6 @@
 		D01D388B2923885000D7F577 /* SearchAgeGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D388A2923885000D7F577 /* SearchAgeGroupView.swift */; };
 		D01D388D2923887C00D7F577 /* WithdrawalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D388C2923887C00D7F577 /* WithdrawalView.swift */; };
 		D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023355D2918CE6C003C7225 /* UIColor+Extension.swift */; };
-		D02335632918D155003C7225 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335622918D155003C7225 /* ColorManager.swift */; };
 		D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335642918D597003C7225 /* UserDefaultManager.swift */; };
 		D02335682918D631003C7225 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335672918D631003C7225 /* BaseViewController.swift */; };
 		D023356A2918D652003C7225 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335692918D652003C7225 /* BaseView.swift */; };
@@ -98,6 +97,7 @@
 		D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FC291A070C00D49E0F /* Onboarding.swift */; };
 		D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */; };
 		D0FAE43A2923B89000CD2206 /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = D0FAE4392923B89000CD2206 /* MultiSlider */; };
+		D0FAE43C2923E1B200CD2206 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FAE43B2923E1B200CD2206 /* UserInfoManager.swift */; };
 		D0FE194E291B6B6500A05179 /* VerifyAuthNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE194D291B6B6500A05179 /* VerifyAuthNumberViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,7 +121,6 @@
 		D01D388A2923885000D7F577 /* SearchAgeGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAgeGroupView.swift; sourceTree = "<group>"; };
 		D01D388C2923887C00D7F577 /* WithdrawalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalView.swift; sourceTree = "<group>"; };
 		D023355D2918CE6C003C7225 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		D02335622918D155003C7225 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		D02335642918D597003C7225 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		D02335672918D631003C7225 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D02335692918D652003C7225 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -189,6 +188,7 @@
 		D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableInitialView.swift; sourceTree = "<group>"; };
 		D0E2E1FC291A070C00D49E0F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		D0FAE43B2923E1B200CD2206 /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		D0FE194D291B6B6500A05179 /* VerifyAuthNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAuthNumberViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -313,9 +313,9 @@
 		D02335582918CE0B003C7225 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				D02335622918D155003C7225 /* ColorManager.swift */,
 				D02335642918D597003C7225 /* UserDefaultManager.swift */,
 				D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */,
+				D0FAE43B2923E1B200CD2206 /* UserInfoManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -746,6 +746,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0FAE43C2923E1B200CD2206 /* UserInfoManager.swift in Sources */,
 				D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */,
 				D01D38872923870200D7F577 /* FrequentStudyView.swift in Sources */,
 				D0D2D3AE291E35FC007FA615 /* LaunchScreenView.swift in Sources */,
@@ -793,7 +794,6 @@
 				D0ADF4CD2921FF8200C5027D /* BaseTableViewCell.swift in Sources */,
 				D0D2D3AC291E35F8007FA615 /* LaunchScreenViewController.swift in Sources */,
 				D0DEEFFD291A733300BE125E /* CommonViewModel.swift in Sources */,
-				D02335632918D155003C7225 /* ColorManager.swift in Sources */,
 				D0C9979C291C0CD1006C41B4 /* EnterBirthDayView.swift in Sources */,
 				D01D38892923882F00D7F577 /* NumberSearchAvailabilityView.swift in Sources */,
 				D023356D2918D752003C7225 /* BasicButton.swift in Sources */,

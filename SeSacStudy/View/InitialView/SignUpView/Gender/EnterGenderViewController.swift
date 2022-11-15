@@ -91,8 +91,6 @@ final class EnterGenderViewController: BaseViewController {
             .withUnretained(self)
             .subscribe { (vc, _) in
                 vc.customView.reusableView.button.setButtonStyle(status: .fill)
-            } onDisposed: {
-                print("dispose!!!!!!!!!")
             }
             .disposed(by: disposeBag)
 
@@ -101,34 +99,27 @@ final class EnterGenderViewController: BaseViewController {
     
     private func requestSignUp() {
         
-        APIService.share.request(router: .SignUp(body: SignUpModel.shared.model)) { [weak self] error, statusCode in
-            if let error {
-                self?.showErrorAlert(error: error)
-                return
-            }
+        APIService.share.request(router: .signUp(body: SignUpModel.shared.model)) { [weak self] _, statusCode in
 
             switch statusCode {
             case 200:
-                print("회원가입 성공")
+                self?.showToast(message: "회원가입에 성공했습니다")
                 let mainVC = MainTabBarController()
                 self?.changeRootViewController(to: mainVC)
             case 201:
-                print("이미 가입된 유저")
                 self?.showToast(message: "이미 가입된 유저입니다")
             case 202:
-                print("사용할 수 없는 닉네임")
+                self?.showToast(message: "해당 닉네임은 사용할 수 없습니다")
                 self?.transitionToNicknameVC()
-                let controller = self?.navigationController?.viewControllers[(self?.navigationController?.viewControllers.count)! - 3]
-                self?.navigationController?.popToViewController(controller!, animated: true)
             case 401:
                 print("Firebase Id Token 만료")
                 self?.fetchIdToken()
             case 500:
-                self?.showAlert(title: "서버에 문제가 발생했습니다.", message: error?.localizedDescription)
+                self?.showAlert(title: "서버에 문제가 발생했습니다")
             case 501:
-                print("API 요청에 누락된 데이터가 있는지 확인 필요")
+                self?.showAlert(title: "네트워크 통신에 실패했습니다")
             default:
-                self?.showAlert(title: "네트워크 통신에 실패했습니다.", message: error?.localizedDescription)
+                self?.showAlert(title: "네트워크 통신에 실패했습니다")
             }
         }
     }
