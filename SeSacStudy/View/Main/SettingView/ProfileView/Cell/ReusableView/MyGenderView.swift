@@ -18,10 +18,12 @@ final class MyGenderView: BaseView {
     }
     
     let manButton = BasicButton(status: .inactive).then {
+        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         $0.setTitle("  남자  ", for: .normal)
     }
 
     let womanButton = BasicButton(status: .inactive).then {
+        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         $0.setTitle("  여자  ", for: .normal)
     }
 

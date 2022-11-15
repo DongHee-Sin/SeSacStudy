@@ -37,12 +37,12 @@ final class FrequentStudyView: BaseView {
         label.snp.makeConstraints { make in
             make.verticalEdges.equalTo(self)
             make.leading.equalTo(self)
-            make.trailing.equalTo(textField).offset(20)
         }
         
         textField.snp.makeConstraints { make in
             make.verticalEdges.equalTo(self)
             make.trailing.equalTo(self)
+            make.width.equalTo(self).multipliedBy(0.5)
         }
     }
 }

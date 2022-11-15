@@ -88,6 +88,15 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return UITableView.automaticDimension
+        }else {
+            return .zero
+        }
+    }
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -122,7 +131,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            
+            //cell.updateCell()
             
             return cell
         }

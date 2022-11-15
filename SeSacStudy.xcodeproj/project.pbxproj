@@ -97,6 +97,7 @@
 		D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFFDD7291A40EF00967C1A /* ReusableInitialView.swift */; };
 		D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FC291A070C00D49E0F /* Onboarding.swift */; };
 		D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */; };
+		D0FAE43A2923B89000CD2206 /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = D0FAE4392923B89000CD2206 /* MultiSlider */; };
 		D0FE194E291B6B6500A05179 /* VerifyAuthNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE194D291B6B6500A05179 /* VerifyAuthNumberViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +206,7 @@
 				D0100B6C2918CB1300AEC5C2 /* SnapKit in Frameworks */,
 				4CECB3BE79BA4BC04B0BADCD /* Pods_SeSacStudy.framework in Frameworks */,
 				D084E23D291D2D78005EFF11 /* FirebaseAuth in Frameworks */,
+				D0FAE43A2923B89000CD2206 /* MultiSlider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,6 +615,7 @@
 				D0100B6E2918CB3500AEC5C2 /* Alamofire */,
 				D084E23C291D2D78005EFF11 /* FirebaseAuth */,
 				D084E23E291D2D78005EFF11 /* FirebaseMessaging */,
+				D0FAE4392923B89000CD2206 /* MultiSlider */,
 			);
 			productName = SeSacStudy;
 			productReference = D0100B422918C5CC00AEC5C2 /* SeSacStudy.app */;
@@ -649,6 +652,7 @@
 				D0100B6A2918CB1300AEC5C2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				D0100B6D2918CB3500AEC5C2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				D084E23B291D2D78005EFF11 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D0FAE4382923B89000CD2206 /* XCRemoteSwiftPackageReference "MultiSlider" */,
 			);
 			productRefGroup = D0100B432918C5CC00AEC5C2 /* Products */;
 			projectDirPath = "";
@@ -1089,6 +1093,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		D0FAE4382923B89000CD2206 /* XCRemoteSwiftPackageReference "MultiSlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yonat/MultiSlider.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1131,6 +1143,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D084E23B291D2D78005EFF11 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		D0FAE4392923B89000CD2206 /* MultiSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D0FAE4382923B89000CD2206 /* XCRemoteSwiftPackageReference "MultiSlider" */;
+			productName = MultiSlider;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

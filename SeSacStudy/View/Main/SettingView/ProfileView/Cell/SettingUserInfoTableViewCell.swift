@@ -24,15 +24,16 @@ final class SettingUserInfoTableViewCell: BaseTableViewCell {
     var disposeBag = DisposeBag()
     
     private let stackView = UIStackView().then {
-        $0.backgroundColor = .red
         $0.distribution = .fill
-        $0.spacing = 8
+        $0.spacing = 12
         $0.axis = .vertical
     }
     
     let genderView = MyGenderView()
     let frequentStudyView = FrequentStudyView()
     let numberSearchAvailabilityView = NumberSearchAvailabilityView()
+    let ageGroubView = SearchAgeGroupView()
+    let withdrawalView = WithdrawalView()
     
 
 
@@ -41,7 +42,7 @@ final class SettingUserInfoTableViewCell: BaseTableViewCell {
     override func configureUI() {
         contentView.isUserInteractionEnabled = true
         
-        [genderView, frequentStudyView, numberSearchAvailabilityView].forEach {
+        [genderView, frequentStudyView, numberSearchAvailabilityView, ageGroubView, withdrawalView].forEach {
             stackView.addArrangedSubview($0)
         }
         
@@ -53,7 +54,8 @@ final class SettingUserInfoTableViewCell: BaseTableViewCell {
 
     override func setConstraint() {
         stackView.snp.makeConstraints { make in
-            make.edges.equalTo(self).inset(16)
+            make.horizontalEdges.equalTo(self).inset(16)
+            make.verticalEdges.equalTo(self)
         }
         
     }
