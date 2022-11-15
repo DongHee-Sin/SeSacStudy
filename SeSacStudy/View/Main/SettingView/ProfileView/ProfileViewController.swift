@@ -17,7 +17,7 @@ final class ProfileViewController: BaseViewController {
     private let viewModel = ProfileViewModel()
     
     private var isExpand: Bool = false {
-        didSet { customView.tableView.reloadSections([1], with: .fade)}
+        didSet { customView.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade) }
     }
     
     
@@ -47,7 +47,7 @@ final class ProfileViewController: BaseViewController {
         customView.tableView.delegate = self
         customView.tableView.dataSource = self
         
-        customView.tableView.register(ProfileImageTableViewCell.self, forCellReuseIdentifier: ProfileImageTableViewCell.identifier)
+        customView.tableView.register(ProfileImageTableViewHeader.self, forHeaderFooterViewReuseIdentifier: ProfileImageTableViewHeader.identifier)
         customView.tableView.register(ProfileExpandableTableViewCell.self, forCellReuseIdentifier: ProfileExpandableTableViewCell.identifier)
     }
     
@@ -71,8 +71,23 @@ final class ProfileViewController: BaseViewController {
 // MARK: - TableView Protocol
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileImageTableViewHeader.identifier) as? ProfileImageTableViewHeader else {
+                return UIView()
+            }
+            
+            header.customImageView.setImageView(img: R.image.sesac_background_1())
+            
+            return header
+            
+        }else {
+            return nil
+        }
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
     
     
@@ -83,15 +98,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileImageTableViewCell.identifier, for: indexPath) as? ProfileImageTableViewCell else {
-                return UITableViewCell()
-            }
-            
-            cell.customImageView.setImageView(img: R.image.sesac_background_1())
-            
-            return cell
-        }
-        else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileExpandableTableViewCell.identifier, for: indexPath) as? ProfileExpandableTableViewCell else {
                 return UITableViewCell()
             }
