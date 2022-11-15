@@ -41,7 +41,7 @@ final class LaunchScreenViewController: UIViewController {
     
     private func requestUserInfo() {
         
-        APIService.share.request(type: Login.self, router: .login) { [weak self] result, _, statusCode in
+        APIService.share.request(type: Login.self, router: .login) { [weak self] result, error, statusCode in
             
             switch statusCode {
             case 200:

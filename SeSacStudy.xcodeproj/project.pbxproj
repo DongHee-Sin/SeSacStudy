@@ -98,6 +98,7 @@
 		D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */; };
 		D0FAE43A2923B89000CD2206 /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = D0FAE4392923B89000CD2206 /* MultiSlider */; };
 		D0FAE43C2923E1B200CD2206 /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FAE43B2923E1B200CD2206 /* UserInfoManager.swift */; };
+		D0FAE4402923EFF400CD2206 /* DateFormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FAE43F2923EFF400CD2206 /* DateFormatterManager.swift */; };
 		D0FE194E291B6B6500A05179 /* VerifyAuthNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FE194D291B6B6500A05179 /* VerifyAuthNumberViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -189,6 +190,7 @@
 		D0E2E1FC291A070C00D49E0F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		D0FAE43B2923E1B200CD2206 /* UserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
+		D0FAE43F2923EFF400CD2206 /* DateFormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterManager.swift; sourceTree = "<group>"; };
 		D0FE194D291B6B6500A05179 /* VerifyAuthNumberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAuthNumberViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -314,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				D02335642918D597003C7225 /* UserDefaultManager.swift */,
+				D0FAE43F2923EFF400CD2206 /* DateFormatterManager.swift */,
 				D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */,
 				D0FAE43B2923E1B200CD2206 /* UserInfoManager.swift */,
 			);
@@ -801,6 +804,7 @@
 				D0800A39292291CB006EF576 /* ProfileImageTableViewHeader.swift in Sources */,
 				D0ADF4D529220AFC00C5027D /* ProfileViewController.swift in Sources */,
 				D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */,
+				D0FAE4402923EFF400CD2206 /* DateFormatterManager.swift in Sources */,
 				D0DEEFF7291A5B5600BE125E /* EnterPhoneNumberViewController.swift in Sources */,
 				D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */,
 				D01D388B2923885000D7F577 /* SearchAgeGroupView.swift in Sources */,

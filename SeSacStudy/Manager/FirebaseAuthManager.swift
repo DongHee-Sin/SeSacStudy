@@ -17,6 +17,10 @@ final class FirebaseAuthManager {
     
     static let share = FirebaseAuthManager()
     
+    
+    
+    
+    // MARK: - Propertys
     private var recentlyUsedNumber = "" {
         didSet {
             let number = recentlyUsedNumber.components(separatedBy: [" ", "-"]).joined()

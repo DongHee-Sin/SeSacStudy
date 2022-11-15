@@ -125,6 +125,39 @@ final class EnterGenderViewController: BaseViewController {
     }
     
     
+    private func requestLogin() {
+        
+        APIService.share.request(type: Login.self, router: .login) { [weak self] result, _, statusCode in
+            
+            switch statusCode {
+            case 200:
+                if let result {
+                    UserInfoManager.shared.login = result
+                }
+                self?.changeRootViewController(to: MainTabBarController())
+                
+            case 406:
+                self?.showAlert(title: "에러가 발생했습니다. 다시 시도해 주세요")
+                
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.requestLogin()
+                        return
+                    case .failure(_):
+                        self?.showAlert(title: "에러가 발생했습니다. 다시 시도해 주세요")
+                    }
+                }
+                
+            default:
+                self?.showAlert(title: "에러가 발생했습니다. 다시 시도해 주세요")
+            }
+        }
+        
+    }
+    
+    
     private func fetchIdToken() {
         
         FirebaseAuthManager.share.fetchIDToken { [weak self] result in

@@ -14,10 +14,6 @@ import RxCocoa
 final class EnterBirthDayViewModel {
     
     // MARK: - Propertys
-    private let dateFormatter = DateFormatter().then {
-        $0.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-    }
-    
     private let calendar = Calendar.current
     
     
@@ -25,7 +21,7 @@ final class EnterBirthDayViewModel {
     
     // MARK: - Methods
     func convertToServerFormat(_ date: Date) -> String {
-        return dateFormatter.string(from: date)
+        return DateFormatterManager.shared.string(from: date)
     }
     
     

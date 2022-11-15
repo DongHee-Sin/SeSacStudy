@@ -18,7 +18,7 @@ final class SettingViewController: BaseViewController {
     
     // MARK: - Propertys
     private let settingDatas: [[SettingViewData]] = [
-        [SettingViewData(title: "User Name", image: R.image.sesac_face_11())],
+        [SettingViewData(title: UserInfoManager.shared.login.nick, image: R.image.sesac_face_11())],
         [
             SettingViewData(title: "공지사항", image: R.image.notice()),
             SettingViewData(title: "자주 묻는 질문", image: R.image.faq()),

@@ -15,7 +15,7 @@ struct Login: Codable {
     let email: String
     let FCMtoken: String
     let nick: String
-    let birth: Date
+    let birth: String
     let gender: Int
     let study: String
     let comment: [String]
@@ -34,6 +34,6 @@ struct Login: Codable {
     let ageMin: Int
     let ageMax: Int
     let searchable: Int
-    let createdAt: Date
+    let createdAt: String
 
 }
