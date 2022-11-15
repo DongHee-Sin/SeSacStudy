@@ -26,18 +26,18 @@ final class SearchAgeGroupView: BaseView {
     }
     
     let slider = MultiSlider().then {
-        $0.trackWidth = 4
-        $0.disabledThumbIndices = [18, 65]
-        
         $0.outerTrackColor = R.color.gray2()
         $0.tintColor = R.color.green()
         $0.thumbTintColor = R.color.green()
-        
         $0.hasRoundTrackEnds = true
         $0.orientation = .horizontal
+        $0.trackWidth = 4
+        
+        $0.disabledThumbIndices = [18, 65]
         $0.maximumValue = 65
         $0.minimumValue = 18
-        
+        $0.snapStepSize = 1
+
         $0.thumbCount = 2
     }
     

@@ -5,7 +5,7 @@
 //  Created by 신동희 on 2022/11/16.
 //
 
-import Foundation
+import UIKit
 
 
 final class UserInfoManager {
@@ -18,11 +18,19 @@ final class UserInfoManager {
     
     
     // MARK: - Propertys
-    var login: Login!
+    private(set) var login: Login!
+    
+    var sesacImage: UIImage {
+        return UIImage(named: "sesac_background_\(login.background+1)") ?? UIImage()
+    }
+    
+    
     
     
     
     
     // MARK: - Methods
-    
+    func updateInfo(info: Login) {
+        login = info
+    }
 }

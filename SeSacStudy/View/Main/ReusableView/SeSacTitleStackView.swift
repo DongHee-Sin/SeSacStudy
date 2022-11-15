@@ -17,12 +17,12 @@ final class SeSacTitleStackView: BaseView {
         $0.textColor = R.color.black()
     }
     
-    let mannerButton = BasicButton(status: .inactive)
-    let timeCommitmentButton = BasicButton(status: .inactive)
-    let quickResponseButton = BasicButton(status: .inactive)
-    let kindnessButton = BasicButton(status: .inactive)
-    let proficiencyButton = BasicButton(status: .inactive)
-    let goodTimeButton = BasicButton(status: .inactive)
+    let mannerButton = BasicButton(status: .inactive).then { $0.setTitle("좋은 매너", for: .normal) }
+    let timeCommitmentButton = BasicButton(status: .inactive).then { $0.setTitle("정확한 시간 약속", for: .normal) }
+    let quickResponseButton = BasicButton(status: .inactive).then { $0.setTitle("빠른 응답", for: .normal) }
+    let kindnessButton = BasicButton(status: .inactive).then { $0.setTitle("친절한 성격", for: .normal) }
+    let proficiencyButton = BasicButton(status: .inactive).then { $0.setTitle("능숙한 실력", for: .normal) }
+    let goodTimeButton = BasicButton(status: .inactive).then { $0.setTitle("유익한 시간", for: .normal) }
     
     var buttons: [BasicButton] {
         return [mannerButton, timeCommitmentButton, quickResponseButton, kindnessButton, proficiencyButton, goodTimeButton]

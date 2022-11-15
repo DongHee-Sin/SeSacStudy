@@ -9,12 +9,15 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import MultiSlider
 
 
 final class ProfileViewController: BaseViewController {
     
     // MARK: - Propertys
     private let viewModel = ProfileViewModel()
+    
+    private var login = UserInfoManager.shared.login!
     
     private var isExpand: Bool = false {
         didSet { customView.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade) }
@@ -63,6 +66,16 @@ final class ProfileViewController: BaseViewController {
     
     @objc private func saveButtonTapped() {
         print("Save Button Tapped")
+        
+        let mypage = MyPage(login: login)
+        
+        //APIService.share.request(router: <#T##Router#>, completion: <#T##(Error?, Int?) -> Void#>)
+    }
+    
+    
+    @objc private func sliderChanged(slider: MultiSlider) {
+        print("thumb \(slider.draggedThumbIndex) moved")
+        print("now thumbs are at \(slider.value)") // e.g., [1.0, 4.5, 5.0]
     }
 }
 
@@ -78,7 +91,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 return UIView()
             }
             
-            header.customImageView.setImageView(img: R.image.sesac_background_1())
+            header.customImageView.setImageView(img: UserInfoManager.shared.sesacImage)
             
             return header
             
@@ -113,7 +126,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            cell.updateCell(isExpand: isExpand)
+            cell.updateCell(login: login, isExpand: isExpand)
             
             cell.expandButton.rx.tap
                 .withUnretained(self)
@@ -131,7 +144,32 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            //cell.updateCell()
+            cell.updateCell(login: login)
+            
+            
+            cell.genderView.gender
+                .withUnretained(self)
+                .bind { (vc, gender) in
+                    vc.login.gender = gender
+                    vc.customView.tableView.reloadSections([1], with: .none)
+                }
+                .disposed(by: cell.disposeBag)
+            
+            cell.frequentStudyView.textField.textField.rx.text
+                .withUnretained(self)
+                .bind { (vc, text) in
+                    vc.login.study = text.value ?? ""
+                }
+                .disposed(by: cell.disposeBag)
+            
+            cell.numberSearchAvailabilityView.availabilitySwitch.rx.isOn
+                .withUnretained(self)
+                .bind { (vc, value) in
+                    vc.login.searchable = value ? 1 : 0
+                }
+                .disposed(by: cell.disposeBag)
+            
+            cell.ageGroubView.slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
             
             return cell
         }

@@ -61,7 +61,7 @@ final class SettingUserInfoTableViewCell: BaseTableViewCell {
     }
     
     
-    func updateCell() {
-        
+    func updateCell(login: Login) {
+        genderView.updateView(gender: Gender(rawValue: login.gender) ?? .man)
     }
 }

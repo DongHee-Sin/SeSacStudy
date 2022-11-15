@@ -54,6 +54,39 @@ final class SettingViewController: BaseViewController {
         
         navigationItem.title = "내정보"
     }
+    
+    
+    private func requestLoginAndTransitionVC() {
+        
+        APIService.share.request(type: Login.self, router: .login) { [weak self] result, _, statusCode in
+            
+            switch statusCode {
+            case 200:
+                if let result {
+                    UserInfoManager.shared.updateInfo(info: result)
+                }
+                self?.transition(ProfileViewController(), transitionStyle: .push)
+                
+            case 406:
+                self?.showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요")
+                
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.requestLoginAndTransitionVC()
+                        return
+                    case .failure(_):
+                        self?.showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요")
+                    }
+                }
+                
+            default:
+                self?.showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요")
+            }
+        }
+        
+    }
 }
 
 
@@ -103,7 +136,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             print("Cell Selected : \(settingDatas[indexPath.section][indexPath.row])")
-            transition(ProfileViewController(), transitionStyle: .push)
+            
+            requestLoginAndTransitionVC()
             
         }else {
             print("Cell Selected : \(settingDatas[indexPath.section][indexPath.row])")

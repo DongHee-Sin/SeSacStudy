@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxSwift
+
 
 final class MyGenderView: BaseView {
     
@@ -26,12 +28,18 @@ final class MyGenderView: BaseView {
         $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         $0.setTitle("  여자  ", for: .normal)
     }
+    
+    private var disposeBag = DisposeBag()
+    
+    let gender = PublishSubject<Int>()
 
     
     
     
     // MARK: - Methods
     override func configureUI() {
+        bind()
+        
         [label, manButton, womanButton].forEach {
             self.addSubview($0)
         }
@@ -55,6 +63,31 @@ final class MyGenderView: BaseView {
             make.verticalEdges.equalTo(self)
             make.leading.equalTo(self)
             make.trailing.equalTo(manButton.snp.leading).offset(-8)
+        }
+    }
+    
+    
+    private func bind() {
+        manButton.rx.tap
+            .map { return 1 }
+            .bind(to: gender)
+            .disposed(by: disposeBag)
+        
+        womanButton.rx.tap
+            .map { return 0 }
+            .bind(to: gender)
+            .disposed(by: disposeBag)
+    }
+    
+    
+    func updateView(gender: Gender) {
+        switch gender {
+        case .woman:
+            manButton.setButtonStyle(status: .inactive)
+            womanButton.setButtonStyle(status: .fill)
+        case .man:
+            manButton.setButtonStyle(status: .fill)
+            womanButton.setButtonStyle(status: .inactive)
         }
     }
 }

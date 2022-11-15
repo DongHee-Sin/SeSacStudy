@@ -79,7 +79,12 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     }
     
     
-    func updateCell(isExpand: Bool, collectionViewProtocol: CollectionViewProtocol? = nil) {
+    func updateCell(login: Login, isExpand: Bool, collectionViewProtocol: CollectionViewProtocol? = nil) {
+        
+        nicknameView.label.text = login.nick
+        print(login.reputation)  // ????
+        reviewView.reviewLabel.text = login.comment.last ?? ""
+        
         titleStackView.isHidden = isExpand
         reviewView.isHidden = isExpand
         nicknameView.updateCell(isExpand: isExpand)
