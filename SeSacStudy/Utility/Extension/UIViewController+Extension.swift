@@ -13,6 +13,7 @@ extension UIViewController {
     // MARK: - Transition
     enum TransitionStyle {
         case present
+        case presentOver
         case push
     }
     
@@ -26,6 +27,9 @@ extension UIViewController {
         
         switch transitionStyle {
         case .present:
+            self.present(viewController, animated: true)
+        case .presentOver:
+            viewController.modalPresentationStyle = .overFullScreen
             self.present(viewController, animated: true)
         case .push:
             self.navigationController?.pushViewController(viewController, animated: true)
@@ -74,6 +78,18 @@ extension UIViewController {
         case NetworkError.notConnected: showAlert(title: "네트워크에 연결되어있지 않습니다.")
         default: showAlert(title: "에러가 발생했습니다.")
         }
+    }
+    
+    
+    
+    
+    // MARK: - Custom Alert
+    func showCustomAlert(title: String, message: String, delegate: CustomAlertDelegate) {
+        let customAlertVC = CustomAlertViewController()
+        customAlertVC.delegate = delegate
+        customAlertVC.configure(title: title, message: message)
+        
+        transition(customAlertVC, transitionStyle: .presentOver)
     }
     
     

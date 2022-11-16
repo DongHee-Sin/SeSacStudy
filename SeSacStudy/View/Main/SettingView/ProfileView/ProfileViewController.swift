@@ -252,12 +252,27 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             cell.withdrawalView.button.rx.tap
                 .withUnretained(self)
                 .bind { (vc, _) in
-                    vc.requestWithdraw()
+                    vc.showCustomAlert(title: "정말 탈퇴하시겠습니까?", message: "탈퇴하시면 새싹 스터디를 이용할 수 없어요ㅠ", delegate: self)
                 }
                 .disposed(by: cell.disposeBag)
             
             
             return cell
         }
+    }
+}
+
+
+
+
+// MARK: - CustomAlert Delegate
+extension ProfileViewController: CustomAlertDelegate {
+    
+    func okAction() {
+        requestWithdraw()
+    }
+    
+    func cancel() {
+        dismiss(animated: true)
     }
 }

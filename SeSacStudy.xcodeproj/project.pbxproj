@@ -67,6 +67,9 @@
 		D0ADF4D529220AFC00C5027D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF4D429220AFC00C5027D /* ProfileViewController.swift */; };
 		D0ADF4D729220B0200C5027D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF4D629220B0200C5027D /* ProfileView.swift */; };
 		D0ADF4D929220B5A00C5027D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF4D829220B5A00C5027D /* ProfileViewModel.swift */; };
+		D0AE100B2924CF6D0057AADE /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AE100A2924CF6D0057AADE /* CustomAlertViewController.swift */; };
+		D0AE100D2924D2160057AADE /* CustomAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AE100C2924D2160057AADE /* CustomAlertDelegate.swift */; };
+		D0AE10102924D25F0057AADE /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AE100F2924D25F0057AADE /* CustomAlertView.swift */; };
 		D0C74E33291AC51D008B3863 /* VerifyAuthNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C74E32291AC51D008B3863 /* VerifyAuthNumberViewController.swift */; };
 		D0C74E35291AC539008B3863 /* VerifyAuthNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C74E34291AC539008B3863 /* VerifyAuthNumberView.swift */; };
 		D0C7628829211734008F206C /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C7628729211734008F206C /* Encodable+Extension.swift */; };
@@ -160,6 +163,9 @@
 		D0ADF4D429220AFC00C5027D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D0ADF4D629220B0200C5027D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D0ADF4D829220B5A00C5027D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		D0AE100A2924CF6D0057AADE /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		D0AE100C2924D2160057AADE /* CustomAlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertDelegate.swift; sourceTree = "<group>"; };
+		D0AE100F2924D25F0057AADE /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		D0C74E32291AC51D008B3863 /* VerifyAuthNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAuthNumberViewController.swift; sourceTree = "<group>"; };
 		D0C74E34291AC539008B3863 /* VerifyAuthNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAuthNumberView.swift; sourceTree = "<group>"; };
 		D0C7628729211734008F206C /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
@@ -354,6 +360,7 @@
 			children = (
 				D0DEEFFC291A733300BE125E /* CommonViewModel.swift */,
 				D01D38812923837400D7F577 /* CollectionviewProtocol.swift */,
+				D0AE100C2924D2160057AADE /* CustomAlertDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -433,13 +440,39 @@
 		D0ADF4D329220AAD00C5027D /* ReusableView */ = {
 			isa = PBXGroup;
 			children = (
+				D0AE10092924CE5D0057AADE /* Common */,
+				D0AE10082924CE510057AADE /* Profile */,
+			);
+			path = ReusableView;
+			sourceTree = "<group>";
+		};
+		D0AE10082924CE510057AADE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
 				D0800A3229226C24006EF576 /* ProfileBackgroundImageView.swift */,
 				D0672BBF29229E8A00234FE8 /* ProfileNicknameView.swift */,
 				D0800A3429226D3C006EF576 /* SeSacTitleStackView.swift */,
 				D01D387F29237BE600D7F577 /* WishStudyListView.swift */,
 				D0800A36292288F8006EF576 /* SeSacReviewView.swift */,
 			);
-			path = ReusableView;
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		D0AE10092924CE5D0057AADE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D0AE100E2924D2510057AADE /* CustomAlert */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D0AE100E2924D2510057AADE /* CustomAlert */ = {
+			isa = PBXGroup;
+			children = (
+				D0AE100A2924CF6D0057AADE /* CustomAlertViewController.swift */,
+				D0AE100F2924D25F0057AADE /* CustomAlertView.swift */,
+			);
+			path = CustomAlert;
 			sourceTree = "<group>";
 		};
 		D0C99787291BD0B4006C41B4 /* Network */ = {
@@ -755,6 +788,7 @@
 				D0FAE43C2923E1B200CD2206 /* UserInfoManager.swift in Sources */,
 				D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */,
 				D01D38872923870200D7F577 /* FrequentStudyView.swift in Sources */,
+				D0AE10102924D25F0057AADE /* CustomAlertView.swift in Sources */,
 				D0D2D3AE291E35FC007FA615 /* LaunchScreenView.swift in Sources */,
 				D0C9978E291BDD8F006C41B4 /* Login.swift in Sources */,
 				D0D2D3A9291E27EA007FA615 /* MainTabBarController.swift in Sources */,
@@ -777,6 +811,7 @@
 				D01D3885292386A900D7F577 /* MyGenderView.swift in Sources */,
 				D082AA01291EB4F4002A6D09 /* EnterGenderViewModel.swift in Sources */,
 				D0800A3329226C24006EF576 /* ProfileBackgroundImageView.swift in Sources */,
+				D0AE100B2924CF6D0057AADE /* CustomAlertViewController.swift in Sources */,
 				D0C99789291BD13A006C41B4 /* Router.swift in Sources */,
 				D0672BC029229E8A00234FE8 /* ProfileNicknameView.swift in Sources */,
 				D0C7628829211734008F206C /* Encodable+Extension.swift in Sources */,
@@ -817,6 +852,7 @@
 				D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */,
 				D0800A3B29229312006EF576 /* ProfileExpandableTableViewCell.swift in Sources */,
 				D023356A2918D652003C7225 /* BaseView.swift in Sources */,
+				D0AE100D2924D2160057AADE /* CustomAlertDelegate.swift in Sources */,
 				D0DEEFF3291A533F00BE125E /* TextStackView.swift in Sources */,
 				D0D2D3B0291E7738007FA615 /* EnterNicknameViewModel.swift in Sources */,
 				D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */,
