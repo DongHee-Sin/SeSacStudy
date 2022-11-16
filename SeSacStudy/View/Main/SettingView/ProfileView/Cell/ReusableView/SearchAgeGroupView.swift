@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
 import MultiSlider
 
 
@@ -22,7 +24,6 @@ final class SearchAgeGroupView: BaseView {
     let rangeLabel = UILabel().then {
         $0.textColor = R.color.green()
         $0.font = .customFont(.title3_M14)
-        $0.text = "18 - 65"
     }
     
     let slider = MultiSlider().then {
@@ -33,7 +34,6 @@ final class SearchAgeGroupView: BaseView {
         $0.orientation = .horizontal
         $0.trackWidth = 4
         
-        $0.disabledThumbIndices = [18, 65]
         $0.maximumValue = 65
         $0.minimumValue = 18
         $0.snapStepSize = 1
@@ -41,12 +41,17 @@ final class SearchAgeGroupView: BaseView {
         $0.thumbCount = 2
     }
     
+    private var disposeBag = DisposeBag()
+    
+    let ageRange = PublishSubject<[CGFloat]>()
     
     
     
     
     // MARK: - Methods
     override func configureUI() {
+        bind()
+        
         [label, rangeLabel, slider].forEach {
             self.addSubview($0)
         }
@@ -69,5 +74,34 @@ final class SearchAgeGroupView: BaseView {
             make.top.equalTo(label.snp.bottom)
             make.bottom.equalTo(self)
         }
+    }
+    
+    
+    private func bind() {
+        slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
+        
+        ageRange.withUnretained(self)
+            .bind { (view, value) in
+                let min = Int(value.first ?? 0)
+                let max = Int(value.last ?? 0)
+                view.labelUpdate(min: min, max: max)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    
+    @objc private func sliderChanged(slider: MultiSlider) {
+        ageRange.onNext(slider.value)
+    }
+    
+    
+    private func labelUpdate(min: Int, max: Int) {
+        rangeLabel.text = "\(min) - \(max)"
+    }
+    
+    
+    func updateView(min: Int, max: Int) {
+        slider.value = [CGFloat(min), CGFloat(max)]
+        labelUpdate(min: min, max: max)
     }
 }

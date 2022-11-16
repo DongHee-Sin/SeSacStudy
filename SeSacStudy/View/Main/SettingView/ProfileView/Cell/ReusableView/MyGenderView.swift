@@ -68,14 +68,32 @@ final class MyGenderView: BaseView {
     
     
     private func bind() {
-        manButton.rx.tap
+        
+        let manButtonTap = manButton.rx.tap
+        let womanButtonTap = womanButton.rx.tap
+        
+        manButtonTap
             .map { return 1 }
             .bind(to: gender)
             .disposed(by: disposeBag)
         
-        womanButton.rx.tap
+        womanButtonTap
             .map { return 0 }
             .bind(to: gender)
+            .disposed(by: disposeBag)
+        
+        manButtonTap
+            .withUnretained(self)
+            .bind(onNext: { (vc, _) in
+                vc.updateView(gender: .man)
+            })
+            .disposed(by: disposeBag)
+        
+        womanButtonTap
+            .withUnretained(self)
+            .bind(onNext: { (vc, _) in
+                vc.updateView(gender: .woman)
+            })
             .disposed(by: disposeBag)
     }
     

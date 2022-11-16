@@ -63,5 +63,8 @@ final class SettingUserInfoTableViewCell: BaseTableViewCell {
     
     func updateCell(login: Login) {
         genderView.updateView(gender: Gender(rawValue: login.gender) ?? .man)
+        frequentStudyView.updateView(study: login.study)
+        numberSearchAvailabilityView.updateView(isOn: login.searchable == 1 ? true : false)
+        ageGroubView.updateView(min: login.ageMin, max: login.ageMax)
     }
 }

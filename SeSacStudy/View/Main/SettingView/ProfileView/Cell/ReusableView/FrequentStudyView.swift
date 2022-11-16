@@ -45,4 +45,9 @@ final class FrequentStudyView: BaseView {
             make.width.equalTo(self).multipliedBy(0.5)
         }
     }
+    
+    
+    func updateView(study: String) {
+        textField.textField.text = study
+    }
 }

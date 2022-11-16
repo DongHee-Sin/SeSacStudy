@@ -17,7 +17,11 @@ final class ProfileViewController: BaseViewController {
     // MARK: - Propertys
     private let viewModel = ProfileViewModel()
     
-    private var login = UserInfoManager.shared.login!
+    private var login = UserInfoManager.shared.login! {
+        didSet {
+            print("\(login.gender), \(login.study), \(login.searchable), \(login.ageMin), \(login.ageMax)")
+        }
+    }
     
     private var isExpand: Bool = false {
         didSet { customView.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade) }
@@ -70,12 +74,12 @@ final class ProfileViewController: BaseViewController {
         let mypage = MyPage(login: login)
         
         //APIService.share.request(router: <#T##Router#>, completion: <#T##(Error?, Int?) -> Void#>)
-    }
-    
-    
-    @objc private func sliderChanged(slider: MultiSlider) {
-        print("thumb \(slider.draggedThumbIndex) moved")
-        print("now thumbs are at \(slider.value)") // e.g., [1.0, 4.5, 5.0]
+        
+        
+        ///⭐️⭐️⭐️⭐️⭐️ 수정할 내용 ⭐️⭐️⭐️⭐️⭐️⭐️
+        ///1. 굳이 리로드를 하지 않아도 RxSwift - Bind를 활용하면 뷰객체의 상태를 바로 변경해줄 수 있다.
+        ///2. 따라서 저장해야 할 상태값은 옵저버블로 선언하여 뷰컨에서 구독하도록 하고 -> 구독하여 값이 변경되면 저장
+        ///3. 각 Cell에서는 옵저버블의 값을바탕으로 뷰객체의 상태만 변경해주면 된다.
     }
 }
 
@@ -151,9 +155,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 .withUnretained(self)
                 .bind { (vc, gender) in
                     vc.login.gender = gender
-                    vc.customView.tableView.reloadSections([1], with: .none)
+                    //vc.customView.tableView.reloadSections([1], with: .none)
                 }
                 .disposed(by: cell.disposeBag)
+            
             
             cell.frequentStudyView.textField.textField.rx.text
                 .withUnretained(self)
@@ -162,6 +167,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 .disposed(by: cell.disposeBag)
             
+            
             cell.numberSearchAvailabilityView.availabilitySwitch.rx.isOn
                 .withUnretained(self)
                 .bind { (vc, value) in
@@ -169,7 +175,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 .disposed(by: cell.disposeBag)
             
-            cell.ageGroubView.slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
+            cell.ageGroubView.ageRange
+                .withUnretained(self)
+                .bind { (vc, value) in
+                    vc.login.ageMin = Int(value.first ?? 0)
+                    vc.login.ageMax = Int(value.last ?? 0)
+                }
+                .disposed(by: disposeBag)
+            
             
             return cell
         }
