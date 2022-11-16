@@ -13,6 +13,7 @@ import Alamofire
 enum Router: URLRequestConvertible {
     case login
     case signUp(body: SignUp)
+    case mypage(body: MyPage)
     
     
     var baseURL: URL {
@@ -24,6 +25,7 @@ enum Router: URLRequestConvertible {
         switch self {
         case .login: return .get
         case .signUp: return .post
+        case .mypage: return .put
         }
     }
     
@@ -32,6 +34,7 @@ enum Router: URLRequestConvertible {
         switch self {
         case .login: return "/v1/user"
         case .signUp: return "/v1/user"
+        case .mypage: return "/v1/user/mypage"
         }
     }
     
@@ -42,7 +45,7 @@ enum Router: URLRequestConvertible {
             return [
                 "idtoken": UserDefaultManager.shared.idToken,
             ]
-        case .signUp:
+        case .signUp, .mypage:
             return [
                 "idtoken": UserDefaultManager.shared.idToken,
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -62,6 +65,14 @@ enum Router: URLRequestConvertible {
                 "birth": body.birth,
                 "email": body.email,
                 "gender": body.gender
+            ]
+        case .mypage(let body):
+            return [
+                "searchable": body.searchable,
+                "ageMin": body.ageMin,
+                "ageMax": body.ageMax,
+                "gender": body.gender,
+                "study": body.study
             ]
         }
     }
