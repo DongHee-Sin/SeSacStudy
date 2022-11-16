@@ -23,6 +23,8 @@ final class ProfileViewController: BaseViewController {
         }
     }
     
+    private lazy var myPage = MyPage(login: login)
+    
     private var isExpand: Bool = false {
         didSet { customView.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade) }
     }
@@ -40,11 +42,18 @@ final class ProfileViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     
     
     
     // MARK: - Methods
     override func configure() {
+        tabBarController?.tabBar.isHidden = true
+        
         setTableView()
         setNavigation()
     }
@@ -69,31 +78,70 @@ final class ProfileViewController: BaseViewController {
     
     
     @objc private func saveButtonTapped() {
-        print("Save Button Tapped")
-        let mypage = MyPage(login: login)
-        requestMypageUpdate(info: mypage)
+        requestMypageUpdate(info: myPage)
     }
     
     
     private func requestMypageUpdate(info: MyPage) {
         
-        APIService.share.request(router: .mypage(body: info)) { _, statusCode in
+        APIService.share.request(router: .mypage(body: info)) { [weak self] _, statusCode in
+            guard let self else { return }
             
             switch statusCode {
             case 200:
-                print("업데이트 성공")
+                self.showToast(message: "수정되었습니다")
+                self.navigationController?.popViewController(animated: true)
             case 401:
-                print("firebase token 만료")
+                FirebaseAuthManager.share.fetchFCMToken { result in
+                    switch result {
+                    case .success(_):
+                        self.requestMypageUpdate(info: self.myPage)
+                    case .failure(let error):
+                        self.showErrorAlert(error: error)
+                    }
+                }
             case 406:
-                print("가입되지 않은 유저")
+                self.showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요")
             case 500:
-                print("서버 에러")
+                self.showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요")
             case 501:
-                print("클라이언트 에러")
+                self.showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요")
             default:
-                print("디폴트..")
+                self.showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요")
             }
             
+        }
+        
+    }
+    
+    
+    private func requestWithdraw() {
+        
+        APIService.share.request(router: .withdraw) { [weak self] _, statusCode in
+            
+            switch statusCode {
+            case 200:
+                self?.changeRootViewController(to: OnboardingViewController())
+            case 401:
+                FirebaseAuthManager.share.fetchFCMToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.requestWithdraw()
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "이미 탈퇴 처리되었거나 가입되지 않은 회원입니다.", message: "초기화면으로 돌아갑니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500:
+                self?.showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요")
+            case 501:
+                self?.showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요")
+            default:
+                self?.showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요")
+            }
         }
         
     }
@@ -191,13 +239,22 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 .disposed(by: cell.disposeBag)
             
+            
             cell.ageGroubView.ageRange
                 .withUnretained(self)
                 .bind { (vc, value) in
                     vc.login.ageMin = Int(value.first ?? 0)
                     vc.login.ageMax = Int(value.last ?? 0)
                 }
-                .disposed(by: disposeBag)
+                .disposed(by: cell.disposeBag)
+            
+            
+            cell.withdrawalView.button.rx.tap
+                .withUnretained(self)
+                .bind { (vc, _) in
+                    vc.requestWithdraw()
+                }
+                .disposed(by: cell.disposeBag)
             
             
             return cell

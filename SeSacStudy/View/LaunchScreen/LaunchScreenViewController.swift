@@ -59,7 +59,6 @@ final class LaunchScreenViewController: UIViewController {
                     switch result {
                     case .success(_):
                         self?.requestUserInfo()
-                        return
                     case .failure(_):
                         self?.changeRootViewController(to: OnboardingViewController())
                     }
