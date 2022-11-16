@@ -36,6 +36,8 @@
 		D03BD00F291962D500F79915 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BD00E291962D500F79915 /* R.generated.swift */; };
 		D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2E2B2920FF43003F13DC /* SignUpModel.swift */; };
 		D0672BC029229E8A00234FE8 /* ProfileNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0672BBF29229E8A00234FE8 /* ProfileNicknameView.swift */; };
+		D077FBA329252368004E4363 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077FBA229252368004E4363 /* HomeViewModel.swift */; };
+		D077FBA5292525A1004E4363 /* QueueStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077FBA4292525A1004E4363 /* QueueStatus.swift */; };
 		D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BE8422918DAFB00020487 /* UIFont+Extension.swift */; };
 		D07BE8452918DCFC00020487 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D07BE8442918DCFC00020487 /* .gitignore */; };
 		D07BE84D2918DF3C00020487 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */; };
@@ -134,6 +136,8 @@
 		D03BD00E291962D500F79915 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D05F2E2B2920FF43003F13DC /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		D0672BBF29229E8A00234FE8 /* ProfileNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNicknameView.swift; sourceTree = "<group>"; };
+		D077FBA229252368004E4363 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		D077FBA4292525A1004E4363 /* QueueStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueStatus.swift; sourceTree = "<group>"; };
 		D07BE8422918DAFB00020487 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		D07BE8442918DCFC00020487 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D07BE84B2918DF3C00020487 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
@@ -492,6 +496,7 @@
 				D0C9978D291BDD8F006C41B4 /* Login.swift */,
 				D084E239291D2796005EFF11 /* SignUp.swift */,
 				D0FAE4412923FD2200CD2206 /* MyPage.swift */,
+				D077FBA4292525A1004E4363 /* QueueStatus.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 		D0D2D3A5291E271B007FA615 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				D077FBA229252368004E4363 /* HomeViewModel.swift */,
 				D0D2D3A6291E273D007FA615 /* HomeViewController.swift */,
 				D0ADF4C72921FC1F00C5027D /* HomeView.swift */,
 			);
@@ -801,6 +807,7 @@
 				D0ADF4C12921EEE300C5027D /* NetworkMonitor.swift in Sources */,
 				D0C9978B291BD8A9006C41B4 /* APIService.swift in Sources */,
 				D0D2D3A7291E273D007FA615 /* HomeViewController.swift in Sources */,
+				D077FBA5292525A1004E4363 /* QueueStatus.swift in Sources */,
 				D0ADF4D929220B5A00C5027D /* ProfileViewModel.swift in Sources */,
 				D0ADF4CB2921FF2300C5027D /* SettingTableViewCell.swift in Sources */,
 				D0165F11291B82BE00BBE042 /* FirebaseAuthManager.swift in Sources */,
@@ -848,6 +855,7 @@
 				D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */,
 				D01D388B2923885000D7F577 /* SearchAgeGroupView.swift in Sources */,
 				D02335682918D631003C7225 /* BaseViewController.swift in Sources */,
+				D077FBA329252368004E4363 /* HomeViewModel.swift in Sources */,
 				D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */,
 				D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */,
 				D0800A3B29229312006EF576 /* ProfileExpandableTableViewCell.swift in Sources */,

@@ -8,13 +8,15 @@
 import UIKit
 
 import CoreLocation
-
+import MapKit
 
 
 final class HomeViewController: BaseViewController {
     
     // MARK: - Propertys
     private let locationManager = CLLocationManager()
+    
+    private let viewModel = HomeViewModel()
     
     
     
@@ -34,8 +36,49 @@ final class HomeViewController: BaseViewController {
     
     // MARK: - Methods
     override func configure() {
+        checkUserDeviceLocationServiceAuthorization()
+        
         locationManager.delegate = self
+        customView.mapView.delegate = self
+        
+        requestQueueStatus()
     }
+    
+    
+    private func requestQueueStatus() {
+        
+        APIService.share.request(type: QueueStatus.self, router: .queueStatus) { result, _, statusCode in
+            
+            switch statusCode {
+            case 200:
+                if let result {
+                    print(result)
+                }
+            case 201:
+                print("매칭하지 않은 일반 상태")
+            case 401:
+                print("id토큰 만료")
+            case 406:
+                print("미가입 회원")
+            case 500:
+                print("Server Error")
+            case 501:
+                print("Client Error")
+            default:
+                print("Default")
+            }
+            
+        }
+        
+    }
+}
+
+
+
+
+// MARK: - MapView Delegate
+extension HomeViewController: MKMapViewDelegate {
+    
 }
 
 
@@ -45,14 +88,18 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController {
     
     private func checkUserDeviceLocationServiceAuthorization() {
-        guard CLLocationManager.locationServicesEnabled() else {
-            showRequestLocationServiceAlert()
-            return
-        }
-
-        let authorizationStatus: CLAuthorizationStatus = locationManager.authorizationStatus
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
             
-        checkUserCurrentLocationAuthorization(authorizationStatus)
+            guard CLLocationManager.locationServicesEnabled() else {
+                self.showRequestLocationServiceAlert()
+                return
+            }
+
+            let authorizationStatus: CLAuthorizationStatus = self.locationManager.authorizationStatus
+                
+            self.checkUserCurrentLocationAuthorization(authorizationStatus)
+        }
     }
     
     
@@ -87,7 +134,9 @@ extension HomeViewController {
         requestLocationServiceAlert.addAction(cancel)
         requestLocationServiceAlert.addAction(goSetting)
         
-        present(requestLocationServiceAlert, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            self?.present(requestLocationServiceAlert, animated: true)
+        }
     }
     
 }
@@ -101,13 +150,17 @@ extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let coordinate = locations.last?.coordinate {
-            // ⭐️ 사용자 위치 정보 사용
-            
+            customView.mapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)), animated: true)
         }
     }
     
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         showAlert(title: "사용자 위치를 가져오는데 실패했습니다.")
+    }
+    
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkUserDeviceLocationServiceAuthorization()
     }
 }

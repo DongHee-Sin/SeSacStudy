@@ -15,6 +15,7 @@ enum Router: URLRequestConvertible {
     case signUp(body: SignUp)
     case mypage(body: MyPage)
     case withdraw
+    case queueStatus
     
     
     var baseURL: URL {
@@ -28,6 +29,7 @@ enum Router: URLRequestConvertible {
         case .signUp: return .post
         case .mypage: return .put
         case .withdraw: return .post
+        case .queueStatus: return .get
         }
     }
     
@@ -38,13 +40,14 @@ enum Router: URLRequestConvertible {
         case .signUp: return "/v1/user"
         case .mypage: return "/v1/user/mypage"
         case .withdraw: return "/v1/user/withdraw"
+        case .queueStatus: return "/v1/queue/myQueueState"
         }
     }
     
     
     var header: HTTPHeaders {
         switch self {
-        case .login, .withdraw:
+        case .login, .withdraw, .queueStatus:
             return [
                 "idtoken": UserDefaultManager.shared.idToken,
             ]
@@ -59,7 +62,8 @@ enum Router: URLRequestConvertible {
     
     var param: Parameters? {
         switch self {
-        case .login, .withdraw: return nil
+        case .login, .withdraw, .queueStatus:
+            return nil
         case .signUp(let body):
             return [
                 "phoneNumber": body.phoneNumber,
