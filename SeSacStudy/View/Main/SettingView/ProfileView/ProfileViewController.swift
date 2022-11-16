@@ -70,16 +70,32 @@ final class ProfileViewController: BaseViewController {
     
     @objc private func saveButtonTapped() {
         print("Save Button Tapped")
-        
         let mypage = MyPage(login: login)
+        requestMypageUpdate(info: mypage)
+    }
+    
+    
+    private func requestMypageUpdate(info: MyPage) {
         
-        //APIService.share.request(router: <#T##Router#>, completion: <#T##(Error?, Int?) -> Void#>)
+        APIService.share.request(router: .mypage(body: info)) { _, statusCode in
+            
+            switch statusCode {
+            case 200:
+                print("업데이트 성공")
+            case 401:
+                print("firebase token 만료")
+            case 406:
+                print("가입되지 않은 유저")
+            case 500:
+                print("서버 에러")
+            case 501:
+                print("클라이언트 에러")
+            default:
+                print("디폴트..")
+            }
+            
+        }
         
-        
-        ///⭐️⭐️⭐️⭐️⭐️ 수정할 내용 ⭐️⭐️⭐️⭐️⭐️⭐️
-        ///1. 굳이 리로드를 하지 않아도 RxSwift - Bind를 활용하면 뷰객체의 상태를 바로 변경해줄 수 있다.
-        ///2. 따라서 저장해야 할 상태값은 옵저버블로 선언하여 뷰컨에서 구독하도록 하고 -> 구독하여 값이 변경되면 저장
-        ///3. 각 Cell에서는 옵저버블의 값을바탕으로 뷰객체의 상태만 변경해주면 된다.
     }
 }
 
