@@ -12,6 +12,6 @@ struct QueueStatus: Codable {
     var dodged: Int
     var matched: Int
     var reviewed: Int
-    var matchedNick: String
+    var matchedNick: String?
     var matchedUid: String?
 }

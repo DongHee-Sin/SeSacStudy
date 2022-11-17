@@ -27,9 +27,7 @@ final class HomeView: BaseView {
         $0.setImage(R.image.bt_gps(), for: .normal)
     }
     
-    let floatingButton = UIButton().then {
-        $0.setImage(R.image.property1Default(), for: .normal)
-    }
+    let floatingButton = UIButton()
     
     
     
