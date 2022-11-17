@@ -20,7 +20,7 @@
 		D0100B6F2918CB3500AEC5C2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B6E2918CB3500AEC5C2 /* Alamofire */; };
 		D0165F11291B82BE00BBE042 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */; };
 		D01D387E292370F700D7F577 /* SettingUserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D387D292370F700D7F577 /* SettingUserInfoTableViewCell.swift */; };
-		D01D388029237BE600D7F577 /* WishStudyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D387F29237BE600D7F577 /* WishStudyListView.swift */; };
+		D01D388029237BE600D7F577 /* StudyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D387F29237BE600D7F577 /* StudyListView.swift */; };
 		D01D38822923837400D7F577 /* CollectionviewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D38812923837400D7F577 /* CollectionviewProtocol.swift */; };
 		D01D3885292386A900D7F577 /* MyGenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D3884292386A900D7F577 /* MyGenderView.swift */; };
 		D01D38872923870200D7F577 /* FrequentStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D38862923870200D7F577 /* FrequentStudyView.swift */; };
@@ -34,7 +34,10 @@
 		D023356D2918D752003C7225 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023356C2918D752003C7225 /* BasicButton.swift */; };
 		D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */; };
 		D03BD00F291962D500F79915 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BD00E291962D500F79915 /* R.generated.swift */; };
+		D046CC1B29268AB000C59AD8 /* StudyListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D046CC1A29268AB000C59AD8 /* StudyListCollectionViewCell.swift */; };
 		D057EC4F292663CA00B3A7B1 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057EC4E292663CA00B3A7B1 /* CustomAnnotation.swift */; };
+		D057EC5329267E8300B3A7B1 /* EnterStudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057EC5229267E8300B3A7B1 /* EnterStudyViewController.swift */; };
+		D057EC5529267EAD00B3A7B1 /* EnterStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057EC5429267EAD00B3A7B1 /* EnterStudyView.swift */; };
 		D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2E2B2920FF43003F13DC /* SignUpModel.swift */; };
 		D0672BC029229E8A00234FE8 /* ProfileNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0672BBF29229E8A00234FE8 /* ProfileNicknameView.swift */; };
 		D077FBA329252368004E4363 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077FBA229252368004E4363 /* HomeViewModel.swift */; };
@@ -122,7 +125,7 @@
 		D0100B532918C5CC00AEC5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		D01D387D292370F700D7F577 /* SettingUserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUserInfoTableViewCell.swift; sourceTree = "<group>"; };
-		D01D387F29237BE600D7F577 /* WishStudyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishStudyListView.swift; sourceTree = "<group>"; };
+		D01D387F29237BE600D7F577 /* StudyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListView.swift; sourceTree = "<group>"; };
 		D01D38812923837400D7F577 /* CollectionviewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionviewProtocol.swift; sourceTree = "<group>"; };
 		D01D3884292386A900D7F577 /* MyGenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGenderView.swift; sourceTree = "<group>"; };
 		D01D38862923870200D7F577 /* FrequentStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequentStudyView.swift; sourceTree = "<group>"; };
@@ -136,7 +139,10 @@
 		D023356C2918D752003C7225 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		D03BD00E291962D500F79915 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		D046CC1A29268AB000C59AD8 /* StudyListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListCollectionViewCell.swift; sourceTree = "<group>"; };
 		D057EC4E292663CA00B3A7B1 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
+		D057EC5229267E8300B3A7B1 /* EnterStudyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterStudyViewController.swift; sourceTree = "<group>"; };
+		D057EC5429267EAD00B3A7B1 /* EnterStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterStudyView.swift; sourceTree = "<group>"; };
 		D05F2E2B2920FF43003F13DC /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		D0672BBF29229E8A00234FE8 /* ProfileNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNicknameView.swift; sourceTree = "<group>"; };
 		D077FBA229252368004E4363 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -401,6 +407,23 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
+		D057EC5029267CF000B3A7B1 /* HomeSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				D057EC5129267D3E00B3A7B1 /* EnterStudyView */,
+			);
+			path = HomeSubViews;
+			sourceTree = "<group>";
+		};
+		D057EC5129267D3E00B3A7B1 /* EnterStudyView */ = {
+			isa = PBXGroup;
+			children = (
+				D057EC5229267E8300B3A7B1 /* EnterStudyViewController.swift */,
+				D057EC5429267EAD00B3A7B1 /* EnterStudyView.swift */,
+			);
+			path = EnterStudyView;
+			sourceTree = "<group>";
+		};
 		D07BE8462918DD9D00020487 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,7 +492,8 @@
 				D0800A3229226C24006EF576 /* ProfileBackgroundImageView.swift */,
 				D0672BBF29229E8A00234FE8 /* ProfileNicknameView.swift */,
 				D0800A3429226D3C006EF576 /* SeSacTitleStackView.swift */,
-				D01D387F29237BE600D7F577 /* WishStudyListView.swift */,
+				D01D387F29237BE600D7F577 /* StudyListView.swift */,
+				D046CC1A29268AB000C59AD8 /* StudyListCollectionViewCell.swift */,
 				D0800A36292288F8006EF576 /* SeSacReviewView.swift */,
 			);
 			path = Profile;
@@ -570,6 +594,7 @@
 				D077FBA229252368004E4363 /* HomeViewModel.swift */,
 				D0D2D3A6291E273D007FA615 /* HomeViewController.swift */,
 				D0ADF4C72921FC1F00C5027D /* HomeView.swift */,
+				D057EC5029267CF000B3A7B1 /* HomeSubViews */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -812,11 +837,13 @@
 				D0D2D3AE291E35FC007FA615 /* LaunchScreenView.swift in Sources */,
 				D0C9978E291BDD8F006C41B4 /* Login.swift in Sources */,
 				D0D2D3A9291E27EA007FA615 /* MainTabBarController.swift in Sources */,
+				D057EC5329267E8300B3A7B1 /* EnterStudyViewController.swift in Sources */,
 				D07BE8542918E3F600020487 /* OnboardingViewController.swift in Sources */,
 				D07BE8502918DF7900020487 /* NotoSansCJK.swift in Sources */,
 				D082A9FF291EAC1A002A6D09 /* EnterEmailViewModel.swift in Sources */,
 				D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */,
 				D0C99792291BFAC1006C41B4 /* EnterNicknameViewController.swift in Sources */,
+				D057EC5529267EAD00B3A7B1 /* EnterStudyView.swift in Sources */,
 				D0800A37292288F8006EF576 /* SeSacReviewView.swift in Sources */,
 				D0ADF4C12921EEE300C5027D /* NetworkMonitor.swift in Sources */,
 				D0C9978B291BD8A9006C41B4 /* APIService.swift in Sources */,
@@ -835,6 +862,7 @@
 				D0AE100B2924CF6D0057AADE /* CustomAlertViewController.swift in Sources */,
 				D0BB7F94292612EF009B9DC8 /* QueueSearchResult.swift in Sources */,
 				D0C99789291BD13A006C41B4 /* Router.swift in Sources */,
+				D046CC1B29268AB000C59AD8 /* StudyListCollectionViewCell.swift in Sources */,
 				D0672BC029229E8A00234FE8 /* ProfileNicknameView.swift in Sources */,
 				D0C7628829211734008F206C /* Encodable+Extension.swift in Sources */,
 				D0800A3529226D3C006EF576 /* SeSacTitleStackView.swift in Sources */,
@@ -884,7 +912,7 @@
 				D0D8EF5B291CEFE000F9BC22 /* EnterGenderViewController.swift in Sources */,
 				D0D8EF55291CD06E00F9BC22 /* ReusableTextField.swift in Sources */,
 				D0C74E35291AC539008B3863 /* VerifyAuthNumberView.swift in Sources */,
-				D01D388029237BE600D7F577 /* WishStudyListView.swift in Sources */,
+				D01D388029237BE600D7F577 /* StudyListView.swift in Sources */,
 				D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */,
 				D01D38822923837400D7F577 /* CollectionviewProtocol.swift in Sources */,
 				D07BE8562918E40A00020487 /* OnboardingView.swift in Sources */,
@@ -1030,7 +1058,7 @@
 				CODE_SIGN_ENTITLEMENTS = SeSacStudy/SeSacStudy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PW2RLJT734;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSacStudy/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자 위치 기반으로 주변의 사용자를 검색하기 위해 위치 권한이 필요합니다.";
@@ -1065,7 +1093,7 @@
 				CODE_SIGN_ENTITLEMENTS = SeSacStudy/SeSacStudy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PW2RLJT734;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSacStudy/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자 위치 기반으로 주변의 사용자를 검색하기 위해 위치 권한이 필요합니다.";

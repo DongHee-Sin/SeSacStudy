@@ -33,8 +33,7 @@ final class BasicButton: UIButton {
     convenience init(status: ButtonStatus) {
         self.init(frame: CGRect())
         
-        self.layer.cornerRadius = 10
-        buttonStatus = status
+        self.layer.cornerRadius = 8
         setButtonStyle(status: status)
     }
     
@@ -42,7 +41,7 @@ final class BasicButton: UIButton {
     
     
     // MARK: - Propertys
-    var buttonStatus: ButtonStatus = .cancel {
+    private(set) var buttonStatus: ButtonStatus = .cancel {
         didSet {
             switch buttonStatus {
             case .inactive:

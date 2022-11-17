@@ -8,16 +8,25 @@
 import UIKit
 
 
-final class WishStudyListView: BaseView {
+final class StudyListView: BaseView {
     
     // MARK: - Propertys
     private let label = UILabel().then {
         $0.textColor = R.color.black()
         $0.font = .customFont(.title6_R12)
-        $0.text = "하고 싶은 스터디"
     }
     
     let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: .studyListLayout)
+    
+    
+    
+    
+    // MARK: - Init
+    convenience init(title: String) {
+        self.init()
+        
+        label.text = title
+    }
     
     
     

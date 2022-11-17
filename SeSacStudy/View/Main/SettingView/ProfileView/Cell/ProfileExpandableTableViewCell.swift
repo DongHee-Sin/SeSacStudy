@@ -33,7 +33,7 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     
     let titleStackView = SeSacTitleStackView()
     
-    let wishStudyListView = WishStudyListView().then {
+    let wishStudyListView = StudyListView(title: "하고 싶은 스터디").then {
         $0.isHidden = true
     }
     

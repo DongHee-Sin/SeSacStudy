@@ -219,7 +219,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 .withUnretained(self)
                 .bind { (vc, gender) in
                     vc.login.gender = gender
-                    //vc.customView.tableView.reloadSections([1], with: .none)
                 }
                 .disposed(by: cell.disposeBag)
             

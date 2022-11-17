@@ -36,6 +36,7 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        resetBarUI()
         checkUserDeviceLocationServiceAuthorization()
         requestQueueStatus()
     }
@@ -47,6 +48,8 @@ final class HomeViewController: BaseViewController {
     override func configure() {
         setDelegate()
         bind()
+        
+        navigationController?.navigationBar.isHidden = true
     }
     
     
@@ -95,8 +98,15 @@ final class HomeViewController: BaseViewController {
                 /// 지금 생각한 방법..
                 /// status 변경에 대한 바인딩을 할 때, 따로 프로퍼티 하나를 더 유지
                 /// 해당 프로퍼티를 기준으로 floating button 이벤트에 대한 분기처리 수행...
+                vc.transition(EnterStudyViewController(), transitionStyle: .push)
             }
             .disposed(by: disposeBag)
+    }
+    
+    
+    private func resetBarUI() {
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
     }
     
     
@@ -114,6 +124,7 @@ final class HomeViewController: BaseViewController {
     
     @objc private func timerAction() {
         customView.mapView.isUserInteractionEnabled = true
+        timer = nil
     }
 }
 

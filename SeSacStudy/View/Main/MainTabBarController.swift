@@ -19,7 +19,7 @@ final class MainTabBarController: UITabBarController {
     
     
     private func setViewControllers() {
-        let homeVC = HomeViewController()
+        let homeVC = UINavigationController(rootViewController: HomeViewController())
         homeVC.tabBarItem = UITabBarItem(title: "홈", image: R.image.property1HomeProperty2Inact(), selectedImage: R.image.property1HomeProperty2Act())
         
         let settingVC = UINavigationController(rootViewController: SettingViewController())
