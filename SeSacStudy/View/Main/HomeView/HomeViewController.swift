@@ -18,6 +18,8 @@ final class HomeViewController: BaseViewController {
     
     private let viewModel = HomeViewModel()
     
+    private var timer: Timer?
+    
     
     
     
@@ -31,6 +33,13 @@ final class HomeViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        checkUserDeviceLocationServiceAuthorization()
+        requestQueueStatus()
+    }
+    
     
     
     
@@ -38,9 +47,6 @@ final class HomeViewController: BaseViewController {
     override func configure() {
         setDelegate()
         bind()
-        
-        checkUserDeviceLocationServiceAuthorization()
-        requestQueueStatus()
     }
     
     
@@ -103,6 +109,11 @@ final class HomeViewController: BaseViewController {
     private func removeAllAnnotation() {
         let allAnnotations = customView.mapView.annotations
         customView.mapView.removeAnnotations(allAnnotations)
+    }
+    
+    
+    @objc private func timerAction() {
+        customView.mapView.isUserInteractionEnabled = true
     }
 }
 
@@ -217,6 +228,9 @@ extension HomeViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         viewModel.location.accept(mapView.centerCoordinate)
+        
+        mapView.isUserInteractionEnabled = false
+        timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(timerAction), userInfo: nil, repeats: false)
     }
 }
 
@@ -250,6 +264,8 @@ extension HomeViewController {
             locationManager.requestWhenInUseAuthorization()
                 
         case .denied, .restricted:
+            customView.mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
+            
             showRequestLocationServiceAlert()
             
         case .authorizedWhenInUse:
