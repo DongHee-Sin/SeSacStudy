@@ -8,6 +8,7 @@
 import Foundation
 
 import Alamofire
+import CoreLocation
 
 
 enum Router: URLRequestConvertible {
@@ -16,6 +17,7 @@ enum Router: URLRequestConvertible {
     case mypage(body: MyPage)
     case withdraw
     case queueStatus
+    case queueSearch(location: CLLocationCoordinate2D)
     
     
     var baseURL: URL {
@@ -25,11 +27,12 @@ enum Router: URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .login: return .get
-        case .signUp: return .post
-        case .mypage: return .put
-        case .withdraw: return .post
-        case .queueStatus: return .get
+        case .login, .queueStatus:
+            return .get
+        case .signUp, .withdraw, .queueSearch:
+            return .post
+        case .mypage:
+            return .put
         }
     }
     
@@ -41,13 +44,14 @@ enum Router: URLRequestConvertible {
         case .mypage: return "/v1/user/mypage"
         case .withdraw: return "/v1/user/withdraw"
         case .queueStatus: return "/v1/queue/myQueueState"
+        case .queueSearch: return "/v1/queue/search"
         }
     }
     
     
     var header: HTTPHeaders {
         switch self {
-        case .login, .withdraw, .queueStatus:
+        case .login, .withdraw, .queueStatus, .queueSearch:
             return [
                 "idtoken": UserDefaultManager.shared.idToken,
             ]
@@ -80,6 +84,11 @@ enum Router: URLRequestConvertible {
                 "ageMax": body.ageMax,
                 "gender": body.gender,
                 "study": body.study
+            ]
+        case .queueSearch(let location):
+            return [
+                "lat": location.latitude,
+                "long": location.longitude
             ]
         }
     }
