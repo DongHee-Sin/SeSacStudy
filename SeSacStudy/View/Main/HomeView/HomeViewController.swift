@@ -94,12 +94,15 @@ final class HomeViewController: BaseViewController {
     }
     
     
-    private func addCustomPin(lat: Double, long: Double) {
-        let pin = MKPointAnnotation()
-        pin.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        pin.title = "새싹 영등포캠퍼스"
-        pin.subtitle = "전체 3층짜리 건물"
+    private func addCustomPin(imageNum: Int, location: CLLocationCoordinate2D) {
+        let pin = CustomAnnotation(imageNum: imageNum, location: location)
         customView.mapView.addAnnotation(pin)
+    }
+    
+    
+    private func removeAllAnnotation() {
+        let allAnnotations = customView.mapView.annotations
+        customView.mapView.removeAnnotations(allAnnotations)
     }
 }
 
@@ -148,8 +151,10 @@ extension HomeViewController {
             switch statusCode {
             case 200:
                 if let result {
+                    self?.removeAllAnnotation()
+                    
                     result.fromQueueDB.forEach {
-                        self?.addCustomPin(lat: $0.lat, long: $0.long)
+                        self?.addCustomPin(imageNum: $0.sesac, location: CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.long))
                     }
                 }
             case 401:
@@ -183,31 +188,34 @@ extension HomeViewController {
 extension HomeViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var annotationView = customView.mapView.dequeueReusableAnnotationView(withIdentifier: "Custom")
+        guard let annotation = annotation as? CustomAnnotation else {
+            return nil
+        }
+        
+        var annotationView = customView.mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
         
         if annotationView == nil {
-            //없으면 하나 만들어 주시고
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Custom")
-            annotationView?.canShowCallout = true
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
+            annotationView?.canShowCallout = false
+            annotationView?.contentMode = .scaleAspectFit
             
         } else {
-            //있으면 등록된 걸 쓰시면 됩니다.
             annotationView?.annotation = annotation
         }
         
-        annotationView?.image = R.image.sesac_face_1()
+        let sesacImage = UIImage(named: "sesac_face_\(annotation.imageNum + 1)")
+        let size = CGSize(width: 85, height: 85)
+        UIGraphicsBeginImageContext(size)
         
-        //상황에 따라 다른 annotationView를 리턴하게 하면 여러가지 모양을 쓸 수도 있겠죠?
+        sesacImage?.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        annotationView?.image = resizedImage
         
         return annotationView
     }
     
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        print("Animated ..")
-        /// 맵 변경되면 호출
-        /// 여기서 API 요청
-        /// 요청 후 맵 업뎃
         viewModel.location.accept(mapView.centerCoordinate)
     }
 }
@@ -281,7 +289,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         
         if let coordinate = locations.last?.coordinate {
             viewModel.location.accept(coordinate)
-            customView.mapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)), animated: true)
+            customView.mapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
         }
     }
     

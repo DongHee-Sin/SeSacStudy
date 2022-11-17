@@ -34,6 +34,7 @@
 		D023356D2918D752003C7225 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023356C2918D752003C7225 /* BasicButton.swift */; };
 		D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */; };
 		D03BD00F291962D500F79915 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BD00E291962D500F79915 /* R.generated.swift */; };
+		D057EC4F292663CA00B3A7B1 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057EC4E292663CA00B3A7B1 /* CustomAnnotation.swift */; };
 		D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2E2B2920FF43003F13DC /* SignUpModel.swift */; };
 		D0672BC029229E8A00234FE8 /* ProfileNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0672BBF29229E8A00234FE8 /* ProfileNicknameView.swift */; };
 		D077FBA329252368004E4363 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077FBA229252368004E4363 /* HomeViewModel.swift */; };
@@ -135,6 +136,7 @@
 		D023356C2918D752003C7225 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		D03BD00E291962D500F79915 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		D057EC4E292663CA00B3A7B1 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		D05F2E2B2920FF43003F13DC /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		D0672BBF29229E8A00234FE8 /* ProfileNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNicknameView.swift; sourceTree = "<group>"; };
 		D077FBA229252368004E4363 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				D023355B2918CE35003C7225 /* Protocol */,
 				D02335592918CE23003C7225 /* Extension */,
 				D07BE8462918DD9D00020487 /* Font */,
+				D057EC4D2926612F00B3A7B1 /* Custom */,
 				D023356B2918D679003C7225 /* Reusable */,
 			);
 			path = Utility;
@@ -388,6 +391,14 @@
 				D023356C2918D752003C7225 /* BasicButton.swift */,
 			);
 			path = Reusable;
+			sourceTree = "<group>";
+		};
+		D057EC4D2926612F00B3A7B1 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				D057EC4E292663CA00B3A7B1 /* CustomAnnotation.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		D07BE8462918DD9D00020487 /* Font */ = {
@@ -846,6 +857,7 @@
 				D084E23A291D2796005EFF11 /* SignUp.swift in Sources */,
 				D0ADF4CD2921FF8200C5027D /* BaseTableViewCell.swift in Sources */,
 				D0D2D3AC291E35F8007FA615 /* LaunchScreenViewController.swift in Sources */,
+				D057EC4F292663CA00B3A7B1 /* CustomAnnotation.swift in Sources */,
 				D0DEEFFD291A733300BE125E /* CommonViewModel.swift in Sources */,
 				D0C9979C291C0CD1006C41B4 /* EnterBirthDayView.swift in Sources */,
 				D01D38892923882F00D7F577 /* NumberSearchAvailabilityView.swift in Sources */,
