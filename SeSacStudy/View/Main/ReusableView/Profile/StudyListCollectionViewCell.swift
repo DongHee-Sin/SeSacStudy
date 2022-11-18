@@ -12,6 +12,22 @@ enum StudyListCellStyle {
     case recommend
     case normal
     case userAdded
+    
+    var tintColor: UIColor? {
+        switch self {
+        case .recommend: return R.color.error()
+        case .normal: return R.color.black()
+        case .userAdded: return R.color.green()
+        }
+    }
+    
+    var borderColor: CGColor? {
+        switch self {
+        case .recommend: return R.color.error()?.cgColor
+        case .normal: return R.color.gray4()?.cgColor
+        case .userAdded: return R.color.green()?.cgColor
+        }
+    }
 }
 
 
@@ -19,13 +35,8 @@ final class StudyListCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Propertys
     private let button = UIButton().then {
+        $0.setTitle(" ", for: .normal)
         $0.isEnabled = false
-        //$0.imageEdgeInsets = .init(top: 5, left: 5, bottom: 5, right: 5)
-        
-        $0.setImage(UIImage(systemName: "bubble.left"), for: .normal)
-        $0.tintColor = .secondaryLabel
-        $0.setTitle("5", for: .normal)
-        $0.setTitleColor(.secondaryLabel, for: .normal)
         $0.semanticContentAttribute = .forceRightToLeft
         $0.contentVerticalAlignment = .center
         $0.contentHorizontalAlignment = .center
@@ -37,19 +48,29 @@ final class StudyListCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Methods
     override func configureUI() {
-        //
+        self.addSubview(button)
     }
     
     
     override func setConstraint() {
-        //
+        button.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     
-    private func updateCell(title: String, style: StudyListCellStyle, image: UIImage? = nil) {
+    func updateCell(title: String, style: StudyListCellStyle, image: UIImage? = nil) {
+        button.setTitle(title, for: .normal)
+        setButtonStyle(style: style)
         
         if let image {
             button.setImage(image, for: .normal)
         }
+    }
+    
+    
+    private func setButtonStyle(style: StudyListCellStyle) {
+        button.tintColor = style.tintColor
+        button.layer.borderColor = style.borderColor
     }
 }

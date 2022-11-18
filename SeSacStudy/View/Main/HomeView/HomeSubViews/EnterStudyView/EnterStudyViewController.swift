@@ -31,6 +31,7 @@ final class EnterStudyViewController: BaseViewController {
     // MARK: - Methods
     override func configure() {
         setInitialUI()
+        setCollectionView()
     }
     
     
@@ -44,11 +45,16 @@ final class EnterStudyViewController: BaseViewController {
     }
     
     
-    private func setDelegate() {
-        customView.surroundingList.collectionView.delegate = self
-        customView.surroundingList.collectionView.dataSource = self
-        customView.myWishList.collectionView.delegate = self
-        customView.myWishList.collectionView.dataSource = self
+    private func setCollectionView() {
+        [customView.surroundingList.collectionView, customView.myWishList.collectionView].forEach {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(StudyListCollectionViewCell.self, forCellWithReuseIdentifier: StudyListCollectionViewCell.identifier)
+            
+            if let flowLayout = $0.collectionViewLayout as? UICollectionViewFlowLayout {
+                flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+            }
+        }
     }
 }
 
@@ -58,12 +64,23 @@ final class EnterStudyViewController: BaseViewController {
 // MARK: - CollectionView Protocol
 extension EnterStudyViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StudyListCollectionViewCell.identifier, for: indexPath) as? StudyListCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.updateCell(title: "아무거나", style: .normal)
+        
+        return cell
     }
 }

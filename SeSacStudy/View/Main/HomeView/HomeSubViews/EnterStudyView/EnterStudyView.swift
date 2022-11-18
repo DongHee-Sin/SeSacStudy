@@ -19,6 +19,8 @@ final class EnterStudyView: BaseView {
         $0.collectionView.tag = 1
     }
     
+    let button = BasicButton(status: .fill)
+    
     
     
     
@@ -33,11 +35,11 @@ final class EnterStudyView: BaseView {
     
     override func setConstraint() {
         surroundingList.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview().inset(16)
+            make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(16)
         }
         
         myWishList.snp.makeConstraints { make in
-            make.top.equalTo(surroundingList.snp.bottom).offset(28)
+            make.top.equalTo(surroundingList.snp.bottom).offset(16)
             make.horizontalEdges.equalToSuperview().inset(16)
         }
     }

@@ -10,6 +10,11 @@ import UIKit
 
 class BaseCollectionViewCell: UICollectionViewCell {
     
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

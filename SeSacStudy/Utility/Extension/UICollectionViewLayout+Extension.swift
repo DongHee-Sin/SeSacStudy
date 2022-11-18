@@ -22,31 +22,34 @@ extension UICollectionViewLayout {
         
         return layout
     }
+}
+
+
+
+
+final class StudyListLayout: UICollectionViewFlowLayout {
+    let cellSpacing: CGFloat = 8
     
-    
-    
-    
-    // MARK: - Study List
-    static var studyListLayout: UICollectionViewLayout {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        let attributes = super.layoutAttributesForElements(in: rect)
         
-        let layout = UICollectionViewCompositionalLayout {
-            (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+        var leftMargin = sectionInset.left
+        var maxY: CGFloat = -1.0
+        attributes?.forEach { layoutAttribute in
+            guard layoutAttribute.representedElementCategory == .cell else {
+                return
+            }
             
-            let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(1), heightDimension: .estimated(1))
+            if layoutAttribute.frame.origin.y >= maxY {
+                leftMargin = sectionInset.left
+            }
             
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            layoutAttribute.frame.origin.x = leftMargin
             
-            item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
-            
-            let groubSize = NSCollectionLayoutSize(widthDimension: .estimated(1), heightDimension: .estimated(1))
-            
-            let groub = NSCollectionLayoutGroup.horizontal(layoutSize: groubSize, subitem: item, count: 1)
-            
-            let section = NSCollectionLayoutSection(group: groub)
-            
-            return section
+            leftMargin += layoutAttribute.frame.width + minimumInteritemSpacing
+            maxY = max(layoutAttribute.frame.maxY , maxY)
         }
         
-        return layout
+        return attributes
     }
 }
