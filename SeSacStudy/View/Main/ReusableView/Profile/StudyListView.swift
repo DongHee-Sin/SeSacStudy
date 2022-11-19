@@ -47,7 +47,6 @@ final class StudyListView: BaseView {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(label.snp.bottom).offset(16)
             make.bottom.leading.trailing.equalTo(self).inset(16)
-            make.height.equalTo(300)
         }
     }
 }

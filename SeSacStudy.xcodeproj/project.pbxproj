@@ -87,6 +87,7 @@
 		D0C99792291BFAC1006C41B4 /* EnterNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C99791291BFAC1006C41B4 /* EnterNicknameViewController.swift */; };
 		D0C9979A291C0CBC006C41B4 /* EnterBirthDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C99799291C0CBC006C41B4 /* EnterBirthDayViewController.swift */; };
 		D0C9979C291C0CD1006C41B4 /* EnterBirthDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9979B291C0CD1006C41B4 /* EnterBirthDayView.swift */; };
+		D0CE6A9229291B6E00F43FE1 /* StudyListCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CE6A9129291B6E00F43FE1 /* StudyListCollectionViewHeader.swift */; };
 		D0D2D3A7291E273D007FA615 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D2D3A6291E273D007FA615 /* HomeViewController.swift */; };
 		D0D2D3A9291E27EA007FA615 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D2D3A8291E27EA007FA615 /* MainTabBarController.swift */; };
 		D0D2D3AC291E35F8007FA615 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D2D3AB291E35F8007FA615 /* LaunchScreenViewController.swift */; };
@@ -190,6 +191,7 @@
 		D0C99791291BFAC1006C41B4 /* EnterNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNicknameViewController.swift; sourceTree = "<group>"; };
 		D0C99799291C0CBC006C41B4 /* EnterBirthDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterBirthDayViewController.swift; sourceTree = "<group>"; };
 		D0C9979B291C0CD1006C41B4 /* EnterBirthDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterBirthDayView.swift; sourceTree = "<group>"; };
+		D0CE6A9129291B6E00F43FE1 /* StudyListCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListCollectionViewHeader.swift; sourceTree = "<group>"; };
 		D0D2D3A6291E273D007FA615 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D0D2D3A8291E27EA007FA615 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D0D2D3AB291E35F8007FA615 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 			children = (
 				D057EC5229267E8300B3A7B1 /* EnterStudyViewController.swift */,
 				D057EC5429267EAD00B3A7B1 /* EnterStudyView.swift */,
+				D0CE6A9029291B2E00F43FE1 /* Cell */,
 			);
 			path = EnterStudyView;
 			sourceTree = "<group>";
@@ -493,7 +496,6 @@
 				D0672BBF29229E8A00234FE8 /* ProfileNicknameView.swift */,
 				D0800A3429226D3C006EF576 /* SeSacTitleStackView.swift */,
 				D01D387F29237BE600D7F577 /* StudyListView.swift */,
-				D046CC1A29268AB000C59AD8 /* StudyListCollectionViewCell.swift */,
 				D0800A36292288F8006EF576 /* SeSacReviewView.swift */,
 			);
 			path = Profile;
@@ -575,6 +577,15 @@
 				D0D8EF5C291CF17100F9BC22 /* EnterGenderView.swift */,
 			);
 			path = Gender;
+			sourceTree = "<group>";
+		};
+		D0CE6A9029291B2E00F43FE1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D0CE6A9129291B6E00F43FE1 /* StudyListCollectionViewHeader.swift */,
+				D046CC1A29268AB000C59AD8 /* StudyListCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		D0D2D3A4291E2712007FA615 /* Main */ = {
@@ -871,6 +882,7 @@
 				D0FE194E291B6B6500A05179 /* VerifyAuthNumberViewModel.swift in Sources */,
 				D0ADF4C62921FB7800C5027D /* SettingView.swift in Sources */,
 				D0D8EF5D291CF17100F9BC22 /* EnterGenderView.swift in Sources */,
+				D0CE6A9229291B6E00F43FE1 /* StudyListCollectionViewHeader.swift in Sources */,
 				D0DEEFFB291A65B700BE125E /* EnterPhoneNumberViewModel.swift in Sources */,
 				D01D388D2923887C00D7F577 /* WithdrawalView.swift in Sources */,
 				D0ADF4C32921FB3F00C5027D /* SettingViewController.swift in Sources */,

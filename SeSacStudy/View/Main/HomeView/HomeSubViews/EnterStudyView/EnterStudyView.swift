@@ -11,36 +11,54 @@ import UIKit
 final class EnterStudyView: BaseView {
     
     // MARK: - Propertys
-    let surroundingList = StudyListView(title: "지금 주변에는").then {
-        $0.collectionView.tag = 0
+    let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: StudyListLayout())
+    
+    let button = BasicButton(status: .fill).then {
+        $0.setTitle("새싹 찾기", for: .normal)
+        $0.titleLabel?.font = .customFont(.body3_R14)
     }
     
-    let myWishList = StudyListView(title: "내가 하고 싶은").then {
-        $0.collectionView.tag = 1
+    let keyboardButton = UIButton().then {
+        $0.isHidden = true
+        $0.setTitle("새싹 찾기", for: .normal)
+        $0.titleLabel?.textColor = R.color.white()
+        $0.backgroundColor = R.color.green()
     }
-    
-    let button = BasicButton(status: .fill)
     
     
     
     
     
     // MARK: - Methods
-    override func configureUI() {
-        [surroundingList, myWishList].forEach {
+    override func configureUI() {        
+        [collectionView, button, keyboardButton].forEach {
             self.addSubview($0)
         }
     }
     
     
     override func setConstraint() {
-        surroundingList.snp.makeConstraints { make in
+        collectionView.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(16)
+            make.bottom.equalTo(button.snp.top).offset(-16)
         }
         
-        myWishList.snp.makeConstraints { make in
-            make.top.equalTo(surroundingList.snp.bottom).offset(16)
-            make.horizontalEdges.equalToSuperview().inset(16)
+        button.snp.makeConstraints { make in
+            make.height.equalTo(48)
+            make.bottom.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(16)
+        }
+        
+        keyboardButton.snp.makeConstraints { make in
+            make.height.equalTo(48)
+            make.horizontalEdges.equalToSuperview()
+        }
+    }
+    
+    
+    func keyboardButtonToggle(_ value: Bool, keyboardHeight: CGFloat) {
+        keyboardButton.isHidden = !value
+        keyboardButton.snp.makeConstraints { make in
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-keyboardHeight)
         }
     }
 }

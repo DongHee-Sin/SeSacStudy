@@ -32,6 +32,9 @@ final class EnterStudyViewController: BaseViewController {
     override func configure() {
         setInitialUI()
         setCollectionView()
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     
@@ -45,17 +48,32 @@ final class EnterStudyViewController: BaseViewController {
     }
     
     
-    private func setCollectionView() {
-        [customView.surroundingList.collectionView, customView.myWishList.collectionView].forEach {
-            $0.delegate = self
-            $0.dataSource = self
-            $0.register(StudyListCollectionViewCell.self, forCellWithReuseIdentifier: StudyListCollectionViewCell.identifier)
-            
-            if let flowLayout = $0.collectionViewLayout as? UICollectionViewFlowLayout {
-                flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-            }
+    private func setCollectionView() {        
+        customView.collectionView.delegate = self
+        customView.collectionView.dataSource = self
+        customView.collectionView.register(StudyListCollectionViewCell.self, forCellWithReuseIdentifier: StudyListCollectionViewCell.identifier)
+        customView.collectionView.register(StudyListCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StudyListCollectionViewHeader.identifier)
+        
+        if let flowLayout = customView.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
+        
     }
+    
+    
+//    func keyboardWillShow(_ notification:NSNotification) {
+//        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+//            let keyboardRectangle = keyboardFrame.cgRectValue
+//            let keyboardHeight = keyboardRectangle.height
+//            print("keyboardHeight = \(keyboardHeight)")
+//        }
+//        // 원하는 로직...
+//    }
+//
+//
+//    func keyboardWillHide(_ notification:NSNotification) {
+//        // 원하는 로직...
+//    }
 }
 
 
@@ -64,8 +82,20 @@ final class EnterStudyViewController: BaseViewController {
 // MARK: - CollectionView Protocol
 extension EnterStudyViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StudyListCollectionViewHeader.identifier, for: indexPath)
+            return header
+        default:
+            return UICollectionReusableView()
+        }
+    }
+    
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     
