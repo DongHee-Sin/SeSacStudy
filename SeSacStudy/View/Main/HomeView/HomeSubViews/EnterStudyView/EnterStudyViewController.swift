@@ -48,16 +48,16 @@ final class EnterStudyViewController: BaseViewController {
     }
     
     
-    private func setCollectionView() {        
-        customView.collectionView.delegate = self
-        customView.collectionView.dataSource = self
-        customView.collectionView.register(StudyListCollectionViewCell.self, forCellWithReuseIdentifier: StudyListCollectionViewCell.identifier)
-        customView.collectionView.register(StudyListCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StudyListCollectionViewHeader.identifier)
-        
-        if let flowLayout = customView.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+    private func setCollectionView() {
+        [customView.surroundingList.collectionView, customView.myWishList.collectionView].forEach {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(StudyListCollectionViewCell.self, forCellWithReuseIdentifier: StudyListCollectionViewCell.identifier)
+            
+            if let flowLayout = $0.collectionViewLayout as? UICollectionViewFlowLayout {
+                flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+            }
         }
-        
     }
     
     
@@ -80,22 +80,10 @@ final class EnterStudyViewController: BaseViewController {
 
 
 // MARK: - CollectionView Protocol
-extension EnterStudyViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StudyListCollectionViewHeader.identifier, for: indexPath)
-            return header
-        default:
-            return UICollectionReusableView()
-        }
-    }
-    
+extension EnterStudyViewController: UICollectionViewDelegate, UICollectionViewDataSource {    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 1
     }
     
     

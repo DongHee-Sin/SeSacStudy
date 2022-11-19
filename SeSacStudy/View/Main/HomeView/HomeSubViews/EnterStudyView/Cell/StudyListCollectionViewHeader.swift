@@ -16,8 +16,8 @@ final class StudyListCollectionViewHeader: UICollectionReusableView {
     }
     
     private let label = UILabel().then {
+        $0.backgroundColor = .red
         $0.textColor = R.color.black()
-        $0.font = .customFont(.title6_R12)
     }
     
     
@@ -26,6 +26,8 @@ final class StudyListCollectionViewHeader: UICollectionReusableView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        configureUI()
     }
     
     required init?(coder: NSCoder) {

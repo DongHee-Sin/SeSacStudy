@@ -16,7 +16,7 @@ final class StudyListView: BaseView {
         $0.font = .customFont(.title6_R12)
     }
     
-    let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: StudyListLayout())
+    let collectionView = DynamicCollectionView(frame: CGRect(), collectionViewLayout: StudyListLayout())
     
     
     

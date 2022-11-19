@@ -11,7 +11,22 @@ import UIKit
 final class EnterStudyView: BaseView {
     
     // MARK: - Propertys
-    let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: StudyListLayout())
+    private let scrollView = UIScrollView().then {
+        $0.showsVerticalScrollIndicator = false
+    }
+    
+    private let stackView = UIStackView().then {
+        $0.axis = .vertical
+    }
+    
+    let surroundingList = StudyListView(title: "지금 주변에는").then {
+        $0.collectionView.tag = 0
+    }
+    
+    let myWishList = StudyListView(title: "내가 하고 싶은").then {
+        $0.collectionView.tag = 1
+    }
+    
     
     let button = BasicButton(status: .fill).then {
         $0.setTitle("새싹 찾기", for: .normal)
@@ -30,17 +45,25 @@ final class EnterStudyView: BaseView {
     
     
     // MARK: - Methods
-    override func configureUI() {        
-        [collectionView, button, keyboardButton].forEach {
+    override func configureUI() {
+        [surroundingList, myWishList].forEach {
+            stackView.addArrangedSubview($0)
+        }
+        
+        [scrollView, stackView, button, keyboardButton].forEach {
             self.addSubview($0)
         }
     }
     
     
     override func setConstraint() {
-        collectionView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(16)
-            make.bottom.equalTo(button.snp.top).offset(-16)
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(self.safeAreaLayoutGuide)
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView.contentLayoutGuide)
+            make.width.equalTo(scrollView.snp.width)
         }
         
         button.snp.makeConstraints { make in
