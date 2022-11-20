@@ -46,7 +46,7 @@ final class LaunchScreenViewController: UIViewController {
             switch statusCode {
             case 200:
                 if let result {
-                    UserInfoManager.shared.updateInfo(info: result)
+                    DataStorage.shared.updateInfo(info: result)
                     dump(result)
                 }
                 self?.changeRootViewController(to: MainTabBarController())

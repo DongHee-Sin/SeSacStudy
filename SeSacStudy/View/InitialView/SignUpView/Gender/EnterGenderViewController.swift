@@ -132,7 +132,7 @@ final class EnterGenderViewController: BaseViewController {
             switch statusCode {
             case 200:
                 if let result {
-                    UserInfoManager.shared.updateInfo(info: result)
+                    DataStorage.shared.updateInfo(info: result)
                 }
                 self?.changeRootViewController(to: MainTabBarController())
                 

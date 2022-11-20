@@ -17,7 +17,7 @@ final class ProfileViewController: BaseViewController {
     // MARK: - Propertys
     private let viewModel = ProfileViewModel()
     
-    private var login = UserInfoManager.shared.login! {
+    private var login = DataStorage.shared.login! {
         didSet {
             print("\(login.gender), \(login.study), \(login.searchable), \(login.ageMin), \(login.ageMax)")
         }
@@ -159,7 +159,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 return UIView()
             }
             
-            header.customImageView.setImageView(img: UserInfoManager.shared.sesacImage)
+            header.customImageView.setImageView(img: DataStorage.shared.sesacImage)
             
             return header
             

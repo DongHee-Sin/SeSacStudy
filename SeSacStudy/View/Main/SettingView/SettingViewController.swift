@@ -18,7 +18,7 @@ final class SettingViewController: BaseViewController {
     
     // MARK: - Propertys
     private let settingDatas: [[SettingViewData]] = [
-        [SettingViewData(title: UserInfoManager.shared.login.nick, image: R.image.sesac_face_11())],
+        [SettingViewData(title: DataStorage.shared.login.nick, image: R.image.sesac_face_11())],
         [
             SettingViewData(title: "공지사항", image: R.image.notice()),
             SettingViewData(title: "자주 묻는 질문", image: R.image.faq()),
@@ -63,7 +63,7 @@ final class SettingViewController: BaseViewController {
             switch statusCode {
             case 200:
                 if let result {
-                    UserInfoManager.shared.updateInfo(info: result)
+                    DataStorage.shared.updateInfo(info: result)
                 }
                 self?.transition(ProfileViewController(), transitionStyle: .push)
                 

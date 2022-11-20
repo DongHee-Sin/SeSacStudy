@@ -28,6 +28,20 @@ extension UICollectionViewLayout {
 
 
 final class StudyListLayout: UICollectionViewFlowLayout {
+    
+    // MARK: - Init
+    override init() {
+        super.init()
+        
+        self.sectionInset = UIEdgeInsets(top: 8, left: .zero, bottom: .zero, right: .zero)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
+    
+    
     let cellSpacing: CGFloat = 8
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {

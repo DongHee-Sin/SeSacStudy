@@ -15,6 +15,7 @@ import RxKeyboard
 final class EnterStudyViewController: BaseViewController {
     
     // MARK: - Propertys
+    private let viewModel = EnterStudyViewModel()
     
     
     
@@ -88,12 +89,20 @@ extension EnterStudyViewController {
 extension EnterStudyViewController: UICollectionViewDelegate, UICollectionViewDataSource {    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        if collectionView.tag == 0 {
+            return 2
+        }else {
+            return 1
+        }
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if collectionView.tag == 0 {
+            return section == 0 ? viewModel.recommendList.count : viewModel.userStudyList.count
+        }else {
+            return viewModel.myWishStudyList.value.count
+        }
     }
     
     
@@ -102,7 +111,11 @@ extension EnterStudyViewController: UICollectionViewDelegate, UICollectionViewDa
             return UICollectionViewCell()
         }
         
-        cell.updateCell(title: "아무거나", style: .normal)
+        if collectionView.tag == 0 {
+            cell.updateCell(title: indexPath.section == 0 ? viewModel.recommendList[indexPath.row] : viewModel.userStudyList[indexPath.row], style: indexPath.section == 0 ? .recommend : .normal)
+        }else {
+            cell.updateCell(title: viewModel.myWishStudyList.value[indexPath.row], style: .userAdded)
+        }
         
         return cell
     }

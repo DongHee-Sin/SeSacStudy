@@ -178,6 +178,8 @@ extension HomeViewController {
                     result.fromQueueDB.forEach {
                         self?.addCustomPin(imageNum: $0.sesac, location: CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.long))
                     }
+                    
+                    DataStorage.shared.updateSearchResult(info: result)
                 }
             case 401:
                 FirebaseAuthManager.share.fetchIDToken { result in

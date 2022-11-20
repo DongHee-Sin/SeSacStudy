@@ -68,7 +68,7 @@ final class StudyListCollectionViewCell: BaseCollectionViewCell {
     
     
     func updateCell(title: String, style: StudyListCellStyle, image: UIImage? = nil) {
-        button.setTitle("  \(title)  ", for: .normal)
+        button.setTitle("   \(title)   ", for: .normal)
         setButtonStyle(style: style)
         
         if let image {
