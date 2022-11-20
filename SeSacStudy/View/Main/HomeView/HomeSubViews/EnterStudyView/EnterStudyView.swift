@@ -33,13 +33,6 @@ final class EnterStudyView: BaseView {
         $0.titleLabel?.font = .customFont(.body3_R14)
     }
     
-    let keyboardButton = UIButton().then {
-        $0.isHidden = true
-        $0.setTitle("새싹 찾기", for: .normal)
-        $0.titleLabel?.textColor = R.color.white()
-        $0.backgroundColor = R.color.green()
-    }
-    
     
     
     
@@ -50,7 +43,7 @@ final class EnterStudyView: BaseView {
             stackView.addArrangedSubview($0)
         }
         
-        [scrollView, stackView, button, keyboardButton].forEach {
+        [scrollView, stackView, button].forEach {
             self.addSubview($0)
         }
     }
@@ -68,20 +61,18 @@ final class EnterStudyView: BaseView {
         
         button.snp.makeConstraints { make in
             make.height.equalTo(48)
-            make.bottom.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(16)
-        }
-        
-        keyboardButton.snp.makeConstraints { make in
-            make.height.equalTo(48)
-            make.horizontalEdges.equalToSuperview()
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(16)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-16)
         }
     }
     
     
-    func keyboardButtonToggle(_ value: Bool, keyboardHeight: CGFloat) {
-        keyboardButton.isHidden = !value
-        keyboardButton.snp.makeConstraints { make in
-            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-keyboardHeight)
+    func updateButtonLayout(height: CGFloat) {
+        
+        button.snp.updateConstraints { make in
+            make.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(height > 0 ? 0 : 16)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(height > 0 ? -height + self.safeAreaInsets.bottom : -16)
         }
+        button.layer.cornerRadius = height > 0 ? 0 : 8
     }
 }

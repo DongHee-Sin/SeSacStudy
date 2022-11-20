@@ -7,6 +7,10 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+import RxKeyboard
+
 
 final class EnterStudyViewController: BaseViewController {
     
@@ -33,8 +37,7 @@ final class EnterStudyViewController: BaseViewController {
         setInitialUI()
         setCollectionView()
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        keyboardBind()
     }
     
     
@@ -59,21 +62,23 @@ final class EnterStudyViewController: BaseViewController {
             }
         }
     }
+}
+
+
+
+
+// MARK: - Keyboard 대응
+extension EnterStudyViewController {
     
-    
-//    func keyboardWillShow(_ notification:NSNotification) {
-//        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-//            let keyboardRectangle = keyboardFrame.cgRectValue
-//            let keyboardHeight = keyboardRectangle.height
-//            print("keyboardHeight = \(keyboardHeight)")
-//        }
-//        // 원하는 로직...
-//    }
-//
-//
-//    func keyboardWillHide(_ notification:NSNotification) {
-//        // 원하는 로직...
-//    }
+    private func keyboardBind() {
+        RxKeyboard.instance.visibleHeight
+            .drive(onNext: { [weak self] height in
+                guard let self else { return }
+                self.customView.updateButtonLayout(height: height)
+                self.customView.layoutIfNeeded()
+            })
+            .disposed(by: disposeBag)
+    }
 }
 
 
