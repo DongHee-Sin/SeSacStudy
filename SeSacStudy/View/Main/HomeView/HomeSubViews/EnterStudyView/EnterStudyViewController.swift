@@ -82,6 +82,14 @@ final class EnterStudyViewController: BaseViewController {
                 vc.customView.myWishList.collectionView.reloadData()
             }
             .disposed(by: disposeBag)
+        
+        
+        customView.button.rx.tap
+            .withUnretained(self)
+            .bind { (vc, _) in
+                vc.requestSearchUser()
+            }
+            .disposed(by: disposeBag)
     }
     
     
@@ -128,6 +136,15 @@ final class EnterStudyViewController: BaseViewController {
             default:
                 print("Default")
             }
+        }
+    }
+    
+    
+    private func requestSearchUser() {
+        
+        guard let location else { return }
+        APIService.share.request(router: .requestSearch(location: location, list: viewModel.myWishStudyList.value)) { _, statusCode in
+            print(statusCode)
         }
     }
 }

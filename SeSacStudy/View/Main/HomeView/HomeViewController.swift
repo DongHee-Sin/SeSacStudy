@@ -100,7 +100,7 @@ final class HomeViewController: BaseViewController {
                 /// 해당 프로퍼티를 기준으로 floating button 이벤트에 대한 분기처리 수행...
                 let enterStudyVC = EnterStudyViewController()
                 enterStudyVC.location = vc.viewModel.location.value
-                vc.transition(EnterStudyViewController(), transitionStyle: .push)
+                vc.transition(enterStudyVC, transitionStyle: .push)
             }
             .disposed(by: disposeBag)
     }
