@@ -11,12 +11,19 @@ import RxSwift
 import RxCocoa
 
 
+enum StudyEnterStatus {
+    case success
+    case exceedLimit
+    case duplicateStudy
+}
+
+
 final class EnterStudyViewModel {
     
     // MARK: - Propertys
-    let recommendList = DataStorage.shared.SearchResult.fromRecommend
+    var recommendList: [String] = []
     
-    let userStudyList = DataStorage.shared.userStudyList
+    var userStudyList: [String] = []
     
     let myWishStudyList = BehaviorRelay<[String]>(value: [])
     
@@ -24,15 +31,30 @@ final class EnterStudyViewModel {
     
     
     // MARK: - Methods
-    func studyEnterValidation(count: Int) -> Bool {
+    private func enterStudyValidation(count: Int) -> Bool {
         return (myWishStudyList.value.count + count) <= 8
     }
     
     
-    func appendWishStudyList(list: [String]) {
+    private func checkDuplicate(list: [String]) -> Bool {
+        return Set(list).count == list.count
+    }
+    
+    
+    func appendWishStudyList(list: [String]) -> StudyEnterStatus {
+        guard enterStudyValidation(count: list.count) else {
+            return .exceedLimit
+        }
+        
         var newValue = myWishStudyList.value
         newValue.append(contentsOf: list)
+        
+        guard checkDuplicate(list: newValue) else {
+            return .duplicateStudy
+        }
+        
         myWishStudyList.accept(newValue)
+        return .success
     }
     
     

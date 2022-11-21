@@ -35,11 +35,12 @@ final class StudyListCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Propertys
     private let button = UIButton().then {
+        $0.contentEdgeInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
         $0.isEnabled = false
         $0.titleLabel?.font = .customFont(.title4_R14)
         $0.layer.borderWidth = 1
         $0.layer.cornerRadius = 8
-//        $0.semanticContentAttribute = .forceRightToLeft
+        $0.semanticContentAttribute = .forceRightToLeft
 //        $0.contentVerticalAlignment = .center
 //        $0.contentHorizontalAlignment = .center
     }
@@ -68,11 +69,13 @@ final class StudyListCollectionViewCell: BaseCollectionViewCell {
     
     
     func updateCell(title: String, style: StudyListCellStyle, image: UIImage? = nil) {
-        button.setTitle("   \(title)   ", for: .normal)
+        button.setTitle(title, for: .normal)
         setButtonStyle(style: style)
         
         if let image {
             button.setImage(image, for: .normal)
+            button.tintColor = R.color.green()
+            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 0)
         }
     }
 }

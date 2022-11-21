@@ -98,6 +98,8 @@ final class HomeViewController: BaseViewController {
                 /// 지금 생각한 방법..
                 /// status 변경에 대한 바인딩을 할 때, 따로 프로퍼티 하나를 더 유지
                 /// 해당 프로퍼티를 기준으로 floating button 이벤트에 대한 분기처리 수행...
+                let enterStudyVC = EnterStudyViewController()
+                enterStudyVC.location = vc.viewModel.location.value
                 vc.transition(EnterStudyViewController(), transitionStyle: .push)
             }
             .disposed(by: disposeBag)
@@ -277,7 +279,7 @@ extension HomeViewController {
             locationManager.requestWhenInUseAuthorization()
                 
         case .denied, .restricted:
-            customView.mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
+            customView.mapView.setRegion(MKCoordinateRegion(center: viewModel.sesacLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
             
             showRequestLocationServiceAlert()
             

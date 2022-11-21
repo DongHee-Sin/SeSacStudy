@@ -7,6 +7,7 @@
 
 import UIKit
 
+import CoreLocation
 import RxSwift
 import RxCocoa
 import RxKeyboard
@@ -16,6 +17,8 @@ final class EnterStudyViewController: BaseViewController {
     
     // MARK: - Propertys
     private let viewModel = EnterStudyViewModel()
+    
+    var location: CLLocationCoordinate2D?
     
     
     
@@ -40,6 +43,10 @@ final class EnterStudyViewController: BaseViewController {
         
         keyboardBind()
         bind()
+        
+        if let location {
+            requestSearchSurrounding(location: location)
+        }
     }
     
     
@@ -79,10 +86,48 @@ final class EnterStudyViewController: BaseViewController {
     
     
     private func appendWishStudyList(list: [String]) {
-        if viewModel.studyEnterValidation(count: list.count) {
-            viewModel.appendWishStudyList(list: list)
-        }else {
-            showToast(message: "스터디를 더 이상 추가할 수 없습니다")
+        switch viewModel.appendWishStudyList(list: list) {
+        case .success: break
+        case .exceedLimit: showToast(message: "스터디를 더 이상 추가할 수 없습니다")
+        case .duplicateStudy: showToast(message: "이미 등록된 스터디입니다")
+        }
+    }
+    
+    
+    private func requestSearchSurrounding(location: CLLocationCoordinate2D) {
+        
+        APIService.share.request(type: QueueSearchResult.self, router: .queueSearch(location: location)) { [weak self] result, _, statusCode in
+            switch statusCode {
+            case 200:
+                if let result {
+                    var userStudyList: [String] = []
+                    result.fromQueueDB.forEach { userStudyList.append(contentsOf: $0.studylist) }
+                    result.fromQueueDBRequested.forEach { userStudyList.append(contentsOf: $0.studylist) }
+                    self?.viewModel.userStudyList = userStudyList
+                    self?.viewModel.recommendList = result.fromRecommend
+
+                    self?.customView.surroundingList.collectionView.reloadData()
+                }
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.requestSearchSurrounding(location: location)
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500:
+                print("Server Error")
+            case 501:
+                print("Client Error")
+            default:
+                print("Default")
+            }
         }
     }
 }
@@ -136,7 +181,7 @@ extension EnterStudyViewController: UICollectionViewDelegate, UICollectionViewDa
         if collectionView.tag == 0 {
             cell.updateCell(title: indexPath.section == 0 ? viewModel.recommendList[indexPath.row] : viewModel.userStudyList[indexPath.row], style: indexPath.section == 0 ? .recommend : .normal)
         }else {
-            cell.updateCell(title: viewModel.myWishStudyList.value[indexPath.row], style: .userAdded)
+            cell.updateCell(title: viewModel.myWishStudyList.value[indexPath.row], style: .userAdded, image: UIImage(systemName: "xmark"))
         }
         
         return cell

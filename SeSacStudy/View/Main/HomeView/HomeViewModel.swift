@@ -24,5 +24,7 @@ final class HomeViewModel {
     // MARK: - Propertys
     let matchStatus = PublishRelay<MatchStatus>()
     
-    let location = PublishRelay<CLLocationCoordinate2D>()
+    lazy var location = BehaviorRelay<CLLocationCoordinate2D>(value: sesacLocation)
+    
+    let sesacLocation = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
 }
