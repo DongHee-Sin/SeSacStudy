@@ -39,6 +39,7 @@ final class EnterStudyViewController: BaseViewController {
         setCollectionView()
         
         keyboardBind()
+        bind()
     }
     
     
@@ -48,6 +49,8 @@ final class EnterStudyViewController: BaseViewController {
         
         let searchBar = UISearchBar()
         searchBar.placeholder = "띄어쓰기로 복수 입력이 가능해요"
+        searchBar.delegate = self
+        
         navigationItem.titleView = searchBar
     }
     
@@ -62,6 +65,16 @@ final class EnterStudyViewController: BaseViewController {
                 flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
             }
         }
+    }
+    
+    
+    private func bind() {
+        viewModel.myWishStudyList
+            .withUnretained(self)
+            .bind { (vc, _) in
+                vc.customView.myWishList.collectionView.reloadData()
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -118,5 +131,22 @@ extension EnterStudyViewController: UICollectionViewDelegate, UICollectionViewDa
         }
         
         return cell
+    }
+}
+
+
+
+
+// MARK: - SearchBar Delegate
+extension EnterStudyViewController: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let list = searchBar.text?.components(separatedBy: " ") ?? []
+        
+        if viewModel.studyEnterValidation(count: list.count) {
+            viewModel.appendWishStudyList(list: list)
+        }else {
+            showToast(message: "스터디를 더 이상 추가할 수 없습니다")
+        }
     }
 }
