@@ -25,13 +25,20 @@ final class EnterStudyViewModel {
     
     // MARK: - Methods
     func studyEnterValidation(count: Int) -> Bool {
-        return (myWishStudyList.value.count - count) <= 8
+        return (myWishStudyList.value.count + count) <= 8
     }
     
     
     func appendWishStudyList(list: [String]) {
         var newValue = myWishStudyList.value
         newValue.append(contentsOf: list)
+        myWishStudyList.accept(newValue)
+    }
+    
+    
+    func removeWishStudyList(at index: Int) {
+        var newValue = myWishStudyList.value
+        newValue.remove(at: index)
         myWishStudyList.accept(newValue)
     }
 }

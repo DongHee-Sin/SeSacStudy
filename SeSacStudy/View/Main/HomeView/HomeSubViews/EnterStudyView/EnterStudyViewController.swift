@@ -76,6 +76,15 @@ final class EnterStudyViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
+    
+    
+    private func appendWishStudyList(list: [String]) {
+        if viewModel.studyEnterValidation(count: list.count) {
+            viewModel.appendWishStudyList(list: list)
+        }else {
+            showToast(message: "스터디를 더 이상 추가할 수 없습니다")
+        }
+    }
 }
 
 
@@ -132,6 +141,19 @@ extension EnterStudyViewController: UICollectionViewDelegate, UICollectionViewDa
         
         return cell
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let row = indexPath.row
+        
+        if collectionView.tag == 0 {
+            let selectedStudy = indexPath.section == 0 ? viewModel.recommendList[row] : viewModel.userStudyList[row]
+            appendWishStudyList(list: [selectedStudy])
+            
+        }else {
+            viewModel.removeWishStudyList(at: row)
+        }
+    }
 }
 
 
@@ -143,10 +165,6 @@ extension EnterStudyViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let list = searchBar.text?.components(separatedBy: " ") ?? []
         
-        if viewModel.studyEnterValidation(count: list.count) {
-            viewModel.appendWishStudyList(list: list)
-        }else {
-            showToast(message: "스터디를 더 이상 추가할 수 없습니다")
-        }
+        appendWishStudyList(list: list)
     }
 }
