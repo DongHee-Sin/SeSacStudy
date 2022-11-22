@@ -22,7 +22,7 @@ enum MatchStatus {
 final class HomeViewModel {
     
     // MARK: - Propertys
-    let matchStatus = PublishRelay<MatchStatus>()
+    let matchStatus = BehaviorRelay<MatchStatus>(value: .normal)
     
     lazy var location = BehaviorRelay<CLLocationCoordinate2D>(value: sesacLocation)
     

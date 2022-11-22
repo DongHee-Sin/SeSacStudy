@@ -94,13 +94,15 @@ final class HomeViewController: BaseViewController {
         customView.floatingButton.rx.tap
             .withUnretained(self)
             .bind { (vc, _) in
-                print("button tap")
-                /// 지금 생각한 방법..
-                /// status 변경에 대한 바인딩을 할 때, 따로 프로퍼티 하나를 더 유지
-                /// 해당 프로퍼티를 기준으로 floating button 이벤트에 대한 분기처리 수행...
-                let enterStudyVC = EnterStudyViewController()
-                enterStudyVC.location = vc.viewModel.location.value
-                vc.transition(enterStudyVC, transitionStyle: .push)
+                switch vc.viewModel.matchStatus.value {
+                case .normal:
+                    let enterStudyVC = EnterStudyViewController()
+                    enterStudyVC.location = vc.viewModel.location.value
+                    vc.transition(enterStudyVC, transitionStyle: .push)
+                case .waitingMatch:
+                    vc.transition(FindingSeSacTabmanViewController(), transitionStyle: .push)
+                case .matched: break
+                }
             }
             .disposed(by: disposeBag)
     }

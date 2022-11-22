@@ -144,10 +144,8 @@ final class EnterStudyViewController: BaseViewController {
         
         guard let location else { return }
         APIService.share.request(router: .requestSearch(location: location, list: viewModel.myWishStudyList.value)) { [weak self] _, statusCode in
-            print(statusCode)
-            
             switch statusCode {
-            case 200: print("새싹찾기 성공")
+            case 200: print("새싹찾기 성공"); self?.transition(FindingSeSacTabmanViewController(), transitionStyle: .push)
             case 201: print("신고 누적되어 이용불가")
             case 203: print("스터디 취소 패널티 1단계")
             case 204: print("스터디 취소 패널티 2단계")
