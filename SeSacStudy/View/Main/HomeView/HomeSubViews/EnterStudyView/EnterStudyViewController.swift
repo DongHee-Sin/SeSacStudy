@@ -143,8 +143,21 @@ final class EnterStudyViewController: BaseViewController {
     private func requestSearchUser() {
         
         guard let location else { return }
-        APIService.share.request(router: .requestSearch(location: location, list: viewModel.myWishStudyList.value)) { _, statusCode in
+        APIService.share.request(router: .requestSearch(location: location, list: viewModel.myWishStudyList.value)) { [weak self] _, statusCode in
             print(statusCode)
+            
+            switch statusCode {
+            case 200: print("새싹찾기 성공")
+            case 201: print("신고 누적되어 이용불가")
+            case 203: print("스터디 취소 패널티 1단계")
+            case 204: print("스터디 취소 패널티 2단계")
+            case 205: print("스터디 취소 패널티 3단계")
+            case 401: print("firebase token error")
+            case 406: print("미가입회원")
+            case 500: print("서버에러")
+            case 501: print("클라이언트에러")
+            default: break
+            }
         }
     }
 }

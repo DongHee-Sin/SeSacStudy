@@ -96,7 +96,7 @@ enum Router: URLRequestConvertible {
             return [
                 "lat": location.latitude,
                 "long": location.longitude,
-                "studylist": list
+                "studylist": "\(list)"
             ]
         }
     }

@@ -60,6 +60,7 @@
 		D0800A3B29229312006EF576 /* ProfileExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0800A3A29229312006EF576 /* ProfileExpandableTableViewCell.swift */; };
 		D082A9FF291EAC1A002A6D09 /* EnterEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D082A9FE291EAC1A002A6D09 /* EnterEmailViewModel.swift */; };
 		D082AA01291EB4F4002A6D09 /* EnterGenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D082AA00291EB4F4002A6D09 /* EnterGenderViewModel.swift */; };
+		D084C3A6292BF8CC000860EC /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = D084C3A5292BF8CC000860EC /* Tabman */; };
 		D084E23A291D2796005EFF11 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D084E239291D2796005EFF11 /* SignUp.swift */; };
 		D084E23D291D2D78005EFF11 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D084E23C291D2D78005EFF11 /* FirebaseAuth */; };
 		D084E23F291D2D78005EFF11 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = D084E23E291D2D78005EFF11 /* FirebaseMessaging */; };
@@ -231,6 +232,7 @@
 				D0100B5F2918CA7D00AEC5C2 /* RxSwift in Frameworks */,
 				D0100B692918CB0800AEC5C2 /* IQKeyboardManagerSwift in Frameworks */,
 				D0100B622918CA9100AEC5C2 /* Then in Frameworks */,
+				D084C3A6292BF8CC000860EC /* Tabman in Frameworks */,
 				D0100B6F2918CB3500AEC5C2 /* Alamofire in Frameworks */,
 				D0100B5D2918CA7D00AEC5C2 /* RxCocoa in Frameworks */,
 				D0100B6C2918CB1300AEC5C2 /* SnapKit in Frameworks */,
@@ -717,6 +719,7 @@
 				D084E23E291D2D78005EFF11 /* FirebaseMessaging */,
 				D0FAE4392923B89000CD2206 /* MultiSlider */,
 				D0E504312929C6D700AEDECE /* RxKeyboard */,
+				D084C3A5292BF8CC000860EC /* Tabman */,
 			);
 			productName = SeSacStudy;
 			productReference = D0100B422918C5CC00AEC5C2 /* SeSacStudy.app */;
@@ -755,6 +758,7 @@
 				D084E23B291D2D78005EFF11 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				D0FAE4382923B89000CD2206 /* XCRemoteSwiftPackageReference "MultiSlider" */,
 				D0E504302929C6D700AEDECE /* XCRemoteSwiftPackageReference "RxKeyboard" */,
+				D084C3A4292BF8CC000860EC /* XCRemoteSwiftPackageReference "Tabman" */,
 			);
 			productRefGroup = D0100B432918C5CC00AEC5C2 /* Products */;
 			projectDirPath = "";
@@ -1203,6 +1207,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		D084C3A4292BF8CC000860EC /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		D084E23B291D2D78005EFF11 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1259,6 +1271,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D0100B6D2918CB3500AEC5C2 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D084C3A5292BF8CC000860EC /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D084C3A4292BF8CC000860EC /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
 		};
 		D084E23C291D2D78005EFF11 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
