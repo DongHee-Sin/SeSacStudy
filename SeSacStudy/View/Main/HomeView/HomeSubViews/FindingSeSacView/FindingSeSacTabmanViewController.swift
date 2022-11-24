@@ -111,10 +111,12 @@ final class FindingSeSacTabmanViewController: TabmanViewController {
     
     
     @objc private func changeStudyButtonTapped() {
-        /// 1. 홈뷰에서 넘어온 경우
-        /// 스터디입력화면으로 push
-        /// 2. 스터디입력화면에서 넘어온 경우
-        /// 스터디입력화면으로 pop
+        guard let count = navigationController?.viewControllers.count else { return }
+        if count >= 3 {
+            navigationController?.popViewController(animated: true)
+        }else {
+            transition(EnterStudyViewController(), transitionStyle: .push)
+        }
     }
     
     
