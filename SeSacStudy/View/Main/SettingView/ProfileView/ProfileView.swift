@@ -28,7 +28,7 @@ final class ProfileView: BaseView {
     
     override func setConstraint() {
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.safeAreaLayoutGuide)//.inset(16)
+            make.edges.equalTo(self.safeAreaLayoutGuide)
         }
     }
 }

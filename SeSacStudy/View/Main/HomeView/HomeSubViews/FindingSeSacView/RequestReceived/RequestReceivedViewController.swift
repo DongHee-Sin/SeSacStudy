@@ -16,6 +16,11 @@ final class RequestReceivedViewController: BaseViewController {
     
     
     // MARK: - Life Cycle
+    private let customView = ProfileView()
+    override func loadView() {
+        view = customView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

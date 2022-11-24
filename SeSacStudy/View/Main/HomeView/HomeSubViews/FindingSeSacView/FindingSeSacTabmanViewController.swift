@@ -19,6 +19,15 @@ final class FindingSeSacTabmanViewController: TabmanViewController {
         RequestReceivedViewController()
     ]
     
+    private let changeStudyButton = BasicButton(status: .fill).then {
+        $0.titleLabel?.font = .customFont(.body3_R14)
+        $0.setTitle("스터디 변경하기", for: .normal)
+    }
+    
+    private let reloadButton = UIButton().then {
+        $0.setImage(R.image.bt_refresh(), for: .normal)
+    }
+    
     
     
     
@@ -28,6 +37,7 @@ final class FindingSeSacTabmanViewController: TabmanViewController {
         
         configureTabman()
         setInitialUI()
+        setFloatingButton()
         
         view.backgroundColor = R.color.white()
     }
@@ -43,7 +53,7 @@ final class FindingSeSacTabmanViewController: TabmanViewController {
         
         bar.layout.transitionStyle = .snap
         bar.layout.contentMode = .fit
-        bar.backgroundView.style = .clear  // .flat(color: R.color.white() ?? .clear)
+        bar.backgroundView.style = .clear
         
         
         bar.indicator.weight = .medium
@@ -76,6 +86,40 @@ final class FindingSeSacTabmanViewController: TabmanViewController {
         let stopFindingButton = UIBarButtonItem(title: "찾기중단", style: .plain, target: self, action: #selector(stopFindingButtonTapped))
         stopFindingButton.setTitleTextAttributes([ NSAttributedString.Key.font: UIFont.customFont(.title3_M14)], for: UIControl.State.normal)
         navigationItem.rightBarButtonItem = stopFindingButton
+    }
+    
+    
+    private func setFloatingButton() {
+        [changeStudyButton, reloadButton].forEach {
+            view.addSubview($0)
+        }
+        
+        changeStudyButton.snp.makeConstraints { make in
+            make.height.equalTo(48)
+            make.leading.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.trailing.equalTo(reloadButton.snp.leading).offset(-8)
+        }
+        
+        reloadButton.snp.makeConstraints { make in
+            make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.width.height.equalTo(48)
+        }
+        
+        changeStudyButton.addTarget(self, action: #selector(changeStudyButtonTapped), for: .touchUpInside)
+        reloadButton.addTarget(self, action: #selector(reloadButtonTapped), for: .touchUpInside)
+    }
+    
+    
+    @objc private func changeStudyButtonTapped() {
+        /// 1. 홈뷰에서 넘어온 경우
+        /// 스터디입력화면으로 push
+        /// 2. 스터디입력화면에서 넘어온 경우
+        /// 스터디입력화면으로 pop
+    }
+    
+    
+    @objc private func reloadButtonTapped() {
+        //
     }
     
     
