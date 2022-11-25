@@ -146,15 +146,12 @@ final class EnterStudyViewController: BaseViewController {
         APIService.share.request(router: .requestSearch(location: location, list: viewModel.myWishStudyList.value)) { [weak self] _, statusCode in
             switch statusCode {
             case 200:
-                self?.transition(FindingSeSacTabmanViewController(), transitionStyle: .push)
-                
                 guard let count = self?.navigationController?.viewControllers.count else { return }
                 if count >= 3 {
                     self?.navigationController?.popViewController(animated: true)
                 }else {
                     self?.transition(FindingSeSacTabmanViewController(), transitionStyle: .push)
                 }
-                
             case 201: print("신고 누적되어 이용불가")
             case 203: print("스터디 취소 패널티 1단계")
             case 204: print("스터디 취소 패널티 2단계")

@@ -18,7 +18,9 @@ final class HomeViewController: BaseViewController {
     
     private let viewModel = HomeViewModel()
     
-    private var timer: Timer?
+    private var mapTimer: Timer?
+    
+    private var queueStatusTimer: Timer?
     
     
     
@@ -38,6 +40,7 @@ final class HomeViewController: BaseViewController {
         
         resetBarUI()
         checkUserDeviceLocationServiceAuthorization()
+        
         requestQueueStatus()
     }
     
@@ -50,12 +53,20 @@ final class HomeViewController: BaseViewController {
         bind()
         
         navigationController?.navigationBar.isHidden = true
+        
+        queueStatusTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(queueStatusTimerAction), userInfo: nil, repeats: true)
     }
     
     
     private func setDelegate() {
         locationManager.delegate = self
         customView.mapView.delegate = self
+    }
+    
+    
+    private func resetBarUI() {
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
     }
     
     
@@ -70,6 +81,16 @@ final class HomeViewController: BaseViewController {
                     vc.customView.floatingButton.setImage(R.image.property1Matching(), for: .normal)
                 case .matched:
                     vc.customView.floatingButton.setImage(R.image.property1Matched(), for: .normal)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.queueStatus
+            .withUnretained(self)
+            .bind { (vc, status) in
+                if status.matched == 1 {
+                    vc.matched(user: status.matchedNick ?? "")
                 }
             }
             .disposed(by: disposeBag)
@@ -106,29 +127,27 @@ final class HomeViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
+
     
-    
-    private func resetBarUI() {
-        navigationController?.navigationBar.isHidden = true
-        tabBarController?.tabBar.isHidden = false
+    private func matched(user: String) {
+        showToast(message: "\(user)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다")
     }
-    
-    
-    private func addCustomPin(imageNum: Int, location: CLLocationCoordinate2D) {
-        let pin = CustomAnnotation(imageNum: imageNum, location: location)
-        customView.mapView.addAnnotation(pin)
-    }
-    
-    
-    private func removeAllAnnotation() {
-        let allAnnotations = customView.mapView.annotations
-        customView.mapView.removeAnnotations(allAnnotations)
-    }
-    
-    
-    @objc private func timerAction() {
+}
+
+
+
+// MARK: - Timer
+extension HomeViewController {
+    @objc private func mapTimerAction() {
         customView.mapView.isUserInteractionEnabled = true
-        timer = nil
+        mapTimer = nil
+    }
+    
+    
+    @objc private func queueStatusTimerAction() {
+        requestQueueStatus()
+        
+        print("queue status timer !!!!!!")
     }
 }
 
@@ -143,6 +162,7 @@ extension HomeViewController {
             switch statusCode {
             case 200:
                 if let result {
+                    self?.viewModel.queueStatus.accept(result)
                     self?.viewModel.matchStatus.accept(result.matched == 0 ? .waitingMatch : .matched)
                 }
             case 201:
@@ -180,7 +200,7 @@ extension HomeViewController {
                     self?.removeAllAnnotation()
                     
                     result.fromQueueDB.forEach {
-                        self?.addCustomPin(imageNum: $0.sesac, location: CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.long))
+                        self?.addCustomAnnotation(imageNum: $0.sesac, location: CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.long))
                     }
                     
                     DataStorage.shared.updateSearchResult(info: result)
@@ -247,7 +267,24 @@ extension HomeViewController: MKMapViewDelegate {
         viewModel.location.accept(mapView.centerCoordinate)
         
         mapView.isUserInteractionEnabled = false
-        timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(timerAction), userInfo: nil, repeats: false)
+        mapTimer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(mapTimerAction), userInfo: nil, repeats: false)
+    }
+}
+
+
+
+
+// MARK: - Annotation
+extension HomeViewController {
+    private func addCustomAnnotation(imageNum: Int, location: CLLocationCoordinate2D) {
+        let pin = CustomAnnotation(imageNum: imageNum, location: location)
+        customView.mapView.addAnnotation(pin)
+    }
+    
+    
+    private func removeAllAnnotation() {
+        let allAnnotations = customView.mapView.annotations
+        customView.mapView.removeAnnotations(allAnnotations)
     }
 }
 
