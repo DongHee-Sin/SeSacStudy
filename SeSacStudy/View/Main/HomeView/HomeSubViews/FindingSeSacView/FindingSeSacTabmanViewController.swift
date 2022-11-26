@@ -126,9 +126,46 @@ final class FindingSeSacTabmanViewController: TabmanViewController {
     
     
     @objc private func stopFindingButtonTapped() {
-        print(#function)
-        
-        //APIService.share
+        requestCancelSearch()
+    }
+}
+
+
+
+
+// MARK: - Request API
+extension FindingSeSacTabmanViewController {
+    
+    private func requestCancelSearch() {
+        APIService.share.request(router: .cancelRequestSearch) { [weak self] _, statusCode in
+            switch statusCode {
+            case 200:
+                let navi = UINavigationController(rootViewController: MainTabBarController())
+                self?.changeRootViewController(to: navi)
+            case 201:
+                self?.showToast(message: "누군가와 스터디를 함께하기로 약속하셨어요!")
+                // 채팅화면으로 이동
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.requestCancelSearch()
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500:
+                print("Server Error")
+            case 501:
+                print("Client Error")
+            default:
+                print("Default")
+            }
+        }
     }
 }
 

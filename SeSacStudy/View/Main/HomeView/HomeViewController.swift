@@ -44,6 +44,11 @@ final class HomeViewController: BaseViewController {
         requestQueueStatus()
     }
     
+    deinit {
+        mapTimer = nil
+        queueStatusTimer = nil
+    }
+    
     
     
     
@@ -100,6 +105,7 @@ final class HomeViewController: BaseViewController {
             .withUnretained(self)
             .bind { (vc, location) in
                 vc.requestSearchSurrounding(location: location)
+                DataStorage.shared.userLocation = location
             }
             .disposed(by: disposeBag)
         
@@ -318,7 +324,7 @@ extension HomeViewController {
             locationManager.requestWhenInUseAuthorization()
                 
         case .denied, .restricted:
-            customView.mapView.setRegion(MKCoordinateRegion(center: viewModel.sesacLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
+            customView.mapView.setRegion(MKCoordinateRegion(center: DataStorage.shared.userLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
             
             showRequestLocationServiceAlert()
             

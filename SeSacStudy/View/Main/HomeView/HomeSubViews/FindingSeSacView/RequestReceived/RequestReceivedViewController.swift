@@ -25,6 +25,12 @@ final class RequestReceivedViewController: BaseViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("탭 전환 - 받은 요청")
+    }
+    
     
     
     

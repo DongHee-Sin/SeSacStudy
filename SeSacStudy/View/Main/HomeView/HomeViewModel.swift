@@ -26,7 +26,5 @@ final class HomeViewModel {
     
     let matchStatus = BehaviorRelay<MatchStatus>(value: .normal)
     
-    lazy var location = BehaviorRelay<CLLocationCoordinate2D>(value: sesacLocation)
-    
-    let sesacLocation = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
+    lazy var location = BehaviorRelay<CLLocationCoordinate2D>(value: DataStorage.shared.userLocation)
 }

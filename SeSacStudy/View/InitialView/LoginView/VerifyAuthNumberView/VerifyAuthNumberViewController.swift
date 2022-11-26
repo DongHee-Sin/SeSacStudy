@@ -165,6 +165,7 @@ extension VerifyAuthNumberViewController {
             if let value {
                 print("요청 성공")
                 UserDefaultManager.shared.fcmToken = value.FCMtoken
+                return
             }
             
             switch statusCode {

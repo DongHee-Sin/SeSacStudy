@@ -19,6 +19,7 @@ enum Router: URLRequestConvertible {
     case queueStatus
     case queueSearch(location: CLLocationCoordinate2D)
     case requestSearch(location: CLLocationCoordinate2D, list: [String])
+    case cancelRequestSearch
     
     
     var baseURL: URL {
@@ -34,26 +35,29 @@ enum Router: URLRequestConvertible {
             return .post
         case .mypage:
             return .put
+        case .cancelRequestSearch:
+            return .delete
         }
     }
     
     
     var path: String {
         switch self {
-        case .login: return "/v1/user"
-        case .signUp: return "/v1/user"
+        case .login, .signUp:
+            return "/v1/user"
         case .mypage: return "/v1/user/mypage"
         case .withdraw: return "/v1/user/withdraw"
         case .queueStatus: return "/v1/queue/myQueueState"
         case .queueSearch: return "/v1/queue/search"
-        case .requestSearch: return "/v1/queue"
+        case .requestSearch, .cancelRequestSearch:
+            return "/v1/queue"
         }
     }
     
     
     var header: HTTPHeaders {
         switch self {
-        case .login, .withdraw, .queueStatus, .queueSearch:
+        case .login, .withdraw, .queueStatus, .queueSearch, .cancelRequestSearch:
             return [
                 "idtoken": UserDefaultManager.shared.idToken,
             ]
@@ -68,7 +72,7 @@ enum Router: URLRequestConvertible {
     
     var param: Parameters? {
         switch self {
-        case .login, .withdraw, .queueStatus:
+        case .login, .withdraw, .queueStatus, .cancelRequestSearch:
             return nil
         case .signUp(let body):
             return [

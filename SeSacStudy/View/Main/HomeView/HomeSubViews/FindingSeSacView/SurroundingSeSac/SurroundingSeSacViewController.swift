@@ -26,6 +26,13 @@ final class SurroundingSeSacViewController: BaseViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("탭 전환 - 주변새싹")
+    }
+    
+    
     
     
     // MARK: - Methods

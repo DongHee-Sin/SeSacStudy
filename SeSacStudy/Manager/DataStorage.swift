@@ -7,8 +7,9 @@
 
 import UIKit
 
+import CoreLocation
 
-/// ⭐️ Realm으로 리팩토링 꼭!!
+
 final class DataStorage {
     
     private init() {}
@@ -21,6 +22,8 @@ final class DataStorage {
     // MARK: - Propertys
     private(set) var login: Login!
     private(set) var SearchResult: QueueSearchResult!
+    
+    var userLocation = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
     
     var sesacImage: UIImage {
         return UIImage(named: "sesac_background_\(login.background+1)") ?? UIImage()
