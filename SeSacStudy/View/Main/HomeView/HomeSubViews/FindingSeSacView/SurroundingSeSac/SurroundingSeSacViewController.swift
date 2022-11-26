@@ -11,6 +11,9 @@ import UIKit
 final class SurroundingSeSacViewController: BaseViewController {
     
     // MARK: - Propertys
+    var delegate: SeSacTabmanViewController? = nil
+    
+    private lazy var placeHolderView = NotfoundView(type: .surroundingSeSac)
     
     
     
@@ -38,6 +41,8 @@ final class SurroundingSeSacViewController: BaseViewController {
     // MARK: - Methods
     override func configure() {
         setTableView()
+        
+        showPlaceHolderView(true)
     }
     
     
@@ -68,7 +73,7 @@ extension SurroundingSeSacViewController: UITableViewDelegate, UITableViewDataSo
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 0
     }
     
     
@@ -91,5 +96,46 @@ extension SurroundingSeSacViewController: UITableViewDelegate, UITableViewDataSo
         
         return cell
 
+    }
+}
+
+
+
+
+// MARK: - TabmanSubViewController
+extension SurroundingSeSacViewController: TabmanSubViewController {
+    
+    func changeStudyButtonTapped() {
+        delegate?.changeStudyButtonTapped()
+    }
+    
+    
+    func reloadButtonTapped() {
+        // API request
+    }
+    
+    
+    func showPlaceHolderView(_ value: Bool) {
+        if value {
+            view.addSubview(placeHolderView)
+            
+            placeHolderView.snp.makeConstraints { make in
+                make.edges.equalTo(view.safeAreaLayoutGuide)
+            }
+            
+            placeHolderView.changeStudyButton.rx.tap.withUnretained(self)
+                .bind { (vc, _) in
+                    vc.changeStudyButtonTapped()
+                }
+                .disposed(by: disposeBag)
+            
+            placeHolderView.reloadButton.rx.tap.withUnretained(self)
+                .bind { (vc, _) in
+                    vc.reloadButtonTapped()
+                }
+                .disposed(by: disposeBag)
+        }else {
+            placeHolderView.isHidden = true
+        }
     }
 }

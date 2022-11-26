@@ -21,7 +21,17 @@ final class DataStorage {
     
     // MARK: - Propertys
     private(set) var login: Login!
-    private(set) var SearchResult: QueueSearchResult!
+    private(set) var SearchResult: QueueSearchResult! {
+        didSet {
+            SearchResult.fromQueueDB.forEach {
+                print("\($0.nick) \($0.studylist) \($0.type)")
+            }
+            
+            SearchResult.fromQueueDBRequested.forEach {
+                print("⭐️ \($0.nick) \($0.studylist)")
+            }
+        }
+    }
     
     var userLocation = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
     

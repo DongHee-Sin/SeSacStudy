@@ -14,19 +14,10 @@ import Pageboy
 final class FindingSeSacTabmanViewController: TabmanViewController {
     
     // MARK: - Propertys
-    private var viewControllers: [UIViewController] = [
-        SurroundingSeSacViewController(),
-        RequestReceivedViewController()
-    ]
+    private let surroundingVC = SurroundingSeSacViewController()
+    private let requestReceivedVC = RequestReceivedViewController()
     
-    private let changeStudyButton = BasicButton(status: .fill).then {
-        $0.titleLabel?.font = .customFont(.body3_R14)
-        $0.setTitle("스터디 변경하기", for: .normal)
-    }
-    
-    private let reloadButton = UIButton().then {
-        $0.setImage(R.image.bt_refresh(), for: .normal)
-    }
+    private var viewControllers: [TabmanSubViewController] = []
     
     
     
@@ -35,9 +26,9 @@ final class FindingSeSacTabmanViewController: TabmanViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureSubViewControllers()
         configureTabman()
         setInitialUI()
-        setFloatingButton()
         
         view.backgroundColor = R.color.white()
     }
@@ -46,6 +37,14 @@ final class FindingSeSacTabmanViewController: TabmanViewController {
     
     
     // MARK: - Methods
+    private func configureSubViewControllers() {
+        surroundingVC.delegate = self
+        requestReceivedVC.delegate = self
+        
+        viewControllers = [surroundingVC, requestReceivedVC]
+    }
+    
+    
     private func configureTabman() {
         self.dataSource = self
         
@@ -86,42 +85,6 @@ final class FindingSeSacTabmanViewController: TabmanViewController {
         let stopFindingButton = UIBarButtonItem(title: "찾기중단", style: .plain, target: self, action: #selector(stopFindingButtonTapped))
         stopFindingButton.setTitleTextAttributes([ NSAttributedString.Key.font: UIFont.customFont(.title3_M14)], for: UIControl.State.normal)
         navigationItem.rightBarButtonItem = stopFindingButton
-    }
-    
-    
-    private func setFloatingButton() {
-        [changeStudyButton, reloadButton].forEach {
-            view.addSubview($0)
-        }
-        
-        changeStudyButton.snp.makeConstraints { make in
-            make.height.equalTo(48)
-            make.leading.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
-            make.trailing.equalTo(reloadButton.snp.leading).offset(-8)
-        }
-        
-        reloadButton.snp.makeConstraints { make in
-            make.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
-            make.width.height.equalTo(48)
-        }
-        
-        changeStudyButton.addTarget(self, action: #selector(changeStudyButtonTapped), for: .touchUpInside)
-        reloadButton.addTarget(self, action: #selector(reloadButtonTapped), for: .touchUpInside)
-    }
-    
-    
-    @objc private func changeStudyButtonTapped() {
-        guard let count = navigationController?.viewControllers.count else { return }
-        if count >= 3 {
-            navigationController?.popViewController(animated: true)
-        }else {
-            transition(EnterStudyViewController(), transitionStyle: .push)
-        }
-    }
-    
-    
-    @objc private func reloadButtonTapped() {
-        //
     }
     
     
@@ -194,5 +157,21 @@ extension FindingSeSacTabmanViewController: PageboyViewControllerDataSource, TMB
         let item = TMBarItem(title: index == 0 ? "주변 새싹" : "받은 요청")
         
         return item
+    }
+}
+
+
+
+
+// MARK: - SeSacTabmanViewController
+extension FindingSeSacTabmanViewController: SeSacTabmanViewController {
+    
+    func changeStudyButtonTapped() {
+        guard let count = navigationController?.viewControllers.count else { return }
+        if count >= 3 {
+            navigationController?.popViewController(animated: true)
+        }else {
+            transition(EnterStudyViewController(), transitionStyle: .push)
+        }
     }
 }

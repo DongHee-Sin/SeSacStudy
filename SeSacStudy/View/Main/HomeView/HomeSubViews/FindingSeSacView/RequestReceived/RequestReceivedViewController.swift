@@ -11,6 +11,9 @@ import UIKit
 final class RequestReceivedViewController: BaseViewController {
     
     // MARK: - Propertys
+    var delegate: SeSacTabmanViewController? = nil
+    
+    private lazy var placeHolderView = NotfoundView(type: .surroundingSeSac)
     
     
     
@@ -37,3 +40,41 @@ final class RequestReceivedViewController: BaseViewController {
     // MARK: - Methods
     
 }
+
+
+
+
+// MARK: - TabmanSubViewController
+extension RequestReceivedViewController: TabmanSubViewController {
+    
+    func changeStudyButtonTapped() {
+        delegate?.changeStudyButtonTapped()
+    }
+    
+    
+    func reloadButtonTapped() {
+        // API request
+    }
+    
+    
+    func showPlaceHolderView(_ value: Bool) {
+        if value {
+            view.addSubview(placeHolderView)
+            
+            placeHolderView.changeStudyButton.rx.tap.withUnretained(self)
+                .bind { (vc, _) in
+                    vc.changeStudyButtonTapped()
+                }
+                .disposed(by: disposeBag)
+            
+            placeHolderView.reloadButton.rx.tap.withUnretained(self)
+                .bind { (vc, _) in
+                    vc.reloadButtonTapped()
+                }
+                .disposed(by: disposeBag)
+        }else {
+            placeHolderView.isHidden = true
+        }
+    }
+}
+
