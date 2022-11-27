@@ -15,6 +15,10 @@ final class SurroundingSeSacViewController: BaseViewController {
     
     private lazy var placeHolderView = NotfoundView(type: .surroundingSeSac)
     
+    private let userList = DataStorage.shared.SearchResult.fromQueueDB
+    
+    private lazy var expandList: [Bool] = Array(repeating: false, count: userList.count)
+    
     
     
     
@@ -53,6 +57,14 @@ final class SurroundingSeSacViewController: BaseViewController {
         customView.tableView.register(ProfileImageTableViewHeader.self, forHeaderFooterViewReuseIdentifier: ProfileImageTableViewHeader.identifier)
         customView.tableView.register(ProfileExpandableTableViewCell.self, forCellReuseIdentifier: ProfileExpandableTableViewCell.identifier)
     }
+    
+    
+    @objc func expandButtonTapped(_ button: UIButton) {
+        print("\(button.tag) 번 버튼 tap")
+        
+        expandList[button.tag].toggle()
+        customView.tableView.reloadSections([button.tag], with: .fade)
+    }
 }
 
 
@@ -73,7 +85,7 @@ extension SurroundingSeSacViewController: UITableViewDelegate, UITableViewDataSo
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        let count = DataStorage.shared.SearchResult.fromQueueDB.count
+        let count = userList.count
         showPlaceHolderView(count == 0)
         
         return count
@@ -90,15 +102,20 @@ extension SurroundingSeSacViewController: UITableViewDelegate, UITableViewDataSo
             return UITableViewCell()
         }
         
-        let data = DataStorage.shared.SearchResult.fromQueueDB[indexPath.section]
-        cell.updateCell(user: data, isExpand: true)
+        let data = userList[indexPath.section]
+        let expand = expandList[indexPath.section]
+//        cell.updateCell(user: data, isExpand: true)
+        cell.updateCell(user: data, isExpand: expand, delegate: self)
+        
+        cell.wishStudyListView.collectionView.tag = indexPath.section
         
         /// expand버튼 어케 처리할지?
         /// 1. button마다 tag부여 (section값으로)
         /// 2. addTarget으로 버튼탭하면 tag값의 section reload
+        cell.expandButton.tag = indexPath.section
+        cell.expandButton.addTarget(self, action: #selector(expandButtonTapped), for: .touchUpInside)
         
         return cell
-
     }
 }
 
@@ -106,18 +123,26 @@ extension SurroundingSeSacViewController: UITableViewDelegate, UITableViewDataSo
 
 
 // MARK: - CollectionView Protocol
-//extension SurroundingSeSacViewController: CollectionViewProtocol {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        let count = DataStorage.shared.SearchResult.fromQueueDB[1].reviews.count
-//        return count
-//    }
-//
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        return UICollectionViewCell()
-//    }
-//}
+extension SurroundingSeSacViewController: CollectionViewProtocol {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let count = DataStorage.shared.SearchResult.fromQueueDB[collectionView.tag].reviews.count
+        return count
+    }
+
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StudyListCollectionViewCell.identifier, for: indexPath) as? StudyListCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        let data = userList[collectionView.tag].reviews[indexPath.item]
+        //DataStorage.shared.SearchResult.fromQueueDB[collectionView.tag].reviews[indexPath.item]
+        cell.updateCell(title: data, style: .normal)
+        
+        return cell
+    }
+}
 
 
 

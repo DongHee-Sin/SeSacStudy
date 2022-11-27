@@ -46,7 +46,6 @@ final class StudyListCollectionViewCell: BaseCollectionViewCell {
     
     
     
-    
     // MARK: - Methods
     override func configureUI() {
         self.addSubview(button)
