@@ -73,7 +73,10 @@ extension SurroundingSeSacViewController: UITableViewDelegate, UITableViewDataSo
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        let count = DataStorage.shared.SearchResult.fromQueueDB.count
+        showPlaceHolderView(count == 0)
+        
+        return count
     }
     
     
@@ -87,17 +90,34 @@ extension SurroundingSeSacViewController: UITableViewDelegate, UITableViewDataSo
             return UITableViewCell()
         }
         
-        //cell.updateCell(login: <#T##Login#>, isExpand: <#T##Bool#>, collectionViewProtocol: self)
+        let data = DataStorage.shared.SearchResult.fromQueueDB[indexPath.section]
+        cell.updateCell(user: data, isExpand: true)
         
         /// expand버튼 어케 처리할지?
         /// 1. button마다 tag부여 (section값으로)
         /// 2. addTarget으로 버튼탭하면 tag값의 section reload
         
-        
         return cell
 
     }
 }
+
+
+
+
+// MARK: - CollectionView Protocol
+//extension SurroundingSeSacViewController: CollectionViewProtocol {
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        let count = DataStorage.shared.SearchResult.fromQueueDB[1].reviews.count
+//        return count
+//    }
+//
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        return UICollectionViewCell()
+//    }
+//}
 
 
 

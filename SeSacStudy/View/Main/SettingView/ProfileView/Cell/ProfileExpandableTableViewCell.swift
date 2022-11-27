@@ -40,6 +40,8 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     let reviewView = SeSacReviewView()
     
     let expandButton = UIButton()
+    
+    private lazy var userStudyList: [String] = []
 
 
 
@@ -79,21 +81,58 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     }
     
     
-    func updateCell(login: Login, isExpand: Bool, collectionViewProtocol: CollectionViewProtocol? = nil) {
+    func updateCell(login: Login, isExpand: Bool) {
         
         nicknameView.label.text = login.nick
         print(login.reputation)  // ????
         reviewView.reviewLabel.text = login.comment.last ?? ""
         
-        titleStackView.isHidden = isExpand
-        reviewView.isHidden = isExpand
+        titleStackView.isHidden = !isExpand
+        reviewView.isHidden = !isExpand
+        nicknameView.updateCell(isExpand: !isExpand)
+    }
+    
+    
+    func updateCell(user: User, isExpand: Bool) {
+
+        userStudyList = user.studylist
+        
+        nicknameView.label.text = user.nick
+        print(user.reputation)  // ????
+        reviewView.reviewLabel.text = user.reviews.last ?? ""
+        
+        titleStackView.isHidden = !isExpand
+        reviewView.isHidden = !isExpand
         nicknameView.updateCell(isExpand: isExpand)
         
-        if let collectionViewProtocol {
-            wishStudyListView.isHidden = false
-            
-            wishStudyListView.collectionView.delegate = collectionViewProtocol
-            wishStudyListView.collectionView.dataSource = collectionViewProtocol
+        wishStudyListView.isHidden = false
+        
+        wishStudyListView.collectionView.delegate = self
+        wishStudyListView.collectionView.dataSource = self
+        wishStudyListView.collectionView.register(StudyListCollectionViewCell.self, forCellWithReuseIdentifier: StudyListCollectionViewCell.identifier)
+        
+        wishStudyListView.collectionView.reloadData()
+    }
+}
+
+
+
+
+// MARK: - CollectionView Protocol
+extension ProfileExpandableTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return userStudyList.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StudyListCollectionViewCell.identifier, for: indexPath) as? StudyListCollectionViewCell else {
+            return UICollectionViewCell()
         }
+        
+        cell.updateCell(title: userStudyList[indexPath.item], style: .normal)
+        
+        return cell
     }
 }

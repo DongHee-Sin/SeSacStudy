@@ -49,7 +49,7 @@ final class ProfileNicknameView: BaseView {
     
     
     func updateCell(isExpand: Bool) {
-        image.image = UIImage(systemName: isExpand ? "chevron.down" : "chevron.up")
+        image.image = UIImage(systemName: isExpand ? "chevron.up" : "chevron.down")
     }
     
 }

@@ -41,8 +41,6 @@ final class StudyListCollectionViewCell: BaseCollectionViewCell {
         $0.layer.borderWidth = 1
         $0.layer.cornerRadius = 8
         $0.semanticContentAttribute = .forceRightToLeft
-//        $0.contentVerticalAlignment = .center
-//        $0.contentHorizontalAlignment = .center
     }
     
     
