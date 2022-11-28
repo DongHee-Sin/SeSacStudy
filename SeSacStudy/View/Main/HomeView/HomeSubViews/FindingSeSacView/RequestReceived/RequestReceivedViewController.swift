@@ -15,6 +15,10 @@ final class RequestReceivedViewController: BaseViewController {
     
     private lazy var placeHolderView = NotfoundView(type: .surroundingSeSac)
     
+    private let userList = DataStorage.shared.SearchResult.fromQueueDBRequested
+    
+    private lazy var expandList: [Bool] = Array(repeating: false, count: userList.count)
+    
     
     
     
@@ -38,7 +42,79 @@ final class RequestReceivedViewController: BaseViewController {
     
     
     // MARK: - Methods
+    override func configure() {
+        setTableView()
+        
+        showPlaceHolderView(true)
+    }
     
+    
+    private func setTableView() {
+        customView.tableView.delegate = self
+        customView.tableView.dataSource = self
+        
+        customView.tableView.register(ProfileImageTableViewHeader.self, forHeaderFooterViewReuseIdentifier: ProfileImageTableViewHeader.identifier)
+        customView.tableView.register(ProfileExpandableTableViewCell.self, forCellReuseIdentifier: ProfileExpandableTableViewCell.identifier)
+    }
+    
+    
+    private func setPlaceHolderView() {
+        
+    }
+    
+    
+    @objc func expandButtonTapped(_ button: UIButton) {
+        expandList[button.tag].toggle()
+        customView.tableView.reloadSections([button.tag], with: .fade)
+    }
+}
+
+
+
+
+// MARK: - TableView Protocol
+extension RequestReceivedViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileImageTableViewHeader.identifier) as? ProfileImageTableViewHeader else {
+            return UIView()
+        }
+        
+        header.customImageView.setImageView(img: R.image.sesac_background_1(), buttonType: .request)
+        
+        return header
+    }
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        let count = userList.count
+        showPlaceHolderView(count == 0)
+        
+        return count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileExpandableTableViewCell.identifier, for: indexPath) as? ProfileExpandableTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let data = userList[indexPath.section]
+        let expand = expandList[indexPath.section]
+        cell.updateCell(user: data, isExpand: expand)
+        
+        cell.expandButton.tag = indexPath.section
+        cell.expandButton.addTarget(self, action: #selector(expandButtonTapped), for: .touchUpInside)
+        
+        cell.userStudyList = DataStorage.shared.SearchResult.fromQueueDB[indexPath.section].studylist
+        
+        return cell
+    }
 }
 
 
@@ -53,13 +129,45 @@ extension RequestReceivedViewController: TabmanSubViewController {
     
     
     func reloadButtonTapped() {
-        // API request
+        APIService.share.request(type: QueueSearchResult.self, router: .queueSearch) { [weak self] result, _, statusCode in
+            switch statusCode {
+            case 200:
+                if let result {
+                    DataStorage.shared.updateSearchResult(info: result)
+                    self?.customView.tableView.reloadData()
+                    print("⭐️⭐️⭐️⭐️⭐️⭐️⭐️")
+                }
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.reloadButtonTapped()
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500:
+                print("Server Error")
+            case 501:
+                print("Client Error")
+            default:
+                print("Default")
+            }
+        }
     }
     
     
     func showPlaceHolderView(_ value: Bool) {
         if value {
             view.addSubview(placeHolderView)
+            
+            placeHolderView.snp.makeConstraints { make in
+                make.edges.equalTo(view.safeAreaLayoutGuide)
+            }
             
             placeHolderView.changeStudyButton.rx.tap.withUnretained(self)
                 .bind { (vc, _) in
@@ -70,6 +178,7 @@ extension RequestReceivedViewController: TabmanSubViewController {
             placeHolderView.reloadButton.rx.tap.withUnretained(self)
                 .bind { (vc, _) in
                     vc.reloadButtonTapped()
+                    print("⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️")
                 }
                 .disposed(by: disposeBag)
         }else {

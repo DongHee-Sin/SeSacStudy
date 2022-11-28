@@ -94,6 +94,11 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     }
     
     
+    private func setReviewLabel(_ review: String?) {
+        reviewView.reviewLabel.text = review ?? "첫 리뷰를 기다리는 중이에요!"
+    }
+    
+    
     func updateCell(login: Login, isExpand: Bool) {
         
         wishStudyListView.isHidden = true
@@ -102,7 +107,7 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
         
         titleStackView.setButtonStyle(reputation: login.reputation)
         
-        reviewView.reviewLabel.text = login.comment.last ?? ""
+        setReviewLabel(login.comment.last)
         
         expandViews(isExpand)
     }
@@ -114,7 +119,7 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
         
         titleStackView.setButtonStyle(reputation: user.reputation)
         
-        reviewView.reviewLabel.text = user.reviews.last ?? ""
+        setReviewLabel(user.reviews.last)
         
         expandViews(isExpand)
         wishStudyListView.isHidden = !isExpand

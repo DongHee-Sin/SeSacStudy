@@ -24,11 +24,11 @@ final class DataStorage {
     private(set) var SearchResult: QueueSearchResult! {
         didSet {
             SearchResult.fromQueueDB.forEach {
-                print("\($0.nick) \($0.studylist) \($0.type)")
+                print("주변새싹 : \($0.nick) \($0.studylist) \($0.type)")
             }
             
             SearchResult.fromQueueDBRequested.forEach {
-                print("⭐️ \($0.nick) \($0.studylist)")
+                print("받은요청 : \($0.nick) \($0.studylist)")
             }
         }
     }

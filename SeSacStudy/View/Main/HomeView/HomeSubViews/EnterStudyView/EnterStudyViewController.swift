@@ -18,8 +18,6 @@ final class EnterStudyViewController: BaseViewController {
     // MARK: - Propertys
     private let viewModel = EnterStudyViewModel()
     
-    var location: CLLocationCoordinate2D?
-    
     
     
     
@@ -44,9 +42,7 @@ final class EnterStudyViewController: BaseViewController {
         keyboardBind()
         bind()
         
-        if let location {
-            requestSearchSurrounding(location: location)
-        }
+        requestSearchSurrounding()
     }
     
     
@@ -102,9 +98,9 @@ final class EnterStudyViewController: BaseViewController {
     }
     
     
-    private func requestSearchSurrounding(location: CLLocationCoordinate2D) {
+    private func requestSearchSurrounding() {
         
-        APIService.share.request(type: QueueSearchResult.self, router: .queueSearch(location: location)) { [weak self] result, _, statusCode in
+        APIService.share.request(type: QueueSearchResult.self, router: .queueSearch) { [weak self] result, _, statusCode in
             switch statusCode {
             case 200:
                 if let result {
@@ -120,7 +116,7 @@ final class EnterStudyViewController: BaseViewController {
                 FirebaseAuthManager.share.fetchIDToken { result in
                     switch result {
                     case .success(_):
-                        self?.requestSearchSurrounding(location: location)
+                        self?.requestSearchSurrounding()
                     case .failure(let error):
                         self?.showErrorAlert(error: error)
                     }
@@ -142,8 +138,7 @@ final class EnterStudyViewController: BaseViewController {
     
     private func requestSearchUser() {
         
-        guard let location else { return }
-        APIService.share.request(router: .requestSearch(location: location, list: viewModel.myWishStudyList.value)) { [weak self] _, statusCode in
+        APIService.share.request(router: .requestSearch(list: viewModel.myWishStudyList.value)) { [weak self] _, statusCode in
             switch statusCode {
             case 200:
                 guard let count = self?.navigationController?.viewControllers.count else { return }

@@ -125,7 +125,34 @@ extension SurroundingSeSacViewController: TabmanSubViewController {
     
     
     func reloadButtonTapped() {
-        // API request
+        APIService.share.request(type: QueueSearchResult.self, router: .queueSearch) { [weak self] result, _, statusCode in
+            switch statusCode {
+            case 200:
+                if let result {
+                    DataStorage.shared.updateSearchResult(info: result)
+                    self?.customView.tableView.reloadData()
+                }
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.reloadButtonTapped()
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500:
+                print("Server Error")
+            case 501:
+                print("Client Error")
+            default:
+                print("Default")
+            }
+        }
     }
     
     

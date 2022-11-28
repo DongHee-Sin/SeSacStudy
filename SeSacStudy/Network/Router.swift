@@ -17,17 +17,20 @@ enum Router: URLRequestConvertible {
     case mypage(body: MyPage)
     case withdraw
     case queueStatus
-    case queueSearch(location: CLLocationCoordinate2D)
-    case requestSearch(location: CLLocationCoordinate2D, list: [String])
+    case queueSearch
+    case requestSearch(list: [String])
     case cancelRequestSearch
     
     
-    var baseURL: URL {
+    private var baseURL: URL {
         return URL(string: "http://api.sesac.co.kr:1210")!
     }
     
     
-    var method: HTTPMethod {
+    private var location: CLLocationCoordinate2D { DataStorage.shared.userLocation }
+    
+    
+    private var method: HTTPMethod {
         switch self {
         case .login, .queueStatus:
             return .get
@@ -41,7 +44,7 @@ enum Router: URLRequestConvertible {
     }
     
     
-    var path: String {
+    private var path: String {
         switch self {
         case .login, .signUp:
             return "/v1/user"
@@ -55,7 +58,7 @@ enum Router: URLRequestConvertible {
     }
     
     
-    var header: HTTPHeaders {
+    private var header: HTTPHeaders {
         switch self {
         case .login, .withdraw, .queueStatus, .queueSearch, .cancelRequestSearch:
             return [
@@ -70,7 +73,7 @@ enum Router: URLRequestConvertible {
     }
     
     
-    var param: Parameters? {
+    private var param: Parameters? {
         switch self {
         case .login, .withdraw, .queueStatus, .cancelRequestSearch:
             return nil
@@ -91,12 +94,12 @@ enum Router: URLRequestConvertible {
                 "gender": body.gender,
                 "study": body.study
             ]
-        case .queueSearch(let location):
+        case .queueSearch:
             return [
                 "lat": location.latitude,
                 "long": location.longitude
             ]
-        case .requestSearch(let location, let list):
+        case .requestSearch(let list):
             return [
                 "lat": location.latitude,
                 "long": location.longitude,

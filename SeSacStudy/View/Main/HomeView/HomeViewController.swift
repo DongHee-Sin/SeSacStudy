@@ -124,7 +124,6 @@ final class HomeViewController: BaseViewController {
                 switch vc.viewModel.matchStatus.value {
                 case .normal:
                     let enterStudyVC = EnterStudyViewController()
-                    enterStudyVC.location = vc.viewModel.location.value
                     vc.transition(enterStudyVC, transitionStyle: .push)
                 case .waitingMatch:
                     vc.transition(FindingSeSacTabmanViewController(), transitionStyle: .push)
@@ -199,7 +198,7 @@ extension HomeViewController {
     
     private func requestSearchSurrounding(location: CLLocationCoordinate2D) {
         
-        APIService.share.request(type: QueueSearchResult.self, router: .queueSearch(location: location)) { [weak self] result, _, statusCode in
+        APIService.share.request(type: QueueSearchResult.self, router: .queueSearch) { [weak self] result, _, statusCode in
             switch statusCode {
             case 200:
                 if let result {
