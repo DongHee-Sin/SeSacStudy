@@ -17,9 +17,10 @@ final class SeSacReviewView: BaseView {
         $0.text = "새싹 리뷰"
     }
     
-    let reviewLabel = UITextField().then {
+    let reviewLabel = UILabel().then {
+        $0.numberOfLines = 0
         $0.isEnabled = false
-        $0.placeholder = "첫 리뷰를 기다리는 중이에요"
+        $0.text = "첫 리뷰를 기다리는 중이에요"
         $0.textColor = R.color.black()
         $0.font = .customFont(.body3_R14)
     }

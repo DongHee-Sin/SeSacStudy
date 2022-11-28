@@ -39,7 +39,7 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     
     let expandButton = UIButton()
     
-    private lazy var userStudyList: [String] = []
+    lazy var userStudyList: [String] = []
 
 
 
@@ -47,6 +47,7 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     // MARK: - Methods
     override func configureUI() {
         setBorder()
+        setCollectionView()
         
         contentView.isUserInteractionEnabled = true
         
@@ -79,6 +80,13 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     }
     
     
+    private func setCollectionView() {
+        wishStudyListView.collectionView.delegate = self
+        wishStudyListView.collectionView.dataSource = self
+        wishStudyListView.collectionView.register(StudyListCollectionViewCell.self, forCellWithReuseIdentifier: StudyListCollectionViewCell.identifier)
+    }
+    
+    
     func updateCell(login: Login, isExpand: Bool) {
         
         wishStudyListView.isHidden = true
@@ -93,13 +101,7 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     }
     
     
-    func updateCell(user: User, isExpand: Bool, delegate: CollectionViewProtocol) {
-
-        wishStudyListView.collectionView.delegate = delegate
-        wishStudyListView.collectionView.dataSource = delegate
-        wishStudyListView.collectionView.register(StudyListCollectionViewCell.self, forCellWithReuseIdentifier: StudyListCollectionViewCell.identifier)
-        
-        //userStudyList = user.studylist
+    func updateCell(user: User, isExpand: Bool) {
         
         nicknameView.label.text = user.nick
         print(user.reputation)  // ????
@@ -110,7 +112,7 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
         wishStudyListView.isHidden = !isExpand
         nicknameView.updateCell(isExpand: isExpand)
         
-        //wishStudyListView.collectionView.reloadData()
+        if isExpand { wishStudyListView.collectionView.reloadData() }
     }
 }
 
@@ -118,20 +120,20 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
 
 
 // MARK: - CollectionView Protocol
-//extension ProfileExpandableTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return userStudyList.count
-//    }
-//
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StudyListCollectionViewCell.identifier, for: indexPath) as? StudyListCollectionViewCell else {
-//            return UICollectionViewCell()
-//        }
-//
-//        cell.updateCell(title: userStudyList[indexPath.item], style: .normal)
-//
-//        return cell
-//    }
-//}
+extension ProfileExpandableTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return userStudyList.count
+    }
+
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StudyListCollectionViewCell.identifier, for: indexPath) as? StudyListCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.updateCell(title: userStudyList[indexPath.item], style: .normal)
+
+        return cell
+    }
+}
