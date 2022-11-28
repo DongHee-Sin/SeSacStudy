@@ -88,10 +88,12 @@ final class SeSacTitleStackView: BaseView {
     }
     
     
-    private func setButtonStyle() {
-        buttons.forEach {
-            $0.isEnabled = false
-            $0.titleLabel?.font = .customFont(.title4_R14)
+    func setButtonStyle(reputation: [Int]) {
+        zip(buttons, reputation).forEach { (button, reputation) in
+            button.isEnabled = true
+            button.titleLabel?.font = .customFont(.title4_R14)
+            
+            button.setButtonStyle(status: reputation > 0 ? .fill : .inactive)
         }
     }
 }

@@ -54,7 +54,7 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
         [nicknameView, titleStackView, wishStudyListView, reviewView].forEach {
             stackView.addArrangedSubview($0)
         }
-        
+
         [stackView, expandButton].forEach {
             self.addSubview($0)
         }
@@ -87,30 +87,39 @@ final class ProfileExpandableTableViewCell: BaseTableViewCell {
     }
     
     
-    func updateCell(login: Login, isExpand: Bool) {
-        
-        wishStudyListView.isHidden = true
-        
-        nicknameView.label.text = login.nick
-        print(login.reputation)  // ????
-        reviewView.reviewLabel.text = login.comment.last ?? ""
-        
+    private func expandViews(_ isExpand: Bool) {
         titleStackView.isHidden = !isExpand
         reviewView.isHidden = !isExpand
         nicknameView.updateCell(isExpand: !isExpand)
     }
     
     
+    func updateCell(login: Login, isExpand: Bool) {
+        
+        wishStudyListView.isHidden = true
+        
+        nicknameView.label.text = login.nick
+        
+        titleStackView.setButtonStyle(reputation: login.reputation)
+        
+        reviewView.reviewLabel.text = login.comment.last ?? ""
+        
+        expandViews(isExpand)
+    }
+    
+    
     func updateCell(user: User, isExpand: Bool) {
         
         nicknameView.label.text = user.nick
-        print(user.reputation)  // ????
+        
+        titleStackView.setButtonStyle(reputation: user.reputation)
+        
         reviewView.reviewLabel.text = user.reviews.last ?? ""
         
-        titleStackView.isHidden = !isExpand
-        reviewView.isHidden = !isExpand
+        expandViews(isExpand)
         wishStudyListView.isHidden = !isExpand
-        nicknameView.updateCell(isExpand: isExpand)
+        
+        
         
         if isExpand { wishStudyListView.collectionView.reloadData() }
     }
