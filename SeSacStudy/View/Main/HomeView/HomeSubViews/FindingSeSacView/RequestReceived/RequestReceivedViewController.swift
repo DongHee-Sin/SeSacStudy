@@ -13,7 +13,7 @@ final class RequestReceivedViewController: BaseViewController {
     // MARK: - Propertys
     var delegate: SeSacTabmanViewController? = nil
     
-    private lazy var placeHolderView = NotfoundView(type: .surroundingSeSac)
+    private let placeHolderView = NotfoundView(type: .surroundingSeSac)
     
     private let userList = DataStorage.shared.SearchResult.fromQueueDBRequested
     
@@ -44,6 +44,7 @@ final class RequestReceivedViewController: BaseViewController {
     // MARK: - Methods
     override func configure() {
         setTableView()
+        setPlaceHolderView()
         
         showPlaceHolderView(true)
     }
@@ -59,7 +60,19 @@ final class RequestReceivedViewController: BaseViewController {
     
     
     private func setPlaceHolderView() {
+        view.addSubview(placeHolderView)
         
+        placeHolderView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        placeHolderView.changeStudyButton.rx.tap.withUnretained(self)
+            .bind { (vc, _) in
+                vc.changeStudyButtonTapped()
+            }
+            .disposed(by: disposeBag)
+        
+        placeHolderView.reloadButton.addTarget(self, action: #selector(reloadButtonTapped), for: .touchUpInside)
     }
     
     
@@ -128,14 +141,13 @@ extension RequestReceivedViewController: TabmanSubViewController {
     }
     
     
-    func reloadButtonTapped() {
+    @objc func reloadButtonTapped() {
         APIService.share.request(type: QueueSearchResult.self, router: .queueSearch) { [weak self] result, _, statusCode in
             switch statusCode {
             case 200:
                 if let result {
                     DataStorage.shared.updateSearchResult(info: result)
                     self?.customView.tableView.reloadData()
-                    print("⭐️⭐️⭐️⭐️⭐️⭐️⭐️")
                 }
             case 401:
                 FirebaseAuthManager.share.fetchIDToken { result in
@@ -162,28 +174,7 @@ extension RequestReceivedViewController: TabmanSubViewController {
     
     
     func showPlaceHolderView(_ value: Bool) {
-        if value {
-            view.addSubview(placeHolderView)
-            
-            placeHolderView.snp.makeConstraints { make in
-                make.edges.equalTo(view.safeAreaLayoutGuide)
-            }
-            
-            placeHolderView.changeStudyButton.rx.tap.withUnretained(self)
-                .bind { (vc, _) in
-                    vc.changeStudyButtonTapped()
-                }
-                .disposed(by: disposeBag)
-            
-            placeHolderView.reloadButton.rx.tap.withUnretained(self)
-                .bind { (vc, _) in
-                    vc.reloadButtonTapped()
-                    print("⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️")
-                }
-                .disposed(by: disposeBag)
-        }else {
-            placeHolderView.isHidden = true
-        }
+        placeHolderView.isHidden = !value
     }
 }
 
