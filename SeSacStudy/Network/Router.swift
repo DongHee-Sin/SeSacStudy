@@ -100,10 +100,11 @@ enum Router: URLRequestConvertible {
                 "long": location.longitude
             ]
         case .requestSearch(let list):
+            print(list)
             return [
                 "lat": location.latitude,
                 "long": location.longitude,
-                "studylist": "\(list)"
+                "studylist": list
             ]
         }
     }
@@ -114,11 +115,12 @@ enum Router: URLRequestConvertible {
         var request = URLRequest(url: url)
         request.method = method
         request.headers = header
-    
+        
         if let param {
-            return try URLEncoding.default.encode(request, with: param)
+            let encoder = URLEncoding(arrayEncoding: .noBrackets)
+            return try encoder.encode(request, with: param)
         }
-
+        
         return request
     }
 }

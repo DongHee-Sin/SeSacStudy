@@ -45,6 +45,7 @@ final class SurroundingSeSacViewController: BaseViewController {
     // MARK: - Methods
     override func configure() {
         setTableView()
+        setPlaceHolderView()
         
         showPlaceHolderView(true)
     }
@@ -56,6 +57,27 @@ final class SurroundingSeSacViewController: BaseViewController {
         
         customView.tableView.register(ProfileImageTableViewHeader.self, forHeaderFooterViewReuseIdentifier: ProfileImageTableViewHeader.identifier)
         customView.tableView.register(ProfileExpandableTableViewCell.self, forCellReuseIdentifier: ProfileExpandableTableViewCell.identifier)
+    }
+    
+    
+    private func setPlaceHolderView() {
+        view.addSubview(placeHolderView)
+        
+        placeHolderView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        placeHolderView.changeStudyButton.rx.tap.withUnretained(self)
+            .bind { (vc, _) in
+                vc.changeStudyButtonTapped()
+            }
+            .disposed(by: disposeBag)
+        
+        placeHolderView.reloadButton.rx.tap.withUnretained(self)
+            .bind { (vc, _) in
+                vc.reloadButtonTapped()
+            }
+            .disposed(by: disposeBag)
     }
     
     
@@ -157,26 +179,28 @@ extension SurroundingSeSacViewController: TabmanSubViewController {
     
     
     func showPlaceHolderView(_ value: Bool) {
-        if value {
-            view.addSubview(placeHolderView)
-            
-            placeHolderView.snp.makeConstraints { make in
-                make.edges.equalTo(view.safeAreaLayoutGuide)
-            }
-            
-            placeHolderView.changeStudyButton.rx.tap.withUnretained(self)
-                .bind { (vc, _) in
-                    vc.changeStudyButtonTapped()
-                }
-                .disposed(by: disposeBag)
-            
-            placeHolderView.reloadButton.rx.tap.withUnretained(self)
-                .bind { (vc, _) in
-                    vc.reloadButtonTapped()
-                }
-                .disposed(by: disposeBag)
-        }else {
-            placeHolderView.isHidden = true
-        }
+//        if value {
+//            view.addSubview(placeHolderView)
+//
+//            placeHolderView.snp.makeConstraints { make in
+//                make.edges.equalTo(view.safeAreaLayoutGuide)
+//            }
+//
+//            placeHolderView.changeStudyButton.rx.tap.withUnretained(self)
+//                .bind { (vc, _) in
+//                    vc.changeStudyButtonTapped()
+//                }
+//                .disposed(by: disposeBag)
+//
+//            placeHolderView.reloadButton.rx.tap.withUnretained(self)
+//                .bind { (vc, _) in
+//                    vc.reloadButtonTapped()
+//                }
+//                .disposed(by: disposeBag)
+//        }else {
+//            placeHolderView.isHidden = true
+//        }
+        
+        placeHolderView.isHidden = !value
     }
 }

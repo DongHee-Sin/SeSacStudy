@@ -151,3 +151,19 @@ extension ProfileExpandableTableViewCell: UICollectionViewDelegate, UICollection
         return cell
     }
 }
+
+
+
+
+extension ProfileExpandableTableViewCell: UICollectionViewDelegateFlowLayout {
+
+    // 셀 크기
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let label = UILabel(frame: CGRect.zero)
+
+        label.text = userStudyList[indexPath.row]
+
+        label.sizeToFit()
+        return CGSize(width: label.frame.width + 18, height: 26)
+    }
+}
