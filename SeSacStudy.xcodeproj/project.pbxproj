@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4CECB3BE79BA4BC04B0BADCD /* Pods_SeSacStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFC5E6B44EC8A69EEBAFB1D /* Pods_SeSacStudy.framework */; };
+		D000080A293783A500A4C906 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0000809293783A500A4C906 /* UIImage+Extension.swift */; };
 		D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0100B452918C5CC00AEC5C2 /* AppDelegate.swift */; };
 		D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0100B472918C5CC00AEC5C2 /* SceneDelegate.swift */; };
 		D0100B4F2918C5CC00AEC5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0100B4E2918C5CC00AEC5C2 /* Assets.xcassets */; };
@@ -127,6 +128,7 @@
 		A461A4FC7A81E0321E5DADF2 /* Pods-SeSacStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacStudy.release.xcconfig"; path = "Target Support Files/Pods-SeSacStudy/Pods-SeSacStudy.release.xcconfig"; sourceTree = "<group>"; };
 		C9F727FA6385471DB50F92AB /* Pods-SeSacStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacStudy.debug.xcconfig"; path = "Target Support Files/Pods-SeSacStudy/Pods-SeSacStudy.debug.xcconfig"; sourceTree = "<group>"; };
 		CBFC5E6B44EC8A69EEBAFB1D /* Pods_SeSacStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeSacStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0000809293783A500A4C906 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		D0100B422918C5CC00AEC5C2 /* SeSacStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSacStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0100B452918C5CC00AEC5C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0100B472918C5CC00AEC5C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */,
 				D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */,
 				D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */,
+				D0000809293783A500A4C906 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -958,6 +961,7 @@
 				D0ADF4C82921FC1F00C5027D /* HomeView.swift in Sources */,
 				D07BE85C2918FA3E00020487 /* BaseCollectionViewCell.swift in Sources */,
 				D0D2D3B2291E7BCB007FA615 /* EnterBirthDayViewModel.swift in Sources */,
+				D000080A293783A500A4C906 /* UIImage+Extension.swift in Sources */,
 				D0B13A23293214C5007E7D00 /* NotfoundView.swift in Sources */,
 				D084E23A291D2796005EFF11 /* SignUp.swift in Sources */,
 				D0ADF4CD2921FF8200C5027D /* BaseTableViewCell.swift in Sources */,

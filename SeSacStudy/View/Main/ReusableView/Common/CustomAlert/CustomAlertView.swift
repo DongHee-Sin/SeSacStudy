@@ -23,6 +23,7 @@ final class CustomAlertView: BaseView {
     }
     
     let message = UILabel().then {
+        $0.numberOfLines = 0
         $0.textAlignment = .center
         $0.font = .customFont(.title4_R14)
         $0.textColor = R.color.black()

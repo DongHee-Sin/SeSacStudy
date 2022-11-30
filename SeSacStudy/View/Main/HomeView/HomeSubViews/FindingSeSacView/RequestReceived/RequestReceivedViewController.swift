@@ -19,6 +19,8 @@ final class RequestReceivedViewController: BaseViewController {
     
     private lazy var expandList: [Bool] = Array(repeating: false, count: userList.count)
     
+    private lazy var tempUid: String? = nil
+    
     
     
     
@@ -83,7 +85,18 @@ final class RequestReceivedViewController: BaseViewController {
     
     
     @objc private func studyAcceptButtonTapped(_ button: UIButton) {
-        let uid = userList[button.tag].uid
+        tempUid = userList[button.tag].uid
+        showCustomAlert(title: "스터디를 수락할까요?", message: "요청을 수락하면 채팅창에서 대화를 나눌 수 있어요", delegate: self)
+    }
+}
+
+
+
+
+// MARK: - API Request
+extension RequestReceivedViewController {
+    
+    private func acceptStudy(uid: String) {
         APIService.share.request(router: .acceptStudy(uid: uid)) { [weak self] error, statusCode in
             switch statusCode {
             case 200:
@@ -98,7 +111,7 @@ final class RequestReceivedViewController: BaseViewController {
                 FirebaseAuthManager.share.fetchIDToken { result in
                     switch result {
                     case .success(_):
-                        self?.studyAcceptButtonTapped(button)
+                        self?.acceptStudy(uid: uid)
                     case .failure(let error):
                         self?.showErrorAlert(error: error)
                     }
@@ -111,6 +124,38 @@ final class RequestReceivedViewController: BaseViewController {
                 self?.showErrorAlert(error: error!)
             default:
                 self?.showErrorAlert(error: error!)
+            }
+        }
+    }
+    
+    
+    private func requestQueueSearch() {
+        APIService.share.request(type: QueueSearchResult.self, router: .queueSearch) { [weak self] result, _, statusCode in
+            switch statusCode {
+            case 200:
+                if let result {
+                    DataStorage.shared.updateSearchResult(info: result)
+                    self?.customView.tableView.reloadData()
+                }
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.requestQueueSearch()
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500:
+                print("Server Error")
+            case 501:
+                print("Client Error")
+            default:
+                print("Default")
             }
         }
     }
@@ -127,7 +172,7 @@ extension RequestReceivedViewController: UITableViewDelegate, UITableViewDataSou
             return UIView()
         }
         
-        header.customImageView.setImageView(img: R.image.sesac_background_1(), buttonType: .request)
+        header.customImageView.setImageView(img: .backgroundImage(userList[section].background), buttonType: .request)
         
         header.customImageView.button.tag = section
         header.customImageView.button.addTarget(self, action: #selector(studyAcceptButtonTapped), for: .touchUpInside)
@@ -179,34 +224,7 @@ extension RequestReceivedViewController: TabmanSubViewController {
     
     
     @objc func reloadButtonTapped() {
-        APIService.share.request(type: QueueSearchResult.self, router: .queueSearch) { [weak self] result, _, statusCode in
-            switch statusCode {
-            case 200:
-                if let result {
-                    DataStorage.shared.updateSearchResult(info: result)
-                    self?.customView.tableView.reloadData()
-                }
-            case 401:
-                FirebaseAuthManager.share.fetchIDToken { result in
-                    switch result {
-                    case .success(_):
-                        self?.reloadButtonTapped()
-                    case .failure(let error):
-                        self?.showErrorAlert(error: error)
-                    }
-                }
-            case 406:
-                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
-                    self?.changeRootViewController(to: OnboardingViewController())
-                }
-            case 500:
-                print("Server Error")
-            case 501:
-                print("Client Error")
-            default:
-                print("Default")
-            }
-        }
+        requestQueueSearch()
     }
     
     
@@ -215,3 +233,29 @@ extension RequestReceivedViewController: TabmanSubViewController {
     }
 }
 
+
+
+
+// MARK: - CustomAlert Delegate
+extension RequestReceivedViewController: CustomAlertDelegate {
+    
+    func okAction() {
+        customAlertAction { [weak self] in
+            if let tempUid = self?.tempUid {
+                self?.acceptStudy(uid: tempUid)
+            }
+        }
+    }
+    
+    
+    func cancel() {
+        customAlertAction()
+    }
+    
+    
+    private func customAlertAction(_ action: (() -> Void)? = nil) {
+        dismiss(animated: true)
+        action?()
+        tempUid = nil
+    }
+}

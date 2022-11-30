@@ -89,7 +89,9 @@ final class FindingSeSacTabmanViewController: TabmanViewController {
     
     
     @objc private func stopFindingButtonTapped() {
-        requestCancelSearch()
+        requestCancelSearch { [weak self] in
+            self?.changeRootViewController(to: MainTabBarController())
+        }
     }
 }
 
@@ -99,11 +101,11 @@ final class FindingSeSacTabmanViewController: TabmanViewController {
 // MARK: - Request API
 extension FindingSeSacTabmanViewController {
     
-    private func requestCancelSearch() {
+    private func requestCancelSearch(_ completion: @escaping () -> Void) {
         APIService.share.request(router: .cancelRequestSearch) { [weak self] _, statusCode in
             switch statusCode {
             case 200:
-                self?.changeRootViewController(to: MainTabBarController())
+                completion()
             case 201:
                 self?.showToast(message: "누군가와 스터디를 함께하기로 약속하셨어요!")
                 // 채팅화면으로 이동
@@ -111,7 +113,7 @@ extension FindingSeSacTabmanViewController {
                 FirebaseAuthManager.share.fetchIDToken { result in
                     switch result {
                     case .success(_):
-                        self?.requestCancelSearch()
+                        self?.requestCancelSearch(completion)
                     case .failure(let error):
                         self?.showErrorAlert(error: error)
                     }
@@ -199,14 +201,9 @@ extension FindingSeSacTabmanViewController: PageboyViewControllerDataSource, TMB
 extension FindingSeSacTabmanViewController: SeSacTabmanViewController {
     
     func changeStudyButtonTapped() {
-//        guard let count = navigationController?.viewControllers.count else { return }
-//        if count >= 3 {
-//            navigationController?.popViewController(animated: true)
-//        }else {
-//            transition(EnterStudyViewController(), transitionStyle: .push)
-//        }
-        
-        transition(EnterStudyViewController(), transitionStyle: .push)
+        requestCancelSearch { [weak self] in
+            self?.transition(EnterStudyViewController(), transitionStyle: .push)
+        }
     }
     
     
