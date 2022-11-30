@@ -74,7 +74,6 @@ extension UIViewController {
     // MARK: - Error Alert
     func showErrorAlert(error: Error) {
         switch error {
-        case EncodeError.encodeError: showAlert(title: "인코딩에 실패했습니다.")
         case NetworkError.notConnected: showAlert(title: "네트워크에 연결되어있지 않습니다.")
         default: showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요.")
         }

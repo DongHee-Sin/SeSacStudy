@@ -77,9 +77,41 @@ final class SurroundingSeSacViewController: BaseViewController {
     }
     
     
-    @objc func expandButtonTapped(_ button: UIButton) {
+    @objc private func expandButtonTapped(_ button: UIButton) {
         expandList[button.tag].toggle()
         customView.tableView.reloadSections([button.tag], with: .fade)
+    }
+    
+    
+    @objc private func requestStudyButtonTapped(_ button: UIButton) {
+        let uid = userList[button.tag].uid
+        APIService.share.request(router: .requestStudy(uid: uid)) { [weak self] error, statusCode in
+            switch statusCode {
+            case 200:
+                self?.showToast(message: "스터디 요청을 보냈습니다")
+            case 201:
+                print("상대방이 이미 나에게 스터디 요청한 상태 ---")
+            case 202:
+                self?.showToast(message: "상대방이 스터디 찾기를 그만두었습니다")
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.requestStudyButtonTapped(button)
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500, 501:
+                self?.showErrorAlert(error: error!)
+            default:
+                self?.showErrorAlert(error: error!)
+            }
+        }
     }
 }
 
@@ -95,6 +127,9 @@ extension SurroundingSeSacViewController: UITableViewDelegate, UITableViewDataSo
         }
         
         header.customImageView.setImageView(img: R.image.sesac_background_1(), buttonType: .request)
+        
+        header.customImageView.button.tag = section
+        header.customImageView.button.addTarget(self, action: #selector(requestStudyButtonTapped), for: .touchUpInside)
         
         return header
     }
@@ -178,3 +213,4 @@ extension SurroundingSeSacViewController: TabmanSubViewController {
         placeHolderView.isHidden = !value
     }
 }
+ 

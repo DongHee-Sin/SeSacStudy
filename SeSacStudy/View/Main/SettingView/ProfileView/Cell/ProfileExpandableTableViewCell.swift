@@ -157,7 +157,6 @@ extension ProfileExpandableTableViewCell: UICollectionViewDelegate, UICollection
 
 extension ProfileExpandableTableViewCell: UICollectionViewDelegateFlowLayout {
 
-    // 셀 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let label = UILabel(frame: CGRect.zero)
 

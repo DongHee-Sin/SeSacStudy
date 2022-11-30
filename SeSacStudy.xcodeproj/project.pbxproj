@@ -82,7 +82,6 @@
 		D0BB7F94292612EF009B9DC8 /* QueueSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BB7F93292612EF009B9DC8 /* QueueSearchResult.swift */; };
 		D0C74E33291AC51D008B3863 /* VerifyAuthNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C74E32291AC51D008B3863 /* VerifyAuthNumberViewController.swift */; };
 		D0C74E35291AC539008B3863 /* VerifyAuthNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C74E34291AC539008B3863 /* VerifyAuthNumberView.swift */; };
-		D0C7628829211734008F206C /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C7628729211734008F206C /* Encodable+Extension.swift */; };
 		D0C99789291BD13A006C41B4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C99788291BD13A006C41B4 /* Router.swift */; };
 		D0C9978B291BD8A9006C41B4 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9978A291BD8A9006C41B4 /* APIService.swift */; };
 		D0C9978E291BDD8F006C41B4 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9978D291BDD8F006C41B4 /* Login.swift */; };
@@ -195,7 +194,6 @@
 		D0BB7F93292612EF009B9DC8 /* QueueSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueSearchResult.swift; sourceTree = "<group>"; };
 		D0C74E32291AC51D008B3863 /* VerifyAuthNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAuthNumberViewController.swift; sourceTree = "<group>"; };
 		D0C74E34291AC539008B3863 /* VerifyAuthNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyAuthNumberView.swift; sourceTree = "<group>"; };
-		D0C7628729211734008F206C /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
 		D0C99788291BD13A006C41B4 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		D0C9978A291BD8A9006C41B4 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		D0C9978D291BDD8F006C41B4 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -376,7 +374,6 @@
 				D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */,
 				D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */,
 				D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */,
-				D0C7628729211734008F206C /* Encodable+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -943,7 +940,6 @@
 				D0C99789291BD13A006C41B4 /* Router.swift in Sources */,
 				D046CC1B29268AB000C59AD8 /* StudyListCollectionViewCell.swift in Sources */,
 				D0672BC029229E8A00234FE8 /* ProfileNicknameView.swift in Sources */,
-				D0C7628829211734008F206C /* Encodable+Extension.swift in Sources */,
 				D0800A3529226D3C006EF576 /* SeSacTitleStackView.swift in Sources */,
 				D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */,
 				D0ADF4D729220B0200C5027D /* ProfileView.swift in Sources */,
