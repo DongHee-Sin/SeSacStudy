@@ -57,8 +57,6 @@ final class HomeViewController: BaseViewController {
         setDelegate()
         bind()
         
-        navigationController?.navigationBar.isHidden = true
-        
         queueStatusTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(queueStatusTimerAction), userInfo: nil, repeats: true)
     }
     

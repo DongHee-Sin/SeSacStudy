@@ -77,6 +77,19 @@ final class SurroundingSeSacViewController: BaseViewController {
     }
     
     
+    private func requestSearch() {
+        delegate?.requestSearch(completion: {
+            /// 1. userList 업데이트
+            /// 2. expandList 업데이트
+            /// 3. tableView Reload
+            ///
+            /// viewWillAppear
+            /// 당겨서 새로고침
+            /// 펼친 카드를 닫을 때
+        })
+    }
+    
+    
     @objc private func expandButtonTapped(_ button: UIButton) {
         expandList[button.tag].toggle()
         customView.tableView.reloadSections([button.tag], with: .fade)

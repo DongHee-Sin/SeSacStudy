@@ -10,4 +10,6 @@ import UIKit
 
 protocol SeSacTabmanViewController: UIViewController {
     func changeStudyButtonTapped()
+    
+    func requestSearch(completion: @escaping () -> Void)
 }

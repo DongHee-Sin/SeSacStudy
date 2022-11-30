@@ -103,8 +103,7 @@ extension FindingSeSacTabmanViewController {
         APIService.share.request(router: .cancelRequestSearch) { [weak self] _, statusCode in
             switch statusCode {
             case 200:
-                let navi = UINavigationController(rootViewController: MainTabBarController())
-                self?.changeRootViewController(to: navi)
+                self?.changeRootViewController(to: MainTabBarController())
             case 201:
                 self?.showToast(message: "누군가와 스터디를 함께하기로 약속하셨어요!")
                 // 채팅화면으로 이동
@@ -113,6 +112,39 @@ extension FindingSeSacTabmanViewController {
                     switch result {
                     case .success(_):
                         self?.requestCancelSearch()
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500:
+                print("Server Error")
+            case 501:
+                print("Client Error")
+            default:
+                print("Default")
+            }
+        }
+    }
+    
+    
+    private func _requestSearch(completion: @escaping () -> Void) {
+        
+        APIService.share.request(type: QueueSearchResult.self, router: .queueSearch) { [weak self] result, _, statusCode in
+            switch statusCode {
+            case 200:
+                if let result {
+                    DataStorage.shared.updateSearchResult(info: result)
+                    completion()
+                }
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?._requestSearch(completion: completion)
                     case .failure(let error):
                         self?.showErrorAlert(error: error)
                     }
@@ -167,11 +199,18 @@ extension FindingSeSacTabmanViewController: PageboyViewControllerDataSource, TMB
 extension FindingSeSacTabmanViewController: SeSacTabmanViewController {
     
     func changeStudyButtonTapped() {
-        guard let count = navigationController?.viewControllers.count else { return }
-        if count >= 3 {
-            navigationController?.popViewController(animated: true)
-        }else {
-            transition(EnterStudyViewController(), transitionStyle: .push)
-        }
+//        guard let count = navigationController?.viewControllers.count else { return }
+//        if count >= 3 {
+//            navigationController?.popViewController(animated: true)
+//        }else {
+//            transition(EnterStudyViewController(), transitionStyle: .push)
+//        }
+        
+        transition(EnterStudyViewController(), transitionStyle: .push)
+    }
+    
+    
+    func requestSearch(completion: @escaping () -> Void) {
+        _requestSearch(completion: completion)
     }
 }
