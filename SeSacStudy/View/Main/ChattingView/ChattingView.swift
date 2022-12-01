@@ -11,7 +11,10 @@ import UIKit
 final class ChattingView: BaseView {
     
     // MARK: - Propertys
-    let tableView = UITableView()
+    let tableView = UITableView(frame: CGRect(), style: .grouped).then {
+        $0.backgroundColor = .clear
+        $0.separatorStyle = .none
+    }
     
     let chatInputView = ChatInputView()
     
@@ -28,13 +31,12 @@ final class ChattingView: BaseView {
     
     override func setConstraint() {
         chatInputView.snp.makeConstraints { make in
-            //make.height.equalTo(50)
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide).inset(16)
         }
         
         tableView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(16)
-            make.bottom.equalTo(chatInputView.snp.top).offset(8)
+            make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
+            make.bottom.equalTo(chatInputView.snp.top).offset(-8)
         }
     }
     

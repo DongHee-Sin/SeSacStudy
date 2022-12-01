@@ -13,9 +13,6 @@ import RxCocoa
 
 final class ChattingViewModel {
     
-    /// 값이 변경되면
-    /// 텍스트를 기반으로, scrollEnabled 여부를 customView로 전달
-    /// 
 }
 
 

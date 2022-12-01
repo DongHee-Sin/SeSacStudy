@@ -14,6 +14,8 @@
 		D00008112937AC7300A4C906 /* ChattingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00008102937AC7300A4C906 /* ChattingViewModel.swift */; };
 		D00008142937AECF00A4C906 /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00008132937AECF00A4C906 /* ChatInputView.swift */; };
 		D00008172937BC3B00A4C906 /* ChattingTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00008162937BC3B00A4C906 /* ChattingTableViewHeader.swift */; };
+		D00CC9152938E9C7005311FB /* ImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CC9142938E9C7005311FB /* ImageLabelView.swift */; };
+		D00CC9172938F05D005311FB /* ChattingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CC9162938F05D005311FB /* ChattingTableViewCell.swift */; };
 		D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0100B452918C5CC00AEC5C2 /* AppDelegate.swift */; };
 		D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0100B472918C5CC00AEC5C2 /* SceneDelegate.swift */; };
 		D0100B4F2918C5CC00AEC5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0100B4E2918C5CC00AEC5C2 /* Assets.xcassets */; };
@@ -142,6 +144,8 @@
 		D00008102937AC7300A4C906 /* ChattingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewModel.swift; sourceTree = "<group>"; };
 		D00008132937AECF00A4C906 /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
 		D00008162937BC3B00A4C906 /* ChattingTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableViewHeader.swift; sourceTree = "<group>"; };
+		D00CC9142938E9C7005311FB /* ImageLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelView.swift; sourceTree = "<group>"; };
+		D00CC9162938F05D005311FB /* ChattingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableViewCell.swift; sourceTree = "<group>"; };
 		D0100B422918C5CC00AEC5C2 /* SeSacStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSacStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0100B452918C5CC00AEC5C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0100B472918C5CC00AEC5C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -307,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				D00008132937AECF00A4C906 /* ChatInputView.swift */,
+				D00CC9142938E9C7005311FB /* ImageLabelView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				D00008162937BC3B00A4C906 /* ChattingTableViewHeader.swift */,
+				D00CC9162938F05D005311FB /* ChattingTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -963,6 +969,7 @@
 			files = (
 				D0FAE43C2923E1B200CD2206 /* DataStorage.swift in Sources */,
 				D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */,
+				D00CC9172938F05D005311FB /* ChattingTableViewCell.swift in Sources */,
 				D01D38872923870200D7F577 /* FrequentStudyView.swift in Sources */,
 				D0AE10102924D25F0057AADE /* CustomAlertView.swift in Sources */,
 				D00008142937AECF00A4C906 /* ChatInputView.swift in Sources */,
@@ -1010,6 +1017,7 @@
 				D0ADF4C62921FB7800C5027D /* SettingView.swift in Sources */,
 				D0D8EF5D291CF17100F9BC22 /* EnterGenderView.swift in Sources */,
 				D0DEEFFB291A65B700BE125E /* EnterPhoneNumberViewModel.swift in Sources */,
+				D00CC9152938E9C7005311FB /* ImageLabelView.swift in Sources */,
 				D01D388D2923887C00D7F577 /* WithdrawalView.swift in Sources */,
 				D0ADF4C32921FB3F00C5027D /* SettingViewController.swift in Sources */,
 				D07BE8522918E12D00020487 /* FontStyle.swift in Sources */,

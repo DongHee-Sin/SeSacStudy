@@ -15,12 +15,27 @@ final class ChattingTableViewHeader: UITableViewHeaderFooterView {
         return String(describing: self)
     }
     
-    let dateLabel = UILabel().then {
+    private let dateLabel = UILabel().then {
+        $0.text = "  TEST : 1월 15일 토요일  "
         $0.backgroundColor = R.color.gray7()
-        $0.layer.cornerRadius = 20
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 14
         $0.textColor = R.color.white()
         $0.font = .customFont(.title5_M12)
     }
+    
+    private let imageLabel = ImageLabelView().then {
+        $0.image.image = R.image.setting_alarm()
+        $0.label.text = "TEST : 고래밥님과 매칭되었습니다."
+    }
+    
+    private let subLabel = UILabel().then {
+        $0.text = "채팅을 통해 약속을 정해보세요 :)"
+        $0.textColor = R.color.gray6()
+        $0.font = .customFont(.title4_R14)
+    }
+    
+    
     
     
     
@@ -42,15 +57,28 @@ final class ChattingTableViewHeader: UITableViewHeaderFooterView {
     
     // MARK: - Methods
     private func configureUI() {
-        //self.addSubview(customImageView)
+        [dateLabel, imageLabel, subLabel].forEach {
+            self.addSubview($0)
+        }
     }
     
     
     private func setConstraint() {
-//        customImageView.snp.makeConstraints { make in
-//            make.verticalEdges.equalTo(self)
-//            make.horizontalEdges.equalTo(self).inset(16)
-//            make.height.equalTo(customImageView.snp.width).multipliedBy(0.57)
-//        }
+        dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(self).offset(16)
+            make.centerX.equalTo(self)
+            make.height.equalTo(28)
+        }
+      
+        imageLabel.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.bottom).offset(12)
+            make.centerX.equalTo(self)
+        }
+        
+        subLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageLabel.snp.bottom).offset(2)
+            make.centerX.equalTo(self)
+            make.bottom.equalTo(self).offset(-16)
+        }
     }
 }

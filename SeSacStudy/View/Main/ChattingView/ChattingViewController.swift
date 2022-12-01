@@ -36,17 +36,27 @@ final class ChattingViewController: BaseViewController {
     // MARK: - Methods
     override func configure() {
         setNavigationBar()
+        setTableView()
         
         bind()
         keyboardBind()
     }
     
     
+    private func setTableView() {
+        customView.tableView.delegate = self
+        customView.tableView.dataSource = self
+        
+        customView.tableView.register(ChattingTableViewCell.self, forCellReuseIdentifier: ChattingTableViewCell.identifier)
+        customView.tableView.register(ChattingTableViewHeader.self, forHeaderFooterViewReuseIdentifier: ChattingTableViewHeader.identifier)
+    }
+    
+    
     private func setNavigationBar() {
         navigationItem.title = "User Nickname"
         
-//        let moreButton = UIBarButtonItem(image: R.image.more(), style: .plain, target: self, action: #selector(<#T##@objc method#>))
-//        navigationItem.rightBarButtonItem = moreButton
+        let moreButton = UIBarButtonItem(image: R.image.more(), style: .plain, target: self, action: #selector(moreButtonTapped))
+        navigationItem.rightBarButtonItem = moreButton
     }
     
     
@@ -81,6 +91,11 @@ final class ChattingViewController: BaseViewController {
                 }
             }.disposed(by: disposeBag)
     }
+    
+    
+    @objc private func moreButtonTapped() {
+        
+    }
 }
 
 
@@ -97,5 +112,41 @@ extension ChattingViewController {
                 self.customView.layoutIfNeeded()
             }
             .disposed(by: disposeBag)
+    }
+}
+
+
+
+
+// MARK: - TableView Protocol
+extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ChattingTableViewHeader.identifier) as? ChattingTableViewHeader else {
+            return UIView()
+        }
+        
+        return header
+    }
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChattingTableViewCell.identifier, for: indexPath) as? ChattingTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.updateCell(chat: "안녕하세요 굿밤되세요", type: indexPath.row == 0 ? .received : .send)
+        
+        return cell
     }
 }
