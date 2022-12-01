@@ -53,7 +53,7 @@ final class EnterStudyViewController: BaseViewController {
         tabBarController?.tabBar.isHidden = true
         
         let searchBar = UISearchBar()
-        searchBar.placeholder = "띄어쓰기로 복수 입력이 가능해요"
+        searchBar.placeholder = Placeholder.study.rawValue
         searchBar.delegate = self
         
         navigationItem.titleView = searchBar

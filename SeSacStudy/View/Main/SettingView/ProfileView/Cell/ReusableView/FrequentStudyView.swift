@@ -19,7 +19,7 @@ final class FrequentStudyView: BaseView {
     }
     
     let textField = ReusableTextField().then {
-        $0.textField.placeholder = "스터디를 입력해 주세요"
+        $0.textField.placeholder = Placeholder.frequentStudy.rawValue
     }
     
     

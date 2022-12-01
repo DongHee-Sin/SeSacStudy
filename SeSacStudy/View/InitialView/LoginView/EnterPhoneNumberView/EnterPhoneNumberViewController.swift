@@ -52,7 +52,7 @@ final class EnterPhoneNumberViewController: BaseViewController {
         customView.reusableTextField.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
         customView.reusableTextField.textField.keyboardType = .numberPad
-        customView.reusableTextField.textField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
+        customView.reusableTextField.textField.placeholder = Placeholder.phoneNumber.rawValue
         
         bind()
     }

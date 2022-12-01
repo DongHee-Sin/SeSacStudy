@@ -16,7 +16,7 @@ final class VerifyAuthNumberView: BaseView {
     let textField = UITextField().then {
         $0.keyboardType = .numberPad
         $0.font = .customFont(.title4_R14)
-        $0.placeholder = "인증번호 입력"
+        $0.placeholder = Placeholder.authNumber.rawValue
     }
     
     let lineView = UIView().then {

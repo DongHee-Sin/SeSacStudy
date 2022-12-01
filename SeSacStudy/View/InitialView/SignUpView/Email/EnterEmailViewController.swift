@@ -49,7 +49,7 @@ final class EnterEmailViewController: BaseViewController {
         customView.reusableView.button.setTitle("다음", for: .normal)
         
         customView.reusableTextField.textField.keyboardType = .emailAddress
-        customView.reusableTextField.textField.placeholder = "SeSAC@email.com"
+        customView.reusableTextField.textField.placeholder = Placeholder.email.rawValue
         
         customView.reusableTextField.textField.becomeFirstResponder()
     }

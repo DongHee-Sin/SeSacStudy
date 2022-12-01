@@ -59,7 +59,6 @@ final class ChattingViewController: BaseViewController {
         output.line
             .withUnretained(self)
             .bind { (vc, value) in
-                print("☘️☘️☘️☘️☘️☘️☘️☘️")
                 vc.customView.updateTextViewHeight(line: value)
             }
             .disposed(by: disposeBag)

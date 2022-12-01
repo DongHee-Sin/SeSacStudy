@@ -52,7 +52,7 @@ final class EnterNicknameViewController: BaseViewController {
         customView.reusableView.button.setTitle("다음", for: .normal)
         
         customView.reusableTextField.textField.keyboardType = .default
-        customView.reusableTextField.textField.placeholder = "10자 이내로 입력"
+        customView.reusableTextField.textField.placeholder = Placeholder.nickname.rawValue
         
         customView.reusableTextField.textField.becomeFirstResponder()
     }
