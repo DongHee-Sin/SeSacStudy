@@ -19,7 +19,9 @@ final class LaunchScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setRootViewController()
+        changeRootViewController(to: UINavigationController(rootViewController: ChattingViewController()))
+        
+        //setRootViewController()
     }
     
     

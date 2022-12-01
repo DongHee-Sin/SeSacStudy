@@ -110,6 +110,8 @@ final class SurroundingSeSacViewController: BaseViewController {
 // MARK: - API Request
 extension SurroundingSeSacViewController {
     
+    /// https://sesac-ios-2.atlassian.net/wiki/spaces/SIS/pages/10289265/1+3+near+user+popup+1+4+accept+popup
+    /// 상태코드별 분기처리 필요
     private func requestStudy(uid: String) {
         APIService.share.request(router: .requestStudy(uid: uid)) { [weak self] error, statusCode in
             switch statusCode {

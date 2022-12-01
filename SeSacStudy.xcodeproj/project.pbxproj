@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		4CECB3BE79BA4BC04B0BADCD /* Pods_SeSacStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFC5E6B44EC8A69EEBAFB1D /* Pods_SeSacStudy.framework */; };
 		D000080A293783A500A4C906 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0000809293783A500A4C906 /* UIImage+Extension.swift */; };
+		D000080D2937AC0E00A4C906 /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D000080C2937AC0E00A4C906 /* ChattingViewController.swift */; };
+		D000080F2937AC2800A4C906 /* ChattingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D000080E2937AC2800A4C906 /* ChattingView.swift */; };
+		D00008112937AC7300A4C906 /* ChattingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00008102937AC7300A4C906 /* ChattingViewModel.swift */; };
+		D00008142937AECF00A4C906 /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00008132937AECF00A4C906 /* ChatInputView.swift */; };
+		D00008172937BC3B00A4C906 /* ChattingTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00008162937BC3B00A4C906 /* ChattingTableViewHeader.swift */; };
 		D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0100B452918C5CC00AEC5C2 /* AppDelegate.swift */; };
 		D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0100B472918C5CC00AEC5C2 /* SceneDelegate.swift */; };
 		D0100B4F2918C5CC00AEC5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0100B4E2918C5CC00AEC5C2 /* Assets.xcassets */; };
@@ -117,6 +122,9 @@
 		D0E2E200291A219E00D49E0F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */; };
 		D0E504322929C6D700AEDECE /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = D0E504312929C6D700AEDECE /* RxKeyboard */; };
 		D0E504342929D1E500AEDECE /* EnterStudyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E504332929D1E500AEDECE /* EnterStudyViewModel.swift */; };
+		D0EA3A722938846E0066F47E /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EA3A712938846E0066F47E /* Placeholder.swift */; };
+		D0EA3A742938924D0066F47E /* TextViewLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EA3A732938924D0066F47E /* TextViewLine.swift */; };
+		D0EA3A76293896790066F47E /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EA3A75293896790066F47E /* UITextView+Extension.swift */; };
 		D0FAE43A2923B89000CD2206 /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = D0FAE4392923B89000CD2206 /* MultiSlider */; };
 		D0FAE43C2923E1B200CD2206 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FAE43B2923E1B200CD2206 /* DataStorage.swift */; };
 		D0FAE4402923EFF400CD2206 /* DateFormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FAE43F2923EFF400CD2206 /* DateFormatterManager.swift */; };
@@ -129,6 +137,11 @@
 		C9F727FA6385471DB50F92AB /* Pods-SeSacStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSacStudy.debug.xcconfig"; path = "Target Support Files/Pods-SeSacStudy/Pods-SeSacStudy.debug.xcconfig"; sourceTree = "<group>"; };
 		CBFC5E6B44EC8A69EEBAFB1D /* Pods_SeSacStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeSacStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0000809293783A500A4C906 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		D000080C2937AC0E00A4C906 /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
+		D000080E2937AC2800A4C906 /* ChattingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingView.swift; sourceTree = "<group>"; };
+		D00008102937AC7300A4C906 /* ChattingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewModel.swift; sourceTree = "<group>"; };
+		D00008132937AECF00A4C906 /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
+		D00008162937BC3B00A4C906 /* ChattingTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableViewHeader.swift; sourceTree = "<group>"; };
 		D0100B422918C5CC00AEC5C2 /* SeSacStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSacStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0100B452918C5CC00AEC5C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0100B472918C5CC00AEC5C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -230,6 +243,9 @@
 		D0E2E1FC291A070C00D49E0F /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		D0E504332929D1E500AEDECE /* EnterStudyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterStudyViewModel.swift; sourceTree = "<group>"; };
+		D0EA3A712938846E0066F47E /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
+		D0EA3A732938924D0066F47E /* TextViewLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewLine.swift; sourceTree = "<group>"; };
+		D0EA3A75293896790066F47E /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		D0FAE43B2923E1B200CD2206 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		D0FAE43F2923EFF400CD2206 /* DateFormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterManager.swift; sourceTree = "<group>"; };
 		D0FAE4412923FD2200CD2206 /* MyPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPage.swift; sourceTree = "<group>"; };
@@ -274,6 +290,33 @@
 				A461A4FC7A81E0321E5DADF2 /* Pods-SeSacStudy.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D000080B293790C100A4C906 /* ChattingView */ = {
+			isa = PBXGroup;
+			children = (
+				D00008102937AC7300A4C906 /* ChattingViewModel.swift */,
+				D000080C2937AC0E00A4C906 /* ChattingViewController.swift */,
+				D000080E2937AC2800A4C906 /* ChattingView.swift */,
+				D00008152937B9EE00A4C906 /* Cell */,
+			);
+			path = ChattingView;
+			sourceTree = "<group>";
+		};
+		D00008122937ADE400A4C906 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D00008132937AECF00A4C906 /* ChatInputView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		D00008152937B9EE00A4C906 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D00008162937BC3B00A4C906 /* ChattingTableViewHeader.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		D0100B392918C5CC00AEC5C2 = {
@@ -350,6 +393,7 @@
 				D023355A2918CE29003C7225 /* Base */,
 				D023355B2918CE35003C7225 /* Protocol */,
 				D02335592918CE23003C7225 /* Extension */,
+				D0EA3A702938845D0066F47E /* Enum */,
 				D07BE8462918DD9D00020487 /* Font */,
 				D057EC4D2926612F00B3A7B1 /* Custom */,
 				D023356B2918D679003C7225 /* Reusable */,
@@ -377,6 +421,7 @@
 				D07BE8572918F02F00020487 /* UICollectionViewLayout+Extension.swift */,
 				D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */,
 				D0000809293783A500A4C906 /* UIImage+Extension.swift */,
+				D0EA3A75293896790066F47E /* UITextView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -509,6 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				D0AE10092924CE5D0057AADE /* Common */,
+				D00008122937ADE400A4C906 /* Chat */,
 				D0AE10082924CE510057AADE /* Profile */,
 			);
 			path = ReusableView;
@@ -654,6 +700,7 @@
 				D0D2D3A8291E27EA007FA615 /* MainTabBarController.swift */,
 				D0ADF4D329220AAD00C5027D /* ReusableView */,
 				D0D2D3A5291E271B007FA615 /* HomeView */,
+				D000080B293790C100A4C906 /* ChattingView */,
 				D0ADF4C42921FB6700C5027D /* SettingView */,
 			);
 			path = Main;
@@ -740,6 +787,15 @@
 				D0DEEFF5291A5AFE00BE125E /* VerifyAuthNumberView */,
 			);
 			path = LoginView;
+			sourceTree = "<group>";
+		};
+		D0EA3A702938845D0066F47E /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				D0EA3A712938846E0066F47E /* Placeholder.swift */,
+				D0EA3A732938924D0066F47E /* TextViewLine.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -909,12 +965,15 @@
 				D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */,
 				D01D38872923870200D7F577 /* FrequentStudyView.swift in Sources */,
 				D0AE10102924D25F0057AADE /* CustomAlertView.swift in Sources */,
+				D00008142937AECF00A4C906 /* ChatInputView.swift in Sources */,
 				D0D2D3AE291E35FC007FA615 /* LaunchScreenView.swift in Sources */,
 				D0C9978E291BDD8F006C41B4 /* Login.swift in Sources */,
 				D0D2D3A9291E27EA007FA615 /* MainTabBarController.swift in Sources */,
 				D057EC5329267E8300B3A7B1 /* EnterStudyViewController.swift in Sources */,
+				D000080D2937AC0E00A4C906 /* ChattingViewController.swift in Sources */,
 				D07BE8542918E3F600020487 /* OnboardingViewController.swift in Sources */,
 				D07BE8502918DF7900020487 /* NotoSansCJK.swift in Sources */,
+				D000080F2937AC2800A4C906 /* ChattingView.swift in Sources */,
 				D0D15EFF292D18F900E166D7 /* FindingSeSacTabmanViewController.swift in Sources */,
 				D082A9FF291EAC1A002A6D09 /* EnterEmailViewModel.swift in Sources */,
 				D0E2E1FD291A070C00D49E0F /* Onboarding.swift in Sources */,
@@ -923,6 +982,7 @@
 				D0800A37292288F8006EF576 /* SeSacReviewView.swift in Sources */,
 				D0ADF4C12921EEE300C5027D /* NetworkMonitor.swift in Sources */,
 				D0C9978B291BD8A9006C41B4 /* APIService.swift in Sources */,
+				D00008112937AC7300A4C906 /* ChattingViewModel.swift in Sources */,
 				D0D2D3A7291E273D007FA615 /* HomeViewController.swift in Sources */,
 				D077FBA5292525A1004E4363 /* QueueStatus.swift in Sources */,
 				D0ADF4D929220B5A00C5027D /* ProfileViewModel.swift in Sources */,
@@ -969,6 +1029,7 @@
 				D057EC4F292663CA00B3A7B1 /* CustomAnnotation.swift in Sources */,
 				D0DEEFFD291A733300BE125E /* CommonViewModel.swift in Sources */,
 				D0C9979C291C0CD1006C41B4 /* EnterBirthDayView.swift in Sources */,
+				D00008172937BC3B00A4C906 /* ChattingTableViewHeader.swift in Sources */,
 				D01D38892923882F00D7F577 /* NumberSearchAvailabilityView.swift in Sources */,
 				D023356D2918D752003C7225 /* BasicButton.swift in Sources */,
 				D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */,
@@ -980,10 +1041,12 @@
 				D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */,
 				D01D388B2923885000D7F577 /* SearchAgeGroupView.swift in Sources */,
 				D02335682918D631003C7225 /* BaseViewController.swift in Sources */,
+				D0EA3A722938846E0066F47E /* Placeholder.swift in Sources */,
 				D077FBA329252368004E4363 /* HomeViewModel.swift in Sources */,
 				D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */,
 				D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */,
 				D0800A3B29229312006EF576 /* ProfileExpandableTableViewCell.swift in Sources */,
+				D0EA3A742938924D0066F47E /* TextViewLine.swift in Sources */,
 				D023356A2918D652003C7225 /* BaseView.swift in Sources */,
 				D0D15F05292D1AF100E166D7 /* RequestReceivedViewController.swift in Sources */,
 				D0AE100D2924D2160057AADE /* CustomAlertDelegate.swift in Sources */,
@@ -996,6 +1059,7 @@
 				D0CE6A94292942A800F43FE1 /* DynamicCollectionView.swift in Sources */,
 				D0C74E35291AC539008B3863 /* VerifyAuthNumberView.swift in Sources */,
 				D01D388029237BE600D7F577 /* StudyListView.swift in Sources */,
+				D0EA3A76293896790066F47E /* UITextView+Extension.swift in Sources */,
 				D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */,
 				D01D38822923837400D7F577 /* CollectionviewProtocol.swift in Sources */,
 				D07BE8562918E40A00020487 /* OnboardingView.swift in Sources */,

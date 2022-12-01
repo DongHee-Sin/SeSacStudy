@@ -96,6 +96,8 @@ final class RequestReceivedViewController: BaseViewController {
 // MARK: - API Request
 extension RequestReceivedViewController {
     
+    /// https://sesac-ios-2.atlassian.net/wiki/spaces/SIS/pages/10289265/1+3+near+user+popup+1+4+accept+popup
+    /// 상태코드별 분기처리 필요
     private func acceptStudy(uid: String) {
         APIService.share.request(router: .acceptStudy(uid: uid)) { [weak self] error, statusCode in
             switch statusCode {
