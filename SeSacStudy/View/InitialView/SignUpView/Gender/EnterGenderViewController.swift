@@ -8,7 +8,7 @@
 import UIKit
 
 
-final class EnterGenderViewController: BaseViewController {
+final class EnterGenderViewController: RxBaseViewController {
     
     // MARK: - Propertys
     private let viewModel = EnterGenderViewModel()

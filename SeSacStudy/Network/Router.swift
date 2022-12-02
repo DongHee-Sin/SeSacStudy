@@ -8,9 +8,9 @@
 import Foundation
 
 import Alamofire
-import CoreLocation
 
 
+/// Path별로 구분해두면 좋을 것 같다.
 enum Router: URLRequestConvertible {
     case login
     case signUp(body: SignUp)
@@ -29,9 +29,6 @@ enum Router: URLRequestConvertible {
     }
     
     
-    private var location: CLLocationCoordinate2D { DataStorage.shared.userLocation }
-    
-    
     private var method: HTTPMethod {
         switch self {
         case .login, .queueStatus:
@@ -46,6 +43,7 @@ enum Router: URLRequestConvertible {
     }
     
     
+    /// ULR 주소도 따로 관리하면 좋다.
     private var path: String {
         switch self {
         case .login, .signUp:
@@ -77,36 +75,25 @@ enum Router: URLRequestConvertible {
     }
     
     
+    /// body를 딕셔너리로 변환하는 메서드를 사용하자
+    /// 모델의 프로퍼티가 변경되었어도 바로 적용될 수 있도록, 코드 관리하기 좋게
     private var param: Parameters? {
         switch self {
         case .login, .withdraw, .queueStatus, .cancelRequestSearch:
             return nil
         case .signUp(let body):
-            return [
-                "phoneNumber": body.phoneNumber,
-                "FCMtoken": body.FCMtoken,
-                "nick": body.nick,
-                "birth": body.birth,
-                "email": body.email,
-                "gender": body.gender
-            ]
+            return try? DictionaryEncoder.shared.encode(body)
         case .mypage(let body):
-            return [
-                "searchable": body.searchable,
-                "ageMin": body.ageMin,
-                "ageMax": body.ageMax,
-                "gender": body.gender,
-                "study": body.study
-            ]
+            return try? DictionaryEncoder.shared.encode(body)
         case .queueSearch:
             return [
-                "lat": location.latitude,
-                "long": location.longitude
+                "lat": DataStorage.shared.userLocation.latitude,
+                "long": DataStorage.shared.userLocation.longitude
             ]
         case .requestSearch(let list):
             return [
-                "lat": location.latitude,
-                "long": location.longitude,
+                "lat": DataStorage.shared.userLocation.latitude,
+                "long": DataStorage.shared.userLocation.longitude,
                 "studylist": list
             ]
         case .requestStudy(let uid), .acceptStudy(let uid):

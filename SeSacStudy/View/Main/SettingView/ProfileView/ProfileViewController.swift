@@ -12,7 +12,7 @@ import RxCocoa
 import MultiSlider
 
 
-final class ProfileViewController: BaseViewController {
+final class ProfileViewController: RxBaseViewController {
     
     // MARK: - Propertys
     private let viewModel = ProfileViewModel()
@@ -159,7 +159,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 return UIView()
             }
             
-            header.customImageView.setImageView(img: DataStorage.shared.sesacImage)
+            let sesacImage = UIImage(named: DataStorage.shared.sesacImage)
+            header.customImageView.setImageView(img: sesacImage)
             
             return header
             

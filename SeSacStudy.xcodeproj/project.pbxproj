@@ -16,6 +16,7 @@
 		D00008172937BC3B00A4C906 /* ChattingTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00008162937BC3B00A4C906 /* ChattingTableViewHeader.swift */; };
 		D00CC9152938E9C7005311FB /* ImageLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CC9142938E9C7005311FB /* ImageLabelView.swift */; };
 		D00CC9172938F05D005311FB /* ChattingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CC9162938F05D005311FB /* ChattingTableViewCell.swift */; };
+		D00CC919293909B4005311FB /* MoreExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00CC918293909B4005311FB /* MoreExpandedView.swift */; };
 		D0100B462918C5CC00AEC5C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0100B452918C5CC00AEC5C2 /* AppDelegate.swift */; };
 		D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0100B472918C5CC00AEC5C2 /* SceneDelegate.swift */; };
 		D0100B4F2918C5CC00AEC5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0100B4E2918C5CC00AEC5C2 /* Assets.xcassets */; };
@@ -37,7 +38,7 @@
 		D01D388D2923887C00D7F577 /* WithdrawalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D388C2923887C00D7F577 /* WithdrawalView.swift */; };
 		D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023355D2918CE6C003C7225 /* UIColor+Extension.swift */; };
 		D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335642918D597003C7225 /* UserDefaultManager.swift */; };
-		D02335682918D631003C7225 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335672918D631003C7225 /* BaseViewController.swift */; };
+		D02335682918D631003C7225 /* RxBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335672918D631003C7225 /* RxBaseViewController.swift */; };
 		D023356A2918D652003C7225 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02335692918D652003C7225 /* BaseView.swift */; };
 		D023356D2918D752003C7225 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023356C2918D752003C7225 /* BasicButton.swift */; };
 		D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */; };
@@ -98,6 +99,8 @@
 		D0C9979A291C0CBC006C41B4 /* EnterBirthDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C99799291C0CBC006C41B4 /* EnterBirthDayViewController.swift */; };
 		D0C9979C291C0CD1006C41B4 /* EnterBirthDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9979B291C0CD1006C41B4 /* EnterBirthDayView.swift */; };
 		D0CE6A94292942A800F43FE1 /* DynamicCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CE6A93292942A800F43FE1 /* DynamicCollectionView.swift */; };
+		D0CEBA782939CC75001CE8FD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CEBA772939CC75001CE8FD /* BaseViewController.swift */; };
+		D0CEBA7C2939D44E001CE8FD /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CEBA7B2939D44E001CE8FD /* DictionaryEncoder.swift */; };
 		D0CEF311293244B40090CD17 /* TabmanSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CEF310293244B40090CD17 /* TabmanSubViewController.swift */; };
 		D0CEF31729324EC60090CD17 /* SeSacTabmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CEF31629324EC60090CD17 /* SeSacTabmanViewController.swift */; };
 		D0D15EFF292D18F900E166D7 /* FindingSeSacTabmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D15EFE292D18F900E166D7 /* FindingSeSacTabmanViewController.swift */; };
@@ -146,6 +149,7 @@
 		D00008162937BC3B00A4C906 /* ChattingTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableViewHeader.swift; sourceTree = "<group>"; };
 		D00CC9142938E9C7005311FB /* ImageLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelView.swift; sourceTree = "<group>"; };
 		D00CC9162938F05D005311FB /* ChattingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingTableViewCell.swift; sourceTree = "<group>"; };
+		D00CC918293909B4005311FB /* MoreExpandedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreExpandedView.swift; sourceTree = "<group>"; };
 		D0100B422918C5CC00AEC5C2 /* SeSacStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSacStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0100B452918C5CC00AEC5C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0100B472918C5CC00AEC5C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -163,7 +167,7 @@
 		D01D388C2923887C00D7F577 /* WithdrawalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalView.swift; sourceTree = "<group>"; };
 		D023355D2918CE6C003C7225 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D02335642918D597003C7225 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
-		D02335672918D631003C7225 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		D02335672918D631003C7225 /* RxBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxBaseViewController.swift; sourceTree = "<group>"; };
 		D02335692918D652003C7225 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		D023356C2918D752003C7225 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		D03BD00C29194C5400F79915 /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 		D0C99799291C0CBC006C41B4 /* EnterBirthDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterBirthDayViewController.swift; sourceTree = "<group>"; };
 		D0C9979B291C0CD1006C41B4 /* EnterBirthDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterBirthDayView.swift; sourceTree = "<group>"; };
 		D0CE6A93292942A800F43FE1 /* DynamicCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicCollectionView.swift; sourceTree = "<group>"; };
+		D0CEBA772939CC75001CE8FD /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		D0CEBA7B2939D44E001CE8FD /* DictionaryEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncoder.swift; sourceTree = "<group>"; };
 		D0CEF310293244B40090CD17 /* TabmanSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabmanSubViewController.swift; sourceTree = "<group>"; };
 		D0CEF31629324EC60090CD17 /* SeSacTabmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSacTabmanViewController.swift; sourceTree = "<group>"; };
 		D0D15EFE292D18F900E166D7 /* FindingSeSacTabmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingSeSacTabmanViewController.swift; sourceTree = "<group>"; };
@@ -312,6 +318,7 @@
 			children = (
 				D00008132937AECF00A4C906 /* ChatInputView.swift */,
 				D00CC9142938E9C7005311FB /* ImageLabelView.swift */,
+				D00CC918293909B4005311FB /* MoreExpandedView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -435,7 +442,8 @@
 		D023355A2918CE29003C7225 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				D02335672918D631003C7225 /* BaseViewController.swift */,
+				D0CEBA772939CC75001CE8FD /* BaseViewController.swift */,
+				D02335672918D631003C7225 /* RxBaseViewController.swift */,
 				D02335692918D652003C7225 /* BaseView.swift */,
 				D07BE85B2918FA3E00020487 /* BaseCollectionViewCell.swift */,
 				D0ADF4CC2921FF8200C5027D /* BaseTableViewCell.swift */,
@@ -609,6 +617,7 @@
 				D0ADF4C02921EEE300C5027D /* NetworkMonitor.swift */,
 				D0C99788291BD13A006C41B4 /* Router.swift */,
 				D0C9978A291BD8A9006C41B4 /* APIService.swift */,
+				D0CEBA7B2939D44E001CE8FD /* DictionaryEncoder.swift */,
 				D0C9978C291BDD86006C41B4 /* Model */,
 			);
 			path = Network;
@@ -1017,6 +1026,7 @@
 				D0ADF4C62921FB7800C5027D /* SettingView.swift in Sources */,
 				D0D8EF5D291CF17100F9BC22 /* EnterGenderView.swift in Sources */,
 				D0DEEFFB291A65B700BE125E /* EnterPhoneNumberViewModel.swift in Sources */,
+				D0CEBA782939CC75001CE8FD /* BaseViewController.swift in Sources */,
 				D00CC9152938E9C7005311FB /* ImageLabelView.swift in Sources */,
 				D01D388D2923887C00D7F577 /* WithdrawalView.swift in Sources */,
 				D0ADF4C32921FB3F00C5027D /* SettingViewController.swift in Sources */,
@@ -1048,7 +1058,7 @@
 				D0DEEFF7291A5B5600BE125E /* EnterPhoneNumberViewController.swift in Sources */,
 				D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */,
 				D01D388B2923885000D7F577 /* SearchAgeGroupView.swift in Sources */,
-				D02335682918D631003C7225 /* BaseViewController.swift in Sources */,
+				D02335682918D631003C7225 /* RxBaseViewController.swift in Sources */,
 				D0EA3A722938846E0066F47E /* Placeholder.swift in Sources */,
 				D077FBA329252368004E4363 /* HomeViewModel.swift in Sources */,
 				D023355E2918CE6C003C7225 /* UIColor+Extension.swift in Sources */,
@@ -1066,7 +1076,9 @@
 				D0D8EF55291CD06E00F9BC22 /* ReusableTextField.swift in Sources */,
 				D0CE6A94292942A800F43FE1 /* DynamicCollectionView.swift in Sources */,
 				D0C74E35291AC539008B3863 /* VerifyAuthNumberView.swift in Sources */,
+				D0CEBA7C2939D44E001CE8FD /* DictionaryEncoder.swift in Sources */,
 				D01D388029237BE600D7F577 /* StudyListView.swift in Sources */,
+				D00CC919293909B4005311FB /* MoreExpandedView.swift in Sources */,
 				D0EA3A76293896790066F47E /* UITextView+Extension.swift in Sources */,
 				D03BD00D29194C5400F79915 /* NSAttributedString+Extension.swift in Sources */,
 				D01D38822923837400D7F577 /* CollectionviewProtocol.swift in Sources */,
@@ -1233,7 +1245,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1268,7 +1280,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

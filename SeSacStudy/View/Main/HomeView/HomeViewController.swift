@@ -11,7 +11,10 @@ import CoreLocation
 import MapKit
 
 
-final class HomeViewController: BaseViewController {
+/// ⭐️ 반드시 개선!!! 해라 !!! 제발!!!!
+/// 위치 관리를 담당하는 객체를 별도 파일로 분리해서 사용하면 좋다.
+/// 다른곳에서 위치 관리를 또 사ㅏ용해야하는경우, 같이 사용할 수 있도록..
+final class HomeViewController: RxBaseViewController {
     
     // MARK: - Propertys
     private let locationManager = CLLocationManager()

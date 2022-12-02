@@ -5,7 +5,7 @@
 //  Created by 신동희 on 2022/11/16.
 //
 
-import UIKit
+import Foundation
 
 import CoreLocation
 
@@ -13,15 +13,12 @@ import CoreLocation
 final class DataStorage {
     
     private init() {}
-    
     static let shared = DataStorage()
-    
-    
     
     
     // MARK: - Propertys
     private(set) var login: Login!
-    private(set) var SearchResult: QueueSearchResult! {
+    private var SearchResult: QueueSearchResult! {
         didSet {
             SearchResult.fromQueueDB.forEach {
                 print("주변새싹 : \($0.nick) \($0.studylist) \($0.type)")
@@ -35,25 +32,25 @@ final class DataStorage {
     
     var userLocation = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
     
-    var sesacImage: UIImage {
-        return UIImage(named: "sesac_background_\(login.background+1)") ?? UIImage()
-    }
+    var sesacImage: String { "sesac_background_\(login.background+1)" }
+    
+    var fromQueueDB: [User] { SearchResult.fromQueueDB }
+    
+    var fromQueueDBRequested: [User] { SearchResult.fromQueueDBRequested }
     
     var userStudyList: [String] {
         var result: [String] = []
         
-        SearchResult.fromQueueDB.forEach {
+        fromQueueDB.forEach {
             result.append(contentsOf: $0.studylist)
         }
         
-        SearchResult.fromQueueDBRequested.forEach {
+        fromQueueDBRequested.forEach {
             result.append(contentsOf: $0.studylist)
         }
         
         return result
     }
-    
-    
     
     
     

@@ -19,6 +19,9 @@ enum MatchStatus {
 }
 
 
+/// ⭐️ 반드시 개선!!! 해라 !!! 제발!!!!
+/// 뷰모델이 하는일이 없다.
+/// 역할 분리좀 제발..
 final class HomeViewModel {
     
     // MARK: - Propertys

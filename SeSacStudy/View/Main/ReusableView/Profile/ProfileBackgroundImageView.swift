@@ -8,13 +8,12 @@
 import UIKit
 
 
-enum ProfileImageButtonType {
-    case request
-    case accept
-}
-
-
 final class ProfileBackgroundImageView: BaseView {
+    
+    enum ProfileImageButtonType {
+        case request
+        case accept
+    }
     
     // MARK: - Propertys
     let imageView = UIImageView().then {
@@ -24,9 +23,6 @@ final class ProfileBackgroundImageView: BaseView {
     }
     
     lazy var button = BasicButton(status: .fill)
-    
-    
-    
     
     
     

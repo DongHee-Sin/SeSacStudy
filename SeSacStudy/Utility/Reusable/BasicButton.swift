@@ -83,5 +83,4 @@ extension BasicButton {
             self.layer.borderWidth = 1
         }
     }
-    
 }

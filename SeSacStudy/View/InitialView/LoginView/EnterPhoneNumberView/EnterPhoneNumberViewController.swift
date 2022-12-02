@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-final class EnterPhoneNumberViewController: BaseViewController {
+final class EnterPhoneNumberViewController: RxBaseViewController {
     
     // MARK: - Propertys
     private let viewModel = EnterPhoneNumberViewModel()

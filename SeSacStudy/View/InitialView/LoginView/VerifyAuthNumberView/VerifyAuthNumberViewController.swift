@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-final class VerifyAuthNumberViewController: BaseViewController {
+final class VerifyAuthNumberViewController: RxBaseViewController {
     
     // MARK: - Propertys
     private let viewModel = VerifyAuthNumberViewModel()

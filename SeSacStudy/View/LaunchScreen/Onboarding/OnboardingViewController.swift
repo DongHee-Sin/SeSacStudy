@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-final class OnboardingViewController: BaseViewController {
+final class OnboardingViewController: RxBaseViewController {
 
     // MARK: - Propertys
     private let onboardings: [Onboarding] = [

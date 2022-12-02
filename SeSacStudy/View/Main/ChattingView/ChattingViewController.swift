@@ -12,7 +12,7 @@ import RxCocoa
 import RxKeyboard
 
 
-final class ChattingViewController: BaseViewController {
+final class ChattingViewController: RxBaseViewController {
     
     // MARK: - Propertys
     private let viewModel = ChattingViewModel()
@@ -53,7 +53,7 @@ final class ChattingViewController: BaseViewController {
     
     
     private func setNavigationBar() {
-        navigationItem.title = "User Nickname"
+        navigationItem.title = "고래밥"
         
         let moreButton = UIBarButtonItem(image: R.image.more(), style: .plain, target: self, action: #selector(moreButtonTapped))
         navigationItem.rightBarButtonItem = moreButton
@@ -94,7 +94,7 @@ final class ChattingViewController: BaseViewController {
     
     
     @objc private func moreButtonTapped() {
-        
+        customView.showUpMoreExpandedView(true)
     }
 }
 

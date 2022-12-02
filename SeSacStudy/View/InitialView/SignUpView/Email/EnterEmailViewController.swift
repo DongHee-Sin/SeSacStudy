@@ -8,7 +8,7 @@
 import UIKit
 
 
-final class EnterEmailViewController: BaseViewController {
+final class EnterEmailViewController: RxBaseViewController {
     
     // MARK: - Propertys
     private let viewModel = EnterEmailViewModel()

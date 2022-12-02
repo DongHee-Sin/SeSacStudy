@@ -8,7 +8,7 @@
 import UIKit
 
 
-final class EnterBirthDayViewController: BaseViewController {
+final class EnterBirthDayViewController: RxBaseViewController {
     
     // MARK: - Propertys
     private let viewModel = EnterBirthDayViewModel()

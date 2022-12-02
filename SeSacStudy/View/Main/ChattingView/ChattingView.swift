@@ -18,12 +18,16 @@ final class ChattingView: BaseView {
     
     let chatInputView = ChatInputView()
     
+    let moreExpandedView = MoreExpandedView().then {
+        $0.isHidden = true
+    }
+    
     
     
     
     // MARK: - Methods
     override func configureUI() {
-        [tableView, chatInputView].forEach {
+        [tableView, chatInputView, moreExpandedView].forEach {
             self.addSubview($0)
         }
     }
@@ -37,6 +41,10 @@ final class ChattingView: BaseView {
         tableView.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
             make.bottom.equalTo(chatInputView.snp.top).offset(-8)
+        }
+        
+        moreExpandedView.snp.makeConstraints { make in
+            make.edges.equalTo(self.safeAreaLayoutGuide)
         }
     }
     
@@ -53,5 +61,15 @@ final class ChattingView: BaseView {
         chatInputView.textView.snp.updateConstraints { make in
             make.height.equalTo(line.height)
         }
+    }
+    
+    
+    func showUpMoreExpandedView(_ value: Bool) {
+        moreExpandedView.isHidden = !value
+        moreExpandedView.hideButtons(!value)
+        moreExpandedView.stackView.snp.updateConstraints { make in
+            make.height.equalTo(72)
+        }
+        self.layoutIfNeeded()
     }
 }

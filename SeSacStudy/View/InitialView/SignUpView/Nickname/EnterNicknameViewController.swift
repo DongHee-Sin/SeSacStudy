@@ -8,7 +8,7 @@
 import UIKit
 
 
-final class EnterNicknameViewController: BaseViewController {
+final class EnterNicknameViewController: RxBaseViewController {
     
     // MARK: - Propertys
     private let viewModel = EnterNicknameViewModel()

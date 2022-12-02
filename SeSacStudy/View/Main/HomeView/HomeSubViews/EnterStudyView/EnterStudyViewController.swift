@@ -13,7 +13,7 @@ import RxCocoa
 import RxKeyboard
 
 
-final class EnterStudyViewController: BaseViewController {
+final class EnterStudyViewController: RxBaseViewController {
     
     // MARK: - Propertys
     private let viewModel = EnterStudyViewModel()
@@ -29,8 +29,6 @@ final class EnterStudyViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        test()
     }
     
     
@@ -242,27 +240,5 @@ extension EnterStudyViewController: UISearchBarDelegate {
         let list = searchBar.text?.components(separatedBy: " ") ?? []
         
         appendWishStudyList(list: list)
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    func test() {
-        guard var viewControllers = navigationController?.viewControllers else { return }
-        
-        if viewControllers.count >= 3 {
-            if let index = viewControllers.firstIndex(where: { return $0 is FindingSeSacTabmanViewController }) {
-                viewControllers.remove(at: index)
-                navigationController?.viewControllers = viewControllers
-            }
-        }else {
-            print(">>>>>>>>>>????☘️☘️☘️☘️☘️☘️☘️☘️")
-        }
     }
 }

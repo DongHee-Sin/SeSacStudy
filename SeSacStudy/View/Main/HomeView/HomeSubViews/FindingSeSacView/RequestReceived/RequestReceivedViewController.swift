@@ -8,14 +8,14 @@
 import UIKit
 
 
-final class RequestReceivedViewController: BaseViewController {
+final class RequestReceivedViewController: RxBaseViewController {
     
     // MARK: - Propertys
     var delegate: SeSacTabmanViewController? = nil
     
     private let placeHolderView = NotfoundView(type: .surroundingSeSac)
     
-    private let userList = DataStorage.shared.SearchResult.fromQueueDBRequested
+    private let userList = DataStorage.shared.fromQueueDBRequested
     
     private lazy var expandList: [Bool] = Array(repeating: false, count: userList.count)
     
@@ -208,7 +208,7 @@ extension RequestReceivedViewController: UITableViewDelegate, UITableViewDataSou
         cell.expandButton.tag = indexPath.section
         cell.expandButton.addTarget(self, action: #selector(expandButtonTapped), for: .touchUpInside)
         
-        cell.userStudyList = DataStorage.shared.SearchResult.fromQueueDB[indexPath.section].studylist
+        cell.userStudyList = DataStorage.shared.fromQueueDB[indexPath.section].studylist
         
         return cell
     }

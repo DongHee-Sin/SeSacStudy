@@ -8,14 +8,14 @@
 import UIKit
 
 
-final class SurroundingSeSacViewController: BaseViewController {
+final class SurroundingSeSacViewController: RxBaseViewController {
     
     // MARK: - Propertys
     var delegate: SeSacTabmanViewController? = nil
     
     private let placeHolderView = NotfoundView(type: .surroundingSeSac)
     
-    private let userList = DataStorage.shared.SearchResult.fromQueueDB
+    private let userList = DataStorage.shared.fromQueueDB
     
     private lazy var expandList: [Bool] = Array(repeating: false, count: userList.count)
     
@@ -220,7 +220,7 @@ extension SurroundingSeSacViewController: UITableViewDelegate, UITableViewDataSo
         cell.expandButton.tag = indexPath.section
         cell.expandButton.addTarget(self, action: #selector(expandButtonTapped), for: .touchUpInside)
         
-        cell.userStudyList = DataStorage.shared.SearchResult.fromQueueDB[indexPath.section].studylist
+        cell.userStudyList = DataStorage.shared.fromQueueDB[indexPath.section].studylist
         
         return cell
     }

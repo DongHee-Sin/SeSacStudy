@@ -16,39 +16,24 @@ import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Firebase
         FirebaseApp.configure()
-        
-        UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
-        
+        setNotification()
         application.registerForRemoteNotifications()
-        
-        Messaging.messaging().delegate = self
-        
         
         // Network Monitor
         NetworkMonitor.shared.startMonitoring()
         
-        
         // IQKeyboard
-        IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.enableAutoToolbar = false
-        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
-        
+        setIQKeyboardManager()
         
         // Default UI Setting
-        UINavigationBar.appearance().tintColor = R.color.black()
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: R.color.black()]
-        UIBarButtonItem.appearance().tintColor = R.color.black()
+        setDefaultUI()
         
         return true
     }
-
-    
     
     
     // MARK: UISceneSession Lifecycle
@@ -59,13 +44,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+}
 
 
+
+
+// MARK: - didFinishLaunchingWithOptions Methods
+extension AppDelegate {
+    
+    private func setNotification() {
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
+        Messaging.messaging().delegate = self
+    }
+    
+    
+    private func setIQKeyboardManager() {
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+    }
+    
+    
+    private func setDefaultUI() {
+        UINavigationBar.appearance().tintColor = R.color.black()
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: R.color.black()]
+        UIBarButtonItem.appearance().tintColor = R.color.black()
+    }
 }
 
 
