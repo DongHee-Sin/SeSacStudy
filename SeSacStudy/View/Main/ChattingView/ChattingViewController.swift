@@ -17,6 +17,10 @@ final class ChattingViewController: RxBaseViewController {
     // MARK: - Propertys
     private let viewModel = ChattingViewModel()
     
+    private var isMoreViewExpanded = false {
+        didSet { customView.showUpMoreExpandedView(isMoreViewExpanded) }
+    }
+    
     
     
     
@@ -40,6 +44,8 @@ final class ChattingViewController: RxBaseViewController {
         
         bind()
         keyboardBind()
+        
+        customView.moreExpandedView.dismissButton.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)
     }
     
     
@@ -94,7 +100,7 @@ final class ChattingViewController: RxBaseViewController {
     
     
     @objc private func moreButtonTapped() {
-        customView.showUpMoreExpandedView(true)
+        isMoreViewExpanded.toggle()
     }
 }
 

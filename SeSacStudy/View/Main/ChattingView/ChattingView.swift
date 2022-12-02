@@ -65,11 +65,19 @@ final class ChattingView: BaseView {
     
     
     func showUpMoreExpandedView(_ value: Bool) {
-        moreExpandedView.isHidden = !value
-        moreExpandedView.hideButtons(!value)
-        moreExpandedView.stackView.snp.updateConstraints { make in
-            make.height.equalTo(72)
+        if value {
+            moreExpandedView.isHidden = !value
+            UIView.transition(with: moreExpandedView.stackView, duration: 1,
+                              options: .transitionCurlDown) {
+                self.moreExpandedView.stackView.isHidden = false
+            }
+        }else {
+            UIView.transition(with: moreExpandedView.stackView, duration: 1,
+                              options: .transitionCurlDown) {
+                self.moreExpandedView.stackView.isHidden = true
+            } completion: { _ in
+                self.moreExpandedView.isHidden = !value
+            }
         }
-        self.layoutIfNeeded()
     }
 }

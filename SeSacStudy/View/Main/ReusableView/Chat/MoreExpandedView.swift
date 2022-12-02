@@ -12,6 +12,7 @@ final class MoreExpandedView: BaseView {
     
     // MARK: - Propertys
     let stackView = UIStackView().then {
+        $0.isHidden = true
         $0.backgroundColor = R.color.white()
         $0.distribution = .fillEqually
         $0.axis = .horizontal
@@ -42,7 +43,6 @@ final class MoreExpandedView: BaseView {
         
         [reportButton, cancelButton, reviewButton].forEach {
             stackView.addArrangedSubview($0)
-            $0.isHidden = true
         }
         
         [dismissButton, stackView].forEach {
@@ -53,19 +53,12 @@ final class MoreExpandedView: BaseView {
     
     override func setConstraint() {
         stackView.snp.makeConstraints { make in
-            make.height.equalTo(0)
+            make.height.equalTo(72)
             make.top.leading.trailing.equalTo(self)
         }
         
         dismissButton.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
-    }
-    
-    
-    func hideButtons(_ value: Bool) {
-        stackView.subviews.forEach {
-            $0.isHidden = value
         }
     }
 }
