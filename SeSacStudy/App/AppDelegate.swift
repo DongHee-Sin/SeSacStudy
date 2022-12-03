@@ -75,6 +75,8 @@ extension AppDelegate {
     private func setDefaultUI() {
         UINavigationBar.appearance().tintColor = R.color.black()
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: R.color.black()]
+        UINavigationBar.appearance().backIndicatorImage = R.image.arrow()
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = R.image.arrow()
         UIBarButtonItem.appearance().tintColor = R.color.black()
     }
 }
