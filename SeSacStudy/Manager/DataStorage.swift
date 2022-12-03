@@ -58,6 +58,7 @@ final class DataStorage {
         return result
     }
     
+    /// Rx로 바꾸기 ⭐️
     private(set) var matchedUser = MatchedUser(id: UserDefaultManager.shared.matchedUserId, nick: UserDefaultManager.shared.matchedUserNick) {
         didSet {
             UserDefaultManager.shared.matchedUserId = matchedUser.id
@@ -79,5 +80,9 @@ final class DataStorage {
     
     func registerMatchedUser(id: String, nick: String) {
         matchedUser = MatchedUser(id: id, nick: nick)
+    }
+    
+    func cancelMatch() {
+        matchedUser = MatchedUser(id: "", nick: "")
     }
 }

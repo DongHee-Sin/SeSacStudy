@@ -45,6 +45,12 @@ final class ChattingViewController: RxBaseViewController {
     
     // MARK: - Methods
     override func configure() {
+        if DataStorage.shared.matchedUser.id == "" {
+            requestQueueStatus()
+        }else {
+            updateUI()
+        }
+        
         setNavigationBar()
         setTableView()
         
@@ -65,19 +71,25 @@ final class ChattingViewController: RxBaseViewController {
     
     
     private func setNavigationBar() {
-        navigationController?.navigationBar.isHidden = false
-        tabBarController?.tabBar.isHidden = true
-        
-        navigationItem.title = DataStorage.shared.matchedUser.nick
-        
         let moreButton = UIBarButtonItem(image: R.image.more(), style: .plain, target: self, action: #selector(moreButtonTapped))
         navigationItem.rightBarButtonItem = moreButton
+        
+        navigationItem.setHidesBackButton(true, animated: true)
+        
+        let backButton = UIBarButtonItem(image: R.image.arrow(), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationItem.leftBarButtonItem = backButton
     }
     
     
     private func updateBarUI() {
         navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = true
+    }
+    
+    
+    private func updateUI() {
+        navigationItem.title = DataStorage.shared.matchedUser.nick
+        // ⭐️ Header Title 변경하기
     }
     
     
@@ -144,6 +156,50 @@ final class ChattingViewController: RxBaseViewController {
     
     @objc private func moreButtonTapped() {
         isMoreViewExpanded.toggle()
+    }
+    
+    
+    @objc private func backButtonTapped() {
+        navigationController?.popToRootViewController(animated: true)
+    }
+}
+
+
+
+
+// MARK: - API Request
+extension ChattingViewController {
+    
+    private func requestQueueStatus() {
+        APIService.share.request(type: QueueStatus.self, router: .queueStatus) { [weak self] result, _, statusCode in
+            switch statusCode {
+            case 200:
+                if let id = result?.matchedUid,
+                   let nick = result?.matchedNick {
+                    DataStorage.shared.registerMatchedUser(id: id, nick: nick)
+                    self?.updateUI()
+                }
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.requestQueueStatus()
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500:
+                print("Server Error")
+            case 501:
+                print("Client Error")
+            default:
+                print("Default")
+            }
+        }
     }
 }
 

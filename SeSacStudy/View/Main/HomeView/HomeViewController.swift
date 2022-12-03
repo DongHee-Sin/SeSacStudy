@@ -140,13 +140,8 @@ final class HomeViewController: RxBaseViewController {
     }
 
     
-    private func matched(user: String) {
-        showToast(message: "\(user)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다")
-    }
-    
-    
     private func cancelMatching() {
-        print("매칭 종료")
+        DataStorage.shared.cancelMatch()
     }
     
     
