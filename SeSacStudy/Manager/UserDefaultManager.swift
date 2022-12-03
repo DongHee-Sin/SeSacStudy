@@ -41,6 +41,12 @@ final class UserDefaultManager {
     @UserDefault(key: "phoneNumber", defaultValue: "")
     var phoneNumber: String
     
+    @UserDefault(key: "matchedUserId", defaultValue: "")
+    var matchedUserId: String
+    
+    @UserDefault(key: "matchedUserNick", defaultValue: "")
+    var matchedUserNick: String
+    
     
     
     

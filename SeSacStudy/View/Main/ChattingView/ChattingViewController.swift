@@ -34,6 +34,12 @@ final class ChattingViewController: RxBaseViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateBarUI()
+    }
+    
     
     
     
@@ -59,10 +65,19 @@ final class ChattingViewController: RxBaseViewController {
     
     
     private func setNavigationBar() {
-        navigationItem.title = "고래밥"
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = true
+        
+        navigationItem.title = DataStorage.shared.matchedUser.nick
         
         let moreButton = UIBarButtonItem(image: R.image.more(), style: .plain, target: self, action: #selector(moreButtonTapped))
         navigationItem.rightBarButtonItem = moreButton
+    }
+    
+    
+    private func updateBarUI() {
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = true
     }
     
     

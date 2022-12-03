@@ -58,7 +58,12 @@ final class DataStorage {
         return result
     }
     
-    private(set) var matchedUser: MatchedUser? = nil
+    private(set) var matchedUser = MatchedUser(id: UserDefaultManager.shared.matchedUserId, nick: UserDefaultManager.shared.matchedUserNick) {
+        didSet {
+            UserDefaultManager.shared.matchedUserId = matchedUser.id
+            UserDefaultManager.shared.matchedUserNick = matchedUser.nick
+        }
+    }
     
     
     

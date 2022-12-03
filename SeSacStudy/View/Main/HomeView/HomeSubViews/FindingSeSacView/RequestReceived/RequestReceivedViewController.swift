@@ -174,7 +174,7 @@ extension RequestReceivedViewController: UITableViewDelegate, UITableViewDataSou
             return UIView()
         }
         
-        header.customImageView.setImageView(img: .backgroundImage(userList[section].background), buttonType: .request)
+        header.customImageView.setImageView(img: .backgroundImage(userList[section].background), buttonType: .accept)
         
         header.customImageView.button.tag = section
         header.customImageView.button.addTarget(self, action: #selector(studyAcceptButtonTapped), for: .touchUpInside)

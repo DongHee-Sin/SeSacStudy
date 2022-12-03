@@ -132,7 +132,8 @@ final class HomeViewController: RxBaseViewController {
                     vc.transition(enterStudyVC, transitionStyle: .push)
                 case .waitingMatch:
                     vc.transition(FindingSeSacTabmanViewController(), transitionStyle: .push)
-                case .matched: break
+                case .matched:
+                    vc.transition(ChattingViewController(), transitionStyle: .push)
                 }
             }
             .disposed(by: disposeBag)
@@ -150,6 +151,8 @@ final class HomeViewController: RxBaseViewController {
     
     
     private func isMatched(id: String, nick: String) {
+        guard DataStorage.shared.matchedUser.id != id else { return }
+        
         DataStorage.shared.registerMatchedUser(id: id, nick: nick)
         navigationController?.viewControllers.last?.navigationController?.popToRootViewController(animated: true, completion: { [weak self] in
             self?.showToast(message: "\(nick)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다") {
