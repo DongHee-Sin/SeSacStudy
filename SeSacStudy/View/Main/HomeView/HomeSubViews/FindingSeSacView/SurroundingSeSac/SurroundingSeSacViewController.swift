@@ -118,7 +118,7 @@ extension SurroundingSeSacViewController {
             case 200:
                 self?.showToast(message: "스터디 요청을 보냈습니다")
             case 201:
-                print("상대방이 이미 나에게 스터디 요청한 상태 ---")
+                self?.acceptStudy(uid: uid)
             case 202:
                 self?.showToast(message: "상대방이 스터디 찾기를 그만두었습니다")
             case 401:
@@ -126,6 +126,41 @@ extension SurroundingSeSacViewController {
                     switch result {
                     case .success(_):
                         self?.requestStudy(uid: uid)
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500, 501:
+                self?.showErrorAlert(error: error!)
+            default:
+                self?.showErrorAlert(error: error!)
+            }
+        }
+    }
+    
+    
+    private func acceptStudy(uid: String) {
+        APIService.share.request(router: .acceptStudy(uid: uid)) { [weak self] error, statusCode in
+            switch statusCode {
+            case 200:
+                self?.showToast(message: "상대방도 스터디를 요청하여 매칭되었습니다", completion: {
+                    self?.transition(ChattingViewController(), transitionStyle: .push)
+                })
+            case 201:
+                self?.showToast(message: "상대방이 이미 다른 새싹과 스터디를 함께 하는 중입니다")
+            case 202:
+                self?.showToast(message: "상대방이 스터디 찾기를 그만두었습니다")
+            case 203:
+                self?.showToast(message: "앗! 누군가가 나의 스터디를 수락하였어요!")
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.acceptStudy(uid: uid)
                     case .failure(let error):
                         self?.showErrorAlert(error: error)
                     }

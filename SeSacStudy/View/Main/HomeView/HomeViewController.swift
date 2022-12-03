@@ -154,6 +154,11 @@ final class HomeViewController: RxBaseViewController {
                 self?.transition(ChattingViewController(), transitionStyle: .push)
             }
         })
+        
+//        navigationController?.viewControllers.last?.showToast(message: "\(nick)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다", completion: { [weak self] in
+//            // 이래도 되나..?
+//            self?.transition(ChattingViewController(), transitionStyle: .push)
+//        })
     }
 }
 

@@ -102,13 +102,17 @@ extension RequestReceivedViewController {
         APIService.share.request(router: .acceptStudy(uid: uid)) { [weak self] error, statusCode in
             switch statusCode {
             case 200:
-                print("스터디 수락 성공 - 기획서 참고")
+                self?.showToast(message: "스터디 수락 성공! 잠시 후 채팅방으로 이동합니다", completion: {
+                    self?.transition(ChattingViewController(), transitionStyle: .push)
+                })
             case 201:
                 self?.showToast(message: "상대방이 이미 다른 새싹과 스터디를 함께 하는 중입니다")
             case 202:
                 self?.showToast(message: "상대방이 스터디 찾기를 그만두었습니다")
             case 203:
-                self?.showToast(message: "앗! 누군가가 나의 스터디를 수락하였어요!")
+                self?.showToast(message: "앗! 누군가가 나의 스터디를 수락하였어요!", completion: {
+                    self?.requestQueueStatus()
+                })
             case 401:
                 FirebaseAuthManager.share.fetchIDToken { result in
                     switch result {
@@ -126,6 +130,41 @@ extension RequestReceivedViewController {
                 self?.showErrorAlert(error: error!)
             default:
                 self?.showErrorAlert(error: error!)
+            }
+        }
+    }
+    
+    
+    private func requestQueueStatus() {
+        APIService.share.request(type: QueueStatus.self, router: .queueStatus) { [weak self] result, _, statusCode in
+            switch statusCode {
+            case 200:
+                if let result,
+                   result.matched == 1,
+                   let id = result.matchedUid,
+                   let nick = result.matchedNick {
+                    DataStorage.shared.registerMatchedUser(id: id, nick: nick)
+                    self?.transition(ChattingViewController(), transitionStyle: .push)
+                }
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.requestQueueStatus()
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500:
+                print("Server Error")
+            case 501:
+                print("Client Error")
+            default:
+                print("Default")
             }
         }
     }
