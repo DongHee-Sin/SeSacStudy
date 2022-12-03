@@ -24,23 +24,40 @@ extension ChattingViewModel: CommonViewModel {
         let text: ControlProperty<String?>
         let beginEditing: ControlEvent<Void>
         let endEditing: ControlEvent<Void>
+        let reportTap: ControlEvent<Void>
+        let cancelTap: ControlEvent<Void>
+        let reviewTap: ControlEvent<Void>
     }
     
     struct Output {
         let line: Observable<TextViewLine>
+        let sendButtonEnable: Observable<Bool>
         let beginEditing: ControlEvent<Void>
         let endEditing: ControlEvent<Void>
+        let reportTap: ControlEvent<Void>
+        let cancelTap: ControlEvent<Void>
+        let reviewTap: ControlEvent<Void>
     }
     
     
     func transform(input: Input) -> Output {
-        let scrollEnabled = input.text.orEmpty.map {
+        let text = input.text.orEmpty
+        
+        let scrollEnabled = text.map {
             let arr = $0.components(separatedBy: "\n")
             let count = arr.count
             let line = TextViewLine(rawValue: count) ?? .moreThanThree
             return line
         }
         
-        return Output(line: scrollEnabled, beginEditing: input.beginEditing, endEditing: input.endEditing)
+        let sendButtonEnable = text.map {
+            if $0 != Placeholder.chatting.rawValue && $0.count >= 1 {
+                return true
+            }else {
+                return false
+            }
+        }
+        
+        return Output(line: scrollEnabled, sendButtonEnable: sendButtonEnable, beginEditing: input.beginEditing, endEditing: input.endEditing, reportTap: input.reportTap, cancelTap: input.cancelTap, reviewTap: input.reviewTap)
     }
 }

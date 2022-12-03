@@ -18,7 +18,7 @@ extension UIViewController {
     }
     
     
-    func transition<T: UIViewController>(_ viewController: T, transitionStyle: TransitionStyle = .present) {
+    func transition<T: UIViewController>(_ viewController: T, transitionStyle: TransitionStyle = .present, completion: (() -> Void)? = nil) {
         
         guard NetworkMonitor.shared.isConnected else {
             showAlert(title: "네트워크에 연결되어있지 않습니다.")
@@ -27,12 +27,12 @@ extension UIViewController {
         
         switch transitionStyle {
         case .present:
-            self.present(viewController, animated: true)
+            present(viewController, animated: true, completion: completion)
         case .presentOver:
             viewController.modalPresentationStyle = .overFullScreen
-            self.present(viewController, animated: true)
+            present(viewController, animated: true, completion: completion)
         case .push:
-            self.navigationController?.pushViewController(viewController, animated: true)
+            navigationController?.pushViewController(viewController, animated: true, completion: completion)
         }
     }
     
@@ -72,7 +72,9 @@ extension UIViewController {
     
     
     // MARK: - Error Alert
-    func showErrorAlert(error: Error) {
+    func showErrorAlert(error: Error? = nil) {
+        guard let error else { showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요."); return }
+        
         switch error {
         case NetworkError.notConnected: showAlert(title: "네트워크에 연결되어있지 않습니다.")
         default: showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요.")
@@ -95,7 +97,7 @@ extension UIViewController {
     
     
     // MARK: - Toast
-    func showToast(message: String, target: NSLayoutYAxisAnchor? = nil, offset: Double? = -12) {
+    func showToast(message: String, target: NSLayoutYAxisAnchor? = nil, offset: Double? = -12, completion: (() -> Void)? = nil) {
         view.subviews
             .filter { $0.tag == 936419836287461 }
             .forEach { $0.removeFromSuperview() }
@@ -131,7 +133,40 @@ extension UIViewController {
             animations: { alertSuperview.alpha = 0 },
             completion: { _ in
                 alertSuperview.removeFromSuperview()
+                completion?()
             }
         )
     }
 }
+
+
+
+
+// MARK: - API
+//extension UIViewController {
+//
+//    func statusCodeHandling(type: Router, code: Int) {
+//        switch type {
+//        case .login:
+//            guard let code = StatusCode.Common(rawValue: code) else { showErrorAlert() }
+//        case .signUp(let body):
+//            <#code#>
+//        case .mypage(let body):
+//            <#code#>
+//        case .withdraw:
+//            <#code#>
+//        case .queueStatus:
+//            <#code#>
+//        case .queueSearch:
+//            <#code#>
+//        case .requestSearch(let list):
+//            <#code#>
+//        case .cancelRequestSearch:
+//            <#code#>
+//        case .requestStudy(let uid):
+//            <#code#>
+//        case .acceptStudy(let uid):
+//            <#code#>
+//        }
+//    }
+//}

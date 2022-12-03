@@ -95,8 +95,12 @@ final class HomeViewController: RxBaseViewController {
         viewModel.queueStatus
             .withUnretained(self)
             .bind { (vc, status) in
-                if status.matched == 1 {
-                    vc.matched(user: status.matchedNick ?? "")
+                if status.dodged == 1 { vc.cancelMatching() }
+
+                if status.matched == 1,
+                   let id = status.matchedUid,
+                   let nick = status.matchedNick {
+                    vc.isMatched(id: id, nick: nick)
                 }
             }
             .disposed(by: disposeBag)
@@ -137,6 +141,21 @@ final class HomeViewController: RxBaseViewController {
     
     private func matched(user: String) {
         showToast(message: "\(user)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다")
+    }
+    
+    
+    private func cancelMatching() {
+        print("매칭 종료")
+    }
+    
+    
+    private func isMatched(id: String, nick: String) {
+        DataStorage.shared.registerMatchedUser(id: id, nick: nick)
+        navigationController?.viewControllers.last?.navigationController?.popToRootViewController(animated: true, completion: { [weak self] in
+            self?.showToast(message: "\(nick)님과 매칭되셨습니다. 잠시 후 채팅방으로 이동합니다") {
+                self?.transition(ChattingViewController(), transitionStyle: .push)
+            }
+        })
     }
 }
 

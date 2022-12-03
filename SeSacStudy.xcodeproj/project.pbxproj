@@ -84,6 +84,8 @@
 		D0ADF4D529220AFC00C5027D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF4D429220AFC00C5027D /* ProfileViewController.swift */; };
 		D0ADF4D729220B0200C5027D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF4D629220B0200C5027D /* ProfileView.swift */; };
 		D0ADF4D929220B5A00C5027D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF4D829220B5A00C5027D /* ProfileViewModel.swift */; };
+		D0AE07FA293AD14500C2FC18 /* StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AE07F9293AD14500C2FC18 /* StatusCode.swift */; };
+		D0AE07FC293AE22500C2FC18 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AE07FB293AE22500C2FC18 /* UINavigationController+Extension.swift */; };
 		D0AE100B2924CF6D0057AADE /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AE100A2924CF6D0057AADE /* CustomAlertViewController.swift */; };
 		D0AE100D2924D2160057AADE /* CustomAlertDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AE100C2924D2160057AADE /* CustomAlertDelegate.swift */; };
 		D0AE10102924D25F0057AADE /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AE100F2924D25F0057AADE /* CustomAlertView.swift */; };
@@ -210,6 +212,8 @@
 		D0ADF4D429220AFC00C5027D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D0ADF4D629220B0200C5027D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D0ADF4D829220B5A00C5027D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		D0AE07F9293AD14500C2FC18 /* StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCode.swift; sourceTree = "<group>"; };
+		D0AE07FB293AE22500C2FC18 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		D0AE100A2924CF6D0057AADE /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		D0AE100C2924D2160057AADE /* CustomAlertDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertDelegate.swift; sourceTree = "<group>"; };
 		D0AE100F2924D25F0057AADE /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
@@ -435,6 +439,7 @@
 				D0E2E1FF291A219E00D49E0F /* UIViewController+Extension.swift */,
 				D0000809293783A500A4C906 /* UIImage+Extension.swift */,
 				D0EA3A75293896790066F47E /* UITextView+Extension.swift */,
+				D0AE07FB293AE22500C2FC18 /* UINavigationController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 				D0C99788291BD13A006C41B4 /* Router.swift */,
 				D0C9978A291BD8A9006C41B4 /* APIService.swift */,
 				D0CEBA7B2939D44E001CE8FD /* DictionaryEncoder.swift */,
+				D0AE07F9293AD14500C2FC18 /* StatusCode.swift */,
 				D0C9978C291BDD86006C41B4 /* Model */,
 			);
 			path = Network;
@@ -987,6 +993,7 @@
 				D0D2D3A9291E27EA007FA615 /* MainTabBarController.swift in Sources */,
 				D057EC5329267E8300B3A7B1 /* EnterStudyViewController.swift in Sources */,
 				D000080D2937AC0E00A4C906 /* ChattingViewController.swift in Sources */,
+				D0AE07FC293AE22500C2FC18 /* UINavigationController+Extension.swift in Sources */,
 				D07BE8542918E3F600020487 /* OnboardingViewController.swift in Sources */,
 				D07BE8502918DF7900020487 /* NotoSansCJK.swift in Sources */,
 				D000080F2937AC2800A4C906 /* ChattingView.swift in Sources */,
@@ -1065,6 +1072,7 @@
 				D07BE8432918DAFB00020487 /* UIFont+Extension.swift in Sources */,
 				D0800A3B29229312006EF576 /* ProfileExpandableTableViewCell.swift in Sources */,
 				D0EA3A742938924D0066F47E /* TextViewLine.swift in Sources */,
+				D0AE07FA293AD14500C2FC18 /* StatusCode.swift in Sources */,
 				D023356A2918D652003C7225 /* BaseView.swift in Sources */,
 				D0D15F05292D1AF100E166D7 /* RequestReceivedViewController.swift in Sources */,
 				D0AE100D2924D2160057AADE /* CustomAlertDelegate.swift in Sources */,

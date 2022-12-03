@@ -16,6 +16,12 @@ final class DataStorage {
     static let shared = DataStorage()
     
     
+    struct MatchedUser {
+        let id: String
+        let nick: String
+    }
+    
+    
     // MARK: - Propertys
     private(set) var login: Login!
     private var SearchResult: QueueSearchResult! {
@@ -52,6 +58,8 @@ final class DataStorage {
         return result
     }
     
+    private(set) var matchedUser: MatchedUser? = nil
+    
     
     
     
@@ -62,5 +70,9 @@ final class DataStorage {
     
     func updateSearchResult(info: QueueSearchResult) {
         SearchResult = info
+    }
+    
+    func registerMatchedUser(id: String, nick: String) {
+        matchedUser = MatchedUser(id: id, nick: nick)
     }
 }

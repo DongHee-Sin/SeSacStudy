@@ -68,9 +68,9 @@ final class ChattingViewController: RxBaseViewController {
     
     private func bind() {
         let rxTextView = customView.chatInputView.textView.rx
-        let input = ChattingViewModel.Input(text: rxTextView.text, beginEditing: rxTextView.didBeginEditing, endEditing: rxTextView.didEndEditing)
+        let expandView = customView.moreExpandedView
+        let input = ChattingViewModel.Input(text: rxTextView.text, beginEditing: rxTextView.didBeginEditing, endEditing: rxTextView.didEndEditing, reportTap: expandView.reportButton.rx.tap, cancelTap: expandView.cancelButton.rx.tap, reviewTap: expandView.reviewButton.rx.tap)
         let output = viewModel.transform(input: input)
-        
         
         output.line
             .withUnretained(self)
@@ -79,23 +79,51 @@ final class ChattingViewController: RxBaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.sendButtonEnable
+            .withUnretained(self)
+            .bind { (vc, value) in
+                vc.customView.updateSendButton(value)
+            }
+            .disposed(by: disposeBag)
         
         output.beginEditing
-            .bind{ _ in
-                if self.customView.chatInputView.textView.text == Placeholder.chatting.rawValue {
-                    self.customView.chatInputView.textView.text = ""
+            .withUnretained(self)
+            .bind{ (vc, _) in
+                if vc.customView.chatInputView.textView.text == Placeholder.chatting.rawValue {
+                    vc.customView.chatInputView.textView.text = ""
                 }
-                self.customView.chatInputView.textView.textColor = R.color.black()
+                vc.customView.chatInputView.textView.textColor = R.color.black()
             }.disposed(by: disposeBag)
-        
         
         output.endEditing
-            .bind{
-                if self.customView.chatInputView.textView.text.count == 0 {
-                    self.customView.chatInputView.textView.text = Placeholder.chatting.rawValue
-                    self.customView.chatInputView.textView.textColor = R.color.gray7()
+            .withUnretained(self)
+            .bind{ (vc, _) in
+                if vc.customView.chatInputView.textView.text.count == 0 {
+                    vc.customView.chatInputView.textView.text = Placeholder.chatting.rawValue
+                    vc.customView.chatInputView.textView.textColor = R.color.gray7()
                 }
             }.disposed(by: disposeBag)
+        
+        output.reportTap
+            .withUnretained(self)
+            .bind { (vc, _) in
+                print("report tap")
+            }
+            .disposed(by: disposeBag)
+        
+        output.cancelTap
+            .withUnretained(self)
+            .bind { (vc, _) in
+                print("cancel tap")
+            }
+            .disposed(by: disposeBag)
+        
+        output.reviewTap
+            .withUnretained(self)
+            .bind { (vc, _) in
+                print("review tap")
+            }
+            .disposed(by: disposeBag)
     }
     
     
