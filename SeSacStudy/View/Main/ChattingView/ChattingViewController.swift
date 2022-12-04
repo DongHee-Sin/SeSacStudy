@@ -179,6 +179,8 @@ extension ChattingViewController {
         APIService.share.request(type: QueueStatus.self, router: .queueStatus) { [weak self] result, _, statusCode in
             switch statusCode {
             case 200:
+                
+                guard DataStorage.shared.matchedUser.id == "" else { return }
                 if let id = result?.matchedUid,
                    let nick = result?.matchedNick {
                     DataStorage.shared.registerMatchedUser(id: id, nick: nick)
@@ -212,6 +214,7 @@ extension ChattingViewController {
         APIService.share.request(router: .dodgeStudy(uid: uid)) { [weak self] _, statusCode in
             switch statusCode {
             case 200:
+                DataStorage.shared.cancelMatch()
                 self?.popToRootView()
             case 201:
                 print("잘못된 uid")

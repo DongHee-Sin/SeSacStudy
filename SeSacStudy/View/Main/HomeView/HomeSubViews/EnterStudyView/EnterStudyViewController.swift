@@ -96,7 +96,13 @@ final class EnterStudyViewController: RxBaseViewController {
         case .duplicateStudy: showToast(message: "이미 등록된 스터디입니다")
         }
     }
-    
+}
+
+
+
+
+// MARK: - API Request
+extension EnterStudyViewController {
     
     private func requestSearchSurrounding() {
         
@@ -147,12 +153,23 @@ final class EnterStudyViewController: RxBaseViewController {
                 }else {
                     self?.transition(FindingSeSacTabmanViewController(), transitionStyle: .push)
                 }
-            case 201: print("신고 누적되어 이용불가")
-            case 203: print("스터디 취소 패널티 1단계")
-            case 204: print("스터디 취소 패널티 2단계")
-            case 205: print("스터디 취소 패널티 3단계")
-            case 401: print("firebase token error")
-            case 406: print("미가입회원")
+            case 201: self?.showToast(message: "신고가 누적되어 이용하실 수 없습니다")
+            case 203: self?.showToast(message: "스터디 취소 패널티로, 1분동안 이용하실 수 없습니다.")
+            case 204: self?.showToast(message: "스터디 취소 패널티로, 2분동안 이용하실 수 없습니다.")
+            case 205: self?.showToast(message: "스터디 취소 패널티로, 3분동안 이용하실 수 없습니다.")
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.requestSearchUser()
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
             case 500: print("서버에러")
             case 501: print("클라이언트에러")
             default: break

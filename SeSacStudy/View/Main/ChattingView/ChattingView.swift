@@ -75,16 +75,12 @@ final class ChattingView: BaseView {
         if value {
             moreExpandedView.isHidden = !value
             UIView.transition(with: moreExpandedView.stackView, duration: 1,
-                              options: .transitionCurlDown) {
-                self.moreExpandedView.stackView.isHidden = false
+                              options: .transitionCurlDown) { [weak self] in
+                self?.moreExpandedView.stackView.isHidden = false
             }
         }else {
-            UIView.transition(with: moreExpandedView.stackView, duration: 1,
-                              options: .transitionCurlDown) {
-                self.moreExpandedView.stackView.isHidden = true
-            } completion: { _ in
-                self.moreExpandedView.isHidden = !value
-            }
+            moreExpandedView.isHidden = !value
+            moreExpandedView.stackView.isHidden = true
         }
     }
 }

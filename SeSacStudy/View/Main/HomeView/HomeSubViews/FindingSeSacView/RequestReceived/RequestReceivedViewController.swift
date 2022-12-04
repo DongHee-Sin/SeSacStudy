@@ -140,7 +140,7 @@ extension RequestReceivedViewController {
             switch statusCode {
             case 200:
                 if let result,
-                   result.matched == 1,
+                   MatchStatus.status(result.matched) == .matched,
                    let id = result.matchedUid,
                    let nick = result.matchedNick {
                     DataStorage.shared.registerMatchedUser(id: id, nick: nick)

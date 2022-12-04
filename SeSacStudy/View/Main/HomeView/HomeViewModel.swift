@@ -12,10 +12,14 @@ import RxSwift
 import RxCocoa
 
 
-enum MatchStatus {
-    case normal
-    case waitingMatch
-    case matched
+enum MatchStatus: Int {
+    case normal = -1
+    case waitingMatch = 0
+    case matched = 1
+    
+    static func status(_ value: Int) -> MatchStatus {
+        return MatchStatus(rawValue: value) ?? .normal
+    }
 }
 
 

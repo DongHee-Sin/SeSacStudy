@@ -97,7 +97,7 @@ final class HomeViewController: RxBaseViewController {
             .bind { (vc, status) in
                 if status.dodged == 1 { vc.cancelMatching() }
 
-                if status.matched == 1,
+                if MatchStatus.status(status.matched) == .matched,
                    let id = status.matchedUid,
                    let nick = status.matchedNick {
                     vc.isMatched(id: id, nick: nick)
@@ -191,7 +191,7 @@ extension HomeViewController {
             case 200:
                 if let result {
                     self?.viewModel.queueStatus.accept(result)
-                    self?.viewModel.matchStatus.accept(result.matched == 0 ? .waitingMatch : .matched)
+                    self?.viewModel.matchStatus.accept(MatchStatus.status(result.matched))
                 }
             case 201:
                 self?.viewModel.matchStatus.accept(.normal)
