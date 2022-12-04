@@ -13,6 +13,8 @@ import RxCocoa
 
 final class ChattingViewModel {
     private let dateFormatter = DateFormatter()
+    
+    let matchStatus = BehaviorRelay<MatchStatus>(value: .matched)
 }
 
 

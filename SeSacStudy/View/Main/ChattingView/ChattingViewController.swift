@@ -129,6 +129,13 @@ final class ChattingViewController: RxBaseViewController {
                 }
             }.disposed(by: disposeBag)
         
+        viewModel.matchStatus
+            .withUnretained(self)
+            .bind { (vc, value) in
+                vc.customView.moreExpandedView.cancelButton.setTitle(value == .matched ? "스터디 취소" : "스터디 종료", for: .normal)
+            }
+            .disposed(by: disposeBag)
+        
         setMoreViewButtonAction(output: output)
     }
     
@@ -146,7 +153,11 @@ final class ChattingViewController: RxBaseViewController {
         output.cancelTap
             .withUnretained(self)
             .bind { (vc, _) in
-                vc.showCustomAlert(title: "스터디를 취소하겠습니까?", message: "스터디를 취소하시면 패널티가 부과됩니다.", delegate: self)
+                if vc.viewModel.matchStatus.value == .matched {
+                    vc.showCustomAlert(title: "스터디를 취소하겠습니까?", message: "스터디를 취소하시면 패널티가 부과됩니다.", delegate: self)
+                }else {
+                    vc.popToRootView()
+                }
             }
             .disposed(by: disposeBag)
         
@@ -179,10 +190,12 @@ extension ChattingViewController {
         APIService.share.request(type: QueueStatus.self, router: .queueStatus) { [weak self] result, _, statusCode in
             switch statusCode {
             case 200:
+                guard let result else { return }
+                self?.viewModel.matchStatus.accept(MatchStatus.status(result.matched))
                 
                 guard DataStorage.shared.matchedUser.id == "" else { return }
-                if let id = result?.matchedUid,
-                   let nick = result?.matchedNick {
+                if let id = result.matchedUid,
+                   let nick = result.matchedNick {
                     DataStorage.shared.registerMatchedUser(id: id, nick: nick)
                     self?.updateUI()
                 }
