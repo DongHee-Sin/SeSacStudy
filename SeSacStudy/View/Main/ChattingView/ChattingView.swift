@@ -67,6 +67,7 @@ final class ChattingView: BaseView {
     func updateSendButton(_ enable: Bool) {
         let image = enable ? R.image.property1SendProperty2Act() : R.image.property1SendProperty2Inact()
         chatInputView.sendButton.setImage(image, for: .normal)
+        chatInputView.sendButton.isEnabled = enable
     }
     
     

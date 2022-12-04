@@ -56,8 +56,6 @@ final class ChattingViewController: RxBaseViewController {
         
         bind()
         keyboardBind()
-        
-        customView.moreExpandedView.dismissButton.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)
     }
     
     
@@ -76,7 +74,7 @@ final class ChattingViewController: RxBaseViewController {
         
         navigationItem.setHidesBackButton(true, animated: true)
         
-        let backButton = UIBarButtonItem(image: R.image.arrow(), style: .plain, target: self, action: #selector(backButtonTapped))
+        let backButton = UIBarButtonItem(image: R.image.arrow(), style: .plain, target: self, action: #selector(popToRootView))
         navigationItem.leftBarButtonItem = backButton
     }
     
@@ -131,6 +129,13 @@ final class ChattingViewController: RxBaseViewController {
                 }
             }.disposed(by: disposeBag)
         
+        setMoreViewButtonAction(output: output)
+    }
+    
+    
+    private func setMoreViewButtonAction(output: ChattingViewModel.Output) {
+        customView.moreExpandedView.dismissButton.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)
+        
         output.reportTap
             .withUnretained(self)
             .bind { (vc, _) in
@@ -141,7 +146,7 @@ final class ChattingViewController: RxBaseViewController {
         output.cancelTap
             .withUnretained(self)
             .bind { (vc, _) in
-                print("cancel tap")
+                vc.showCustomAlert(title: "스터디를 취소하겠습니까?", message: "스터디를 취소하시면 패널티가 부과됩니다.", delegate: self)
             }
             .disposed(by: disposeBag)
         
@@ -159,7 +164,7 @@ final class ChattingViewController: RxBaseViewController {
     }
     
     
-    @objc private func backButtonTapped() {
+    @objc private func popToRootView() {
         navigationController?.popToRootViewController(animated: true)
     }
 }
@@ -191,6 +196,33 @@ extension ChattingViewController {
             case 406:
                 self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
                     self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500:
+                print("Server Error")
+            case 501:
+                print("Client Error")
+            default:
+                print("Default")
+            }
+        }
+    }
+    
+    
+    private func cancelStudy(uid: String) {
+        APIService.share.request(router: .dodgeStudy(uid: uid)) { [weak self] _, statusCode in
+            switch statusCode {
+            case 200:
+                self?.popToRootView()
+            case 201:
+                print("잘못된 uid")
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.cancelStudy(uid: uid)
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
                 }
             case 500:
                 print("Server Error")
@@ -253,5 +285,20 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.updateCell(chat: "안녕하세요 굿밤되세요", type: indexPath.row == 0 ? .received : .send)
         
         return cell
+    }
+}
+
+
+
+
+// MARK: - CustomAlert Delegate
+extension ChattingViewController: CustomAlertDelegate {
+    func okAction() {
+        dismiss(animated: true)
+        cancelStudy(uid: DataStorage.shared.matchedUser.id)
+    }
+    
+    func cancel() {
+        dismiss(animated: true)
     }
 }

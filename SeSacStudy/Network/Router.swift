@@ -22,6 +22,7 @@ enum Router: URLRequestConvertible {
     case cancelRequestSearch
     case requestStudy(uid: String)
     case acceptStudy(uid: String)
+    case dodgeStudy(uid: String)
     
     
     private var baseURL: URL {
@@ -33,7 +34,7 @@ enum Router: URLRequestConvertible {
         switch self {
         case .login, .queueStatus:
             return .get
-        case .signUp, .withdraw, .queueSearch, .requestSearch, .requestStudy, .acceptStudy:
+        case .signUp, .withdraw, .queueSearch, .requestSearch, .requestStudy, .acceptStudy, .dodgeStudy:
             return .post
         case .mypage:
             return .put
@@ -56,6 +57,7 @@ enum Router: URLRequestConvertible {
             return "/v1/queue"
         case .requestStudy: return "/v1/queue/studyrequest"
         case .acceptStudy: return "/v1/queue/studyaccept"
+        case .dodgeStudy: return "/v1/queue/dodge"
         }
     }
     
@@ -66,7 +68,7 @@ enum Router: URLRequestConvertible {
             return [
                 "idtoken": UserDefaultManager.shared.idToken,
             ]
-        case .signUp, .mypage, .requestSearch, .requestStudy, .acceptStudy:
+        case .signUp, .mypage, .requestSearch, .requestStudy, .acceptStudy, .dodgeStudy:
             return [
                 "idtoken": UserDefaultManager.shared.idToken,
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -96,7 +98,7 @@ enum Router: URLRequestConvertible {
                 "long": DataStorage.shared.userLocation.longitude,
                 "studylist": list
             ]
-        case .requestStudy(let uid), .acceptStudy(let uid):
+        case .requestStudy(let uid), .acceptStudy(let uid), .dodgeStudy(let uid):
             return ["otheruid": uid]
         }
     }

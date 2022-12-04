@@ -8,7 +8,7 @@
 import UIKit
 
 
-extension UINavigationController { //navigation controller completion 추가
+extension UINavigationController {
     
     private func doAfterAnimatingTransition(animated: Bool, completion: @escaping (() -> Void)) {
         if let coordinator = transitionCoordinator, animated {

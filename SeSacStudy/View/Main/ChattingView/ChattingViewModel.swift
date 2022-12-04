@@ -12,7 +12,7 @@ import RxCocoa
 
 
 final class ChattingViewModel {
-    
+    private let dateFormatter = DateFormatter()
 }
 
 
