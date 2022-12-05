@@ -170,6 +170,17 @@ final class ChattingViewController: RxBaseViewController {
     }
     
     
+    /// ⭐️ tableView reload 시점 : 1. 내가 보냈을 때, 2. 소켓으로부터 채팅 받았을 때
+    /// Realm은 Thread safe하지 않음... 뭔가 문제가 발생할 것 같다.
+    /// Realm 데이터를 관리하는 코드들이 직렬큐에서 동작하면 될 것 같은데.. 생각좀..
+    private func addObserver() {
+        viewModel.addObserver {
+            // 1. RealmManager의 테이블 최신화 (필요한거 맞는지 확인해보기... 라이브객체.. )
+            // 2. 최신화된 테이블 데이터로 TableView Reload
+        }
+    }
+    
+    
     @objc private func moreButtonTapped() {
         isMoreViewExpanded.toggle()
     }
@@ -204,6 +215,37 @@ extension ChattingViewController {
                     switch result {
                     case .success(_):
                         self?.requestQueueStatus()
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500:
+                print("Server Error")
+            case 501:
+                print("Client Error")
+            default:
+                print("Default")
+            }
+        }
+    }
+    
+    
+    private func fetchChatList(uid: String, lastDate: String) {
+        APIService.share.request(type: ChatList.self, router: .fetchChat(uid: uid, lastDate: lastDate)) { [weak self] result, _, statusCode in
+            switch statusCode {
+            case 200:
+                if let result {
+                    self?.viewModel.addChatToDatabase(result.payload)
+                }
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.fetchChatList(uid: uid, lastDate: lastDate)
                     case .failure(let error):
                         self?.showErrorAlert(error: error)
                     }

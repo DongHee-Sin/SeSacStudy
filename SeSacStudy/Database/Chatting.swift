@@ -18,11 +18,11 @@ class Chatting: Object {
     
     @Persisted(primaryKey: true) var objectID: ObjectId
     
-    convenience init(to: String, from: String, text: String, date: Date) {
+    convenience init(to: String, from: String, chat: String, createdAt: Date) {
         self.init()
         self.to = to
         self.from = from
-        self.chat = text
-        self.createdAt = date
+        self.chat = chat
+        self.createdAt = createdAt
     }
 }

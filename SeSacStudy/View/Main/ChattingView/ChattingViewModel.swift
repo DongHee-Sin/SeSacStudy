@@ -24,7 +24,7 @@ private final class ChattingDateFormatter: DateFormatter {
 final class ChattingViewModel {
     
     // MARK: - Propertys
-    private let database = RealmManager(uid: UserDefaultManager.shared.matchedUserId)
+    private var database = RealmManager(uid: UserDefaultManager.shared.matchedUserId)
     
     private lazy var todayFormatter = ChattingDateFormatter(isTodyFormatter: true)
     
@@ -40,6 +40,8 @@ final class ChattingViewModel {
     let matchStatus = BehaviorRelay<MatchStatus>(value: .matched)
     
     var chatCount: Int { database.count }
+    
+    var lastChatDate: String { database.lastChatDate }
     
     
     
@@ -63,6 +65,18 @@ final class ChattingViewModel {
         }else {
             return notTodayFormatter.string(from: date)
         }
+    }
+    
+    
+    func addChatToDatabase(_ chats: [ChatResponse]) {
+        let chats = chats.map {
+            return Chatting(to: $0.to, from: $0.from, chat: $0.chat, createdAt: DateFormatterManager.shared.date(from: $0.createdAt) ?? Date())
+        }
+    }
+    
+    
+    func addObserver(completion: @escaping () -> Void) {
+        database.addObserver(completion: completion)
     }
 }
 

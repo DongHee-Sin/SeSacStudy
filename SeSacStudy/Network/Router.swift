@@ -34,7 +34,7 @@ enum Router: URLRequestConvertible {
     
     private var method: HTTPMethod {
         switch self {
-        case .login, .queueStatus, fetchChat:
+        case .login, .queueStatus, .fetchChat:
             return .get
         case .signUp, .withdraw, .queueSearch, .requestSearch, .requestStudy, .acceptStudy, .dodgeStudy, .sendChat:
             return .post
