@@ -48,6 +48,11 @@
 		D057EC4F292663CA00B3A7B1 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057EC4E292663CA00B3A7B1 /* CustomAnnotation.swift */; };
 		D057EC5329267E8300B3A7B1 /* EnterStudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057EC5229267E8300B3A7B1 /* EnterStudyViewController.swift */; };
 		D057EC5529267EAD00B3A7B1 /* EnterStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057EC5429267EAD00B3A7B1 /* EnterStudyView.swift */; };
+		D05ED1B8293DBC0A00A2CF4B /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = D05ED1B7293DBC0A00A2CF4B /* SocketIO */; };
+		D05ED1BB293DBCF900A2CF4B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = D05ED1BA293DBCF900A2CF4B /* Realm */; };
+		D05ED1BD293DBCF900A2CF4B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D05ED1BC293DBCF900A2CF4B /* RealmSwift */; };
+		D05ED1BF293DBD8F00A2CF4B /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05ED1BE293DBD8F00A2CF4B /* RealmManager.swift */; };
+		D05ED1C2293DBE5E00A2CF4B /* Chatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05ED1C1293DBE5E00A2CF4B /* Chatting.swift */; };
 		D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2E2B2920FF43003F13DC /* SignUpModel.swift */; };
 		D0672BC029229E8A00234FE8 /* ProfileNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0672BBF29229E8A00234FE8 /* ProfileNicknameView.swift */; };
 		D077FBA329252368004E4363 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D077FBA229252368004E4363 /* HomeViewModel.swift */; };
@@ -179,6 +184,8 @@
 		D057EC4E292663CA00B3A7B1 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		D057EC5229267E8300B3A7B1 /* EnterStudyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterStudyViewController.swift; sourceTree = "<group>"; };
 		D057EC5429267EAD00B3A7B1 /* EnterStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterStudyView.swift; sourceTree = "<group>"; };
+		D05ED1BE293DBD8F00A2CF4B /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		D05ED1C1293DBE5E00A2CF4B /* Chatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chatting.swift; sourceTree = "<group>"; };
 		D05F2E2B2920FF43003F13DC /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		D0672BBF29229E8A00234FE8 /* ProfileNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNicknameView.swift; sourceTree = "<group>"; };
 		D077FBA229252368004E4363 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -271,9 +278,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D05ED1BB293DBCF900A2CF4B /* Realm in Frameworks */,
 				D084E23F291D2D78005EFF11 /* FirebaseMessaging in Frameworks */,
 				D0E504322929C6D700AEDECE /* RxKeyboard in Frameworks */,
+				D05ED1BD293DBCF900A2CF4B /* RealmSwift in Frameworks */,
 				D0100B5F2918CA7D00AEC5C2 /* RxSwift in Frameworks */,
+				D05ED1B8293DBC0A00A2CF4B /* SocketIO in Frameworks */,
 				D0100B692918CB0800AEC5C2 /* IQKeyboardManagerSwift in Frameworks */,
 				D0100B622918CA9100AEC5C2 /* Then in Frameworks */,
 				D084C3A6292BF8CC000860EC /* Tabman in Frameworks */,
@@ -361,6 +371,7 @@
 				D0100B592918C8A900AEC5C2 /* App */,
 				D02335572918CDFB003C7225 /* Utility */,
 				D02335582918CE0B003C7225 /* Manager */,
+				D05ED1C0293DBE3D00A2CF4B /* Database */,
 				D0C99787291BD0B4006C41B4 /* Network */,
 				D0100B5A2918C97F00AEC5C2 /* View */,
 				D0100B4E2918C5CC00AEC5C2 /* Assets.xcassets */,
@@ -424,7 +435,6 @@
 				D02335642918D597003C7225 /* UserDefaultManager.swift */,
 				D0FAE43F2923EFF400CD2206 /* DateFormatterManager.swift */,
 				D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */,
-				D0FAE43B2923E1B200CD2206 /* DataStorage.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -514,6 +524,16 @@
 				D0CE6A9029291B2E00F43FE1 /* Cell */,
 			);
 			path = EnterStudyView;
+			sourceTree = "<group>";
+		};
+		D05ED1C0293DBE3D00A2CF4B /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				D0FAE43B2923E1B200CD2206 /* DataStorage.swift */,
+				D05ED1BE293DBD8F00A2CF4B /* RealmManager.swift */,
+				D05ED1C1293DBE5E00A2CF4B /* Chatting.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		D07BE8462918DD9D00020487 /* Font */ = {
@@ -850,6 +870,9 @@
 				D0FAE4392923B89000CD2206 /* MultiSlider */,
 				D0E504312929C6D700AEDECE /* RxKeyboard */,
 				D084C3A5292BF8CC000860EC /* Tabman */,
+				D05ED1B7293DBC0A00A2CF4B /* SocketIO */,
+				D05ED1BA293DBCF900A2CF4B /* Realm */,
+				D05ED1BC293DBCF900A2CF4B /* RealmSwift */,
 			);
 			productName = SeSacStudy;
 			productReference = D0100B422918C5CC00AEC5C2 /* SeSacStudy.app */;
@@ -889,6 +912,8 @@
 				D0FAE4382923B89000CD2206 /* XCRemoteSwiftPackageReference "MultiSlider" */,
 				D0E504302929C6D700AEDECE /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 				D084C3A4292BF8CC000860EC /* XCRemoteSwiftPackageReference "Tabman" */,
+				D05ED1B6293DBC0A00A2CF4B /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				D05ED1B9293DBCF900A2CF4B /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = D0100B432918C5CC00AEC5C2 /* Products */;
 			projectDirPath = "";
@@ -1063,7 +1088,9 @@
 				D0100B482918C5CC00AEC5C2 /* SceneDelegate.swift in Sources */,
 				D0FAE4402923EFF400CD2206 /* DateFormatterManager.swift in Sources */,
 				D0DEEFF7291A5B5600BE125E /* EnterPhoneNumberViewController.swift in Sources */,
+				D05ED1C2293DBE5E00A2CF4B /* Chatting.swift in Sources */,
 				D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */,
+				D05ED1BF293DBD8F00A2CF4B /* RealmManager.swift in Sources */,
 				D01D388B2923885000D7F577 /* SearchAgeGroupView.swift in Sources */,
 				D02335682918D631003C7225 /* RxBaseViewController.swift in Sources */,
 				D0EA3A722938846E0066F47E /* Placeholder.swift in Sources */,
@@ -1359,6 +1386,22 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		D05ED1B6293DBC0A00A2CF4B /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 16.0.1;
+			};
+		};
+		D05ED1B9293DBCF900A2CF4B /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.33.0;
+			};
+		};
 		D084C3A4292BF8CC000860EC /* XCRemoteSwiftPackageReference "Tabman" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/uias/Tabman.git";
@@ -1423,6 +1466,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D0100B6D2918CB3500AEC5C2 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D05ED1B7293DBC0A00A2CF4B /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D05ED1B6293DBC0A00A2CF4B /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
+		};
+		D05ED1BA293DBCF900A2CF4B /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D05ED1B9293DBCF900A2CF4B /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		D05ED1BC293DBCF900A2CF4B /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D05ED1B9293DBCF900A2CF4B /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		D084C3A5292BF8CC000860EC /* Tabman */ = {
 			isa = XCSwiftPackageProductDependency;
