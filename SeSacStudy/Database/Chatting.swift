@@ -11,16 +11,18 @@ import RealmSwift
 
 
 class Chatting: Object {
-    @Persisted var uid: String
-    @Persisted var text: String
-    @Persisted var date: Date
+    @Persisted var to: String
+    @Persisted var from: String
+    @Persisted var chat: String
+    @Persisted var createdAt: Date
     
     @Persisted(primaryKey: true) var objectID: ObjectId
     
-    convenience init(uid: String, text: String, date: Date) {
+    convenience init(to: String, from: String, text: String, date: Date) {
         self.init()
-        self.uid = uid
-        self.text = text
-        self.date = date
+        self.to = to
+        self.from = from
+        self.chat = text
+        self.createdAt = date
     }
 }

@@ -29,7 +29,7 @@ struct RealmManager {
     var count: Int { database.count }
     
     var lastChatDate: String {
-        if let date = database.last?.date {
+        if let date = database.last?.createdAt {
             return DateFormatterManager.shared.string(from: date)
         }else {
             return "2000-01-01T00:00:00.000Z"
@@ -53,7 +53,7 @@ struct RealmManager {
     
     init(uid: String) {
         database = localRealm.objects(objectType)
-            .where { $0.uid == uid }
+            .where { $0.from == uid }
             .sorted(byKeyPath: byKeyPath, ascending: ascending)
         
         print("Realm is located at:", localRealm.configuration.fileURL!)
@@ -87,7 +87,7 @@ struct RealmManager {
     // Read
     mutating private func fetchData(uid: String) {
         database = localRealm.objects(objectType)
-            .where { $0.uid == uid }
+            .where { $0.from == uid }
             .sorted(byKeyPath: byKeyPath, ascending: ascending)
     }
     

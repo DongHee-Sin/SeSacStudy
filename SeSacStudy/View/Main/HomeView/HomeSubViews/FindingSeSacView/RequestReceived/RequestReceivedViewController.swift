@@ -103,6 +103,7 @@ extension RequestReceivedViewController {
             switch statusCode {
             case 200:
                 self?.showToast(message: "스터디 수락 성공! 잠시 후 채팅방으로 이동합니다", completion: {
+                    UserDefaultManager.shared.matchedUserId = uid
                     self?.transition(ChattingViewController(), transitionStyle: .push)
                 })
             case 201:

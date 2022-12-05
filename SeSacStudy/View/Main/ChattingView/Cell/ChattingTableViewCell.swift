@@ -61,8 +61,9 @@ final class ChattingTableViewCell: BaseTableViewCell {
     }
     
     
-    func updateCell(chat: String, type: ChattingCellType) {
+    func updateCell(chat: String, createdAt: String, type: ChattingCellType) {
         chatLabel.text = chat
+        dateLabel.text = createdAt
         
         switch type {
         case .received:

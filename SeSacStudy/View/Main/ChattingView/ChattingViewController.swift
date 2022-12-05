@@ -289,7 +289,7 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return viewModel.chatCount
     }
     
     
@@ -298,7 +298,11 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.updateCell(chat: "안녕하세요 굿밤되세요", type: indexPath.row == 0 ? .received : .send)
+        let chat = viewModel.fetchChat(at: indexPath.row)
+        let dateString = viewModel.toString(from: chat.createdAt)
+        let cellType: ChattingCellType = chat.from == UserDefaultManager.shared.matchedUserId ? .received : .send
+        
+        cell.updateCell(chat: chat.chat, createdAt: dateString, type: cellType)
         
         return cell
     }

@@ -148,6 +148,7 @@ extension SurroundingSeSacViewController {
             switch statusCode {
             case 200:
                 self?.showToast(message: "상대방도 스터디를 요청하여 매칭되었습니다", completion: {
+                    UserDefaultManager.shared.matchedUserId = uid
                     self?.transition(ChattingViewController(), transitionStyle: .push)
                 })
             case 201:

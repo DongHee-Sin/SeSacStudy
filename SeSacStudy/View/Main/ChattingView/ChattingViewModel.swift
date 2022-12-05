@@ -24,6 +24,8 @@ private final class ChattingDateFormatter: DateFormatter {
 final class ChattingViewModel {
     
     // MARK: - Propertys
+    private let database = RealmManager(uid: UserDefaultManager.shared.matchedUserId)
+    
     private lazy var todayFormatter = ChattingDateFormatter(isTodyFormatter: true)
     
     private lazy var notTodayFormatter = ChattingDateFormatter(isTodyFormatter: false)
@@ -37,6 +39,8 @@ final class ChattingViewModel {
     
     let matchStatus = BehaviorRelay<MatchStatus>(value: .matched)
     
+    var chatCount: Int { database.count }
+    
     
     
     
@@ -45,6 +49,20 @@ final class ChattingViewModel {
         let today = Date()
         guard let result = calendar.dateComponents([.day], from: date, to: today).day else { return false }
         return result < 1 ? true : false
+    }
+    
+    
+    func fetchChat(at index: Int) -> Chatting {
+        return database.getData(at: index)
+    }
+    
+    
+    func toString(from date: Date) -> String {
+        if calcIsToday(date) {
+            return todayFormatter.string(from: date)
+        }else {
+            return notTodayFormatter.string(from: date)
+        }
     }
 }
 
