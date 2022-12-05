@@ -11,10 +11,41 @@ import RxSwift
 import RxCocoa
 
 
+private final class ChattingDateFormatter: DateFormatter {
+    convenience init(isTodyFormatter: Bool) {
+        self.init()
+        self.amSymbol = "오전"
+        self.pmSymbol = "오후"
+        self.dateFormat = isTodyFormatter ? "a hh:mm" : "MM/dd a hh:mm"
+    }
+}
+
+
 final class ChattingViewModel {
-    private let dateFormatter = DateFormatter()
+    
+    // MARK: - Propertys
+    private lazy var todayFormatter = ChattingDateFormatter(isTodyFormatter: true)
+    
+    private lazy var notTodayFormatter = ChattingDateFormatter(isTodyFormatter: false)
+    
+    private let calendar = {
+        var calendar = Calendar.current
+        calendar.locale = Locale(identifier: "ko_KR")
+        calendar.timeZone = TimeZone(identifier: "Asia/Seoul") ?? TimeZone.current
+        return calendar
+    }()
     
     let matchStatus = BehaviorRelay<MatchStatus>(value: .matched)
+    
+    
+    
+    
+    // MARK: - Methods
+    private func calcIsToday(_ date: Date) -> Bool {
+        let today = Date()
+        guard let result = calendar.dateComponents([.day], from: date, to: today).day else { return false }
+        return result < 1 ? true : false
+    }
 }
 
 
