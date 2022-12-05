@@ -23,6 +23,8 @@ enum Router: URLRequestConvertible {
     case requestStudy(uid: String)
     case acceptStudy(uid: String)
     case dodgeStudy(uid: String)
+    case sendChat(uid: String, chat: String)
+    case fetchChat(uid: String, lastDate: String)
     
     
     private var baseURL: URL {
@@ -32,9 +34,9 @@ enum Router: URLRequestConvertible {
     
     private var method: HTTPMethod {
         switch self {
-        case .login, .queueStatus:
+        case .login, .queueStatus, fetchChat:
             return .get
-        case .signUp, .withdraw, .queueSearch, .requestSearch, .requestStudy, .acceptStudy, .dodgeStudy:
+        case .signUp, .withdraw, .queueSearch, .requestSearch, .requestStudy, .acceptStudy, .dodgeStudy, .sendChat:
             return .post
         case .mypage:
             return .put
@@ -58,17 +60,19 @@ enum Router: URLRequestConvertible {
         case .requestStudy: return "/v1/queue/studyrequest"
         case .acceptStudy: return "/v1/queue/studyaccept"
         case .dodgeStudy: return "/v1/queue/dodge"
+        case .sendChat(let uid, _): return "/v1/chat/\(uid)"
+        case .fetchChat(let uid, let lastDate): return "/v1/chat/\(uid)?lastchatDate=\(lastDate)"
         }
     }
     
     
     private var header: HTTPHeaders {
         switch self {
-        case .login, .withdraw, .queueStatus, .queueSearch, .cancelRequestSearch:
+        case .login, .withdraw, .queueStatus, .queueSearch, .cancelRequestSearch, .fetchChat:
             return [
                 "idtoken": UserDefaultManager.shared.idToken,
             ]
-        case .signUp, .mypage, .requestSearch, .requestStudy, .acceptStudy, .dodgeStudy:
+        case .signUp, .mypage, .requestSearch, .requestStudy, .acceptStudy, .dodgeStudy, .sendChat:
             return [
                 "idtoken": UserDefaultManager.shared.idToken,
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -81,7 +85,7 @@ enum Router: URLRequestConvertible {
     /// 모델의 프로퍼티가 변경되었어도 바로 적용될 수 있도록, 코드 관리하기 좋게
     private var param: Parameters? {
         switch self {
-        case .login, .withdraw, .queueStatus, .cancelRequestSearch:
+        case .login, .withdraw, .queueStatus, .cancelRequestSearch, .fetchChat:
             return nil
         case .signUp(let body):
             return try? DictionaryEncoder.shared.encode(body)
@@ -100,6 +104,8 @@ enum Router: URLRequestConvertible {
             ]
         case .requestStudy(let uid), .acceptStudy(let uid), .dodgeStudy(let uid):
             return ["otheruid": uid]
+        case .sendChat(_, let chat):
+            return ["chat": chat]
         }
     }
     
