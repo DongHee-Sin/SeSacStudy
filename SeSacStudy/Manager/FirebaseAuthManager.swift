@@ -12,12 +12,8 @@ import FirebaseMessaging
 
 
 final class FirebaseAuthManager {
-    
     private init() {}
-    
     static let share = FirebaseAuthManager()
-    
-    
     
     
     // MARK: - Propertys

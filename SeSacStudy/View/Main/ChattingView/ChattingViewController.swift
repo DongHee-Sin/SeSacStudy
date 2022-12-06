@@ -17,6 +17,8 @@ final class ChattingViewController: RxBaseViewController {
     // MARK: - Propertys
     private let viewModel = ChattingViewModel()
     
+    private lazy var socketManager = SocketIOManager(delegate: self)
+    
     private var isMoreViewExpanded = false {
         didSet {
             // ⭐️ 사용자 Queue상태 확인 후, 스터디 취소 Title 변경 필요..
@@ -41,6 +43,12 @@ final class ChattingViewController: RxBaseViewController {
         super.viewWillAppear(animated)
         
         updateBarUI()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        socketManager.closeConnection()
     }
     
     
@@ -274,6 +282,7 @@ extension ChattingViewController {
             case 200:
                 if let chatList = result?.payload, !chatList.isEmpty {
                     self?.addChatToDatabase(chatList)
+                    self?.socketManager.establishConnection()
                 }
             case 401:
                 FirebaseAuthManager.share.fetchIDToken { result in
@@ -308,7 +317,7 @@ extension ChattingViewController {
                     self?.addChatToDatabase([result])
                 }
             case 201:
-                self?.showToast(message: "채팅을 보낼 수 없는 상태입니다") {
+                self?.showToast(message: "스터디가 종료되어 채팅을 전송할 수 없습니다") {
                     self?.popToRootView()
                 }
             case 401:
@@ -435,5 +444,15 @@ extension ChattingViewController: CustomAlertDelegate {
     
     func cancel() {
         dismiss(animated: true)
+    }
+}
+
+
+
+
+// MARK: - SocketDataDelegate
+extension ChattingViewController: SocketDataDelegate {
+    func received(message: ChatResponse) {
+        addChatToDatabase([message])
     }
 }

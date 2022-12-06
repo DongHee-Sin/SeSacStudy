@@ -14,6 +14,8 @@ import RxCocoa
 private final class ChattingDateFormatter: DateFormatter {
     convenience init(isTodyFormatter: Bool) {
         self.init()
+        self.locale = Locale(identifier: "ko_KR")
+        self.timeZone = TimeZone(identifier: "Asia/Seoul")
         self.amSymbol = "오전"
         self.pmSymbol = "오후"
         self.dateFormat = isTodyFormatter ? "a hh:mm" : "MM/dd a hh:mm"

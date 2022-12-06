@@ -21,12 +21,8 @@ struct UserDefault<T> {
 
 
 final class UserDefaultManager {
-    
     static let shared = UserDefaultManager()
-    
     private init() {}
-    
-    
     
     
     // MARK: - Propertys

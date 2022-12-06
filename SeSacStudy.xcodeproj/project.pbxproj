@@ -27,6 +27,7 @@
 		D0100B692918CB0800AEC5C2 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B682918CB0800AEC5C2 /* IQKeyboardManagerSwift */; };
 		D0100B6C2918CB1300AEC5C2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B6B2918CB1300AEC5C2 /* SnapKit */; };
 		D0100B6F2918CB3500AEC5C2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B6E2918CB3500AEC5C2 /* Alamofire */; };
+		D0137E75293F94300080B1BA /* SocketDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0137E74293F94300080B1BA /* SocketDataDelegate.swift */; };
 		D0165F11291B82BE00BBE042 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */; };
 		D01D387E292370F700D7F577 /* SettingUserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D387D292370F700D7F577 /* SettingUserInfoTableViewCell.swift */; };
 		D01D388029237BE600D7F577 /* StudyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D387F29237BE600D7F577 /* StudyListView.swift */; };
@@ -111,6 +112,7 @@
 		D0CEBA7C2939D44E001CE8FD /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CEBA7B2939D44E001CE8FD /* DictionaryEncoder.swift */; };
 		D0CEF311293244B40090CD17 /* TabmanSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CEF310293244B40090CD17 /* TabmanSubViewController.swift */; };
 		D0CEF31729324EC60090CD17 /* SeSacTabmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CEF31629324EC60090CD17 /* SeSacTabmanViewController.swift */; };
+		D0D06CF3293F0D7A007E5EA7 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D06CF2293F0D7A007E5EA7 /* SocketIOManager.swift */; };
 		D0D15EFF292D18F900E166D7 /* FindingSeSacTabmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D15EFE292D18F900E166D7 /* FindingSeSacTabmanViewController.swift */; };
 		D0D15F03292D1AD400E166D7 /* SurroundingSeSacViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D15F02292D1AD400E166D7 /* SurroundingSeSacViewController.swift */; };
 		D0D15F05292D1AF100E166D7 /* RequestReceivedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D15F04292D1AF100E166D7 /* RequestReceivedViewController.swift */; };
@@ -164,6 +166,7 @@
 		D0100B4E2918C5CC00AEC5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0100B512918C5CC00AEC5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0100B532918C5CC00AEC5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0137E74293F94300080B1BA /* SocketDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDataDelegate.swift; sourceTree = "<group>"; };
 		D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		D01D387D292370F700D7F577 /* SettingUserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		D01D387F29237BE600D7F577 /* StudyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListView.swift; sourceTree = "<group>"; };
@@ -242,6 +245,7 @@
 		D0CEBA7B2939D44E001CE8FD /* DictionaryEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncoder.swift; sourceTree = "<group>"; };
 		D0CEF310293244B40090CD17 /* TabmanSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabmanSubViewController.swift; sourceTree = "<group>"; };
 		D0CEF31629324EC60090CD17 /* SeSacTabmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSacTabmanViewController.swift; sourceTree = "<group>"; };
+		D0D06CF2293F0D7A007E5EA7 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		D0D15EFE292D18F900E166D7 /* FindingSeSacTabmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindingSeSacTabmanViewController.swift; sourceTree = "<group>"; };
 		D0D15F02292D1AD400E166D7 /* SurroundingSeSacViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurroundingSeSacViewController.swift; sourceTree = "<group>"; };
 		D0D15F04292D1AF100E166D7 /* RequestReceivedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestReceivedViewController.swift; sourceTree = "<group>"; };
@@ -437,6 +441,7 @@
 				D02335642918D597003C7225 /* UserDefaultManager.swift */,
 				D0FAE43F2923EFF400CD2206 /* DateFormatterManager.swift */,
 				D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */,
+				D0D06CF2293F0D7A007E5EA7 /* SocketIOManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 				D0DEEFFC291A733300BE125E /* CommonViewModel.swift */,
 				D01D38812923837400D7F577 /* CollectionviewProtocol.swift */,
 				D0AE100C2924D2160057AADE /* CustomAlertDelegate.swift */,
+				D0137E74293F94300080B1BA /* SocketDataDelegate.swift */,
 				D0CEF310293244B40090CD17 /* TabmanSubViewController.swift */,
 				D0CEF31629324EC60090CD17 /* SeSacTabmanViewController.swift */,
 			);
@@ -1058,6 +1064,7 @@
 				D0800A3529226D3C006EF576 /* SeSacTitleStackView.swift in Sources */,
 				D02335652918D597003C7225 /* UserDefaultManager.swift in Sources */,
 				D0ADF4D729220B0200C5027D /* ProfileView.swift in Sources */,
+				D0D06CF3293F0D7A007E5EA7 /* SocketIOManager.swift in Sources */,
 				D0FE194E291B6B6500A05179 /* VerifyAuthNumberViewModel.swift in Sources */,
 				D0ADF4C62921FB7800C5027D /* SettingView.swift in Sources */,
 				D0D8EF5D291CF17100F9BC22 /* EnterGenderView.swift in Sources */,
@@ -1077,6 +1084,7 @@
 				D0D2D3B2291E7BCB007FA615 /* EnterBirthDayViewModel.swift in Sources */,
 				D000080A293783A500A4C906 /* UIImage+Extension.swift in Sources */,
 				D0B13A23293214C5007E7D00 /* NotfoundView.swift in Sources */,
+				D0137E75293F94300080B1BA /* SocketDataDelegate.swift in Sources */,
 				D084E23A291D2796005EFF11 /* SignUp.swift in Sources */,
 				D0ADF4CD2921FF8200C5027D /* BaseTableViewCell.swift in Sources */,
 				D0D2D3AC291E35F8007FA615 /* LaunchScreenViewController.swift in Sources */,

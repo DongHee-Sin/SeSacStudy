@@ -9,16 +9,14 @@ import Foundation
 
 
 final class DateFormatterManager {
-    
     private init() {}
-    
     static let shared = DateFormatterManager()
-    
-    
     
     
     // MARK: - Propertys
     private let dateFormatter = DateFormatter().then {
+        $0.locale = Locale(identifier: "ko_KR")
+        $0.timeZone = TimeZone(identifier: "Asia/Seoul")
         $0.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     }
     
