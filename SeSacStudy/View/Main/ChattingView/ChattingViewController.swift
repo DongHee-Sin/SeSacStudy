@@ -94,10 +94,15 @@ final class ChattingViewController: RxBaseViewController {
     
     
     private func bind() {
-        let rxTextView = customView.chatInputView.textView.rx
+        let chatInputView = customView.chatInputView
+        let rxTextView = chatInputView.textView.rx
         let expandView = customView.moreExpandedView
-        let input = ChattingViewModel.Input(text: rxTextView.text, beginEditing: rxTextView.didBeginEditing, endEditing: rxTextView.didEndEditing, reportTap: expandView.reportButton.rx.tap, cancelTap: expandView.cancelButton.rx.tap, reviewTap: expandView.reviewButton.rx.tap)
+        let input = ChattingViewModel.Input(text: rxTextView.text, beginEditing: rxTextView.didBeginEditing, endEditing: rxTextView.didEndEditing, sendButtonTap: chatInputView.sendButton.rx.tap, reportTap: expandView.reportButton.rx.tap, cancelTap: expandView.cancelButton.rx.tap, reviewTap: expandView.reviewButton.rx.tap)
         let output = viewModel.transform(input: input)
+        
+        output.text
+            .bind(to: viewModel.userInputMessage)
+            .disposed(by: disposeBag)
         
         output.line
             .withUnretained(self)
@@ -130,6 +135,13 @@ final class ChattingViewController: RxBaseViewController {
                     vc.customView.chatInputView.textView.textColor = R.color.gray7()
                 }
             }.disposed(by: disposeBag)
+        
+        output.sendButtonTap
+            .withUnretained(self)
+            .bind { (vc, _) in
+                vc.sendChat(message: vc.viewModel.userInputMessage.value)
+            }
+            .disposed(by: disposeBag)
         
         viewModel.matchStatus
             .withUnretained(self)
@@ -263,6 +275,41 @@ extension ChattingViewController {
                     switch result {
                     case .success(_):
                         self?.fetchChatList(uid: uid, lastDate: lastDate)
+                    case .failure(let error):
+                        self?.showErrorAlert(error: error)
+                    }
+                }
+            case 406:
+                self?.showAlert(title: "가입되지 않은 회원입니다. 초기화면으로 이동합니다.") { _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                }
+            case 500:
+                print("Server Error")
+            case 501:
+                print("Client Error")
+            default:
+                print("Default")
+            }
+        }
+    }
+    
+    
+    private func sendChat(message: String) {
+        APIService.share.request(type: ChatResponse.self, router: .sendChat(uid: DataStorage.shared.matchedUser.id, chat: message)) { [weak self] result, _, statusCode in
+            switch statusCode {
+            case 200:
+                if let result {
+                    self?.addChatToDatabase([result])
+                }
+            case 201:
+                self?.showToast(message: "채팅을 보낼 수 없는 상태입니다") {
+                    self?.popToRootView()
+                }
+            case 401:
+                FirebaseAuthManager.share.fetchIDToken { result in
+                    switch result {
+                    case .success(_):
+                        self?.sendChat(message: message)
                     case .failure(let error):
                         self?.showErrorAlert(error: error)
                     }

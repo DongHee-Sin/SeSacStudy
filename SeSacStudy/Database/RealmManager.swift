@@ -65,19 +65,6 @@ struct RealmManager {
     // MARK: - Methods
     
     // Create(add)
-    func write(_ object: Chatting) throws {
-        do {
-            try localRealm.write {
-                localRealm.add(object)
-            }
-        }
-        catch {
-            throw RealmError.writeError
-        }
-    }
-    
-    
-    
     func write(_ objects: [Chatting]) throws {
         do {
             try localRealm.write {

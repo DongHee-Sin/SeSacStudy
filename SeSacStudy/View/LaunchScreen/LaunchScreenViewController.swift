@@ -33,7 +33,6 @@ final class LaunchScreenViewController: UIViewController {
         if UserDefaultManager.shared.idToken == "" {
             let vc = OnboardingViewController()
             changeRootViewController(to: vc)
-            
         }
         else {
             requestUserInfo()
@@ -67,7 +66,7 @@ final class LaunchScreenViewController: UIViewController {
                 }
                 
             default:
-                self?.changeRootViewController(to: OnboardingViewController())
+                self?.showErrorAlert(error: error)
             }
         }
     }

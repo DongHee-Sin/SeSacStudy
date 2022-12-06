@@ -43,6 +43,8 @@ final class ChattingViewModel {
     
     var lastChatDate: String { database.lastChatDate }
     
+    let userInputMessage = BehaviorRelay<String>(value: "")
+    
     
     
     
@@ -90,16 +92,19 @@ extension ChattingViewModel: CommonViewModel {
         let text: ControlProperty<String?>
         let beginEditing: ControlEvent<Void>
         let endEditing: ControlEvent<Void>
+        let sendButtonTap: ControlEvent<Void>
         let reportTap: ControlEvent<Void>
         let cancelTap: ControlEvent<Void>
         let reviewTap: ControlEvent<Void>
     }
     
     struct Output {
+        let text: ControlProperty<String>
         let line: Observable<TextViewLine>
         let sendButtonEnable: Observable<Bool>
         let beginEditing: ControlEvent<Void>
         let endEditing: ControlEvent<Void>
+        let sendButtonTap: ControlEvent<Void>
         let reportTap: ControlEvent<Void>
         let cancelTap: ControlEvent<Void>
         let reviewTap: ControlEvent<Void>
@@ -124,6 +129,6 @@ extension ChattingViewModel: CommonViewModel {
             }
         }
         
-        return Output(line: scrollEnabled, sendButtonEnable: sendButtonEnable, beginEditing: input.beginEditing, endEditing: input.endEditing, reportTap: input.reportTap, cancelTap: input.cancelTap, reviewTap: input.reviewTap)
+        return Output(text: text, line: scrollEnabled, sendButtonEnable: sendButtonEnable, beginEditing: input.beginEditing, endEditing: input.endEditing, sendButtonTap: input.sendButtonTap, reportTap: input.reportTap, cancelTap: input.cancelTap, reviewTap: input.reviewTap)
     }
 }
