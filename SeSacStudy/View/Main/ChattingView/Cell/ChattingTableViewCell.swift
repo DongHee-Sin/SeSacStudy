@@ -49,15 +49,6 @@ final class ChattingTableViewCell: BaseTableViewCell {
             make.verticalEdges.equalTo(baseView).inset(10)
             make.horizontalEdges.equalTo(baseView).inset(16)
         }
-        
-        baseView.snp.makeConstraints { make in
-            make.width.equalTo(self).multipliedBy(0.7)
-            make.verticalEdges.equalTo(self).inset(12)
-        }
-        
-        dateLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(baseView.snp.bottom)
-        }
     }
     
     
@@ -71,24 +62,29 @@ final class ChattingTableViewCell: BaseTableViewCell {
             baseView.layer.borderWidth = 1
             baseView.backgroundColor = .clear
             
-            baseView.snp.makeConstraints { make in
+            baseView.snp.remakeConstraints { make in
+                make.width.lessThanOrEqualTo(self).multipliedBy(0.7)
+                make.verticalEdges.equalTo(self).inset(12)
                 make.leading.equalTo(self).offset(16)
             }
             
-            dateLabel.snp.makeConstraints { make in
+            dateLabel.snp.remakeConstraints { make in
                 make.leading.equalTo(baseView.snp.trailing).offset(8)
+                make.bottom.equalTo(baseView.snp.bottom)
             }
         case .send:
-            //baseView.layer.borderColor = R.color.gray6()?.cgColor
-            //baseView.layer.borderWidth = 1
+            baseView.layer.borderWidth = 0
             baseView.backgroundColor = R.color.whitegreen()
             
-            baseView.snp.makeConstraints { make in
+            baseView.snp.remakeConstraints { make in
+                make.width.lessThanOrEqualTo(self).multipliedBy(0.7)
+                make.verticalEdges.equalTo(self).inset(12)
                 make.trailing.equalTo(self).offset(-16)
             }
             
-            dateLabel.snp.makeConstraints { make in
+            dateLabel.snp.remakeConstraints { make in
                 make.trailing.equalTo(baseView.snp.leading).offset(-8)
+                make.bottom.equalTo(baseView.snp.bottom)
             }
         }
     }

@@ -66,7 +66,9 @@ final class LaunchScreenViewController: UIViewController {
                 }
                 
             default:
-                self?.showErrorAlert(error: error)
+                self?.showErrorAlert(error: error, completionHandler: { [weak self] _ in
+                    self?.changeRootViewController(to: OnboardingViewController())
+                })
             }
         }
     }

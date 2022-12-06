@@ -72,12 +72,12 @@ extension UIViewController {
     
     
     // MARK: - Error Alert
-    func showErrorAlert(error: Error? = nil) {
+    func showErrorAlert(error: Error? = nil, completionHandler: CompletionHandler? = nil) {
         guard let error else { showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요."); return }
         
         switch error {
-        case NetworkError.notConnected: showAlert(title: "네트워크에 연결되어있지 않습니다.")
-        default: showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요.")
+        case NetworkError.notConnected: showAlert(title: "네트워크에 연결되어있지 않습니다.", completionHandler: completionHandler)
+        default: showAlert(title: "에러가 발생했습니다. 잠시 후 다시 시도해주세요.", completionHandler: completionHandler)
         }
     }
     

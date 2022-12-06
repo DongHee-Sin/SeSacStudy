@@ -189,8 +189,6 @@ final class ChattingViewController: RxBaseViewController {
     /// Realm 데이터를 관리하는 코드들이 직렬큐에서 동작하면 될 것 같은데.. 생각좀..
     private func addObserver() {
         viewModel.addObserver { [weak self] in
-            // 1. RealmManager의 테이블 최신화 (필요한거 맞는지 확인해보기... 라이브객체.. )
-            // 2. 최신화된 테이블 데이터로 TableView Reload
             self?.customView.tableView.reloadData()
         }
     }
@@ -295,7 +293,7 @@ extension ChattingViewController {
     
     
     private func sendChat(message: String) {
-        APIService.share.request(type: ChatResponse.self, router: .sendChat(uid: DataStorage.shared.matchedUser.id, chat: message)) { [weak self] result, _, statusCode in
+        APIService.share.request(type: ChatResponse.self, router: .sendChat(uid: DataStorage.shared.matchedUser.id, chat: message)) { [weak self] result, error, statusCode in
             switch statusCode {
             case 200:
                 if let result {
@@ -323,7 +321,7 @@ extension ChattingViewController {
             case 501:
                 print("Client Error")
             default:
-                print("Default")
+                self?.showErrorAlert(error: error)
             }
         }
     }

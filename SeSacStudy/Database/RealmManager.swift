@@ -53,7 +53,9 @@ struct RealmManager {
     
     init(uid: String) {
         database = localRealm.objects(objectType)
-            .where { $0.from == uid }
+            .where {
+                $0.from == uid || $0.to == uid
+            }
             .sorted(byKeyPath: byKeyPath, ascending: ascending)
         
         print("Realm is located at:", localRealm.configuration.fileURL!)
