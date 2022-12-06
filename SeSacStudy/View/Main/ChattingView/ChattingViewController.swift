@@ -18,7 +18,10 @@ final class ChattingViewController: RxBaseViewController {
     private let viewModel = ChattingViewModel()
     
     private var isMoreViewExpanded = false {
-        didSet { customView.showUpMoreExpandedView(isMoreViewExpanded) }
+        didSet {
+            // ⭐️ 사용자 Queue상태 확인 후, 스터디 취소 Title 변경 필요..
+            customView.showUpMoreExpandedView(isMoreViewExpanded)
+        }
     }
     
     
@@ -45,17 +48,15 @@ final class ChattingViewController: RxBaseViewController {
     
     // MARK: - Methods
     override func configure() {
-        if DataStorage.shared.matchedUser.id == "" {
-            requestQueueStatus()
-        }else {
-            updateUI()
-        }
+        requestQueueStatus()
         
         setNavigationBar()
         setTableView()
         
         bind()
         keyboardBind()
+        
+        addObserver()
     }
     
     
@@ -86,8 +87,9 @@ final class ChattingViewController: RxBaseViewController {
     
     
     private func updateUI() {
+        fetchChatList(uid: DataStorage.shared.matchedUser.id, lastDate: viewModel.lastChatDate)
+        
         navigationItem.title = DataStorage.shared.matchedUser.nick
-        // ⭐️ Header Title 변경하기
     }
     
     
@@ -174,9 +176,20 @@ final class ChattingViewController: RxBaseViewController {
     /// Realm은 Thread safe하지 않음... 뭔가 문제가 발생할 것 같다.
     /// Realm 데이터를 관리하는 코드들이 직렬큐에서 동작하면 될 것 같은데.. 생각좀..
     private func addObserver() {
-        viewModel.addObserver {
+        viewModel.addObserver { [weak self] in
             // 1. RealmManager의 테이블 최신화 (필요한거 맞는지 확인해보기... 라이브객체.. )
             // 2. 최신화된 테이블 데이터로 TableView Reload
+            self?.customView.tableView.reloadData()
+        }
+    }
+    
+    
+    private func addChatToDatabase(_ chatList: [ChatResponse]) {
+        do {
+            try viewModel.addChatToDatabase(chatList)
+        }
+        catch {
+            showErrorAlert(error: error)
         }
     }
     
@@ -204,7 +217,11 @@ extension ChattingViewController {
                 guard let result else { return }
                 self?.viewModel.matchStatus.accept(MatchStatus.status(result.matched))
                 
-                guard DataStorage.shared.matchedUser.id == "" else { return }
+                guard DataStorage.shared.matchedUser.id == "" || DataStorage.shared.matchedUser.nick == "" else {
+                    self?.updateUI()
+                    return
+                }
+                
                 if let id = result.matchedUid,
                    let nick = result.matchedNick {
                     DataStorage.shared.registerMatchedUser(id: id, nick: nick)
@@ -238,8 +255,8 @@ extension ChattingViewController {
         APIService.share.request(type: ChatList.self, router: .fetchChat(uid: uid, lastDate: lastDate)) { [weak self] result, _, statusCode in
             switch statusCode {
             case 200:
-                if let result {
-                    self?.viewModel.addChatToDatabase(result.payload)
+                if let chatList = result?.payload, !chatList.isEmpty {
+                    self?.addChatToDatabase(chatList)
                 }
             case 401:
                 FirebaseAuthManager.share.fetchIDToken { result in
@@ -320,6 +337,8 @@ extension ChattingViewController: UITableViewDelegate, UITableViewDataSource {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ChattingTableViewHeader.identifier) as? ChattingTableViewHeader else {
             return UIView()
         }
+        
+        header.updateHeader(nick: DataStorage.shared.matchedUser.nick)
         
         return header
     }

@@ -40,7 +40,7 @@ struct RealmManager {
     private var objectType = Chatting.self
     
     // 정렬 기준 저장
-    private var byKeyPath: String = "date"
+    private var byKeyPath: String = "createdAt"
     private var ascending: Bool = true
     
     // Observer 토큰
@@ -69,6 +69,19 @@ struct RealmManager {
         do {
             try localRealm.write {
                 localRealm.add(object)
+            }
+        }
+        catch {
+            throw RealmError.writeError
+        }
+    }
+    
+    
+    
+    func write(_ objects: [Chatting]) throws {
+        do {
+            try localRealm.write {
+                localRealm.add(objects)
             }
         }
         catch {

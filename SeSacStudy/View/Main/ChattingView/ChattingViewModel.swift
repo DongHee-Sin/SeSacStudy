@@ -68,10 +68,11 @@ final class ChattingViewModel {
     }
     
     
-    func addChatToDatabase(_ chats: [ChatResponse]) {
+    func addChatToDatabase(_ chats: [ChatResponse]) throws {
         let chats = chats.map {
             return Chatting(to: $0.to, from: $0.from, chat: $0.chat, createdAt: DateFormatterManager.shared.date(from: $0.createdAt) ?? Date())
         }
+        try database.write(chats)
     }
     
     

@@ -26,7 +26,6 @@ final class ChattingTableViewHeader: UITableViewHeaderFooterView {
     
     private let imageLabel = ImageLabelView().then {
         $0.image.image = R.image.setting_alarm()
-        $0.label.text = "TEST : 고래밥님과 매칭되었습니다."
     }
     
     private let subLabel = UILabel().then {
@@ -80,5 +79,10 @@ final class ChattingTableViewHeader: UITableViewHeaderFooterView {
             make.centerX.equalTo(self)
             make.bottom.equalTo(self).offset(-16)
         }
+    }
+    
+    
+    func updateHeader(nick: String) {
+        imageLabel.label.text = "\(nick)님과 매칭되었습니다."
     }
 }

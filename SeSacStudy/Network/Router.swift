@@ -85,7 +85,7 @@ enum Router: URLRequestConvertible {
     /// 모델의 프로퍼티가 변경되었어도 바로 적용될 수 있도록, 코드 관리하기 좋게
     private var param: Parameters? {
         switch self {
-        case .login, .withdraw, .queueStatus, .cancelRequestSearch, .fetchChat:
+        case .login, .withdraw, .queueStatus, .cancelRequestSearch:
             return nil
         case .signUp(let body):
             return try? DictionaryEncoder.shared.encode(body)
@@ -106,6 +106,8 @@ enum Router: URLRequestConvertible {
             return ["otheruid": uid]
         case .sendChat(_, let chat):
             return ["chat": chat]
+        case .fetchChat(_, let lastDate):
+            return ["lastchatDate": lastDate]
         }
     }
     
