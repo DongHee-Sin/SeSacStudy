@@ -190,6 +190,7 @@ final class ChattingViewController: RxBaseViewController {
     private func addObserver() {
         viewModel.addObserver { [weak self] in
             self?.customView.tableView.reloadData()
+            self?.scrollToBottom()
         }
     }
     
@@ -201,6 +202,12 @@ final class ChattingViewController: RxBaseViewController {
         catch {
             showErrorAlert(error: error)
         }
+    }
+    
+    
+    private func scrollToBottom() {
+        let lastIndexPath = IndexPath(row: viewModel.chatCount-1, section: 0)
+        customView.tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
     }
     
     
@@ -297,6 +304,7 @@ extension ChattingViewController {
             switch statusCode {
             case 200:
                 if let result {
+                    self?.customView.chatInputView.textView.text = ""
                     self?.addChatToDatabase([result])
                 }
             case 201:
@@ -367,6 +375,7 @@ extension ChattingViewController {
                 guard let self else { return }
                 self.customView.updateChatInputViewLayout(height: height)
                 self.customView.layoutIfNeeded()
+                self.scrollToBottom()
             }
             .disposed(by: disposeBag)
     }
