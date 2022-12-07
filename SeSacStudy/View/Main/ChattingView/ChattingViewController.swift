@@ -186,7 +186,7 @@ final class ChattingViewController: RxBaseViewController {
         output.reviewTap
             .withUnretained(self)
             .bind { (vc, _) in
-                print("review tap")
+                vc.transition(RegisterReviewViewController(), transitionStyle: .presentOver)
             }
             .disposed(by: disposeBag)
     }
@@ -282,8 +282,8 @@ extension ChattingViewController {
             case 200:
                 if let chatList = result?.payload, !chatList.isEmpty {
                     self?.addChatToDatabase(chatList)
-                    self?.socketManager.establishConnection()
                 }
+                self?.socketManager.establishConnection()
             case 401:
                 FirebaseAuthManager.share.fetchIDToken { result in
                     switch result {

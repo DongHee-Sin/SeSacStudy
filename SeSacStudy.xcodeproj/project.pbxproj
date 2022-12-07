@@ -46,6 +46,9 @@
 		D03BD00F291962D500F79915 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03BD00E291962D500F79915 /* R.generated.swift */; };
 		D043B2712933052200071401 /* ProfileUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D043B2702933052200071401 /* ProfileUpdate.swift */; };
 		D046CC1B29268AB000C59AD8 /* StudyListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D046CC1A29268AB000C59AD8 /* StudyListCollectionViewCell.swift */; };
+		D04F5E5D29407D1A0088AB07 /* RegisterReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04F5E5C29407D1A0088AB07 /* RegisterReviewView.swift */; };
+		D04F5E602940805A0088AB07 /* RegisterReviewTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04F5E5F2940805A0088AB07 /* RegisterReviewTitleView.swift */; };
+		D04F5E622940860E0088AB07 /* RegisterReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04F5E612940860E0088AB07 /* RegisterReviewViewController.swift */; };
 		D057EC4F292663CA00B3A7B1 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057EC4E292663CA00B3A7B1 /* CustomAnnotation.swift */; };
 		D057EC5329267E8300B3A7B1 /* EnterStudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057EC5229267E8300B3A7B1 /* EnterStudyViewController.swift */; };
 		D057EC5529267EAD00B3A7B1 /* EnterStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057EC5429267EAD00B3A7B1 /* EnterStudyView.swift */; };
@@ -185,6 +188,9 @@
 		D03BD00E291962D500F79915 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D043B2702933052200071401 /* ProfileUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdate.swift; sourceTree = "<group>"; };
 		D046CC1A29268AB000C59AD8 /* StudyListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListCollectionViewCell.swift; sourceTree = "<group>"; };
+		D04F5E5C29407D1A0088AB07 /* RegisterReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterReviewView.swift; sourceTree = "<group>"; };
+		D04F5E5F2940805A0088AB07 /* RegisterReviewTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterReviewTitleView.swift; sourceTree = "<group>"; };
+		D04F5E612940860E0088AB07 /* RegisterReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterReviewViewController.swift; sourceTree = "<group>"; };
 		D057EC4E292663CA00B3A7B1 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		D057EC5229267E8300B3A7B1 /* EnterStudyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterStudyViewController.swift; sourceTree = "<group>"; };
 		D057EC5429267EAD00B3A7B1 /* EnterStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterStudyView.swift; sourceTree = "<group>"; };
@@ -329,6 +335,7 @@
 				D000080C2937AC0E00A4C906 /* ChattingViewController.swift */,
 				D000080E2937AC2800A4C906 /* ChattingView.swift */,
 				D00008152937B9EE00A4C906 /* Cell */,
+				D04F5E5B29407CF50088AB07 /* RegisterReview */,
 			);
 			path = ChattingView;
 			sourceTree = "<group>";
@@ -501,6 +508,24 @@
 			isa = PBXGroup;
 			children = (
 				D023356C2918D752003C7225 /* BasicButton.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
+		D04F5E5B29407CF50088AB07 /* RegisterReview */ = {
+			isa = PBXGroup;
+			children = (
+				D04F5E612940860E0088AB07 /* RegisterReviewViewController.swift */,
+				D04F5E5C29407D1A0088AB07 /* RegisterReviewView.swift */,
+				D04F5E5E2940804D0088AB07 /* Reusable */,
+			);
+			path = RegisterReview;
+			sourceTree = "<group>";
+		};
+		D04F5E5E2940804D0088AB07 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				D04F5E5F2940805A0088AB07 /* RegisterReviewTitleView.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -1055,6 +1080,7 @@
 				D07BE85A2918F90600020487 /* OnboardingCollectionViewCell.swift in Sources */,
 				D01D3885292386A900D7F577 /* MyGenderView.swift in Sources */,
 				D082AA01291EB4F4002A6D09 /* EnterGenderViewModel.swift in Sources */,
+				D04F5E602940805A0088AB07 /* RegisterReviewTitleView.swift in Sources */,
 				D0800A3329226C24006EF576 /* ProfileBackgroundImageView.swift in Sources */,
 				D0AE100B2924CF6D0057AADE /* CustomAlertViewController.swift in Sources */,
 				D0BB7F94292612EF009B9DC8 /* QueueSearchResult.swift in Sources */,
@@ -1081,6 +1107,7 @@
 				D0E504342929D1E500AEDECE /* EnterStudyViewModel.swift in Sources */,
 				D0ADF4C82921FC1F00C5027D /* HomeView.swift in Sources */,
 				D07BE85C2918FA3E00020487 /* BaseCollectionViewCell.swift in Sources */,
+				D04F5E5D29407D1A0088AB07 /* RegisterReviewView.swift in Sources */,
 				D0D2D3B2291E7BCB007FA615 /* EnterBirthDayViewModel.swift in Sources */,
 				D000080A293783A500A4C906 /* UIImage+Extension.swift in Sources */,
 				D0B13A23293214C5007E7D00 /* NotfoundView.swift in Sources */,
@@ -1101,6 +1128,7 @@
 				D0FAE4402923EFF400CD2206 /* DateFormatterManager.swift in Sources */,
 				D0DEEFF7291A5B5600BE125E /* EnterPhoneNumberViewController.swift in Sources */,
 				D05ED1C2293DBE5E00A2CF4B /* Chatting.swift in Sources */,
+				D04F5E622940860E0088AB07 /* RegisterReviewViewController.swift in Sources */,
 				D05F2E2C2920FF43003F13DC /* SignUpModel.swift in Sources */,
 				D05ED1BF293DBD8F00A2CF4B /* RealmManager.swift in Sources */,
 				D01D388B2923885000D7F577 /* SearchAgeGroupView.swift in Sources */,

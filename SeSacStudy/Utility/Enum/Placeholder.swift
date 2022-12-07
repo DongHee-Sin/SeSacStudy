@@ -17,4 +17,5 @@ enum Placeholder: String {
     case study = "띄어쓰기로 복수 입력이 가능해요"
     case frequentStudy = "스터디를 입력해 주세요"
     case chatting = "메세지를 입력하세요"
+    case registerReview = "자세한 피드백은 다른 새싹들에게 도움이 됩니다\n(500자 이내 작성)"
 }
