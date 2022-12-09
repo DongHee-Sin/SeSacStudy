@@ -58,7 +58,6 @@ final class DataStorage {
         return result
     }
     
-    /// Rx로 바꾸기 ⭐️
     private(set) var matchedUser = MatchedUser(id: UserDefaultManager.shared.matchedUserId, nick: UserDefaultManager.shared.matchedUserNick) {
         didSet {
             UserDefaultManager.shared.matchedUserId = matchedUser.id

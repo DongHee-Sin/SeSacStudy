@@ -50,6 +50,7 @@ struct RealmManager {
     
     
     
+    
     // MARK: - Init
     
     init(uid: String) {
@@ -80,14 +81,11 @@ struct RealmManager {
     }
     
     
-    
     func getData(at index: Int) -> Chatting {
         return database[index]
     }
     
     
-    
-    // Read
     mutating private func fetchData(uid: String) {
         database = localRealm.objects(objectType)
             .where { $0.from == uid }
@@ -95,8 +93,6 @@ struct RealmManager {
     }
     
     
-    
-    // Update
     func update(at index: Int, completion: (Chatting) -> Void) throws {
         let dataToUpdate = database[index]
         
@@ -111,8 +107,6 @@ struct RealmManager {
     }
     
     
-    
-    // Delete
     func remove(at index: Int) throws {
         let dataToDelete = database[index]
         
@@ -127,11 +121,6 @@ struct RealmManager {
     }
     
     
-    
-    // Observer 달기
-    /// 데이터 변경되면
-    /// 1. fetchData : database 업데이트
-    /// 2. tableVeiw reload
     mutating func addObserver(completion: @escaping () -> Void) {
         notificationToken = database.observe { _ in
             completion()
