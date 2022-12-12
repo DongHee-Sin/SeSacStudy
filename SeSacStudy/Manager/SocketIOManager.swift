@@ -23,9 +23,10 @@ final class SocketIOManager {
     
     // MARK: - Init
     init(delegate: SocketDataDelegate) {
+        self.delegate = delegate
+        
         manager = SocketManager(socketURL: URL(string: "http://api.sesac.co.kr:1210")!, config: [.forceWebsockets(true)])
         socket = manager.defaultSocket
-        self.delegate = delegate
         
         // 연결
         socket.on(clientEvent: .connect) { data, ack in
@@ -39,7 +40,7 @@ final class SocketIOManager {
         }
         
         // 이벤트 수신
-        socket.on("chat") { dataArray, ack in
+        socket.on("chat") { [weak self] dataArray, ack in
             print("SESAC RECEIVED", dataArray, ack)
             
             let data = dataArray[0] as! NSDictionary
@@ -52,7 +53,7 @@ final class SocketIOManager {
             print("⭐️⭐️⭐️ check >>>", chat, to, from, createdAt)
             
             let chatResponse = ChatResponse(id: id, to: to, from: from, chat: chat, createdAt: createdAt)
-            delegate.received(message: chatResponse)
+            self?.delegate.received(message: chatResponse)
         }
     }
     

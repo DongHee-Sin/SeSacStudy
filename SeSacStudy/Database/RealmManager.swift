@@ -17,6 +17,8 @@ enum RealmError: Error {
 }
 
 
+/// https://stackoverflow.com/questions/48134100/can-we-generate-realm-results-in-background-queue-and-use-it-on-main-thread
+/// https://www.mongodb.com/docs/legacy/realm/swift/3.0.2/api/Classes/ThreadSafeReference.html
 struct RealmManager {
     
     // MARK: - Propertys

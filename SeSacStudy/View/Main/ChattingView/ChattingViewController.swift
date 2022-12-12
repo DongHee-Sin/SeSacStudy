@@ -214,8 +214,8 @@ final class ChattingViewController: RxBaseViewController {
     
     
     private func scrollToBottom() {
-        let lastIndexPath = IndexPath(row: viewModel.chatCount-1, section: 0)
-        customView.tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
+        //let lastIndexPath = IndexPath(row: viewModel.chatCount-1, section: 0)
+        //customView.tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: true)
     }
     
     

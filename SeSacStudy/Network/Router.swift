@@ -61,18 +61,18 @@ enum Router: URLRequestConvertible {
         case .acceptStudy: return "/v1/queue/studyaccept"
         case .dodgeStudy: return "/v1/queue/dodge"
         case .sendChat(let uid, _): return "/v1/chat/\(uid)"
-        case .fetchChat(let uid, let lastDate): return "/v1/chat/\(uid)?lastchatDate=\(lastDate)"
+        case .fetchChat(let uid, _): return "/v1/chat/\(uid)"
         }
     }
     
     
     private var header: HTTPHeaders {
         switch self {
-        case .login, .withdraw, .queueStatus, .queueSearch, .cancelRequestSearch, .fetchChat:
+        case .login, .withdraw, .queueStatus, .queueSearch, .cancelRequestSearch:
             return [
                 "idtoken": UserDefaultManager.shared.idToken,
             ]
-        case .signUp, .mypage, .requestSearch, .requestStudy, .acceptStudy, .dodgeStudy, .sendChat:
+        case .signUp, .mypage, .requestSearch, .requestStudy, .acceptStudy, .dodgeStudy, .sendChat, .fetchChat:
             return [
                 "idtoken": UserDefaultManager.shared.idToken,
                 "Content-Type": "application/x-www-form-urlencoded"
