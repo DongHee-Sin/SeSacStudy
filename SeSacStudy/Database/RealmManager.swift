@@ -31,7 +31,10 @@ struct RealmManager {
     var count: Int { database.count }
     
     var lastChatDate: String {
-        let lastDate = database.where { $0.from == DataStorage.shared.matchedUser.id }.last?.createdAt
+        let lastDate = database.where {
+            $0.from == DataStorage.shared.matchedUser.id || $0.to == DataStorage.shared.matchedUser.id
+        }.last?.createdAt
+        
         if let lastDate {
             return DateFormatterManager.shared.string(from: lastDate)
         }else {
