@@ -27,6 +27,7 @@
 		D0100B692918CB0800AEC5C2 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B682918CB0800AEC5C2 /* IQKeyboardManagerSwift */; };
 		D0100B6C2918CB1300AEC5C2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B6B2918CB1300AEC5C2 /* SnapKit */; };
 		D0100B6F2918CB3500AEC5C2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D0100B6E2918CB3500AEC5C2 /* Alamofire */; };
+		D01229C7294C519A004F7602 /* RegisterReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01229C6294C519A004F7602 /* RegisterReview.swift */; };
 		D0137E75293F94300080B1BA /* SocketDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0137E74293F94300080B1BA /* SocketDataDelegate.swift */; };
 		D0165F11291B82BE00BBE042 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */; };
 		D01D387E292370F700D7F577 /* SettingUserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01D387D292370F700D7F577 /* SettingUserInfoTableViewCell.swift */; };
@@ -169,6 +170,7 @@
 		D0100B4E2918C5CC00AEC5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0100B512918C5CC00AEC5C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0100B532918C5CC00AEC5C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D01229C6294C519A004F7602 /* RegisterReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterReview.swift; sourceTree = "<group>"; };
 		D0137E74293F94300080B1BA /* SocketDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketDataDelegate.swift; sourceTree = "<group>"; };
 		D0165F10291B82BE00BBE042 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		D01D387D292370F700D7F577 /* SettingUserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUserInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -692,6 +694,7 @@
 				D0BB7F93292612EF009B9DC8 /* QueueSearchResult.swift */,
 				D043B2702933052200071401 /* ProfileUpdate.swift */,
 				D05ED1C3293DF34600A2CF4B /* ChatResponse.swift */,
+				D01229C6294C519A004F7602 /* RegisterReview.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1043,6 +1046,7 @@
 			files = (
 				D05ED1C4293DF34600A2CF4B /* ChatResponse.swift in Sources */,
 				D0FAE43C2923E1B200CD2206 /* DataStorage.swift in Sources */,
+				D01229C7294C519A004F7602 /* RegisterReview.swift in Sources */,
 				D0DFFDD8291A40EF00967C1A /* ReusableInitialView.swift in Sources */,
 				D00CC9172938F05D005311FB /* ChattingTableViewCell.swift in Sources */,
 				D01D38872923870200D7F577 /* FrequentStudyView.swift in Sources */,

@@ -25,7 +25,7 @@ enum Router: URLRequestConvertible {
     case dodgeStudy(uid: String)
     case sendChat(uid: String, chat: String)
     case fetchChat(uid: String, lastDate: String)
-    case registerReview(uid: String)
+    case registerReview(review: RegisterReview)
     
     
     private var baseURL: URL {
@@ -63,7 +63,7 @@ enum Router: URLRequestConvertible {
         case .dodgeStudy: return "/v1/queue/dodge"
         case .sendChat(let uid, _): return "/v1/chat/\(uid)"
         case .fetchChat(let uid, _): return "/v1/chat/\(uid)"
-        case .registerReview(let uid): return "/v1/queue/rate/\(uid)"
+        case .registerReview(let review): return "/v1/queue/rate/\(review.otheruid)"
         }
     }
     
@@ -80,7 +80,7 @@ enum Router: URLRequestConvertible {
     /// 모델의 프로퍼티가 변경되었어도 바로 적용될 수 있도록, 코드 관리하기 좋게
     private var param: Parameters? {
         switch self {
-        case .login, .withdraw, .queueStatus, .cancelRequestSearch, .registerReview:
+        case .login, .withdraw, .queueStatus, .cancelRequestSearch:
             return nil
         case .signUp(let body):
             return try? DictionaryEncoder.shared.encode(body)
@@ -103,6 +103,8 @@ enum Router: URLRequestConvertible {
             return ["chat": chat]
         case .fetchChat(_, let lastDate):
             return ["lastchatDate": lastDate]
+        case .registerReview(let body):
+            return try? DictionaryEncoder.shared.encode(body)
         }
     }
     
