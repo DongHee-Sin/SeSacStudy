@@ -25,6 +25,7 @@ enum Router: URLRequestConvertible {
     case dodgeStudy(uid: String)
     case sendChat(uid: String, chat: String)
     case fetchChat(uid: String, lastDate: String)
+    case registerReview(uid: String)
     
     
     private var baseURL: URL {
@@ -36,7 +37,7 @@ enum Router: URLRequestConvertible {
         switch self {
         case .login, .queueStatus, .fetchChat:
             return .get
-        case .signUp, .withdraw, .queueSearch, .requestSearch, .requestStudy, .acceptStudy, .dodgeStudy, .sendChat:
+        case .signUp, .withdraw, .queueSearch, .requestSearch, .requestStudy, .acceptStudy, .dodgeStudy, .sendChat, .registerReview:
             return .post
         case .mypage:
             return .put
@@ -62,22 +63,16 @@ enum Router: URLRequestConvertible {
         case .dodgeStudy: return "/v1/queue/dodge"
         case .sendChat(let uid, _): return "/v1/chat/\(uid)"
         case .fetchChat(let uid, _): return "/v1/chat/\(uid)"
+        case .registerReview(let uid): return "/v1/queue/rate/\(uid)"
         }
     }
     
     
     private var header: HTTPHeaders {
-        switch self {
-        case .login, .withdraw, .queueStatus, .queueSearch, .cancelRequestSearch:
-            return [
-                "idtoken": UserDefaultManager.shared.idToken,
-            ]
-        case .signUp, .mypage, .requestSearch, .requestStudy, .acceptStudy, .dodgeStudy, .sendChat, .fetchChat:
-            return [
-                "idtoken": UserDefaultManager.shared.idToken,
-                "Content-Type": "application/x-www-form-urlencoded"
-            ]
-        }
+        return [
+            "idtoken": UserDefaultManager.shared.idToken,
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
     }
     
     
@@ -85,7 +80,7 @@ enum Router: URLRequestConvertible {
     /// 모델의 프로퍼티가 변경되었어도 바로 적용될 수 있도록, 코드 관리하기 좋게
     private var param: Parameters? {
         switch self {
-        case .login, .withdraw, .queueStatus, .cancelRequestSearch:
+        case .login, .withdraw, .queueStatus, .cancelRequestSearch, .registerReview:
             return nil
         case .signUp(let body):
             return try? DictionaryEncoder.shared.encode(body)
